@@ -209,7 +209,7 @@ Examples:
 
 1. Precincts 123 and 234: https://www.ballotapi.com/api/precincts.html?ids=123,234
 
-####?election_ids=&lt;id&gt;[,&lt;id&gt;,...]
+####?elections=&lt;id&gt;[,&lt;id&gt;,...]
 Return only precincts that are part of these elections. Multiple elections can
 be listed as comma separated ids, which will return precincts that contain any
 of the listed elections (i.e. treated as OR).
@@ -217,10 +217,10 @@ of the listed elections (i.e. treated as OR).
 Examples:
 
 1. The precincts that contain Election 123:<br/>
-https://www.ballotapi.com/api/precincts.html?election_ids=123
+https://www.ballotapi.com/api/precincts.html?elections=123
 
 2. The precincts that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
-https://www.ballotapi.com/api/precincts.html?election_ids=123,234&ll=37.7942635,-122.3955861
+https://www.ballotapi.com/api/precincts.html?elections=123,234&ll=37.7942635,-122.3955861
 
 ####?election_dates=&lt;start_date&gt;:&lt;end_date&gt;
 Return only precincts that belong to elections within a certain date range. You
