@@ -4,20 +4,43 @@
 
 Use it here: https://www.ballotapi.com/api/
 
-##What is Ballot API?
+##Table of Contents
+1. [What is Ballot API?](#what-is-ballot-api)
+2. [Why make Ballot API?](#why-make-ballot-api)
+3. [How do you use the Ballot API?](#how-do-you-use-the-ballot-api)
+4. [Current Status](#current-status)
+5. [Authentication](#authentication)
+6. [Object Formats](#object-formats)
+  1. [Election](#election)
+  2. [Precinct](#precinct)
+  3. [Measure](#measure)
+  4. [Choice](#choice)
+7. [API Reference](#api-reference)
+  1. [/elections/&lt;id&gt;](#electionsid)
+  2. [/elections](#elections)
+  3. [/precincts/&lt;id&gt;](#precinctsid)
+  4. [/precincts](#precincts)
+  5. [/measures/&lt;id&gt;](#measuresid)
+  6. [/measures](#measures)
+8. [How to self-host](#how-to-self-host)
+9. [License](#license)
+  1. [Exceptions](#exceptions)
+10. [Contributions](#contributions)
+
+##<span id="what-is-ballot-api">What is Ballot API?</span>
 Ballot API is a database that contains information for what is on voting
 ballots for each election. You can query based on location to see the ballot for
 that location. Alternatively, you can query based on measure to see the
 precincts that contain that measure.
 
-##Why make Ballot API?
+##<span id="why-make-ballot-api">Why make Ballot API?</span>
 The purpose of this project is to make it easier to see what will be on your
 ballot before you go vote. Most ballot databases are either local to their
 particular jurisdiction (e.g. local county registrar of voters) or only contain
 higher level measures (e.g. national measures/contests only). This project aims
 to be a comprehensive source of ballot information for all levels of government.
 
-##How do you use the Ballot API?
+##<span id="how-do-you-use-the-ballot-api">How do you use the Ballot API?</span>
 There are three ways to use the Ballot API. First, you can browse the database
 by visiting https://www.ballotapi.com/api/ in a web browser. Second, you can
 make API requests to https://www.ballotapi.com/api/ endpoints that are
@@ -25,7 +48,7 @@ documented below. Third, you can copy this repository to self-host the database
 and make requests via either of the two methods described above to your
 self-hosted repo (see "How to self-host" below on how to do this).
 
-##Current Status
+##<span id="current-status">Current Status</span>
 This project is in active development. The goal is to complete this project by
 the 2016 United States general election.
 
@@ -39,16 +62,16 @@ the 2016 United States general election.
 * Database population
 * User experience refinement
 
-##Authentication
+##<span id="authentication">Authentication</span>
 All requests are open to the public and do not need authentication.
 
-##Object Formats
+##<span id="object-formats">Object Formats</span>
 There are three base object formats: Election, Precinct, and Measure. Inside the
 Precinct object, the "geo" field contains a GeoJSON object. Inside the Measure
 object, the "choices" field contains a list of Choice objects. The rest of the
 fields in all base objects are either integers or strings.
 
-###Election
+###<span id="election">Election</span>
 Election objects contains information on a particular election.
 
 ```
@@ -59,7 +82,7 @@ Election objects contains information on a particular election.
 }
 ```
 
-###Precinct
+###<span id="precinct"><Precinct</span>
 Precinct objects contain information for a particular geographical area. They
 are the lowest common denominator for ballot measures in a particular election,
 so any location with that Precinct will have the same list of ballot measures.
@@ -79,7 +102,7 @@ changes across Elections is outside of the scope of this project.
 }
 ```
 
-###Measure
+###<span id="measure">Measure</span>
 Measure objects contain information on ballot measures and contests.
 
 ```
@@ -94,7 +117,7 @@ Measure objects contain information on ballot measures and contests.
 }
 ```
 
-####Measure Types
+####<span id="measure-types">Measure Types</span>
 These are the types of measures, which are the voting system used for the
 choices. The API is agnostic to what kind of entity or contest is actually being
 voted on (person, party, bond measure, etc.).
@@ -104,7 +127,7 @@ voted on (person, party, bond measure, etc.).
 * "instant-runoff" - choose first and second choices
 * "ranked" - sort choices in order of preference (first is most preferred)
 
-###Choice
+###<span id="choice">Choice</span>
 Choice objects contain the details for each item in the choices list of the
 Measure object. They do not have unique ids because they are always include in
 the Measure object.
@@ -116,24 +139,32 @@ the Measure object.
 }
 ```
 
-##API Reference
+##<span id="api-reference">API Reference</span>
 All Ballot API endpoints respond to only GET requests (i.e. read-only). There
 are json and html formats for every endpoint. You can specify which format by
 appending ".json" or ".html" to the end of the endpoint.
 
-###/elections
+###<span id="electionsid">/elections/&lt;id&gt;</span>
+Return the Election object for the specified id.
+
+Examples:
+
+1. Elections 123:<br/>
+https://www.ballotapi.com/api/elections/123.html
+
+###<span id="elections">/elections</span>
 Returns a list of Election objects. Can be filtered by id, location, or date.
 
-####ids=&lt;id&gt;[,&lt;id&gt;,...]
+####?ids=&lt;id&gt;[,&lt;id&gt;,...]
 Return elections filtered to only these comma separated ids. This is just the
-plural form of the `/elections/&lt;id&gt;` endpoint.
+plural form of the `/elections/<id>` endpoint.
 
 Examples:
 
 1. Elections 123 and 234:<br/>
 https://www.ballotapi.com/api/elections.html?ids=123,234
 
-####ll=&lt;latitude&gt;,&lt;longitude&gt;
+####?ll=&lt;latitude&gt;,&lt;longitude&gt;
 Return only elections that include precincts that contain this location. You can
 also specify multiple `ll` arguments to form a geographic polygon area.
 
@@ -145,7 +176,7 @@ https://www.ballotapi.com/api/elections.html?ll=37.7942635,-122.3955861
 2. All the elections for the state of Wyoming (roughly 45.0013129,-111.055124 to 41.001425,-104.0532252):<br/>
 https://www.ballotapi.com/api/elections.html?ll=45.0013129,-111.055124&ll=45.0013129,-104.0532252&ll=41.001425,-104.0532252&ll=41.001425,-111.055124
 
-####dates=&lt;start_date&gt;:&lt;end_date&gt;
+####?dates=&lt;start_date&gt;:&lt;end_date&gt;
 Return only elections within a certain date range. You can omit either the start
 or end dates to leave that side open ended. Dates are inclusive, so results
 include elections that happen on the start or end dates.
@@ -158,19 +189,19 @@ https://www.ballotapi.com/api/elections.html?dates=2014-01-01:2014-12-31
 2. All elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/elections.html?dates=2014-11-05:&ll=37.7942635,-122.3955861
 
-###/elections/&lt;id&gt;
-Return the Election object for the specified id.
+###<span id="precinctsid">/precincts/&lt;id&gt;</span>
+Return the Precinct object for the specified id.
 
 Examples:
 
-1. Elections 123:<br/>
-https://www.ballotapi.com/api/elections/123.html
+1. Precinct 123:<br/>
+https://www.ballotapi.com/api/precincts/123.html
 
-###/precincts
+###<span id="precincts">/precincts</span>
 Return a list of precincts. Can be filtered by id, election, election date,
 location, or measure.
 
-####ids=&lt;id&gt;[,&lt;id&gt;,...]
+####?ids=&lt;id&gt;[,&lt;id&gt;,...]
 Return precincts filtered to only these comma separated ids. This is just the
 plural form of the `/precincts/<id>` endpoint.
 
@@ -178,7 +209,7 @@ Examples:
 
 1. Precincts 123 and 234: https://www.ballotapi.com/api/precincts.html?ids=123,234
 
-####election_ids=&lt;id&gt;[,&lt;id&gt;,...]
+####?election_ids=&lt;id&gt;[,&lt;id&gt;,...]
 Return only precincts that are part of these elections. Multiple elections can
 be listed as comma separated ids, which will return precincts that contain any
 of the listed elections (i.e. treated as OR).
@@ -191,7 +222,7 @@ https://www.ballotapi.com/api/precincts.html?election_ids=123
 2. The precincts that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/precincts.html?election_ids=123,234&ll=37.7942635,-122.3955861
 
-####election_dates=&lt;start_date&gt;:&lt;end_date&gt;
+####?election_dates=&lt;start_date&gt;:&lt;end_date&gt;
 Return only precincts that belong to elections within a certain date range. You
 can omit either the start or end dates to leave that side open ended. Dates are
 inclusive, so results include elections that happen on the start or end dates.
@@ -204,7 +235,7 @@ https://www.ballotapi.com/api/precincts.html?election_dates=2014-01-01:2014-12-3
 2. All the precincts for elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/precincts.html?election_dates=2014-11-05:&ll=37.7942635,-122.3955861
 
-####ll=&lt;latitude&gt;,&lt;longitude&gt;
+####?ll=&lt;latitude&gt;,&lt;longitude&gt;
 Return only precincts that contain this location. You can also specify multiple
 `ll` arguments to form a geographic polygon area.
 
@@ -216,7 +247,7 @@ https://www.ballotapi.com/api/precincts.html?elections=123&ll=37.7942635,-122.39
 2. All Election 123 and 456 precincts for the state of Wyoming:<br/>
 https://www.ballotapi.com/api/precincts.html?elections=123,456&ll=45.0013129,-111.055124&ll=45.0013129,-104.0532252&ll=41.001425,-104.0532252&ll=41.001425,-111.055124
 
-####measures=&lt;id&gt;[,&lt;id&gt;,...]
+####?measures=&lt;id&gt;[,&lt;id&gt;,...]
 Return only precincts that contain these measures. Multiple measures can be
 listed as comma separated ids, which will return precincts that contain any of
 the listed measures (i.e. treated as OR). Multiple measures parameters will
@@ -231,19 +262,19 @@ https://www.ballotapi.com/api/precincts.html?measures=456
 2. The precincts that contain Measures 456 or 567, and contains Measure 789:<br/>
 https://www.ballotapi.com/api/precincts.html?measures=456,567&measures=789
 
-###/precincts/&lt;id&gt;
-Return the Precinct object for the specified id.
+###<span id="measuresid">/measures/&lt;id&gt;</span>
+Return the Measure object for the specified id.
 
 Examples:
 
-1. Precinct 123:<br/>
-https://www.ballotapi.com/api/precincts/123.html
+1. Measure 123:<br/>
+https://www.ballotapi.com/api/measures/123.html
 
-###/measures
+###<span id="measures">/measures</span>
 Return a list of measures. Can be filtered by id, election, election date,
 location, or precinct.
 
-####ids=&lt;id&gt;[,&lt;id&gt;,...]
+####?ids=&lt;id&gt;[,&lt;id&gt;,...]
 Return measures filtered to only these comma separated ids. This is just the
 plural form of the `/measures/<id>` endpoint.
 
@@ -252,7 +283,7 @@ Examples:
 1. Measures 123 and 234:<br/>
 https://www.ballotapi.com/api/measures.html?ids=123,234
 
-####elections=&lt;id&gt;[,&lt;id&gt;,...]
+####?elections=&lt;id&gt;[,&lt;id&gt;,...]
 Return only measures that are part of these elections. Multiple elections can
 be listed as comma separated ids, which will return measures that contain any
 of the listed elections (i.e. treated as OR).
@@ -265,7 +296,7 @@ https://www.ballotapi.com/api/measures.html?elections=123
 2. The measures that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/measures.html?elections=123,234&ll=37.7942635,-122.3955861
 
-####election_dates=&lt;start_date&gt;:&lt;end_date&gt;
+####?election_dates=&lt;start_date&gt;:&lt;end_date&gt;
 Return only measures that belong to elections within a certain date range. You
 can omit either the start or end dates to leave that side open ended. Dates are
 inclusive, so results include elections that happen on the start or end dates.
@@ -278,7 +309,7 @@ https://www.ballotapi.com/api/measures.html?election_dates=2014-01-01:2014-12-31
 2. All the measures for elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/measures.html?election_dates=2014-11-05:&ll=37.7942635,-122.3955861
 
-####ll=&lt;latitude&gt;,&lt;longitude&gt;
+####?ll=&lt;latitude&gt;,&lt;longitude&gt;
 Return only measures that have a precinct within this location. You can also
 specify multiple `ll` arguments to form a geographic polygon area.
 
@@ -290,7 +321,7 @@ https://www.ballotapi.com/api/measures.html?elections=123&ll=37.7942635,-122.395
 2. All Election 123 and 456 measures for the state of Wyoming:<br/>
 https://www.ballotapi.com/api/measures.html?elections=123,456&ll=45.0013129,-111.055124&ll=45.0013129,-104.0532252&ll=41.001425,-104.0532252&ll=41.001425,-111.055124
 
-####precincts=&lt;id&gt;[,&lt;id&gt;,...]
+####?precincts=&lt;id&gt;[,&lt;id&gt;,...]
 Return only measures that are a part of these precincts. Multiple precincts can
 be listed as comma separated ids, which will return measures that are a part of
 any of the listed precincts (i.e. treated as OR). Multiple precincts parameters
@@ -305,15 +336,7 @@ https://www.ballotapi.com/api/measures.html?precincts=456
 2. The measures that are a part of Precinct 456 or 567, and a part of Precinct 789:<br/>
 https://www.ballotapi.com/api/measures.html?precincts=456,567&precincts=789
 
-###/measures/&lt;id&gt;
-Return the Measure object for the specified id.
-
-Examples:
-
-1. Measure 123:<br/>
-https://www.ballotapi.com/api/measures/123.html
-
-##How to self-host
+##<span id="how-to-self-host">How to self-host</span>
 Want to set up your own mirror of this API? Great! Here's how:
 
 1. Download this repo.
@@ -330,7 +353,7 @@ Want to set up your own mirror of this API? Great! Here's how:
 To update to the latest version of the API, simply re-download this repo and
 re-import the database.
 
-##License
+##<span id="license">License</span>
 This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or distribute this
@@ -353,12 +376,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to http://unlicense.org
 
-###Exceptions
+###<span id="exceptions">Exceptions</span>
 * The PageDown minified javascript library included in /index.html is released
 under a BSD-style open source license. This is only used to format this README
 documentation and is not required to actually run the API. Just delete
 /index.html when you copy this repo to be 100% public domain.
 
-##Contributions
+##<span id="contributions">Contributions</span>
 This project is hosted https://github.com/diafygi/ballotapi and maintained by
-a team at Code for America. Want to contribute?
+a team at Code for America. Want to contribute? Submit an issue or pull request!
