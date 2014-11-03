@@ -1,8 +1,8 @@
 #Ballot API - Ballots for developers
 
-**NOTE: THIS PROJECT IS NOT LIVE YET. SEE CURRENT STATUS BELOW.**
+**NOTE: THIS PROJECT IS NOT LIVE YET. SEE PROGRESS AT [GITHUB](https://github.com/diafygi/ballotapi).**
 
-Use it here: https://www.ballotapi.com/api/
+Use it here: https://www.ballotapi.com/api/ (doesn't work yet)
 
 ##Table of Contents
 1. [What is Ballot API?](#what-is-ballot-api)
