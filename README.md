@@ -82,7 +82,7 @@ Election objects contains information on a particular election.
 }
 ```
 
-###<span id="precinct"><Precinct</span>
+###<span id="precinct">Precinct</span>
 Precinct objects contain information for a particular geographical area. They
 are the lowest common denominator for ballot measures in a particular election,
 so any location with that Precinct will have the same list of ballot measures.
