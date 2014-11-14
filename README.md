@@ -107,20 +107,20 @@ Measure objects contain information on ballot measures and contests.
 
 ```
 {
-    "id": 123,          //unique id for this Measure (integer)
-    "election_id": 123, //unique id for this Measure's Election (integer)
-    "precincts": [...], //list of Precinct ids that are (list of integers)
-    "title": "...",     //title of the measure (e.g. "Mayor") (string)
-    "info": "...",      //generic information about the measure (string)
-    "type": "...",      //the type of measure (see Measure Types)
-    "choices": [...],   //list of choices for the measure (list of Choice objects)
+    "id": 123,              //unique id for this Measure (integer)
+    "election_id": 123,     //unique id for this Measure's Election (integer)
+    "precincts": [...],     //list of Precinct ids that are (list of integers)
+    "title": "...",         //title of the measure (e.g. "Mayor") (string)
+    "info": "...",          //generic information about the measure (string)
+    "voting_method": "...", //the type of measure (see Voting Method)
+    "choices": [...],       //list of choices for the measure (list of Choice objects)
 }
 ```
 
-####<span id="measure-types">Measure Types</span>
-These are the types of measures, which are the voting system used for the
-choices. The API is agnostic to what kind of entity or contest is actually being
-voted on (person, party, bond measure, etc.).
+####<span id="voting-method">Voting Method</span>
+These are the voting methods for measures, which are the voting system used
+for the choices. The API is agnostic to what kind of entity or contest is
+actually being voted on (person, party, bond measure, etc.).
 
 * "plurality" - choose one choice
 * "approval" - choose all choices that you approve
