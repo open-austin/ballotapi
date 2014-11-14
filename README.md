@@ -111,11 +111,19 @@ Measure objects contain information on ballot measures and contests.
     "election_id": 123,     //unique id for this Measure's Election (integer)
     "precincts": [...],     //list of Precinct ids that are (list of integers)
     "title": "...",         //title of the measure (e.g. "Mayor") (string)
+    "question": "...",      //question that the voter is asked to answer (string)
     "info": "...",          //generic information about the measure (string)
-    "voting_method": "...", //the type of measure (see Voting Method)
+    "type": "...",          //the type of measure (see Measure Type)
+    "voting_method": "...", //the method of voting (see Voting Method)
     "choices": [...],       //list of choices for the measure (list of Choice objects)
 }
 ```
+
+####<span id="measure-type">Measure Type</span>
+These are the types of measure (i.e. what kind of question is being asked). They will be one of the following strings:
+
+* "election" - voting is to elect a person or party
+* "measure" - voting is to decide on a specific initiative or policy
 
 ####<span id="voting-method">Voting Method</span>
 These are the voting methods for measures, which are the voting system used
