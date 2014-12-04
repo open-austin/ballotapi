@@ -1,6 +1,6 @@
 #Ballot API - Ballots for developers
 
-**NOTE: THIS PROJECT IS NOT LIVE YET. SEE PROGRESS AT [GITHUB](https://github.com/diafygi/ballotapi).**
+**NOTE: THIS PROJECT IS NOT LIVE YET. SEE PROGRESS AT [GITHUB](https://github.com/sfbrigade/ballotapi).**
 
 Use it here: https://www.ballotapi.com/api/ (doesn't work yet)
 
@@ -391,5 +391,5 @@ documentation and is not required to actually run the API. Just delete
 /index.html when you copy this repo to be 100% public domain.
 
 ##<span id="contributions">Contributions</span>
-This project is hosted https://github.com/diafygi/ballotapi and maintained by
+This project is hosted https://github.com/sfbrigade/ballotapi and maintained by
 a team at Code for America. Want to contribute? Submit an issue or pull request!
