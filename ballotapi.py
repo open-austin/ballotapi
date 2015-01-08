@@ -8,11 +8,27 @@ app = Flask(__name__)
 
 with psycopg2.connect(db_login_string) as conn:
     
-    @app.route('/precincts/<int:precinct_id>', methods=['GET', 'POST'])
-    def precinct(precint_id):
+    @app.route('/precincts/<int:precinct_id>')
+    def precinct(precinct_id):
         with conn.cursor() as cur:
-            #Query to get precinct data.
-    @app.route('/precincts/', methods=['GET', 'POST'])
+            precinct_data = []
+            #Retrieve precinct data
+            sql = (' SELECT P.precinct_id, P.election_id, P.info, P.confirmed '
+                   ' FROM precincts P '
+                   ' WHERE P.precinct_id = %s ')
+            cur.execute(sql, (precinct_id,))
+            pdata = cur.fetchall()[0]
+            for item in pdata:
+                precinct_data.append(item)
+            precinct_data.append(item)
+            sql = (' SELECT MA.measure_id '
+                   ' FROM mappings MA '
+                   ' WHERE MA.precinct_id = %s ')
+            cur.execute(sql, (precinct_id,))
+            precinct_data.append(cur.fetchall())
+            return str(precinct_data)
+
+    @app.route('/precincts/')
     def precincts():
         #Initialize parameter dictionary.
         param_dict = {'ids':None,
