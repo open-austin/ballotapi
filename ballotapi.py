@@ -3,12 +3,14 @@ import precincts
 
 app = Flask(__name__)
 
+params = request.values
+
 @app.route('/precincts/<precinct_id>')
-def precinct_id(precinct_id):
+def precinct_id(precinct_id, params):
     return precincts.endpoint(direct_id = precinct_id)
     
 @app.route('/precincts/')
-def precincts():
+def precincts(params):
     return precincts.endpoint()
 
 @app.route('/measures/<measure_id>')

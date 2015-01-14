@@ -1,6 +1,6 @@
 import queries as q
 
-def endpoint(**kwargs):
+def endpoint(params, **kwargs):
     q_dict = {'select':(' SELECT DISTINCT p.precinct_id, p.election_id, '
                         ' p.info, p.confirmed '),
               'from':' FROM precincts P ',
@@ -13,7 +13,7 @@ def endpoint(**kwargs):
                   'geo':None,
                   'election_dates':None,
                   'll':None}
-    param_dict = q.retrieve_query_parameters(param_dict)
+    param_dict = q.retrieve_query_parameters(params, param_dict)
     if kwargs.get('direct_id'):
         param_dict['ids'] = kwargs['direct_id']
 

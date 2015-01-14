@@ -6,7 +6,7 @@ import psycopg2
 #This function retrieves the query data and also makes sure that
 #the url query has proper parameter names as defined by the keys
 #in the parameter dictionary.
-def retrieve_query_parameters(param_dict):
+def retrieve_query_parameters(params, param_dict):
     #Retrieve parameter data.
     for key in request.args.keys():
         if key in param_dict:
@@ -83,7 +83,7 @@ def election_dates_query(q_dict, param_dict, param_list, from_clause, where_clau
     return q_dict, param_list
 
 def ll_query(q_dict, param_dict, param_list, where_clause, from_clause):
-   if param_dict['ll']:
+    if param_dict['ll']:
         coords = param_dict['ll'][0].split(',')
         if len(coords) % 2 != 0:
             return ('Error: You have entered an odd number of coordinates.  Coordinates '
@@ -94,7 +94,7 @@ def ll_query(q_dict, param_dict, param_list, where_clause, from_clause):
             return 'All coordinates must be valid floating point numbers.'
         #ST_Collect is seen by PostgreSQL as an aggregate function if it is only given one
         #input.  If there is only one coordinate pair, don't use ST_Collect.
-        if len(coords) = 2:
+        if len(coords) == 2:
             q_dict['where'] += ' AND ST_Intersects(p.geom, ST_MakePoint(%s,%s)) '
         else:
             #Add an ST_MakePoint for each pair of coordinates.  The [:-1] removes
@@ -110,9 +110,11 @@ def measures_query(q_dict, param_dict, param_list):
         for index, query_string in enumerate(param_dict['measures'], start=1):
             try:
                 param_list.append(tuple(int(x) for x in query_string.split(',')))
-            q_dict['from'] += ', mappings MA{} '.format(index)
-            q_dict['where'] += ' AND p.precinct_id = ma{}.precinct_id '.format(index)
-            q_dict['where'] += ' AND ma{}.measure_id IN %s '.format(index)
+                q_dict['from'] += ', mappings MA{} '.format(index)
+                q_dict['where'] += ' AND p.precinct_id = ma{}.precinct_id '.format(index)
+                q_dict['where'] += ' AND ma{}.measure_id IN %s '.format(index)
+            except Exception as e:
+                return 'Error: measures must be given as comma delineated integers.'
     return q_dict, param_list
 
 def precincts_query(q_dict, param_dict, param_list):
@@ -120,9 +122,11 @@ def precincts_query(q_dict, param_dict, param_list):
         for index, query_string in enumerate(param_dict['precincts'], start=1):
             try:
                 param_list.append(tuple(int(x) for x in query_string.split(',')))
-            q_dict['from'] += ', mappings MA{} '.format(index)
-            q_dict['where'] += ' AND me.measure_id = ma{}.measure_id '.format(index)
-            q_dict['where'] += ' AND ma{}.precinct_id IN %s '.format(index)
+                q_dict['from'] += ', mappings MA{} '.format(index)
+                q_dict['where'] += ' AND me.measure_id = ma{}.measure_id '.format(index)
+                q_dict['where'] += ' AND ma{}.precinct_id IN %s '.format(index)
+            except Exception as e:
+                return 'Error: precincts must be given as comma delineated integers.'
     return q_dict, param_list
 
 db_login_string = 'dbname=ballotdb user=postgres'
