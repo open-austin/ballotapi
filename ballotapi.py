@@ -1,17 +1,15 @@
-from flask import Flask
+from flask import Flask, request
 import precincts
 
 app = Flask(__name__)
 
-params = request.values
-
 @app.route('/precincts/<precinct_id>')
-def precinct_id(precinct_id, params):
-    return precincts.endpoint(direct_id = precinct_id)
+def precinct_id(precinct_id):
+    return precincts.endpoint(request.values, direct_id = precinct_id)
     
 @app.route('/precincts/')
-def precincts(params):
-    return precincts.endpoint()
+def call_precincts():
+    return precincts.endpoint(request.values)
 
 @app.route('/measures/<measure_id>')
 def measure_id(measure_id):

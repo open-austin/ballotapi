@@ -36,10 +36,10 @@ def endpoint(params, **kwargs):
     ll_where_clause = '' #Not needed for /precincts.
     ll_from_clause = '' #Because it doesn't need to join to precincts table.
     q_dict, param_list = q.ll_query(q_dict, param_dict, param_list,
-                                    ll_where_clause)
+                                    ll_where_clause, ll_from_clause)
 
     q_dict = q.measures_query(q_dict, param_dict, param_list)
 
-    data = main_query(q_dict, param_list)
+    data = q.main_query(q_dict, param_list)
 
-    data = list_query(data)
+    data = q.list_query(data)

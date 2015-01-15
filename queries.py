@@ -8,9 +8,9 @@ import psycopg2
 #in the parameter dictionary.
 def retrieve_query_parameters(params, param_dict):
     #Retrieve parameter data.
-    for key in request.args.keys():
+    for key in params:
         if key in param_dict:
-            param_dict[key] = request.values.getlist(key)
+            param_dict[key] = params.getlist(key)
         else:
             return 'Invalid Parameter Name: ' + key                
     return param_dict
@@ -154,5 +154,4 @@ def measure_list_query(data):
                 row.append(cur.fetchone())
                 data[index] = row
     return data
-        
-app.run(host='0.0.0.0', debug=True)
+
