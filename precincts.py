@@ -4,7 +4,7 @@ def endpoint(params, **kwargs):
     q_dict = {'select':(' SELECT DISTINCT p.precinct_id, p.election_id, '
                         ' p.info, p.confirmed '),
               'from':' FROM precincts P ',
-              'where':' WHERE p.precinct_id = %s ',
+              'where':' WHERE TRUE ',
               'order_by':' ORDER BY p.precinct_id '}
 
     param_dict = {'ids':None,
@@ -23,7 +23,7 @@ def endpoint(params, **kwargs):
     q_dict, param_list = q.ids_query(q_dict, param_dict, param_list,
                                      ids_where_clause)
     
-    elections_where_clause = ' AND p.elections_id IN %s '
+    elections_where_clause = ' AND p.election_id IN %s '
     q_dict, param_list = q.elections_query(q_dict, param_dict, param_list,
                                elections_where_clause)
 
@@ -38,8 +38,10 @@ def endpoint(params, **kwargs):
     q_dict, param_list = q.ll_query(q_dict, param_dict, param_list,
                                     ll_where_clause, ll_from_clause)
 
-    q_dict = q.measures_query(q_dict, param_dict, param_list)
+    q_dict, param_list = q.measures_query(q_dict, param_dict, param_list)
 
     data = q.main_query(q_dict, param_list)
 
-    data = q.list_query(data)
+    data = q.measure_list_query(data)
+
+    return str(data)

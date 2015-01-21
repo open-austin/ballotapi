@@ -71,12 +71,13 @@ def election_dates_query(q_dict, param_dict, param_list, from_clause, where_clau
                 try:
                     for date in date_range.split(':'):
                         param_list.append(datetime.datetime.strptime(date, '%Y-%m-%d').date())
-                    q_dict['where'] += ' AND e.election_date IN %s '
+                    q_dict['where'] += ' AND e.election_date BETWEEN %s AND %s '
                 except Exception as e:
                     return 'Error: Dates must be in YYYY-MM-DD format. '
         if single_dates:
             try:
-                param_list.append(tuple(datetime.datetime.strptime(date, '%Y-%m-%d').date()))
+                dl=[datetime.datetime.strptime(date, '%Y-%m-%d').date() for date in single_dates]
+                param_list.append(tuple(dl))
                 q_dict['where'] += ' AND e.election_date IN %s '
             except Exception as e:
                 return 'Error: Dates must be in YYYY-MM-DD format. '
@@ -89,7 +90,8 @@ def ll_query(q_dict, param_dict, param_list, where_clause, from_clause):
             return ('Error: You have entered an odd number of coordinates.  Coordinates '
                     'must be entered in pairs')
         try:
-            param_list.append(float(num) for num in coords)
+            for num in coords:
+                param_list.append(float(num))
         except Exception as e:    
             return 'All coordinates must be valid floating point numbers.'
         #ST_Collect is seen by PostgreSQL as an aggregate function if it is only given one
@@ -132,9 +134,7 @@ def precincts_query(q_dict, param_dict, param_list):
 db_login_string = 'dbname=ballotdb user=postgres'
 
 def main_query(q_dict, param_list):
-    sql = ''
-    for key in q_dict:
-        sql += q_dict[key]
+    sql = q_dict['select'] + q_dict['from'] + q_dict['where'] + q_dict['order_by']
     data = []
     with psycopg2.connect(db_login_string) as conn:
         with conn.cursor() as cur:
@@ -146,12 +146,16 @@ def main_query(q_dict, param_list):
 def measure_list_query(data):
     sql = (' SELECT MA.measure_id '
            ' FROM mappings MA '
-           ' WHERE MA.precinct_id = %s ')
+           ' WHERE MA.precinct_id = %s '
+           ' ORDER BY MA.measure_id ')
     with psycopg2.connect(db_login_string) as conn:
         with conn.cursor() as cur:
             for index, row in enumerate(data):
-                cur.execute(sql, oid)
-                row.append(cur.fetchone())
+                cur.execute(sql, (row[0],))
+                measure_list = []
+                for record in cur:
+                    measure_list.append(record[0])
+                row += (measure_list,)
                 data[index] = row
     return data
 
