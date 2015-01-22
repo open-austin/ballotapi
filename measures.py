@@ -1,15 +1,15 @@
 import queries as q
 
 def endpoint(params, **kwargs):
-    q_dict = {'select':(' SELECT DISTINCT p.precinct_id, p.election_id, '
-                        ' p.info, p.confirmed '),
-              'from':' FROM precincts P ',
+    q_dict = {'select':(' SELECT DISTINCT me.measure_id, me.election_id, me.info, me.title, '
+                        ' me.question, me.type, me.voting_method, me.choices '),
+              'from':' FROM measures ME ',
               'where':' WHERE TRUE ',
-              'order_by':' ORDER BY p.precinct_id '}
+              'order_by':' ORDER BY me.measure_id '}
 
     param_dict = {'ids':None,
                   'elections':None,
-                  'measures':None,
+                  'precincts':None,
                   'geo':None,
                   'election_dates':None,
                   'll':None}
@@ -19,33 +19,33 @@ def endpoint(params, **kwargs):
 
     param_list =[]
 
-    ids_where_clause = ' AND p.precinct_id IN %s '
+    ids_where_clause = ' AND me.measure_id IN %s '
     q_dict, param_list = q.ids_query(q_dict, param_dict, param_list,
                                      ids_where_clause)
     
-    elections_where_clause = ' AND p.election_id IN %s '
+    elections_where_clause = ' AND me.election_id IN %s '
     q_dict, param_list = q.elections_query(q_dict, param_dict, param_list,
                                elections_where_clause)
 
     election_dates_from_clause = ' , elections E '
-    election_dates_where_clause = ' AND e.election_id = p.election_id '
+    election_dates_where_clause = ' AND e.election_id = me.election_id '
     q_dict, param_list = q.election_dates_query(q_dict, param_dict, param_list,
                                     election_dates_from_clause, 
                                     election_dates_where_clause)
 
-    ll_where_clause = '' #Not needed for /precincts.
-    ll_from_clause = '' #Because it doesn't need to join to precincts table.
+    ll_where_clause = ' AND me.election_id = p.election_id'
+    ll_from_clause = ' ,precincts P '
     q_dict, param_list = q.ll_query(q_dict, param_dict, param_list,
                                     ll_where_clause, ll_from_clause)
 
-    q_dict, param_list = q.measures_query(q_dict, param_dict, param_list)
+    q_dict, param_list = q.precincts_query(q_dict, param_dict, param_list)
 
     data = q.main_query(q_dict, param_list)
-
-    list_sql = (' SELECT MA.measure_id '
+    
+    list_sql = (' SELECT MA.precinct_id '
                 ' FROM mappings MA '
-                ' WHERE MA.precinct_id = %s '
-                ' ORDER BY MA.measure_id ')
+                ' WHERE MA.measure_id = %s '
+                ' ORDER BY MA.precinct_id ')
     data = q.list_query(data, list_sql)
 
     return str(data)

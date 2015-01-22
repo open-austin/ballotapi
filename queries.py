@@ -112,8 +112,8 @@ def ll_query(q_dict, param_dict, param_list, where_clause, from_clause):
             #the comma on the last one.
             collect_clause = ('ST_MakePoint(%s,%s),' * (len(coords)//2))[:-1]
             q_dict['where'] += ' AND ST_Intersects(p.geom,ST_Collect({})) '.format(collect_clause)
-            q_dict['from'] += from_clause
-            q_dict['where'] += where_clause
+        q_dict['from'] += from_clause
+        q_dict['where'] += where_clause
     return q_dict, param_list
 
 def measures_query(q_dict, param_dict, param_list):                    
@@ -149,23 +149,23 @@ def main_query(q_dict, param_list):
     data = []
     with psycopg2.connect(db_login_string) as conn:
         with conn.cursor() as cur:
-            cur.execute(sql, param_list)
+            try:
+                cur.execute(sql, param_list)
+            except psycopg2.ProgrammingError:
+                print(cur.mogrify(sql, param_list)) #TODO: add logging.
+                raise
             for record in cur:
                 data.append(record)
     return data
 
-def measure_list_query(data):
-    sql = (' SELECT MA.measure_id '
-           ' FROM mappings MA '
-           ' WHERE MA.precinct_id = %s '
-           ' ORDER BY MA.measure_id ')
+def list_query(data, sql):
     with psycopg2.connect(db_login_string) as conn:
         with conn.cursor() as cur:
             for index, row in enumerate(data):
                 cur.execute(sql, (row[0],))
-                measure_list = []
+                list_ = []
                 for record in cur:
-                    measure_list.append(record[0])
+                    list_.append(record[0])
                 row += (measure_list,)
                 data[index] = row
     return data
