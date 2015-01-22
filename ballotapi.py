@@ -1,5 +1,6 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import precincts
+import exception
 
 app = Flask(__name__)
 
@@ -26,5 +27,11 @@ def election_id(election_id):
 @app.route('/elections/')
 def elections():
     pass
+
+@app.errorhandler(exception.BadRequestError)
+def handle_errors(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
 
 app.run(host='0.0.0.0', debug=True)

@@ -1,5 +1,6 @@
 import datetime
 import psycopg2
+import exception
 
 #Input: parameter_dictionary that has empty keys.
 #Output: parameter_dictionary filled with values from query url.
@@ -12,7 +13,9 @@ def retrieve_query_parameters(params, param_dict):
         if key in param_dict:
             param_dict[key] = params.getlist(key)
         else:
-            return 'Invalid Parameter Name: ' + key                
+            message = ('Invalid Parameter Name: ' + key + '\n'
+                       'Valid Parameter Names are: ' + str(param_dict.keys()))
+            raise exception.BadRequestError(message)
     return param_dict
 
 def ids_query(q_dict, param_dict, param_list, where_clause):
@@ -20,15 +23,15 @@ def ids_query(q_dict, param_dict, param_list, where_clause):
     if param_dict['ids']:
         #Check that there is only one ids= instance.
         if len(param_dict['ids']) > 1:
-            return 'Error: Only one instance of "ids=" is allowed.'
+            raise exception.BadRequestError('Error: Only one instance of "ids=" is allowed')
         try:
             #Split query string on commas and cast pieces to ints.
             #Then wrap into a tuple as that is what psycopg2 accepts.
             param_list.append(tuple(int(x) for x in param_dict['ids'][0].split(',')))
-        except Exception as e:
-            error_string = ('Invalid data in "ids=" clause. '
-                            'Values must be comma seperated integers. ')
-            return error_string
+        except (TypeError, ValueError) as e:
+            message = ('Error: Invalid parameter value in "ids=" clause: ' + param_dict['ids'][0] +
+                       '\nValues must be comma seperated integers.')
+            raise exception.BadRequestError(message)
         q_dict['where'] += where_clause
     return q_dict, param_list
 
@@ -37,15 +40,14 @@ def elections_query(q_dict, param_dict, param_list, where_clause):
     if param_dict['elections']:
         #Check that there is only one elections= instance.
         if len(param_dict['elections']) > 1:
-            return 'Error: Only on istance of "elections=" is allowed.'
+            raise exception.BadRequestError('Error: Only one instance of "elections=" is allowed')
         try:
             #Split query string on commas and cast pieces to ints.
             #Then wrap into a tuple as that is what psycopg2 accepts.
             param_list.append(tuple(int(x) for x in param_dict['elections'][0].split(',')))
-        except Exception as e:
-            error_string = ('Invalid data in "elections=" clause. '
-                            'Values must be comma seperated integers. ')
-            return error_string
+        except (TypeError, ValueError) as e:
+            message = ('Error: Invalid parameter value in "elections=" clause: ' +
+                       param_dict['elections'][0] + '\nValues must be comma seperated integers.')
         q_dict['where']+= where_clause
     return q_dict, param_list
 
@@ -54,7 +56,8 @@ def election_dates_query(q_dict, param_dict, param_list, from_clause, where_clau
     if param_dict['election_dates']:
         #Check that there is only one election_dates= instance.
         if len(param_dict['election_dates']) > 1:
-            return 'Error: Only one instance of "election_dates=" is allowed.'
+            message = ('Error: Only one instance of "election_dates=" is permitted')
+            raise exception.BadRequestError(message)
         q_dict['from'] += from_clause
         q_dict['where'] += where_clause
         #Split date string into two lists: single_dates and date_ranges.
@@ -72,28 +75,34 @@ def election_dates_query(q_dict, param_dict, param_list, from_clause, where_clau
                     for date in date_range.split(':'):
                         param_list.append(datetime.datetime.strptime(date, '%Y-%m-%d').date())
                     q_dict['where'] += ' AND e.election_date BETWEEN %s AND %s '
-                except Exception as e:
-                    return 'Error: Dates must be in YYYY-MM-DD format. '
+                except (NameError, TypeError) as e:
+                    message = ('Error: Invalid Parameter Value in "election_dates=" clause: ' + 
+                               str(date_ranges) + 'Date ranges must be in YYYY-MM-DD:YYYY-MM-DD'
+                               'format.')
+                    raise exception.BadRequestError(message)
         if single_dates:
             try:
                 dl=[datetime.datetime.strptime(date, '%Y-%m-%d').date() for date in single_dates]
                 param_list.append(tuple(dl))
                 q_dict['where'] += ' AND e.election_date IN %s '
-            except Exception as e:
-                return 'Error: Dates must be in YYYY-MM-DD format. '
+            except (NameError, TypeError) as e:
+                message = ('Error: Invalid Parameter Value in "election_dates=" clause: ' +
+                           str(single_dates) + 'Dates must be in YYYY-MM-DD format.')
+                raise exception.BadRequestError(message)
     return q_dict, param_list
 
 def ll_query(q_dict, param_dict, param_list, where_clause, from_clause):
     if param_dict['ll']:
         coords = param_dict['ll'][0].split(',')
         if len(coords) % 2 != 0:
-            return ('Error: You have entered an odd number of coordinates.  Coordinates '
-                    'must be entered in pairs')
+            message = ('Error: You have entered an odd number of coordinates.  Coordinates '
+                       'must be entered in pairs')
+            raise exception.BadRequestError(message)
         try:
             for num in coords:
                 param_list.append(float(num))
-        except Exception as e:    
-            return 'All coordinates must be valid floating point numbers.'
+        except (NameError, TypeError) as e:    
+            raise exception.BadRequestError('Error: Not a floating point number')
         #ST_Collect is seen by PostgreSQL as an aggregate function if it is only given one
         #input.  If there is only one coordinate pair, don't use ST_Collect.
         if len(coords) == 2:
@@ -115,8 +124,9 @@ def measures_query(q_dict, param_dict, param_list):
                 q_dict['from'] += ', mappings MA{} '.format(index)
                 q_dict['where'] += ' AND p.precinct_id = ma{}.precinct_id '.format(index)
                 q_dict['where'] += ' AND ma{}.measure_id IN %s '.format(index)
-            except Exception as e:
-                return 'Error: measures must be given as comma delineated integers.'
+            except (NameError, TypeError) as e:
+                message =  'Error: measures must be given as comma delineated integers.'
+                raise exception.BadRequestError(message)
     return q_dict, param_list
 
 def precincts_query(q_dict, param_dict, param_list):
@@ -127,8 +137,9 @@ def precincts_query(q_dict, param_dict, param_list):
                 q_dict['from'] += ', mappings MA{} '.format(index)
                 q_dict['where'] += ' AND me.measure_id = ma{}.measure_id '.format(index)
                 q_dict['where'] += ' AND ma{}.precinct_id IN %s '.format(index)
-            except Exception as e:
-                return 'Error: precincts must be given as comma delineated integers.'
+            except (NameError, TypeError) as e:
+                message = 'Error: precincts must be given as comma delineated integers.'
+                raise exception.BadRequestError(message)
     return q_dict, param_list
 
 db_login_string = 'dbname=ballotdb user=postgres'
