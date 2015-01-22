@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import elections
 import precincts
 import exception
 
@@ -22,11 +23,11 @@ def measures():
 
 @app.route('/elections/<election_id>')
 def election_id(election_id):
-    pass
+    return elections.endpoint(request.values, direct_id = election_id)
 
 @app.route('/elections/')
-def elections():
-    pass
+def call_elections():
+    return elections.endpoint(request.values)
 
 @app.errorhandler(exception.BadRequestError)
 def handle_errors(error):

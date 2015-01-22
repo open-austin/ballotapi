@@ -75,7 +75,7 @@ def election_dates_query(q_dict, param_dict, param_list, from_clause, where_clau
                     for date in date_range.split(':'):
                         param_list.append(datetime.datetime.strptime(date, '%Y-%m-%d').date())
                     q_dict['where'] += ' AND e.election_date BETWEEN %s AND %s '
-                except (NameError, TypeError) as e:
+                except (TypeError, ValueError) as e:
                     message = ('Error: Invalid Parameter Value in "election_dates=" clause: ' + 
                                str(date_ranges) + 'Date ranges must be in YYYY-MM-DD:YYYY-MM-DD'
                                'format.')
@@ -85,7 +85,7 @@ def election_dates_query(q_dict, param_dict, param_list, from_clause, where_clau
                 dl=[datetime.datetime.strptime(date, '%Y-%m-%d').date() for date in single_dates]
                 param_list.append(tuple(dl))
                 q_dict['where'] += ' AND e.election_date IN %s '
-            except (NameError, TypeError) as e:
+            except (TypeError, ValueError) as e:
                 message = ('Error: Invalid Parameter Value in "election_dates=" clause: ' +
                            str(single_dates) + 'Dates must be in YYYY-MM-DD format.')
                 raise exception.BadRequestError(message)
@@ -101,7 +101,7 @@ def ll_query(q_dict, param_dict, param_list, where_clause, from_clause):
         try:
             for num in coords:
                 param_list.append(float(num))
-        except (NameError, TypeError) as e:    
+        except (TypeError, ValueError) as e:    
             raise exception.BadRequestError('Error: Not a floating point number')
         #ST_Collect is seen by PostgreSQL as an aggregate function if it is only given one
         #input.  If there is only one coordinate pair, don't use ST_Collect.
