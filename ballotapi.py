@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import elections
 import precincts
+import measures
 import exception
 
 app = Flask(__name__)
@@ -15,11 +16,11 @@ def call_precincts():
 
 @app.route('/measures/<measure_id>')
 def measure_id(measure_id):
-    pass
+    return measures.endpoint(request.values, direct_id = measure_id)
 
 @app.route('/measures/')
-def measures():
-    pass
+def call_measures():
+    return measures.endpoint(request.values)
 
 @app.route('/elections/<election_id>')
 def election_id(election_id):

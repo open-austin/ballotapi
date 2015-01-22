@@ -166,7 +166,7 @@ def list_query(data, sql):
                 list_ = []
                 for record in cur:
                     list_.append(record[0])
-                row += (measure_list,)
+                row += (list_,)
                 data[index] = row
     return data
 

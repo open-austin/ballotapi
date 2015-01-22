@@ -2,7 +2,7 @@ import queries as q
 
 def endpoint(params, **kwargs):
     q_dict = {'select':(' SELECT DISTINCT me.measure_id, me.election_id, me.info, me.title, '
-                        ' me.question, me.type, me.voting_method, me.choices '),
+                        ' me.question, me.measure_type, me.voting_system '),
               'from':' FROM measures ME ',
               'where':' WHERE TRUE ',
               'order_by':' ORDER BY me.measure_id '}
