@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
+from flask.ext.cors import CORS
 import elections
 import precincts
 import measures
 import exception
+import tojson
 
 app = Flask(__name__)
+cor = CORS(app)
 
 @app.route('/precincts/<precinct_id>')
 def precinct_id(precinct_id):
@@ -24,11 +27,11 @@ def call_measures():
 
 @app.route('/elections/<election_id>')
 def election_id(election_id):
-    return elections.endpoint(request.values, direct_id = election_id)
+    return tojson.election_json(elections.endpoint(request.values, direct_id = election_id))
 
 @app.route('/elections/')
 def call_elections():
-    return elections.endpoint(request.values)
+    return tojson.election_json(elections.endpoint(request.values))
 
 @app.errorhandler(exception.BadRequestError)
 def handle_errors(error):

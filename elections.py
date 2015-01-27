@@ -34,4 +34,4 @@ def endpoint(params, **kwargs):
 
     data = q.main_query(q_dict, param_list)
 
-    return str(data)
+    return data
