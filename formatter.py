@@ -26,7 +26,7 @@ def measure_json(measure_data):
         measure_list.append(measure_dict)
     return json.dumps(measure_list)
 
-def precinct_json(precicnt_data):
+def precinct_json(precinct_data):
     precinct_list = []
     for precinct in precinct_data:
         precinct_dict = {}
@@ -34,7 +34,7 @@ def precinct_json(precicnt_data):
         precinct_dict['election_id'] = precinct[1]
         precinct_dict['info'] = precinct[2]
         precinct_dict['confirmed'] = precinct[3]
-        precinct_dict['geo'] = precinct[4]
+        precinct_dict['geo'] = json.loads(precinct[4])
         precinct_dict['measures'] = precinct[5]
         precinct_list.append(precinct_dict)
-    return json.dumps(measure_list)
+    return json.dumps(precinct_list)

@@ -4,26 +4,26 @@ import elections
 import precincts
 import measures
 import exception
-import tojson
+import formatter
 
 app = Flask(__name__)
 cor = CORS(app)
 
 @app.route('/precincts/<precinct_id>')
 def precinct_id(precinct_id):
-    return precincts.endpoint(request.values, direct_id = precinct_id)
+    return formatter.precinct_json(precincts.endpoint(request.values, direct_id = precinct_id))
     
 @app.route('/precincts/')
 def call_precincts():
-    return precincts.endpoint(request.values)
+    return formatter.precinct_json(precincts.endpoint(request.values))
 
 @app.route('/measures/<measure_id>')
 def measure_id(measure_id):
-    return measures.endpoint(request.values, direct_id = measure_id)
+    return formatter.measure_json(measures.endpoint(request.values, direct_id = measure_id))
 
 @app.route('/measures/')
 def call_measures():
-    return measures.endpoint(request.values)
+    return formatter.measure_json(measures.endpoint(request.values))
 
 @app.route('/elections/<election_id>')
 def election_id(election_id):
