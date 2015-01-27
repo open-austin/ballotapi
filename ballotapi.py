@@ -27,11 +27,11 @@ def call_measures():
 
 @app.route('/elections/<election_id>')
 def election_id(election_id):
-    return tojson.election_json(elections.endpoint(request.values, direct_id = election_id))
+    return formatter.election_json(elections.endpoint(request.values, direct_id = election_id))
 
 @app.route('/elections/')
 def call_elections():
-    return tojson.election_json(elections.endpoint(request.values))
+    return formatter.election_json(elections.endpoint(request.values))
 
 @app.errorhandler(exception.BadRequestError)
 def handle_errors(error):

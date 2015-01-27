@@ -1,8 +1,8 @@
 import queries as q
 
 def endpoint(params, **kwargs):
-    q_dict = {'select':(' SELECT DISTINCT p.precinct_id, p.election_id, '
-                        ' p.info, p.confirmed '),
+    q_dict = {'select':(' SELECT DISTINCT ON (p.precinct_id) p.precinct_id, p.election_id, '
+                        ' p.info, p.confirmed, ST_AsGeoJSON(p.geom) '),
               'from':' FROM precincts P ',
               'where':' WHERE TRUE ',
               'order_by':' ORDER BY p.precinct_id '}
@@ -48,4 +48,4 @@ def endpoint(params, **kwargs):
                 ' ORDER BY MA.measure_id ')
     data = q.list_query(data, list_sql)
 
-    return str(data)
+    return data
