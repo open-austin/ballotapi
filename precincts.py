@@ -13,6 +13,7 @@ def endpoint(params, **kwargs):
                   'geo':None,
                   'election_dates':None,
                   'll':None}
+
     param_dict = q.retrieve_query_parameters(params, param_dict)
     if kwargs.get('direct_id'):
         param_dict['ids'] = kwargs['direct_id']
