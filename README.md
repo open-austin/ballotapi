@@ -172,13 +172,13 @@ Examples:
 1. Elections 123 and 234:<br/>
 https://www.ballotapi.com/api/elections.html?ids=123,234
 
-####?ll=&lt;latitude&gt;,&lt;longitude&gt;
+####?coords=&lt;latitude&gt;,&lt;longitude&gt;
 Return only elections that include precincts that contain this location.
 
 Examples:
 
 1. All the elections for 100 Market St, San Francisco, CA (37.7942635,-122.3955861):<br/>
-https://www.ballotapi.com/api/elections.html?ll=37.7942635,-122.3955861
+https://www.ballotapi.com/api/elections.html?coords=37.7942635,-122.3955861
 
 ####?dates=&lt;start_date&gt;:&lt;end_date&gt;
 Return only elections within a certain date range. You can omit either the start
@@ -191,7 +191,7 @@ Examples:
 https://www.ballotapi.com/api/elections.html?dates=2014-01-01:2014-12-31
 
 2. All elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
-https://www.ballotapi.com/api/elections.html?dates=2014-11-05:&ll=37.7942635,-122.3955861
+https://www.ballotapi.com/api/elections.html?dates=2014-11-05:&coords=37.7942635,-122.3955861
 
 ###<span id="precinctsid">/precincts/&lt;id&gt;</span>
 Return the Precinct object for the specified id.
@@ -224,7 +224,7 @@ Examples:
 https://www.ballotapi.com/api/precincts.html?elections=123
 
 2. The precincts that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
-https://www.ballotapi.com/api/precincts.html?elections=123,234&ll=37.7942635,-122.3955861
+https://www.ballotapi.com/api/precincts.html?elections=123,234&coords=37.7942635,-122.3955861
 
 ####?election_dates=&lt;start_date&gt;:&lt;end_date&gt;
 Return only precincts that belong to elections within a certain date range. You
@@ -237,15 +237,15 @@ Examples:
 https://www.ballotapi.com/api/precincts.html?election_dates=2014-01-01:2014-12-31
 
 2. All the precincts for elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
-https://www.ballotapi.com/api/precincts.html?election_dates=2014-11-05:&ll=37.7942635,-122.3955861
+https://www.ballotapi.com/api/precincts.html?election_dates=2014-11-05:&coords=37.7942635,-122.3955861
 
-####?ll=&lt;latitude&gt;,&lt;longitude&gt;
+####?coords=&lt;latitude&gt;,&lt;longitude&gt;
 Return only precincts that contain this location.
 
 Examples:
 
 1. The Election 123 precinct for 100 Market St, San Francisco, CA:<br/>
-https://www.ballotapi.com/api/precincts.html?elections=123&ll=37.7942635,-122.3955861
+https://www.ballotapi.com/api/precincts.html?elections=123&coords=37.7942635,-122.3955861
 
 ####?measures=&lt;id&gt;[,&lt;id&gt;,...]
 Return only precincts that contain these measures. Multiple measures can be
@@ -294,7 +294,7 @@ Examples:
 https://www.ballotapi.com/api/measures.html?elections=123
 
 2. The measures that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
-https://www.ballotapi.com/api/measures.html?elections=123,234&ll=37.7942635,-122.3955861
+https://www.ballotapi.com/api/measures.html?elections=123,234&coords=37.7942635,-122.3955861
 
 ####?election_dates=&lt;start_date&gt;:&lt;end_date&gt;
 Return only measures that belong to elections within a certain date range. You
@@ -307,15 +307,15 @@ Examples:
 https://www.ballotapi.com/api/measures.html?election_dates=2014-01-01:2014-12-31
 
 2. All the measures for elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
-https://www.ballotapi.com/api/measures.html?election_dates=2014-11-05:&ll=37.7942635,-122.3955861
+https://www.ballotapi.com/api/measures.html?election_dates=2014-11-05:&coords=37.7942635,-122.3955861
 
-####?ll=&lt;latitude&gt;,&lt;longitude&gt;
+####?coords=&lt;latitude&gt;,&lt;longitude&gt;
 Return only measures that have a precinct encompassing this location.
 
 Examples:
 
 1. The Election 123 measures for 100 Market St, San Francisco, CA:<br/>
-https://www.ballotapi.com/api/measures.html?elections=123&ll=37.7942635,-122.3955861
+https://www.ballotapi.com/api/measures.html?elections=123&coords=37.7942635,-122.3955861
 
 ####?precincts=&lt;id&gt;[,&lt;id&gt;,...]
 Return only measures that are a part of these precincts. Multiple precincts can
