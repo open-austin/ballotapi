@@ -173,16 +173,12 @@ Examples:
 https://www.ballotapi.com/api/elections.html?ids=123,234
 
 ####?ll=&lt;latitude&gt;,&lt;longitude&gt;
-Return only elections that include precincts that contain this location. You can
-also specify multiple `ll` arguments to form a geographic polygon area.
+Return only elections that include precincts that contain this location.
 
 Examples:
 
 1. All the elections for 100 Market St, San Francisco, CA (37.7942635,-122.3955861):<br/>
 https://www.ballotapi.com/api/elections.html?ll=37.7942635,-122.3955861
-
-2. All the elections for the state of Wyoming (roughly 45.0013129,-111.055124 to 41.001425,-104.0532252):<br/>
-https://www.ballotapi.com/api/elections.html?ll=45.0013129,-111.055124&ll=45.0013129,-104.0532252&ll=41.001425,-104.0532252&ll=41.001425,-111.055124
 
 ####?dates=&lt;start_date&gt;:&lt;end_date&gt;
 Return only elections within a certain date range. You can omit either the start
@@ -244,16 +240,12 @@ https://www.ballotapi.com/api/precincts.html?election_dates=2014-01-01:2014-12-3
 https://www.ballotapi.com/api/precincts.html?election_dates=2014-11-05:&ll=37.7942635,-122.3955861
 
 ####?ll=&lt;latitude&gt;,&lt;longitude&gt;
-Return only precincts that contain this location. You can also specify multiple
-`ll` arguments to form a geographic polygon area.
+Return only precincts that contain this location.
 
 Examples:
 
 1. The Election 123 precinct for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/precincts.html?elections=123&ll=37.7942635,-122.3955861
-
-2. All Election 123 and 456 precincts for the state of Wyoming:<br/>
-https://www.ballotapi.com/api/precincts.html?elections=123,456&ll=45.0013129,-111.055124&ll=45.0013129,-104.0532252&ll=41.001425,-104.0532252&ll=41.001425,-111.055124
 
 ####?measures=&lt;id&gt;[,&lt;id&gt;,...]
 Return only precincts that contain these measures. Multiple measures can be
@@ -318,16 +310,12 @@ https://www.ballotapi.com/api/measures.html?election_dates=2014-01-01:2014-12-31
 https://www.ballotapi.com/api/measures.html?election_dates=2014-11-05:&ll=37.7942635,-122.3955861
 
 ####?ll=&lt;latitude&gt;,&lt;longitude&gt;
-Return only measures that have a precinct within this location. You can also
-specify multiple `ll` arguments to form a geographic polygon area.
+Return only measures that have a precinct encompassing this location.
 
 Examples:
 
 1. The Election 123 measures for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/measures.html?elections=123&ll=37.7942635,-122.3955861
-
-2. All Election 123 and 456 measures for the state of Wyoming:<br/>
-https://www.ballotapi.com/api/measures.html?elections=123,456&ll=45.0013129,-111.055124&ll=45.0013129,-104.0532252&ll=41.001425,-104.0532252&ll=41.001425,-111.055124
 
 ####?precincts=&lt;id&gt;[,&lt;id&gt;,...]
 Return only measures that are a part of these precincts. Multiple precincts can
