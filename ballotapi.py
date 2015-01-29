@@ -9,6 +9,8 @@ import formatter
 app = Flask(__name__)
 cor = CORS(app)
 
+ctype = {'Content-Type':'application/json; charset=utf-8'}
+
 @app.route('/precincts/<precinct_id>')
 def precinct_id(precinct_id):
     return formatter.precinct_json(precincts.endpoint(request.values, direct_id = precinct_id))
@@ -39,4 +41,6 @@ def handle_errors(error):
     response.status_code = error.status_code
     return response
 
-app.run(host='0.0.0.0', debug=True)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', debug=True)
+
