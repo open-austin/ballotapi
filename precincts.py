@@ -36,11 +36,11 @@ def endpoint(params):
     q_dict, param_dict = q.elections_query(q_dict, param_dict)
     q_dict, param_dict = q.election_dates_query(q_dict, param_dict)
     q_dict, param_dict = q.ll_query(q_dict, param_dict)
-    q_dict, param_dict = q.measures_query(q_dict, param_dict, param_list)
+    q_dict, param_dict = q.measures_query(q_dict, param_dict)
 
     #Run the query that was just built.  This returns all of the  data except for the list of
     #measures for each precinct.
-    data = q.main_query(q_dict, param_list)
+    data = q.main_query(q_dict, param_dict)
 
     #list_sql contains the query to get the list of measures for each precinct the last query
     #retrieved and inserts them into our data.
@@ -66,7 +66,7 @@ def id_endpoint(precinct_id):
     param_dict = {'param_list':[precinct_id]}
 
     #Run the main query.
-    data = q.main_query(q_dict, param_dict}
+    data = q.main_query(q_dict, param_dict)
 
     #Run query to retrieve list of measuers.
     list_sql = (' SELECT MA.measure_id '

@@ -50,7 +50,7 @@ def id_endpoint(election_id):
     param_dict = {'param_list':[election_id]}
 
     #Run the main query.
-    data = q.main_query(q_dict, param_dict}
+    data = q.main_query(q_dict, param_dict)
 
     #Data returned as a list containing one tuple of election data.
     return data

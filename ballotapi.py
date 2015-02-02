@@ -6,14 +6,16 @@ import measures
 import exception
 import formatter
 
+#Create our Flask object.
 app = Flask(__name__)
+#Make our app compatible with Cross Origin Resource Sharing.
 cor = CORS(app)
 
-ctype = {'Content-Type':'application/json; charset=utf-8'}
-
+#The app.route('/route/') defines which urls the following functions respond to.  Each function
+#can process url base queries at that endpoint and return JSON formatted data.
 @app.route('/precincts/<precinct_id>')
 def precinct_id(precinct_id):
-    return formatter.precinct_json(precincts.endpoint(request.values, direct_id = precinct_id))
+    return formatter.precinct_json(precincts.id_endpoint(precinct_id))
     
 @app.route('/precincts/')
 def call_precincts():
@@ -21,7 +23,7 @@ def call_precincts():
 
 @app.route('/measures/<measure_id>')
 def measure_id(measure_id):
-    return formatter.measure_json(measures.endpoint(request.values, direct_id = measure_id))
+    return formatter.measure_json(measures.id_endpoint(measure_id))
 
 @app.route('/measures/')
 def call_measures():
@@ -29,18 +31,20 @@ def call_measures():
 
 @app.route('/elections/<election_id>')
 def election_id(election_id):
-    return formatter.election_json(elections.endpoint(request.values, direct_id = election_id))
+    return formatter.election_json(elections.id_endpoint(election_id))
 
 @app.route('/elections/')
 def call_elections():
     return formatter.election_json(elections.endpoint(request.values))
 
+#Catch BadRequestErrors and return the error message.
 @app.errorhandler(exception.BadRequestError)
 def handle_errors(error):
     response = jsonify(error.to_dict())
     response.status_code = error.status_code
     return response
 
+#Only call app.run if our program is run directly.
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
 

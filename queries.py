@@ -13,7 +13,7 @@ def retrieve_query_parameters(params, param_dict):
             message = ('Invalid Parameter Name: ' + key + '\n'
                        'Valid Parameter Names are: ' + str(param_dict.keys()))
             raise exception.BadRequestError(message)
-    return q_dict, param_dict 
+    return param_dict 
 
 #Check for 'ids=' parameter and modify query if one exists.
 def ids_query(q_dict, param_dict):
