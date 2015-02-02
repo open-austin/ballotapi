@@ -90,10 +90,10 @@ def election_dates_query(q_dict, param_dict):
                 raise exception.BadRequestError(message)
     return q_dict, param_dict
 
-#Check for 'll=' parameter and modify query if one exists.
-def ll_query(q_dict, param_dict):
-    if param_dict['ll']:
-        coords = param_dict['ll'][0].split(',')
+#Check for 'coords=' parameter and modify query if one exists.
+def coords_query(q_dict, param_dict):
+    if param_dict['coords']:
+        coords = param_dict['coords'][0].split(',')
         if len(coords) % 2 != 0:
             message = ('Error: You have entered an odd number of coordinates.  Coordinates '
                        'must be entered in pairs')
@@ -112,8 +112,8 @@ def ll_query(q_dict, param_dict):
             #the comma on the last one.
             collect_clause = ('ST_MakePoint(%s,%s),' * (len(coords)//2))[:-1]
             q_dict['where'] += ' AND ST_Intersects(p.geom,ST_Collect({})) '.format(collect_clause)
-        q_dict['from'] += q_dict['ll_from_clause']
-        q_dict['where'] += q_dict['ll_where_clause']
+        q_dict['from'] += q_dict['coords_from_clause']
+        q_dict['where'] += q_dict['coords_where_clause']
     return q_dict, param_dict
 
 #Check for 'measures=' parameters and modify query if one or more exist.

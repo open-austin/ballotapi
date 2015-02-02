@@ -12,15 +12,15 @@ def endpoint(params):
               'ids_where_clause': ' AND e.election_id IN %s ',
               'election_dates_from_clause':'', #Not needed for /elections
               'election_dates_where_clause':'', #Because it doesn't need to join elections table.
-              'll_where_clause':' AND p.election_id = e.election_id ',
-              'll_from_clause':' ,precincts P '}
+              'coords_where_clause':' AND p.election_id = e.election_id ',
+              'coords_from_clause':' ,precincts P '}
 
     #Dictionary into which parameters from the url are passed.  It also acts as a filter: any
     #parameter passed in the query url is checked against the keys in this dictionary.
     param_dict = {'ids':None,
                   'geo':None,
                   'election_dates':None,
-                  'll':None}
+                  'coords':None}
     param_dict = q.retrieve_query_parameters(params, param_dict)
 
     #Initialize param_list inside of param_dict.  This is done here and not inside of the
@@ -30,7 +30,7 @@ def endpoint(params):
     #These calls build the query and param_list.
     q_dict, param_dict = q.ids_query(q_dict, param_dict)
     q_dict, param_dict = q.election_dates_query(q_dict, param_dict)
-    q_dict, param_dict = q.ll_query(q_dict, param_dict)
+    q_dict, param_dict = q.coords_query(q_dict, param_dict)
 
     #Run the query that was just built.
     data = q.main_query(q_dict, param_dict)
