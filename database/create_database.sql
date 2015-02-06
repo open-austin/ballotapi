@@ -1,7 +1,10 @@
 -- Ballot API Create Table Statements / Schema
-CREATE DATABASE ballotdb;
 
-CREATE EXTENSION postgis;
+--The CREATE DATABASE command must be run by a user with the CREATEDB privilege;
+--CREATE DATABASE ballotdb;
+
+--The CREATE EXTENSION command must be run by a superuser.
+--CREATE EXTENSION postgis;
 
 --Create elections table
 CREATE TABLE elections
