@@ -94,23 +94,24 @@ def election_dates_query(q_dict, param_dict):
 def coords_query(q_dict, param_dict):
     if param_dict['coords']:
         coords = param_dict['coords'][0].split(',')
+        print(coords)
         if len(coords) % 2 != 0:
             message = ('Error: You have entered an odd number of coordinates.  Coordinates '
                        'must be entered in pairs')
             raise exception.BadRequestError(message)
         try:
-            for num in coords:
+            for num in reversed(coords):
                 param_dict['param_list'].append(float(num))
         except (TypeError, ValueError) as e:    
             raise exception.BadRequestError('Error: Not a floating point number')
         #ST_Collect is seen by PostgreSQL as an aggregate function if it is only given one
         #input.  If there is only one coordinate pair, don't use ST_Collect.
         if len(coords) == 2:
-            q_dict['where'] += ' AND ST_Intersects(p.geom, ST_MakePoint(%s,%s)) '
+            q_dict['where'] += ' AND ST_Intersects(p.geom,ST_SetSRID(ST_MakePoint(%s,%s),4326)) '
         else:
             #Add an ST_MakePoint for each pair of coordinates.  The [:-1] removes
             #the comma on the last one.
-            collect_clause = ('ST_MakePoint(%s,%s),' * (len(coords)//2))[:-1]
+            collect_clause = ('ST_SetSRID(ST_MakePoint(%s,%s),4326),' * (len(coords)//2))[:-1]
             q_dict['where'] += ' AND ST_Intersects(p.geom,ST_Collect({})) '.format(collect_clause)
         q_dict['from'] += q_dict['coords_from_clause']
         q_dict['where'] += q_dict['coords_where_clause']
@@ -159,6 +160,7 @@ def main_query(q_dict, param_dict):
         with conn.cursor() as cur:
             try:
                 cur.execute(sql, param_dict['param_list'])
+                print(cur.mogrify(sql, param_dict['param_list']))
             except psycopg2.ProgrammingError:
                 print(cur.mogrify(sql, param_dict['param_list'])) #TODO: add logging.
                 raise

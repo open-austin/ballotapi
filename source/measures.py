@@ -5,7 +5,7 @@ def endpoint(params):
     #Initialize the query dictionary. (q_dict). The items select,from,where and order_by are
     #the base of the query that is built.
     q_dict = {'select':(' SELECT DISTINCT ON (me.measure_id) me.measure_id, me.election_id, '
-                        ' me.info, me.title, me.question, me.measure_type, me.voting_system ' 
+                        ' me.info, me.title, me.question, me.measure_type, me.voting_system, ' 
                         ' me.choices '),
               'from':' FROM measures ME ',
               'where':' WHERE TRUE ',
@@ -15,8 +15,10 @@ def endpoint(params):
               'elections_where_clause': ' AND me.election_id IN %s ',
               'election_dates_from_clause':' , elections E ',
               'election_dates_where_clause':' AND e.election_id = me.election_id ',
-              'coords_where_clause':' AND me.election_id = p.election_id',
-              'coords_from_clause':' ,precincts P ' }
+              'coords_where_clause':(' AND me.election_id = p.election_id '
+                                     ' AND p.precinct_id = ma.precinct_id '
+                                     ' AND me.measure_id = ma.measure_id '),
+              'coords_from_clause':' ,precincts P, mapping MA ' }
 
     #Dictionary into which parameters from the url are passed.  It also acts as a filter: any
     #parameter passed in the query url is checked against the keys in this dictionary.
