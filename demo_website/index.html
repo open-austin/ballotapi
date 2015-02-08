@@ -48,7 +48,7 @@
                 font-size: 60px;
                 color: rgb(238, 238, 238);
                 text-shadow: 3px 3px #115B8C;
-                padding: 35px 0px 10px 0px;
+                padding: 35px 0px 20px 0px;
             }
 
             /* Measures */
@@ -175,9 +175,6 @@
             }
 
             /* Instruction Steps */
-            #step1{
-                margin-top:20px;
-            }
             .step-header{
                 font-family: "Patua One",sans-serif;
                 font-size: 35px;
@@ -243,7 +240,20 @@
             @media (max-width: 700px){
                 #header h1{
                     font-size: 45px;
-                    padding: 25px 0px 0px 0px;
+                    padding: 25px 0px 10px 0px;
+                }
+                .step-header{
+                    font-size: 25px;
+                }
+                .step-value{
+                    font-size: 25px;
+                }
+                #find-ballot{
+                    font-size: 25px;
+                    padding: 7px 12px;
+                }
+                #content{
+                    padding: 25px 5% 5px 5%;
                 }
                 #map-wrapper{
                     float: none;
@@ -365,7 +375,8 @@
                         $(".map-details").show();
                     },
                 });
-                $("#step1").slideUp(500);
+                $("#step1 span.step-header").text("Location:");
+                $("#step1 span.step-value").text("37.7942635, -122.3955861");
             });
 
             $("#change-location").click(function(e){
@@ -383,7 +394,8 @@
                         $("#step2").show();
                     },
                 });
-                $("#step1").slideDown(500);
+                $("#step1 span.step-header").text("Step 1:");
+                $("#step1 span.step-value").text("Drop the pin on your home.");
             });
         </script>
     </body>
