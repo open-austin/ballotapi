@@ -157,9 +157,6 @@ def precincts_query(q_dict, param_dict):
                 raise exception.BadRequestError(message)
     return q_dict, param_dict
 
-#DB Login Info.  TODO: This needs to be split out.
-db_login_string = 'dbname=ballotdb user=postgres'
-
 #Runs the main query that the above functions have been used to build.
 def main_query(q_dict, param_dict):
     sql = q_dict['select'] + q_dict['from'] + q_dict['where'] + q_dict['order_by']
