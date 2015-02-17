@@ -1,6 +1,14 @@
 import datetime
 import psycopg2
 import exception
+import configparser
+
+import configparser
+
+config = configparser.ConfigParser()
+config.read('ballotapi.ini')
+
+db_login_string = config['database']['database_string']
 
 #This function retrieves the query data and also makes sure that the url query has proper
 #parameter names as defined by the keys in the parameter dictionary.
