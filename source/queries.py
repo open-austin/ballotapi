@@ -1,6 +1,14 @@
 import datetime
 import psycopg2
 import exception
+import configparser
+
+import configparser
+
+config = configparser.ConfigParser()
+config.read('ballotapi.ini')
+
+db_login_string = config['database']['database_string']
 
 #This function retrieves the query data and also makes sure that the url query has proper
 #parameter names as defined by the keys in the parameter dictionary.
@@ -148,9 +156,6 @@ def precincts_query(q_dict, param_dict):
                 message = 'Error: precincts must be given as comma delineated integers.'
                 raise exception.BadRequestError(message)
     return q_dict, param_dict
-
-#DB Login Info.  TODO: This needs to be split out.
-db_login_string = 'dbname=ballotdb user=postgres'
 
 #Runs the main query that the above functions have been used to build.
 def main_query(q_dict, param_dict):
