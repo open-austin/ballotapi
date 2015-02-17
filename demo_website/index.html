@@ -291,6 +291,11 @@
 		      maxZoom: 18,
 		      id: 'examples.map-i875mjb7'
 		      }).addTo(map);
+		      var marker;
+		      map.on('click', function(e) {
+		      marker = new L.marker(e.latlng,{draggable: true});
+		      map.addLayer(marker);
+		      });
 		    </script>
 
                     <div class="map-details" style="display:none;">
