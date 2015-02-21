@@ -209,6 +209,13 @@ https://www.ballotapi.com/api/elections.html?dates=2014-01-01:2014-12-31
 2. All elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/elections.html?dates=2014-11-05:&coords=37.7942635,-122.3955861
 
+####?limit=&lt;int&gt;
+Limit results to a set number. By default, the limit value for elections is 100.
+
+####?offset=&lt;int&gt;
+Start the list of results at an offset. By default, the offset value is 0 (e.g.
+start the results at the beginning).
+
 ###<span id="precinctsid">/precincts/&lt;id&gt;</span>
 Return the Precinct object for the specified id.
 
@@ -277,6 +284,13 @@ https://www.ballotapi.com/api/precincts.html?measures=456
 
 2. The precincts that contain Measures 456 or 567, and contains Measure 789:<br/>
 https://www.ballotapi.com/api/precincts.html?measures=456,567&measures=789
+
+####?limit=&lt;int&gt;
+Limit results to a set number. By default, the limit value for precincts is 50.
+
+####?offset=&lt;int&gt;
+Start the list of results at an offset. By default, the offset value is 0 (e.g.
+start the results at the beginning).
 
 ###<span id="measuresid">/measures/&lt;id&gt;</span>
 Return the Measure object for the specified id.
@@ -347,6 +361,13 @@ https://www.ballotapi.com/api/measures.html?precincts=456
 
 2. The measures that are a part of Precinct 456 or 567, and a part of Precinct 789:<br/>
 https://www.ballotapi.com/api/measures.html?precincts=456,567&precincts=789
+
+####?limit=&lt;int&gt;
+Limit results to a set number. By default, the limit value for measures is 100.
+
+####?offset=&lt;int&gt;
+Start the list of results at an offset. By default, the offset value is 0 (e.g.
+start the results at the beginning).
 
 ##<span id="how-to-self-host">How to self-host</span>
 Want to set up your own mirror of this API? Great! Here's how:
