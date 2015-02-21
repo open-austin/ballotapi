@@ -212,17 +212,22 @@ Examples:
 1. All the elections for 100 Market St, San Francisco, CA (37.7942635,-122.3955861):<br/>
 https://www.ballotapi.com/api/elections.html?coords=37.7942635,-122.3955861
 
-####?dates=&lt;start_date&gt;:&lt;end_date&gt;
+####?dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
 Return only elections within a certain date range. You can omit either the start
 or end dates to leave that side open ended. Dates are inclusive, so results
-include elections that happen on the start or end dates.
+include elections that happen on the start or end dates. You can also specify a
+single date, which is the equivalent to specifying that date as both the start
+and end date. You can also have multiple date ranges, separated by commas.
 
 Examples:
 
-1. All the elections for 2014:<br/>
+1. The national elections in 2016 and 2020:<br/>
+https://www.ballotapi.com/api/elections.html?dates=2016-11-04,2020-11-04
+
+2. All the elections for 2014:<br/>
 https://www.ballotapi.com/api/elections.html?dates=2014-01-01:2014-12-31
 
-2. All elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
+3. All elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/elections.html?dates=2014-11-05:&coords=37.7942635,-122.3955861
 
 ####?limit=&lt;int&gt;
