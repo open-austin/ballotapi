@@ -126,9 +126,14 @@ Measure objects contain information on ballot measures and contests.
     "id": 123,              //unique id for this Measure (integer)
     "election_id": 123,     //unique id for this Measure's Election (integer)
     "precincts": [...],     //list of Precinct ids that are (list of integers)
-    "title": "...",         //title of the measure (e.g. "Mayor") (string)
+    "title": "...",         //title of the measure (string)
+                            //(e.g. "Water and Rail Supervisor - District 23")
     "question": "...",      //question that the voter is asked to answer (string)
+                            //(e.g. "Choose one of the following candidates.")
     "info": "...",          //generic information about the measure (string)
+                            //(e.g. "This seat oversees the budgets of ...")
+    "short_info": "...",    //<100 character version of the info field (string)
+                            //(e.g. "This seat manages agriculture departments.")
     "type": "...",          //the type of measure (see Measure Type)
     "voting_method": "...", //the method of voting (see Voting Method)
     "choices": [...],       //list of choices for the measure (list of Choice objects)
@@ -158,8 +163,8 @@ the Measure object.
 
 ```
 {
-    "title": "...", //title of the choice (e.g. "John Smith") (string)
-    "info": "...",  //generic information about the choice (string)
+    "title": "...",       //title of the choice (e.g. "John Smith") (string)
+    "info": "...",        //generic information about the choice (string)
 }
 ```
 
