@@ -265,10 +265,13 @@ https://www.ballotapi.com/api/precincts.html?elections=123
 2. The precincts that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/precincts.html?elections=123,234&coords=37.7942635,-122.3955861
 
-####?election_dates=&lt;start_date&gt;:&lt;end_date&gt;
+####?election_dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
 Return only precincts that belong to elections within a certain date range. You
 can omit either the start or end dates to leave that side open ended. Dates are
 inclusive, so results include elections that happen on the start or end dates.
+You can also specify a single date, which is the equivalent to specifying that
+date as both the start and end date. You can also have multiple date ranges,
+separated by commas.
 
 Examples:
 
@@ -342,10 +345,13 @@ https://www.ballotapi.com/api/measures.html?elections=123
 2. The measures that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/measures.html?elections=123,234&coords=37.7942635,-122.3955861
 
-####?election_dates=&lt;start_date&gt;:&lt;end_date&gt;
+####?election_dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
 Return only measures that belong to elections within a certain date range. You
 can omit either the start or end dates to leave that side open ended. Dates are
 inclusive, so results include elections that happen on the start or end dates.
+You can also specify a single date, which is the equivalent to specifying that
+date as both the start and end date. You can also have multiple date ranges,
+separated by commas.
 
 Examples:
 
