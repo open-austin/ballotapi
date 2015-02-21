@@ -136,6 +136,7 @@ Measure objects contain information on ballot measures and contests.
                             //(e.g. "This seat manages agriculture departments.")
     "type": "...",          //the type of measure (see Measure Type)
     "voting_method": "...", //the method of voting (see Voting Method)
+    "threshold": "...",     //the threshold needed for a choice to win (see Threshold)
     "choices": [...],       //list of choices for the measure (list of Choice objects)
 }
 ```
@@ -155,6 +156,16 @@ actually being voted on (person, party, bond measure, etc.).
 * "approval" - choose all choices that you approve
 * "instant-runoff" - choose first and second choices
 * "ranked" - sort choices in order of preference (first is most preferred)
+
+####<span id="threshold">Threshold</span>
+These are the winning threshold requirements that the measure. The values in
+this field are strings because thresholds are often not as simple as a given
+number or percentage.
+
+* "1/2 + 1" - A majority is required (i.e. more than 50% of votes)
+* "2/3 + 1" - A two-thirds majority is required (i.e. more than 67% of votes)
+* "max, &gt;30%" - The most voted for choice, and that choice has to win over 30% of all votes.
+* *Need more. Please pull request!*
 
 ###<span id="choice">Choice</span>
 Choice objects contain the details for each item in the choices list of the
