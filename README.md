@@ -7,25 +7,25 @@ Use it here: https://www.ballotapi.com/api/ (doesn't work yet)
 ##Table of Contents
 1. [What is Ballot API?](#what-is-ballot-api)
 2. [Why make Ballot API?](#why-make-ballot-api)
-3. [How do you use the Ballot API?](#how-do-you-use-the-ballot-api)
+3. [How do you use Ballot API?](#how-do-you-use-ballot-api)
 4. [Current Status](#current-status)
 5. [Authentication](#authentication)
-6. [Object Formats](#object-formats)
+6. [Response Formats](#response-formats)
+7. [Object Formats](#object-formats)
   1. [Election](#election)
   2. [Precinct](#precinct)
   3. [Measure](#measure)
   4. [Choice](#choice)
-7. [API Reference](#api-reference)
+8. [API Reference](#api-reference)
   1. [/elections/&lt;id&gt;](#electionsid)
   2. [/elections](#elections)
   3. [/precincts/&lt;id&gt;](#precinctsid)
   4. [/precincts](#precincts)
   5. [/measures/&lt;id&gt;](#measuresid)
   6. [/measures](#measures)
-8. [How to self-host](#how-to-self-host)
-9. [License](#license)
-  1. [Exceptions](#exceptions)
-10. [Contributions](#contributions)
+9. [How to self-host](#how-to-self-host)
+10. [License](#license)
+11. [Contributions](#contributions)
 
 ##<span id="what-is-ballot-api">What is Ballot API?</span>
 Ballot API is a database that contains information for what is on voting
@@ -40,7 +40,7 @@ particular jurisdiction (e.g. local county registrar of voters) or only contain
 higher level measures (e.g. national measures/contests only). This project aims
 to be a comprehensive source of ballot information for all levels of government.
 
-##<span id="how-do-you-use-the-ballot-api">How do you use the Ballot API?</span>
+##<span id="how-do-you-use-ballot-api">How do you use Ballot API?</span>
 There are three ways to use the Ballot API. First, you can browse the database
 by visiting https://www.ballotapi.com/api/ in a web browser. Second, you can
 make API requests to https://www.ballotapi.com/api/ endpoints that are
@@ -49,14 +49,14 @@ and make requests via either of the two methods described above to your
 self-hosted repo (see "How to self-host" below on how to do this).
 
 ##<span id="current-status">Current Status</span>
-This project is in active development. The goal is to complete this project by
-the 2016 United States general election.
+This project is in active development. Please file [issues](https://github.com/sfbrigade/ballotapi/issues) if you find bugs or want to request changes.
 
-* API docs - *first draft done, needs review*
-* Database schema
+* API docs - *done*
+* Database schema - *done*
 * Test cases
-* API implementation (json)
+* API implementation (json) - *in development*
 * API implementation (html)
+* Demo webapp - *in development*
 * Continuous integration
 * Status reports
 * Database population
@@ -64,6 +64,22 @@ the 2016 United States general election.
 
 ##<span id="authentication">Authentication</span>
 All requests are open to the public and do not need authentication.
+
+##<span id="response-formats">Response Formats</span>
+If you request an individual object (e.g. `/elections/123.json`), you will receive just that object (see [Object Formats](#object-formats)). If you request a list of objects (e.g. `/elections.json?dates=2014-01-01:2014-12-31`), you will recieve a paginated list of objects in the following format:
+
+```
+{
+    "offset": 0, //where in the results this data list starts
+    "data": [
+        <json_object>,
+        <json_object>,
+        ...
+    ]
+}
+```
+
+Any API endpoint that returns a list of objects will accept optional `limit=<int>` and `offset=<int>` parameters in the request. See each endpoint for the default values of these parameters.
 
 ##<span id="object-formats">Object Formats</span>
 There are three base object formats: Election, Precinct, and Measure. Inside the
@@ -372,11 +388,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to http://unlicense.org
 
-###<span id="exceptions">Exceptions</span>
-* The PageDown minified javascript library included in /index.html is released
-under a BSD-style open source license. This is only used to format this README
-documentation and is not required to actually run the API. Just delete
-/index.html when you copy this repo to be 100% public domain.
 
 ##<span id="contributions">Contributions</span>
 This project is hosted https://github.com/sfbrigade/ballotapi and maintained by
