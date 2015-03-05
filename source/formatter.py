@@ -7,6 +7,7 @@ json_info = {'Content-Type':'application/json; charset=utf-8'}
 
 #Accept election_data list and turn it into JSON formatted output.
 def election_json(election_data):
+    return_object = {"offset":0}
     election_list = []
     for election in election_data:
         election_dict = {}
@@ -14,7 +15,8 @@ def election_json(election_data):
         election_dict['date'] = election[1].strftime('%Y-%m-%d')
         election_dict['info'] = election[2]
         election_list.append(election_dict)
-    return json.dumps(election_list, indent=4), status_code, json_info
+    return_object['data'] = election_list
+    return json.dumps(return_object, indent=4), status_code, json_info
 
 #Accept measure_data list and turn it into JSON formatted output.
 def measure_json(measure_data):
