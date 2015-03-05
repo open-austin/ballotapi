@@ -3,8 +3,6 @@ import psycopg2
 import exception
 import configparser
 
-import configparser
-
 config = configparser.ConfigParser()
 config.read('ballotapi.ini')
 
@@ -155,6 +153,23 @@ def precincts_query(q_dict, param_dict):
             except (NameError, TypeError) as e:
                 message = 'Error: precincts must be given as comma delineated integers.'
                 raise exception.BadRequestError(message)
+    return q_dict, param_dict
+
+#Check for 'limit=' parameter or set query to default.
+def limit_query(qdict, param_dict):
+    #Enforce that there is only one instance of 'limit=':
+    if len(param_dict['limit']) > 1:
+        message = ('Error: Only one instance of "limit=" is permitted')
+        raise exception.BadRequestError(message)
+    #Enforce that limit= only accepts one value.
+    if len(param_dict['limit'][0] > 1:
+        message = ('Error: The limit parameter only accepts one value.')
+        raise exception.BadRequestError(message)
+    try:
+        param_dict['param_list'].append(int(param_dict['limit'][0]))
+    except:
+        message = ('Error: Limit must be given as one single integer.')
+        raise exception.BadRequestError(message)
     return q_dict, param_dict
 
 #Runs the main query that the above functions have been used to build.

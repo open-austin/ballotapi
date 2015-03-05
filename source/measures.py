@@ -27,7 +27,9 @@ def endpoint(params):
                   'precincts':None,
                   'geo':None,
                   'election_dates':None,
-                  'coords':None}
+                  'coords':None,
+                  'limit':100,
+                  'offset':0}
     param_dict = q.retrieve_query_parameters(params, param_dict)
 
     #Initialize param_list inside of param_dict.  This is done here and not inside of the
@@ -40,6 +42,8 @@ def endpoint(params):
     q_dict, param_dict = q.election_dates_query(q_dict, param_dict)
     q_dict, param_dict = q.coords_query(q_dict, param_dict)
     q_dict, param_list = q.precincts_query(q_dict, param_dict)
+    q_dict, param_list = q.limit_query(q_dict, param_dict)
+    q_dict, param_list = q.offset_query(q_dict, param_dict)
 
     #Run the query that was just built.  This returns all of the data except for the list of
     #measures for each precinct.

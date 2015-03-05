@@ -1,0 +1,10 @@
+[database]
+dbname = ballotdb
+user = username
+host = localhost
+password = password
+database_string = dbname=ballotdb user=username host=localhost password=password
+
+[path]
+source_path = /path/to/ballotapi/source
+activate_path = /path/to/virtualenv/bin/activate_this.py
