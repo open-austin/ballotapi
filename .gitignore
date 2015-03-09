@@ -1,0 +1,8 @@
+\#*\#
+*~
+*.pyc
+/bin
+/lib
+/include
+ballotapi.ini
+ballotapi.wsgi
