@@ -7,25 +7,25 @@ Use it here: https://www.ballotapi.com/api/ (doesn't work yet)
 ##Table of Contents
 1. [What is Ballot API?](#what-is-ballot-api)
 2. [Why make Ballot API?](#why-make-ballot-api)
-3. [How do you use the Ballot API?](#how-do-you-use-the-ballot-api)
+3. [How do you use Ballot API?](#how-do-you-use-ballot-api)
 4. [Current Status](#current-status)
 5. [Authentication](#authentication)
-6. [Object Formats](#object-formats)
+6. [Response Formats](#response-formats)
+7. [Object Formats](#object-formats)
   1. [Election](#election)
   2. [Precinct](#precinct)
   3. [Measure](#measure)
   4. [Choice](#choice)
-7. [API Reference](#api-reference)
+8. [API Reference](#api-reference)
   1. [/elections/&lt;id&gt;](#electionsid)
   2. [/elections](#elections)
   3. [/precincts/&lt;id&gt;](#precinctsid)
   4. [/precincts](#precincts)
   5. [/measures/&lt;id&gt;](#measuresid)
   6. [/measures](#measures)
-8. [How to self-host](#how-to-self-host)
-9. [License](#license)
-  1. [Exceptions](#exceptions)
-10. [Contributions](#contributions)
+9. [How to self-host](#how-to-self-host)
+10. [License](#license)
+11. [Contributions](#contributions)
 
 ##<span id="what-is-ballot-api">What is Ballot API?</span>
 Ballot API is a database that contains information for what is on voting
@@ -40,7 +40,7 @@ particular jurisdiction (e.g. local county registrar of voters) or only contain
 higher level measures (e.g. national measures/contests only). This project aims
 to be a comprehensive source of ballot information for all levels of government.
 
-##<span id="how-do-you-use-the-ballot-api">How do you use the Ballot API?</span>
+##<span id="how-do-you-use-ballot-api">How do you use Ballot API?</span>
 There are three ways to use the Ballot API. First, you can browse the database
 by visiting https://www.ballotapi.com/api/ in a web browser. Second, you can
 make API requests to https://www.ballotapi.com/api/ endpoints that are
@@ -49,14 +49,14 @@ and make requests via either of the two methods described above to your
 self-hosted repo (see "How to self-host" below on how to do this).
 
 ##<span id="current-status">Current Status</span>
-This project is in active development. The goal is to complete this project by
-the 2016 United States general election.
+This project is in active development. Please file [issues](https://github.com/sfbrigade/ballotapi/issues) if you find bugs or want to request changes.
 
-* API docs - *first draft done, needs review*
-* Database schema
+* API docs - *done*
+* Database schema - *done*
 * Test cases
-* API implementation (json)
+* API implementation (json) - *in development*
 * API implementation (html)
+* Demo webapp - *in development*
 * Continuous integration
 * Status reports
 * Database population
@@ -64,6 +64,22 @@ the 2016 United States general election.
 
 ##<span id="authentication">Authentication</span>
 All requests are open to the public and do not need authentication.
+
+##<span id="response-formats">Response Formats</span>
+If you request an individual object (e.g. `/elections/123.json`), you will receive just that object (see [Object Formats](#object-formats)). If you request a list of objects (e.g. `/elections.json?dates=2014-01-01:2014-12-31`), you will recieve a paginated list of objects in the following format:
+
+```
+{
+    "offset": 0, //where in the results this data list starts
+    "data": [
+        <json_object>,
+        <json_object>,
+        ...
+    ]
+}
+```
+
+Any API endpoint that returns a list of objects will accept optional `limit=<int>` and `offset=<int>` parameters in the request. See each endpoint for the default values of these parameters.
 
 ##<span id="object-formats">Object Formats</span>
 There are three base object formats: Election, Precinct, and Measure. Inside the
@@ -110,11 +126,17 @@ Measure objects contain information on ballot measures and contests.
     "id": 123,              //unique id for this Measure (integer)
     "election_id": 123,     //unique id for this Measure's Election (integer)
     "precincts": [...],     //list of Precinct ids that are (list of integers)
-    "title": "...",         //title of the measure (e.g. "Mayor") (string)
+    "title": "...",         //title of the measure (string)
+                            //(e.g. "Water and Rail Supervisor - District 23")
     "question": "...",      //question that the voter is asked to answer (string)
+                            //(e.g. "Choose one of the following candidates.")
     "info": "...",          //generic information about the measure (string)
+                            //(e.g. "This seat oversees the budgets of ...")
+    "short_info": "...",    //<100 character version of the info field (string)
+                            //(e.g. "This seat manages agriculture departments.")
     "type": "...",          //the type of measure (see Measure Type)
     "voting_method": "...", //the method of voting (see Voting Method)
+    "threshold": "...",     //the threshold needed for a choice to win (see Threshold)
     "choices": [...],       //list of choices for the measure (list of Choice objects)
 }
 ```
@@ -135,6 +157,16 @@ actually being voted on (person, party, bond measure, etc.).
 * "instant-runoff" - choose first and second choices
 * "ranked" - sort choices in order of preference (first is most preferred)
 
+####<span id="threshold">Threshold</span>
+These are the winning threshold requirements that the measure. The values in
+this field are strings because thresholds are often not as simple as a given
+number or percentage.
+
+* "1/2 + 1" - A majority is required (i.e. more than 50% of votes)
+* "2/3 + 1" - A two-thirds majority is required (i.e. more than 67% of votes)
+* "max, &gt;30%" - The most voted for choice, and that choice has to win over 30% of all votes.
+* *Need more. Please pull request!*
+
 ###<span id="choice">Choice</span>
 Choice objects contain the details for each item in the choices list of the
 Measure object. They do not have unique ids because they are always include in
@@ -142,8 +174,8 @@ the Measure object.
 
 ```
 {
-    "title": "...", //title of the choice (e.g. "John Smith") (string)
-    "info": "...",  //generic information about the choice (string)
+    "title": "...",       //title of the choice (e.g. "John Smith") (string)
+    "info": "...",        //generic information about the choice (string)
 }
 ```
 
@@ -180,18 +212,30 @@ Examples:
 1. All the elections for 100 Market St, San Francisco, CA (37.7942635,-122.3955861):<br/>
 https://www.ballotapi.com/api/elections.html?coords=37.7942635,-122.3955861
 
-####?dates=&lt;start_date&gt;:&lt;end_date&gt;
+####?dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
 Return only elections within a certain date range. You can omit either the start
 or end dates to leave that side open ended. Dates are inclusive, so results
-include elections that happen on the start or end dates.
+include elections that happen on the start or end dates. You can also specify a
+single date, which is the equivalent to specifying that date as both the start
+and end date. You can also have multiple date ranges, separated by commas.
 
 Examples:
 
-1. All the elections for 2014:<br/>
+1. The national elections in 2016 and 2020:<br/>
+https://www.ballotapi.com/api/elections.html?dates=2016-11-04,2020-11-04
+
+2. All the elections for 2014:<br/>
 https://www.ballotapi.com/api/elections.html?dates=2014-01-01:2014-12-31
 
-2. All elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
+3. All elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/elections.html?dates=2014-11-05:&coords=37.7942635,-122.3955861
+
+####?limit=&lt;int&gt;
+Limit results to a set number. By default, the limit value for elections is 100.
+
+####?offset=&lt;int&gt;
+Start the list of results at an offset. By default, the offset value is 0 (e.g.
+start the results at the beginning).
 
 ###<span id="precinctsid">/precincts/&lt;id&gt;</span>
 Return the Precinct object for the specified id.
@@ -226,10 +270,13 @@ https://www.ballotapi.com/api/precincts.html?elections=123
 2. The precincts that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/precincts.html?elections=123,234&coords=37.7942635,-122.3955861
 
-####?election_dates=&lt;start_date&gt;:&lt;end_date&gt;
+####?election_dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
 Return only precincts that belong to elections within a certain date range. You
 can omit either the start or end dates to leave that side open ended. Dates are
 inclusive, so results include elections that happen on the start or end dates.
+You can also specify a single date, which is the equivalent to specifying that
+date as both the start and end date. You can also have multiple date ranges,
+separated by commas.
 
 Examples:
 
@@ -261,6 +308,13 @@ https://www.ballotapi.com/api/precincts.html?measures=456
 
 2. The precincts that contain Measures 456 or 567, and contains Measure 789:<br/>
 https://www.ballotapi.com/api/precincts.html?measures=456,567&measures=789
+
+####?limit=&lt;int&gt;
+Limit results to a set number. By default, the limit value for precincts is 50.
+
+####?offset=&lt;int&gt;
+Start the list of results at an offset. By default, the offset value is 0 (e.g.
+start the results at the beginning).
 
 ###<span id="measuresid">/measures/&lt;id&gt;</span>
 Return the Measure object for the specified id.
@@ -296,10 +350,13 @@ https://www.ballotapi.com/api/measures.html?elections=123
 2. The measures that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
 https://www.ballotapi.com/api/measures.html?elections=123,234&coords=37.7942635,-122.3955861
 
-####?election_dates=&lt;start_date&gt;:&lt;end_date&gt;
+####?election_dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
 Return only measures that belong to elections within a certain date range. You
 can omit either the start or end dates to leave that side open ended. Dates are
 inclusive, so results include elections that happen on the start or end dates.
+You can also specify a single date, which is the equivalent to specifying that
+date as both the start and end date. You can also have multiple date ranges,
+separated by commas.
 
 Examples:
 
@@ -331,6 +388,13 @@ https://www.ballotapi.com/api/measures.html?precincts=456
 
 2. The measures that are a part of Precinct 456 or 567, and a part of Precinct 789:<br/>
 https://www.ballotapi.com/api/measures.html?precincts=456,567&precincts=789
+
+####?limit=&lt;int&gt;
+Limit results to a set number. By default, the limit value for measures is 100.
+
+####?offset=&lt;int&gt;
+Start the list of results at an offset. By default, the offset value is 0 (e.g.
+start the results at the beginning).
 
 ##<span id="how-to-self-host">How to self-host</span>
 Want to set up your own mirror of this API? Great! Here's how:
@@ -372,11 +436,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to http://unlicense.org
 
-###<span id="exceptions">Exceptions</span>
-* The PageDown minified javascript library included in /index.html is released
-under a BSD-style open source license. This is only used to format this README
-documentation and is not required to actually run the API. Just delete
-/index.html when you copy this repo to be 100% public domain.
 
 ##<span id="contributions">Contributions</span>
 This project is hosted https://github.com/sfbrigade/ballotapi and maintained by
