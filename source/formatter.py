@@ -26,16 +26,24 @@ def measure_json(measure_data):
     measure_list = []
     for measure in measure_data:
         measure_dict = {}
-        measure_dict['id'] = measure[0]
-        measure_dict['election_id'] = measure[1]
-        measure_dict['info'] = measure[2]
-        measure_dict['title'] = measure[3]
-        measure_dict['question'] = measure[4]
-        measure_dict['measure_type'] = measure[5]
-        measure_dict['voting_system'] = measure[6]
+        if measure[0]:
+            measure_dict['id'] = measure[0]
+        if measure[1]:
+            measure_dict['election_id'] = measure[1]
+        if measure[2]:
+            measure_dict['info'] = measure[2]
+        if measure[3]:
+            measure_dict['title'] = measure[3]
+        if measure[4]:
+            measure_dict['question'] = measure[4]
+        if measure[5]:
+            measure_dict['measure_type'] = measure[5]
+        if measure[6]:
+            measure_dict['voting_system'] = measure[6]
         if measure[7]:
             measure_dict['choices'] = measure[7]
-        measure_dict['precincts'] = measure[8]
+        if measure[8]:
+            measure_dict['precincts'] = measure[8]
         measure_list.append(measure_dict)
     return json.dumps(measure_list, indent=4), status_code, json_info
 
@@ -44,11 +52,17 @@ def precinct_json(precinct_data):
     precinct_list = []
     for precinct in precinct_data:
         precinct_dict = {}
-        precinct_dict['id'] = precinct[0]
-        precinct_dict['election_id'] = precinct[1]
-        precinct_dict['info'] = precinct[2]
-        precinct_dict['confirmed'] = precinct[3]
-        precinct_dict['geo'] = json.loads(precinct[4])
-        precinct_dict['measures'] = precinct[5]
+        if precinct[0]:
+            precinct_dict['id'] = precinct[0]
+        if precinct[1]:
+            precinct_dict['election_id'] = precinct[1]
+        if precinct[2]:
+            precinct_dict['info'] = precinct[2]
+        if precinct[3]:
+            precinct_dict['confirmed'] = precinct[3]
+        if precinct[4]:
+            precinct_dict['geo'] = json.loads(precinct[4])
+        if precinct[5]:
+            precinct_dict['measures'] = precinct[5]
         precinct_list.append(precinct_dict)
     return json.dumps(precinct_list, indent=4), status_code, json_info
