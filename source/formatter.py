@@ -33,7 +33,8 @@ def measure_json(measure_data):
         measure_dict['question'] = measure[4]
         measure_dict['measure_type'] = measure[5]
         measure_dict['voting_system'] = measure[6]
-        measure_dict['choices'] = measure[7]
+        if measure[7]:
+            measure_dict['choices'] = measure[7]
         measure_dict['precincts'] = measure[8]
         measure_list.append(measure_dict)
     return json.dumps(measure_list, indent=4), status_code, json_info
