@@ -158,11 +158,11 @@ def precincts_query(q_dict, param_dict):
 #Check for 'limit=' parameter or set query to default.
 def limit_query(qdict, param_dict):
     #Enforce that there is only one instance of 'limit=':
-    if len(param_dict['limit']) > 1):
+    if len(param_dict['limit']) > 1:
         message = ('Error: Only one instance of "limit=" is permitted')
         raise exception.BadRequestError(message)
     #Enforce that limit= only accepts one value.
-    if len(param_dict['limit'][0] > 1:
+    if len(param_dict['limit'][0]) > 1:
         message = ('Error: The limit parameter only accepts one value.')
         raise exception.BadRequestError(message)
     try:
