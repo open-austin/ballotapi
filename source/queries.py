@@ -4,7 +4,7 @@ import exception
 import configparser
 
 config = configparser.ConfigParser()
-config.read('ballotapi.ini')
+config.read('/var/www/ballotapi/source/ballotapi.ini')
 
 db_login_string = config.get('database','database_string')
 
@@ -156,25 +156,42 @@ def precincts_query(q_dict, param_dict):
     return q_dict, param_dict
 
 #Check for 'limit=' parameter or set query to default.
-def limit_query(qdict, param_dict):
+def limit_query(q_dict, param_dict):
     #Enforce that there is only one instance of 'limit=':
     if len(param_dict['limit']) > 1:
         message = ('Error: Only one instance of "limit=" is permitted')
         raise exception.BadRequestError(message)
     #Enforce that limit= only accepts one value.
-    if len(param_dict['limit'][0]) > 1:
+    if len(param_dict['limit'][0].split(',')) > 1:
         message = ('Error: The limit parameter only accepts one value.')
         raise exception.BadRequestError(message)
     try:
         param_dict['param_list'].append(int(param_dict['limit'][0]))
+        q_dict['limit'] = ' LIMIT %s '
     except:
         message = ('Error: Limit must be given as one single integer.')
         raise exception.BadRequestError(message)
     return q_dict, param_dict
 
+#Add offset and offset value to query and param_list.
+def offset_query(q_dict, param_dict):
+    #Enforce that there is only one instance of 'offset='
+    if len(param_dict['limit']) > 1:
+        message = ('Error: Only one instance of "offset=" is permitted')
+        raise exception.BadRequestError(message)
+    try:
+        param_dict['param_list'].append(int(param_dict['offset'][0]))
+        q_dict['offset'] = ' OFFSET %s '
+        offset = param_dict['param_list'][-1]
+    except:
+        message = ('Error: Offset must be given as one single integer.')
+        raise exception.BadRequestError(message)
+    return q_dict, param_dict, offset
+
 #Runs the main query that the above functions have been used to build.
 def main_query(q_dict, param_dict):
-    sql = q_dict['select'] + q_dict['from'] + q_dict['where'] + q_dict['order_by']
+    sql = (q_dict['select'] + q_dict['from'] + q_dict['where'] + q_dict['order_by'] + 
+           q_dict['limit'] + q_dict['offset'])
     data = []
     with psycopg2.connect(db_login_string) as conn:
         with conn.cursor() as cur:

@@ -20,7 +20,12 @@ def endpoint(params):
     param_dict = {'ids':None,
                   'geo':None,
                   'election_dates':None,
-                  'coords':None}
+                  'coords':None,
+                  #The 'limit' and 'offset' defaults are in the same format that
+                  #they would be recieved as via the url: a list of strings.
+                  'limit':['100'],
+                  'offset':['0']}
+
     param_dict = q.retrieve_query_parameters(params, param_dict)
 
     #Initialize param_list inside of param_dict.  This is done here and not inside of the
@@ -31,20 +36,24 @@ def endpoint(params):
     q_dict, param_dict = q.ids_query(q_dict, param_dict)
     q_dict, param_dict = q.election_dates_query(q_dict, param_dict)
     q_dict, param_dict = q.coords_query(q_dict, param_dict)
+    q_dict, param_dict = q.limit_query(q_dict, param_dict)
+    q_dict, param_dict, offset = q.offset_query(q_dict, param_dict)
 
     #Run the query that was just built.
     data = q.main_query(q_dict, param_dict)
 
     #Data returned as a list of tuples with each tuple being data for one election.
-    return data
+    return data, offset
 
-#Handles /elections/election_id> endpoint.
+#Handles /elections/<election_id> endpoint.
 def id_endpoint(election_id):
     #Prebuilt query by id.
     q_dict = {'select':' SELECT e.election_id, e.election_date, e.info ',
               'from':' FROM elections E ',
               'where':' WHERE e.election_id = %s ',
-              'order_by':' ORDER BY e.election_id '}
+              'order_by':' ORDER BY e.election_id ',
+              'limit':'',
+              'offset':''}
     
     #Add the election_id to param_list.
     param_dict = {'param_list':[election_id]}
@@ -53,4 +62,4 @@ def id_endpoint(election_id):
     data = q.main_query(q_dict, param_dict)
 
     #Data returned as a list containing one tuple of election data.
-    return data
+    return data, 0

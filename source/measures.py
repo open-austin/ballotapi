@@ -18,7 +18,7 @@ def endpoint(params):
               'coords_where_clause':(' AND me.election_id = p.election_id '
                                      ' AND p.precinct_id = ma.precinct_id '
                                      ' AND me.measure_id = ma.measure_id '),
-              'coords_from_clause':' ,precincts P, mapping MA ' }
+              'coords_from_clause':' , precincts P, mappings MA ' }
 
     #Dictionary into which parameters from the url are passed.  It also acts as a filter: any
     #parameter passed in the query url is checked against the keys in this dictionary.
@@ -28,8 +28,10 @@ def endpoint(params):
                   'geo':None,
                   'election_dates':None,
                   'coords':None,
-                  'limit':100,
-                  'offset':0}
+                  #The 'limit' and 'offset' defaults are in the same format that
+                  #they would be recieved as via the url: a list of strings.
+                  'limit':['100'],
+                  'offset':['0']}
     param_dict = q.retrieve_query_parameters(params, param_dict)
 
     #Initialize param_list inside of param_dict.  This is done here and not inside of the
@@ -43,7 +45,7 @@ def endpoint(params):
     q_dict, param_dict = q.coords_query(q_dict, param_dict)
     q_dict, param_list = q.precincts_query(q_dict, param_dict)
     q_dict, param_list = q.limit_query(q_dict, param_dict)
-    q_dict, param_list = q.offset_query(q_dict, param_dict)
+    q_dict, param_list, offset = q.offset_query(q_dict, param_dict)
 
     #Run the query that was just built.  This returns all of the data except for the list of
     #measures for each precinct.
@@ -58,7 +60,7 @@ def endpoint(params):
     data = q.list_query(data, list_sql)
 
     #Data returned as a list of tuples with each tuple being data for one measure.
-    return data
+    return data, offset
 
 #id_endpoint() handles /measures/<measure_id> endpoint.
 def id_endpoint(measure_id):
@@ -67,7 +69,9 @@ def id_endpoint(measure_id):
                         ' me.measure_type, me.voting_system, me.choices '),
               'from':' FROM measures ME ',
               'where':' WHERE me.measure_id = %s ',
-              'order_by':' ORDER BY me.measure_id '}
+              'order_by':' ORDER BY me.measure_id ',
+              'limit':'',
+              'offset':''}
     
     #Add the precinct_id to param_list.
     param_dict = {'param_list':[measure_id]}
@@ -83,4 +87,4 @@ def id_endpoint(measure_id):
     data = q.list_query(data, list_sql)
 
     #Data returned as a list containing one tuple of measure data.
-    return data
+    return data, 0

@@ -6,8 +6,8 @@ status_code = 200
 json_info = {'Content-Type':'application/json; charset=utf-8'}
 
 #Accept election_data list and turn it into JSON formatted output.
-def election_json(election_data):
-    return_object = {"offset":0}
+def election_json(election_data, offset):
+    return_object = {"offset":offset}
     election_list = []
     for election in election_data:
         election_dict = {}
@@ -22,7 +22,8 @@ def election_json(election_data):
     return json.dumps(return_object, indent=4), status_code, json_info
 
 #Accept measure_data list and turn it into JSON formatted output.
-def measure_json(measure_data):
+def measure_json(measure_data, offset):
+    return_object = {"offset":offset}
     measure_list = []
     for measure in measure_data:
         measure_dict = {}
@@ -45,10 +46,12 @@ def measure_json(measure_data):
         if measure[8]:
             measure_dict['precincts'] = measure[8]
         measure_list.append(measure_dict)
-    return json.dumps(measure_list, indent=4), status_code, json_info
+        return_object['data'] = measure_list
+    return json.dumps(return_object, indent=4), status_code, json_info
 
 #Accept precinct_data list and return JSON formatted output.
-def precinct_json(precinct_data):
+def precinct_json(precinct_data, offset):
+    return_object = {"offset":offset}
     precinct_list = []
     for precinct in precinct_data:
         precinct_dict = {}
@@ -65,4 +68,5 @@ def precinct_json(precinct_data):
         if precinct[5]:
             precinct_dict['measures'] = precinct[5]
         precinct_list.append(precinct_dict)
-    return json.dumps(precinct_list, indent=4), status_code, json_info
+        return_object['data'] = precinct_list
+    return json.dumps(return_object, indent=4), status_code, json_info

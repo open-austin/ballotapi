@@ -24,7 +24,12 @@ def endpoint(params):
                   'measures':None,
                   'geo':None,
                   'election_dates':None,
-                  'coords':None}
+                  'coords':None,
+                  #The 'limit' and 'offset' defaults are in the same format that
+                  #they would be recieved as via the url: a list of strings.
+                  'limit':['100'],
+                  'offset':['0']}
+
     param_dict = q.retrieve_query_parameters(params, param_dict)
 
     #Initialize param_list inside of param_dict.  This is done here and not inside of the
@@ -37,6 +42,8 @@ def endpoint(params):
     q_dict, param_dict = q.election_dates_query(q_dict, param_dict)
     q_dict, param_dict = q.coords_query(q_dict, param_dict)
     q_dict, param_dict = q.measures_query(q_dict, param_dict)
+    q_dict, param_dict = q.limit_query(q_dict, param_dict)
+    q_dict, param_dict, offset = q.offset_query(q_dict, param_dict)
 
     #Run the query that was just built.  This returns all of the  data except for the list of
     #measures for each precinct.
@@ -51,7 +58,7 @@ def endpoint(params):
     data = q.list_query(data, list_sql)
 
     #Data returned as a list of tuples with each tuple being data for one precinct.
-    return data
+    return data, offset
 
 #id_endpoint() handles /precincts/<precinct_id> endpoint.
 def id_endpoint(precinct_id):
@@ -60,7 +67,9 @@ def id_endpoint(precinct_id):
                         ' p.info, p.confirmed, ST_AsGeoJSON(p.geom) '),
               'from':' FROM precincts P ',
               'where':' WHERE p.precinct_id = %s ',
-              'order_by':' ORDER BY p.precinct_id '}
+              'order_by':' ORDER BY p.precinct_id ',
+              'limit':'',
+              'offset':''}
     
     #Add the precinct_id to param_list.
     param_dict = {'param_list':[precinct_id]}
@@ -76,4 +85,4 @@ def id_endpoint(precinct_id):
     data = q.list_query(data, list_sql)
 
     #Data returned as a list with one tuple of precinct data.
-    return data
+    return data, 0
