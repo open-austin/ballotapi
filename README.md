@@ -228,7 +228,7 @@ http://www.ballotapi.com/api/elections?election_dates=2016-11-04,2020-11-04
 http://www.ballotapi.com/api/elections?election_dates=2014-01-01:2014-12-31
 
 3. All elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/elections?election_dates=2014-11-05:&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/elections?election_dates=2014-11-05:2050-11-05&coords=37.7942635,-122.3955861
 
 ####?limit=&lt;int&gt;
 Limit results to a set number. By default, the limit value for elections is 100.
@@ -284,7 +284,7 @@ Examples:
 http://www.ballotapi.com/api/precincts?election_dates=2014-01-01:2014-12-31
 
 2. All the precincts for elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/precincts?election_dates=2014-11-05:&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/precincts?election_dates=2014-11-05:2050-11-05&coords=37.7942635,-122.3955861
 
 ####?coords=&lt;latitude&gt;,&lt;longitude&gt;
 Return only precincts that contain this location.
@@ -364,7 +364,7 @@ Examples:
 http://www.ballotapi.com/api/measures?election_dates=2014-01-01:2014-12-31
 
 2. All the measures for elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/measures?election_dates=2014-11-05:&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/measures?election_dates=2014-11-05:2050-11-05&coords=37.7942635,-122.3955861
 
 ####?coords=&lt;latitude&gt;,&lt;longitude&gt;
 Return only measures that have a precinct encompassing this location.
