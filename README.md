@@ -190,7 +190,7 @@ Return the Election object for the specified id.
 Examples:
 
 1. Elections 123:<br/>
-http://www.ballotapi.com/api/elections/123.html
+http://www.ballotapi.com/api/elections/123.json
 
 ###<span id="elections">/elections</span>
 Returns a list of Election objects. Can be filtered by id, location, or date.
@@ -202,7 +202,7 @@ plural form of the `/elections/<id>` endpoint.
 Examples:
 
 1. Elections 123 and 234:<br/>
-http://www.ballotapi.com/api/elections.html?ids=123,234
+http://www.ballotapi.com/api/elections.json?ids=123,234
 
 ####?coords=&lt;latitude&gt;,&lt;longitude&gt;
 Return only elections that include precincts that contain this location.
@@ -210,7 +210,7 @@ Return only elections that include precincts that contain this location.
 Examples:
 
 1. All the elections for 100 Market St, San Francisco, CA (37.7942635,-122.3955861):<br/>
-http://www.ballotapi.com/api/elections.html?coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/elections.json?coords=37.7942635,-122.3955861
 
 ####?dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
 Return only elections within a certain date range. You can omit either the start
@@ -222,13 +222,13 @@ and end date. You can also have multiple date ranges, separated by commas.
 Examples:
 
 1. The national elections in 2016 and 2020:<br/>
-http://www.ballotapi.com/api/elections.html?dates=2016-11-04,2020-11-04
+http://www.ballotapi.com/api/elections.json?dates=2016-11-04,2020-11-04
 
 2. All the elections for 2014:<br/>
-http://www.ballotapi.com/api/elections.html?dates=2014-01-01:2014-12-31
+http://www.ballotapi.com/api/elections.json?dates=2014-01-01:2014-12-31
 
 3. All elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/elections.html?dates=2014-11-05:&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/elections.json?dates=2014-11-05:&coords=37.7942635,-122.3955861
 
 ####?limit=&lt;int&gt;
 Limit results to a set number. By default, the limit value for elections is 100.
@@ -243,7 +243,7 @@ Return the Precinct object for the specified id.
 Examples:
 
 1. Precinct 123:<br/>
-http://www.ballotapi.com/api/precincts/123.html
+http://www.ballotapi.com/api/precincts/123.json
 
 ###<span id="precincts">/precincts</span>
 Return a list of precincts. Can be filtered by id, election, election date,
@@ -255,7 +255,7 @@ plural form of the `/precincts/<id>` endpoint.
 
 Examples:
 
-1. Precincts 123 and 234: http://www.ballotapi.com/api/precincts.html?ids=123,234
+1. Precincts 123 and 234: http://www.ballotapi.com/api/precincts.json?ids=123,234
 
 ####?elections=&lt;id&gt;[,&lt;id&gt;,...]
 Return only precincts that are part of these elections. Multiple elections can
@@ -265,10 +265,10 @@ of the listed elections (i.e. treated as OR).
 Examples:
 
 1. The precincts that contain Election 123:<br/>
-http://www.ballotapi.com/api/precincts.html?elections=123
+http://www.ballotapi.com/api/precincts.json?elections=123
 
 2. The precincts that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/precincts.html?elections=123,234&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/precincts.json?elections=123,234&coords=37.7942635,-122.3955861
 
 ####?election_dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
 Return only precincts that belong to elections within a certain date range. You
@@ -281,10 +281,10 @@ separated by commas.
 Examples:
 
 1. All the precincts for elections in 2014:<br/>
-http://www.ballotapi.com/api/precincts.html?election_dates=2014-01-01:2014-12-31
+http://www.ballotapi.com/api/precincts.json?election_dates=2014-01-01:2014-12-31
 
 2. All the precincts for elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/precincts.html?election_dates=2014-11-05:&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/precincts.json?election_dates=2014-11-05:&coords=37.7942635,-122.3955861
 
 ####?coords=&lt;latitude&gt;,&lt;longitude&gt;
 Return only precincts that contain this location.
@@ -292,7 +292,7 @@ Return only precincts that contain this location.
 Examples:
 
 1. The Election 123 precinct for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/precincts.html?elections=123&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/precincts.json?elections=123&coords=37.7942635,-122.3955861
 
 ####?measures=&lt;id&gt;[,&lt;id&gt;,...]
 Return only precincts that contain these measures. Multiple measures can be
@@ -304,10 +304,10 @@ AND).
 Examples:
 
 1. The precincts that contain Measure 456:<br/>
-http://www.ballotapi.com/api/precincts.html?measures=456
+http://www.ballotapi.com/api/precincts.json?measures=456
 
 2. The precincts that contain Measures 456 or 567, and contains Measure 789:<br/>
-http://www.ballotapi.com/api/precincts.html?measures=456,567&measures=789
+http://www.ballotapi.com/api/precincts.json?measures=456,567&measures=789
 
 ####?limit=&lt;int&gt;
 Limit results to a set number. By default, the limit value for precincts is 50.
@@ -322,7 +322,7 @@ Return the Measure object for the specified id.
 Examples:
 
 1. Measure 123:<br/>
-http://www.ballotapi.com/api/measures/123.html
+http://www.ballotapi.com/api/measures/123.json
 
 ###<span id="measures">/measures</span>
 Return a list of measures. Can be filtered by id, election, election date,
@@ -335,7 +335,7 @@ plural form of the `/measures/<id>` endpoint.
 Examples:
 
 1. Measures 123 and 234:<br/>
-http://www.ballotapi.com/api/measures.html?ids=123,234
+http://www.ballotapi.com/api/measures.json?ids=123,234
 
 ####?elections=&lt;id&gt;[,&lt;id&gt;,...]
 Return only measures that are part of these elections. Multiple elections can
@@ -345,10 +345,10 @@ of the listed elections (i.e. treated as OR).
 Examples:
 
 1. The measures that are in Election 123:<br/>
-http://www.ballotapi.com/api/measures.html?elections=123
+http://www.ballotapi.com/api/measures.json?elections=123
 
 2. The measures that contain Election 123 or 234 for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/measures.html?elections=123,234&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/measures.json?elections=123,234&coords=37.7942635,-122.3955861
 
 ####?election_dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
 Return only measures that belong to elections within a certain date range. You
@@ -361,10 +361,10 @@ separated by commas.
 Examples:
 
 1. All the measures for elections in 2014:<br/>
-http://www.ballotapi.com/api/measures.html?election_dates=2014-01-01:2014-12-31
+http://www.ballotapi.com/api/measures.json?election_dates=2014-01-01:2014-12-31
 
 2. All the measures for elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/measures.html?election_dates=2014-11-05:&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/measures.json?election_dates=2014-11-05:&coords=37.7942635,-122.3955861
 
 ####?coords=&lt;latitude&gt;,&lt;longitude&gt;
 Return only measures that have a precinct encompassing this location.
@@ -372,7 +372,7 @@ Return only measures that have a precinct encompassing this location.
 Examples:
 
 1. The Election 123 measures for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/measures.html?elections=123&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/measures.json?elections=123&coords=37.7942635,-122.3955861
 
 ####?precincts=&lt;id&gt;[,&lt;id&gt;,...]
 Return only measures that are a part of these precincts. Multiple precincts can
@@ -384,10 +384,10 @@ as AND).
 Examples:
 
 1. The measures that contain Precinct 456:<br/>
-http://www.ballotapi.com/api/measures.html?precincts=456
+http://www.ballotapi.com/api/measures.json?precincts=456
 
 2. The measures that are a part of Precinct 456 or 567, and a part of Precinct 789:<br/>
-http://www.ballotapi.com/api/measures.html?precincts=456,567&precincts=789
+http://www.ballotapi.com/api/measures.json?precincts=456,567&precincts=789
 
 ####?limit=&lt;int&gt;
 Limit results to a set number. By default, the limit value for measures is 100.
