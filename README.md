@@ -212,7 +212,7 @@ Examples:
 1. All the elections for 100 Market St, San Francisco, CA (37.7942635,-122.3955861):<br/>
 http://www.ballotapi.com/api/elections?coords=37.7942635,-122.3955861
 
-####?dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
+####?election_dates=&lt;start_date&gt;[:&lt;end_date&gt;[,...]]
 Return only elections within a certain date range. You can omit either the start
 or end dates to leave that side open ended. Dates are inclusive, so results
 include elections that happen on the start or end dates. You can also specify a
@@ -222,13 +222,13 @@ and end date. You can also have multiple date ranges, separated by commas.
 Examples:
 
 1. The national elections in 2016 and 2020:<br/>
-http://www.ballotapi.com/api/elections?dates=2016-11-04,2020-11-04
+http://www.ballotapi.com/api/elections?election_dates=2016-11-04,2020-11-04
 
 2. All the elections for 2014:<br/>
-http://www.ballotapi.com/api/elections?dates=2014-01-01:2014-12-31
+http://www.ballotapi.com/api/elections?election_dates=2014-01-01:2014-12-31
 
 3. All elections after Nov 4th, 2014 for 100 Market St, San Francisco, CA:<br/>
-http://www.ballotapi.com/api/elections?dates=2014-11-05:&coords=37.7942635,-122.3955861
+http://www.ballotapi.com/api/elections?election_dates=2014-11-05:&coords=37.7942635,-122.3955861
 
 ####?limit=&lt;int&gt;
 Limit results to a set number. By default, the limit value for elections is 100.
