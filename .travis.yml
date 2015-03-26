@@ -4,4 +4,4 @@ python:
     - "2.7"
 before_install:
     - pip install pytest pytest-cov
-script: tests/ballotapi_tests.py
+script: py.test
