@@ -65,7 +65,7 @@ def election_dates_query(q_dict, param_dict):
         q_dict['from'] += q_dict['election_dates_from_clause']
         q_dict['where'] += q_dict['election_dates_where_clause']
         #Split date string into two lists: single_dates and date_ranges.
-        #Add to base_where_clause and param_list for each list seperately.
+        #Add to base_where_clause and param_list for each list separately.
         date_ranges = []
         single_dates = []
         for date in param_dict['election_dates'][0].split(','):
