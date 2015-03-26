@@ -18,3 +18,5 @@ class TestAPI:
     def test_HasPrecincts(self):
         assert HasResponse(urllib.urlopen(self.HOST_NAME+'api/precincts/'))
         
+    def test_has_measures(self):
+        assert HasResponse(urllib.urlopen(self.HOST_NAME+'api/precincts/'))
