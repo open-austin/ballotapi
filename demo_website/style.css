@@ -1,0 +1,260 @@
+/*http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126 License: none (public domain)*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small,
+strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin:0; padding:0; border:0; font-size:100%; font:inherit; vertical-align:baseline;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;} body {line-height: 1;} ol, ul {list-style: none;}
+blockquote, q {quotes: none;} blockquote:before, blockquote:after, q:before, q:after {content:''; content:none;} table {border-collapse:collapse; border-spacing:0;}
+
+/* Header Styles */
+body{
+    text-align: center;
+    font-family: "Slabo 27px",serif;
+    font-size: 24px;
+    color: #241D1D;
+    background: #7db9e8; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #7db9e8 0%, #3d9be2 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#7db9e8), color-stop(100%,#3d9be2)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, #7db9e8 0%,#3d9be2 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, #7db9e8 0%,#3d9be2 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, #7db9e8 0%,#3d9be2 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center, #7db9e8 0%,#3d9be2 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#3d9be2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+#content-wrapper{
+    display: inline-block;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 600px;
+}
+.page-section{
+    padding: 0px 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+#header h1{
+    font-family: "Patua One",sans-serif;
+    font-size: 60px;
+    color: rgb(238, 238, 238);
+    text-shadow: 3px 3px #115B8C;
+    padding: 35px 0px 20px 0px;
+}
+
+/* Measures */
+#content{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px 5%;
+}
+#measures{
+    text-align: left;
+    width: 100%;
+}
+#measures h2{
+    font-family: "Patua One",sans-serif;
+    font-size: 35px;
+    color: rgb(238, 238, 238);
+    text-shadow: 1px 1px #115B8C;
+    margin-bottom: 15px;
+}
+#measures h3{
+    font-family: "Patua One",sans-serif;
+    font-size: 25px;
+    color: rgb(238, 238, 238);
+    text-shadow: 1px 1px #115B8C;
+    margin-bottom: 15px;
+}
+#measures h4{
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+#measures p{
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+#measures li{
+    margin-left: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+#measures ul.choices li{
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Map Styles */
+#map-wrapper{
+    float: right;
+    text-align: right;
+    display: inline-block;
+    padding-left:20px;
+    padding-bottom:20px;
+    width: 100%;
+    max-width: 100%;
+}
+#map{
+    text-align: center;
+    height: 450px;
+    background-color: #B4FAFF;
+}
+#change-location{
+    display: inline-block;
+    margin: 5px 0px;
+    font-size: 16px;
+    color: rgb(238, 238, 238);
+    text-decoration: none;
+}
+#change-location:hover{
+    text-decoration: underline;
+}
+
+/* Precinct Styles */
+.precinct{
+    margin: 10px 0px;
+}
+#precinct-top{
+    display: inline-block;
+    max-width: 300px;
+    width: 100%;
+    text-align: left;
+}
+#precinct-top h2{
+    font-family: "Patua One",sans-serif;
+    font-size: 25px;
+    color: rgb(238, 238, 238);
+    text-shadow: 1px 1px #115B8C;
+    margin-bottom: 8px;
+}
+#precinct-top div{
+    display: inline-block;
+    text-align: left;
+    margin: 5px 0px;
+    font-size: 18px;
+    line-height: 1.2em;
+}
+#precinct-top span{
+    font-weight: bold;
+}
+#precinct-top a{
+    color: #241D1D;
+}
+#precinct-bottom{
+    display: none;
+    text-align: left;
+    margin-top: 40px;
+}
+#precinct-bottom h2{
+    font-family: "Patua One",sans-serif;
+    font-size: 35px;
+    color: rgb(238, 238, 238);
+    text-shadow: 1px 1px #115B8C;
+    margin-bottom: 15px;
+}
+#precinct-bottom div{
+    padding-left: 10px;
+    font-size: 20px;
+    line-height: 1.2em;
+}
+#precinct-bottom span{
+    font-weight: bold;
+}
+#precinct-bottom a{
+    color: #241D1D;
+}
+
+/* Instruction Steps */
+.step-header{
+    font-family: "Patua One",sans-serif;
+    font-size: 35px;
+    color: rgb(238, 238, 238);
+    text-shadow: 1px 1px #115B8C;
+    padding-right: 8px;
+}
+.step-value{
+    display: inline-block;
+    font-size: 28px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: rgb(238, 238, 238);
+    text-shadow: 1px 1px #115B8C;
+}
+#find-ballot{
+    font-family: "Slabo 27px",serif;
+    background: #ff0d0d;
+    background-image: -webkit-linear-gradient(top, #ff5454, #ff0d0d);
+    background-image: -moz-linear-gradient(top, #ff5454, #ff0d0d);
+    background-image: -ms-linear-gradient(top, #ff5454, #ff0d0d);
+    background-image: -o-linear-gradient(top, #ff5454, #ff0d0d);
+    background-image: linear-gradient(to bottom, #ff5454, #ff0d0d);
+    -webkit-border-radius: 14;
+    -moz-border-radius: 14;
+    border-radius: 14px;
+    text-shadow: 1px 1px 3px #666666;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    color: #ffffff;
+    font-size: 28px;
+    padding: 7px 12px;
+    border: solid #ffffff 2px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+#find-ballot:hover{
+    border: solid #838383 2px;
+    text-decoration: none;
+}
+/* Footer styles */
+#footer{
+    width: 100%;
+    margin: 60px 0px 20px 0px;
+    font-size: 20px;
+}
+#footer a{
+    color: rgb(238, 238, 238);
+    font-weight: bold;
+    text-shadow: 1px 1px #115B8C;
+}
+#footer img{
+    background-color: rgb(238, 238, 238);
+    vertical-align: middle;
+    padding: 5px;
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+}
+
+/* Mobile styles */
+@media (max-width: 700px){
+    #header h1{
+        font-size: 45px;
+        padding: 25px 0px 10px 0px;
+    }
+    .step-header{
+        font-size: 25px;
+    }
+    .step-value{
+        font-size: 25px;
+    }
+    #find-ballot{
+        font-size: 25px;
+        padding: 7px 12px;
+    }
+    #content{
+        padding: 25px 5% 5px 5%;
+    }
+    #map-wrapper{
+        float: none;
+        width: 100%;
+        padding-left:0px;
+        box-sizing: border-box;
+        display: inline-block;
+    }
+    #precinct-top{
+        display: none;
+    }
+    #precinct-bottom{
+        display: block;
+    }
+}
