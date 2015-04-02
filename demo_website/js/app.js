@@ -1,4 +1,6 @@
-var app = angular.module("ballotapi", ["leaflet-directive"]);
+var app = angular.module("ballotapi", [
+    "leaflet-directive"
+]);
 
 app.controller('MainController', ['$scope', function($scope) {
 
@@ -18,6 +20,9 @@ app.controller('MainController', ['$scope', function($scope) {
                     type: 'xyz'
                 }
             }
+        },
+        defaults: {
+            scrollWheelZoom: false
         }
     });
 
@@ -35,4 +40,38 @@ app.controller('MainController', ['$scope', function($scope) {
     });
 
     // handle 'Find My Ballot'
+    $scope.findBallot = function(){
+
+        if(!$scope.markers[0]){
+            alert('Please click on the map first!');
+            return;
+        }
+
+        // animations (not angulartastic)
+        // https://thinkster.io/egghead/animating-the-angular-way
+        $("#step2").hide();
+        $("#map-wrapper").animate({"max-width": "300px"}, {
+            "duration": 500,
+            "queue": false,
+        });
+        $("#map").animate({"height": "200px"}, {
+            "duration": 500,
+            "queue": false,
+            "complete": function(){
+                $("#measures").show();
+                $(".map-details").show();
+            },
+        });
+
+        // update center (not working)
+        $scope.san_fran = {
+            lat: $scope.markers[0].lat,
+            lng: $scope.markers[0].lng,
+            zoom: 15
+        };
+
+        // should update scope with values
+        $("#step1 span.step-header").text("Location:");
+        $("#step1 span.step-value").text("37.7942635, -122.3955861");
+    }
 }]);

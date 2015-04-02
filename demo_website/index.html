@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
         <link rel="stylesheet" href="./style.css" />
 
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+
         <title>What's on my Ballot?</title>
     </head>
     <body ng-controller='MainController'>
@@ -20,7 +23,11 @@
             </div>
             <div id="content">
                 <div id="map-wrapper">
-                    <leaflet layers="layers" center="san_fran" markers="markers" event-broadcast="events" id='map'></leaflet>
+
+                    <!-- MAP -->
+                    <leaflet layers="layers" center="san_fran" markers="markers" event-broadcast="events" defaults="defaults" id='map'></leaflet>
+                    <!-- /MAP -->
+
                     <div class="map-details" style="display:none;">
                         <a id="change-location" href="#">Change location</a>
                         <div id="precinct-top" class="precinct">
@@ -84,7 +91,7 @@
             </div>
             <div id="step2">
                 <span class="step-header">Step 2:</span>
-                <button id="find-ballot">Find My Ballot</button>
+                <button id="find-ballot" ng-click='findBallot()'>Find My Ballot</button>
             </div>
         </div>
         <div id="footer" class="page-section">
