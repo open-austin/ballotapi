@@ -25,6 +25,8 @@ Main website: https://ballotapi.com/ (doesn't work yet)
     6. [/measures](#measures)
 9. [How to self-host](#how-to-self-host)
 10. [License](#license)
+    1. [Project License](#project-license)
+    2. [Dependency Licenses](#dependency-licenses)
 11. [Contributions](#contributions)
 
 ## <span id="what-is-ballot-api">What is Ballot API?</span>
@@ -414,6 +416,13 @@ To update to the latest version of the API, simply re-download this repo and
 re-import the database.
 
 ## <span id="license">License</span>
+
+### <span id="project-license">Project License</span>
+
+This entire project (including all source code, documentation, and ballot data)
+is released into the public domain.
+
+```
 This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or distribute this
@@ -435,9 +444,23 @@ CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to http://unlicense.org
+```
 
+### <span id="dependency-licenses">Dependency Licenses</span>
+
+While this project is released into the public domain, it does depend on other
+open source projects. All dependencies are not included in the project licencse
+and are released under their respective open source licenses.
+
+* Bootstrap - [MIT](https://github.com/twbs/bootstrap#copyright-and-license)
+* Bootstrap.native - [MIT](https://github.com/thednp/bootstrap.native#license)
+* Django - [BSD](https://github.com/django/django/blob/master/LICENSE)
+* PostgreSQL - [PostgreSQL Licence](https://www.postgresql.org/about/licence/)
+* PostGIS -  [GPLv2](https://postgis.net/docs/manual-dev/PostGIS_FAQ.html#license_faq)
+* Python - [PSFL](https://www.python.org/psf/license/)
 
 ## <span id="contributions">Contributions</span>
 This project is hosted https://github.com/sfbrigade/ballotapi and maintained by
-a team at Code for America. Want to contribute? Submit an issue or pull request!
+a team in Code for America's brigades. Want to contribute? Submit an issue or
+pull request!
 
