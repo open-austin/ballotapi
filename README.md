@@ -450,7 +450,7 @@ For more information, please refer to http://unlicense.org
 
 While this project is released into the public domain, it does depend on other
 open source projects. All dependencies are not included in the project licencse
-and are released under their respective open source licenses.
+are released under their respective open source licenses.
 
 * Bootstrap - [MIT](https://github.com/twbs/bootstrap#copyright-and-license)
 * Bootstrap.native - [MIT](https://github.com/thednp/bootstrap.native#license)
