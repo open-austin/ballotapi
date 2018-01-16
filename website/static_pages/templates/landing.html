@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block css %}
+    {{ block.super }}
+    <style>
+        #mapid {
+            height: 180px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div id="mapid"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block bottomjs %}
+    {{ block.super }}
+    <script>
+        var mymap = L.map('mapid').setView([0, 0], 0);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(mymap);
+    </script>
+{% endblock %}
