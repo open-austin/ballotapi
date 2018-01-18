@@ -1,0 +1,43 @@
+<p class="visible-sm-inline-block visible-xs-inline-block">
+    <button type="button"
+            class="btn btn-default"
+            data-toggle="collapse"
+            data-target="#table-of-contents"
+            aria-expanded="false"
+            aria-controls="table-of-contents">
+        Table of Contents
+        <span class="caret"/>
+    </button>
+</p>
+
+
+<div id="table-of-contents" class="collapse-visible-md collapse">
+
+    <h3>
+        Documentation
+    </h3>
+    <ul class="list-unstyled margin-bottom">
+        <li>
+            <a href="{% url 'docs:overview' %}"
+               class="font-16px {% if toc == 'overview' %}font-strong font-underline{% endif %}"
+                >Overview</a>
+        </li>
+        <li class="margin-top-sm">
+            <a href="#TODO"
+               class="font-16px {% if toc == 'TODO' %}font-strong font-underline{% endif %}"
+                >Rate Limits</a>
+        </li>
+    </ul>
+
+    <h3 class="margin-top-lg">
+        API Endpoints
+    </h3>
+    <ul class="list-unstyled">
+        <li class="margin-top-sm">
+            <a href="#TODO"
+               class="font-16px {% if toc == 'TODO' %}font-strong font-underline{% endif %}"
+                >/elections</a>
+        </li>
+    </ul>
+
+</div>

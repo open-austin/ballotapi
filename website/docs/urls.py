@@ -9,5 +9,6 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='docs/overview.html', extra_context={
         "title": "Documentation",
         "nav": "docs",
+        "toc": "overview",
     }), name='overview'),
 ]

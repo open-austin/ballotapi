@@ -1,17 +1,12 @@
-{% extends "base.html" %}
+{% extends "docs/docs_base.html" %}
 
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <h1 class="col-sm-12">
-                Documentation
-            </h1>
-        </div>
-        <div class="row">
-            <p class="col-sm-12">
-                TODO
-            </p>
-        </div>
-    </div>
+{% block doc_content %}
+    <ol class="breadcrumb">
+        <li><a href="{% url 'docs:overview' %}">Documentation</a></li>
+        <li class="active">Overview</li>
+    </ol>
+    <h1>
+        BallotAPI Documentation
+    </h1>
 {% endblock %}
 
