@@ -23,9 +23,34 @@
                 >Overview</a>
         </li>
         <li class="margin-top-sm">
-            <a href="#TODO"
-               class="font-16px {% if toc == 'TODO' %}font-strong font-underline{% endif %}"
+            <a href="{% url 'docs:quickstart' %}"
+               class="font-16px {% if toc == 'quickstart' %}font-strong font-underline{% endif %}"
+                >Quickstart</a>
+        </li>
+        <li class="margin-top-sm">
+            <a href="{% url 'docs:examples' %}"
+               class="font-16px {% if toc == 'examples' %}font-strong font-underline{% endif %}"
+                >Examples</a>
+        </li>
+        <li class="margin-top-sm">
+            <a href="{% url 'docs:data_types' %}"
+               class="font-16px {% if toc == 'data_types' %}font-strong font-underline{% endif %}"
+                >Data Types</a>
+        </li>
+        <li class="margin-top-sm">
+            <a href="{% url 'docs:testing' %}"
+               class="font-16px {% if toc == 'testing' %}font-strong font-underline{% endif %}"
+                >Testing</a>
+        </li>
+        <li class="margin-top-sm">
+            <a href="{% url 'docs:rate_limits' %}"
+               class="font-16px {% if toc == 'rate_limits' %}font-strong font-underline{% endif %}"
                 >Rate Limits</a>
+        </li>
+        <li class="margin-top-sm">
+            <a href="{% url 'docs:api_endpoints' %}"
+               class="font-16px {% if toc == 'api_endpoints' %}font-strong font-underline{% endif %}"
+                >API Docs</a>
         </li>
     </ul>
 
@@ -33,11 +58,97 @@
         API Endpoints
     </h3>
     <ul class="list-unstyled">
+
         <li class="margin-top-sm">
-            <a href="#TODO"
-               class="font-16px {% if toc == 'TODO' %}font-strong font-underline{% endif %}"
-                >/elections</a>
+            <a href="{% url 'docs:api_elections_object' %}"
+               ><code>/elections</code></a>
+            <a class=""
+               role="button"
+               data-toggle="collapse"
+               href="#toc-elections"
+               aria-expanded="false"
+               aria-controls="toc-elections"
+               ><span class="caret"></span></a>
+            <ul id="toc-elections"
+                class="collapse {% if toc == 'api_elections' %}in{% endif %} list-unstyled indent">
+                <li class="margin-top-sm">
+                    <a href="{% url 'docs:api_elections_object' %}"
+                       class="{% if subtoc == 'api_elections_object' %}font-strong font-underline{% endif %}"
+                        >Object</a>
+                </li>
+                <li class="margin-top-sm">
+                    <a href="{% url 'docs:api_elections_list' %}"
+                       class="{% if subtoc == 'api_elections_list' %}font-strong font-underline{% endif %}"
+                        >List</a>
+                </li>
+                <li class="margin-top-sm">
+                    <a href="{% url 'docs:api_elections_get' %}"
+                       class="{% if subtoc == 'api_elections_get' %}font-strong font-underline{% endif %}"
+                        >Get</a>
+                </li>
+            </ul>
         </li>
+
+        <li class="margin-top-sm">
+            <a href="{% url 'docs:api_precincts_object' %}"
+               ><code>/precincts</code></a>
+            <a class=""
+               role="button"
+               data-toggle="collapse"
+               href="#toc-precincts"
+               aria-expanded="false"
+               aria-controls="toc-precincts"
+               ><span class="caret"></span></a>
+            <ul id="toc-precincts"
+                class="collapse {% if toc == 'api_precincts' %}in{% endif %} list-unstyled indent">
+                <li class="margin-top-sm">
+                    <a href="{% url 'docs:api_precincts_object' %}"
+                       class="{% if subtoc == 'api_precincts_object' %}font-strong font-underline{% endif %}"
+                        >Object</a>
+                </li>
+                <li class="margin-top-sm">
+                    <a href="{% url 'docs:api_precincts_list' %}"
+                       class="{% if subtoc == 'api_precincts_list' %}font-strong font-underline{% endif %}"
+                        >List</a>
+                </li>
+                <li class="margin-top-sm">
+                    <a href="{% url 'docs:api_precincts_get' %}"
+                       class="{% if subtoc == 'api_precincts_get' %}font-strong font-underline{% endif %}"
+                        >Get</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="margin-top-sm">
+            <a href="{% url 'docs:api_measures_object' %}"
+               ><code>/measures</code></a>
+            <a class=""
+               role="button"
+               data-toggle="collapse"
+               href="#toc-measures"
+               aria-expanded="false"
+               aria-controls="toc-measures"
+               ><span class="caret"></span></a>
+            <ul id="toc-measures"
+                class="collapse {% if toc == 'api_measures' %}in{% endif %} list-unstyled indent">
+                <li class="margin-top-sm">
+                    <a href="{% url 'docs:api_measures_object' %}"
+                       class="{% if subtoc == 'api_measures_object' %}font-strong font-underline{% endif %}"
+                        >Object</a>
+                </li>
+                <li class="margin-top-sm">
+                    <a href="{% url 'docs:api_measures_list' %}"
+                       class="{% if subtoc == 'api_measures_list' %}font-strong font-underline{% endif %}"
+                        >List</a>
+                </li>
+                <li class="margin-top-sm">
+                    <a href="{% url 'docs:api_measures_get' %}"
+                       class="{% if subtoc == 'api_measures_get' %}font-strong font-underline{% endif %}"
+                        >Get</a>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 
 </div>

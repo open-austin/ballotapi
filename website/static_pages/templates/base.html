@@ -48,6 +48,36 @@
                 .font-underline {
                     text-decoration: underline;
                 }
+                /* indent for indenting list-unstyled */
+                .indent {
+                    margin-left: 20px;
+                }
+                /* permalink hover behavior */
+                .permalink-wrapper:hover .permalink {
+                    display: inline-block;
+                    text-decoration: none;
+                }
+                .permalink {
+                    display: none;
+                    position: absolute;
+                    font-size: 50%;
+                }
+                .permalink:before {
+                    top: 1px;
+                    font-family: 'Glyphicons Halflings';
+                    font-style: normal;
+                    font-weight: 400;
+                    content: "\e144"; /* permalink glyphicon */
+                }
+                /* enable emphasizing when jumping to id */
+                :target{
+                    animation: punch 2s ease-out;
+                }
+                @keyframes punch{
+                    0% { background-color: #ffffff; }
+                    10% { background-color: #fcf8e3; }
+                    100% { background-color: #ffffff; }
+                }
             </style>
         {% endblock %}
     </head>
