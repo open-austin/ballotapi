@@ -38,6 +38,18 @@
                 .margin-bottom-lg {
                     margin-bottom: 30px;
                 }
+                .fixed-height-xs {
+                    height: 20px;
+                }
+                .fixed-height-sm {
+                    height: 60px;
+                }
+                .fixed-height-md {
+                    height: 120px;
+                }
+                .fixed-height-lg {
+                    height: 180px;
+                }
                 /* slightly bigger font */
                 .font-16px {
                     font-size: 16px;
@@ -56,14 +68,15 @@
                 .permalink-wrapper:hover .permalink {
                     display: inline-block;
                     text-decoration: none;
+                    margin-left: 0.4em;
+                    margin-top: 0.4em;
                 }
                 .permalink {
                     display: none;
                     position: absolute;
-                    font-size: 50%;
+                    font-size: 60%;
                 }
                 .permalink:before {
-                    top: 1px;
                     font-family: 'Glyphicons Halflings';
                     font-style: normal;
                     font-weight: 400;
@@ -104,7 +117,7 @@
             </div>
         </nav>
         {% endblock %}
-        <div class="container" role="main">
+        <div role="main">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -118,6 +131,35 @@
                 </div>
             </div>
             {% block content %}{% endblock %}
+        </div>
+        <div role="footer">
+            {% block footer %}
+                <div class="container margin-top-lg">
+                    <div class="row margin-top-lg">
+                        <div class="col-sm-12 small text-center text-muted">
+                            BallotAPI is an open-source and public domain project maintained by volunteers at
+                            <a href="http://codeforsanfrancisco.org"
+                               class="text-muted"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <u>Code for San Francisco</u></a>.
+                        </div>
+                    </div>
+                    <div class="row margin-top-sm">
+                        <div class="col-sm-12 text-center">
+                            <ul class="list-inline">
+                                <li><a href="{% url 'static_pages:landing' %}">Home</a></li>
+                                <li class="text-muted">|</li>
+                                <li><a href="{% url 'static_pages:about' %}">About</a></li>
+                                <li class="text-muted">|</li>
+                                <li><a href="{% url 'docs:overview' %}">Docs</a></li>
+                                <li class="text-muted">|</li>
+                                <li><a href="https://github.com/sfbrigade/ballotapi" target="_blank" rel="noopener noreferrer">Code</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
         </div>
         {% block bottomjs %}
             <script src="{% static "bootstrap.native-2.0.21-dist/bootstrap-native.min.js" %}" rel="stylesheet"></script>

@@ -8,6 +8,181 @@
     <h1>
         Quickstart
     </h1>
-    {# TODO #}
+    <p>
+        Welcome to the BallotAPI Quickstart! Follow the steps to start
+        exploring the API.
+    </p>
+
+    {############}
+    {## Step 1 ##}
+    {############}
+    <h3 id="step-1" class="permalink-wrapper">
+        Step 1: Get the ballot for a location.
+        <a href="#step-1" class="permalink"></a>
+    </h3>
+    <p>
+        We'll start by getting the ballot measures and races (both of these are
+        called "measures" in our API) for the next general election for San
+        Francisco. To do that you can make a request to the
+        <a href="{% url 'docs:api_measures_list' %}">/measures</a>
+        API endpoint with filters for the coordinates, date, and election type:
+    </p>
+    <ul>
+        <li>
+            <a href="{% url 'docs:api_measures_list' %}#election_type"><code>election_types=public</code></a> -
+            Limit to public elections (e.g. ignore party-specific elections).
+        </li>
+        <li>
+            <a href="{% url 'docs:api_measures_list' %}#election_dates"><code>election_dates=next</code></a> -
+            Limit to the next election.
+        </li>
+        <li>
+            <a href="{% url 'docs:api_measures_list' %}#coords"><code>coords=37.7942635,-122.395586</code></a> -
+            The latitude, longitude of a point in San Francisco.
+        </li>
+    </ul>
+    <p>
+        Command:
+    </p>
+<pre>
+curl https://api.ballotapi.com/v1/measures?election_types=public&election_dates=next&coords=37.7942635,-122.3955861
+</pre>
+    <p>
+        Returns:
+    </p>
+<pre class="fixed-height-lg">
+{
+    "measures": [
+        {
+            "id": 123,
+            "election_id": 123,
+            "type": "...",
+            "voting_method": "...",
+            "threshold": "...",
+            "title": "...",
+            "question": "...",
+            "short_info": "...",
+            "full_info": "...",
+            "choices": [...],
+        },
+        ...
+    ],
+    "next": null,
+    "timestamp": "2018-01-01T00:00:00+00:00",
+    "uri": "https://api.ballotapi.com/v1/elections?election_types=public&election_dates=next&coords=37.7942635,-122.3955861",
+    "debug": "1111-111-1111-11111",
+}
+</pre>
+
+    {############}
+    {## Step 2 ##}
+    {############}
+    <h3 id="step-2" class="permalink-wrapper">
+        Step 2: Get upcoming elections.
+        <a href="#step-2" class="permalink"></a>
+    </h3>
+    <p>
+        Next, we'll get a list of the upcoming elections in San Francisco.
+        To do that you can make a request to the <a href="{% url 'docs:api_elections_list' %}">/elections</a>
+        API endpoint with filters for the coordinates and an open-ended date range:
+    </p>
+    <ul>
+        <li>
+            <a href="{% url 'docs:api_elections_list' %}#election_dates"><code>election_dates=2018-01-01:anytime</code></a> -
+            Limit to elections on or after 2018-01-01.
+        </li>
+        <li>
+            <a href="{% url 'docs:api_elections_list' %}#coords"><code>coords=37.7942635,-122.395586</code></a> -
+            The latitude, longitude of a point in San Francisco.
+        </li>
+    </ul>
+    <p>
+        Command:
+    </p>
+<pre>
+curl https://api.ballotapi.com/v1/elections?date=2018-01-01:anytime&coords=37.7942635,-122.3955861
+</pre>
+    <p>
+        Returns:
+    </p>
+<pre class="fixed-height-lg">
+{
+    "elections": [
+        {
+            "id": 123,
+            "type": "..."
+            "date": "...",
+            "short_info": "...",
+            "long_info": "...",
+            "restrictions": [...]
+        },
+        ...
+    ]
+    "next": null,
+    "timestamp": "2018-01-01T00:00:00+00:00",
+    "uri": "/v1/elections?date=2018-01-01:anytime&coords=37.7942635,-122.3955861",
+    "debug": "1111-111-1111-11111",
+}
+</pre>
+
+    {############}
+    {## Step 3 ##}
+    {############}
+    <h3 id="step-3" class="permalink-wrapper">
+        Step 3: Get the area for a ballot measure.
+        <a href="#step-3" class="permalink"></a>
+    </h3>
+    <p>
+        Next, let's get the geographic area for a particular ballot measure or race.
+        To do that, we'll query the <a href="{% url 'docs:api_measures_list' %}">/measures</a>
+        API endpoint with filters for the specific measure and to also include the combined
+        geography for all the precincts that have that measure on their ballot:
+    </p>
+    <ul>
+        <li>
+            <a href="{% url 'docs:api_measures_list' %}#ids"><code>ids=123</code></a> -
+            Limit to a specific ballot measure.
+        </li>
+        <li>
+            <a href="{% url 'docs:api_precincts_list' %}#include"><code>include=geo</code></a> -
+            Merge the measure's precinct geographies into a single area, and include that as well.
+        </li>
+    </ul>
+    <p>
+        Command:
+    </p>
+<pre>
+curl https://api.ballotapi.com/v1/measures?ids=123&include=geo
+</pre>
+    <p>
+        Returns:
+    </p>
+<pre class="fixed-height-lg">
+{
+    "measures": [
+        {
+            "id": 123,
+            "election_id": 123,
+            "type": "...",
+            "voting_method": "...",
+            "threshold": "...",
+            "title": "...",
+            "question": "...",
+            "short_info": "...",
+            "full_info": "...",
+            "choices": [...],
+            "precinct_ids": [...],
+            "geo": {...}
+        },
+        ...
+    ],
+    "next": null,
+    "timestamp": "2018-01-01T00:00:00+00:00",
+    "uri": "/v1/measures?ids=123&include=geo",
+    "debug": "1111-111-1111-11111",
+}
+</pre>
+
+
 {% endblock %}
 
