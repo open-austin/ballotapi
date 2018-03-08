@@ -17,152 +17,205 @@
     {## Step 1 ##}
     {############}
     <h3 id="step-1" class="permalink-wrapper">
-        Step 1: Get the ballot for a location.
+        Step 1: Get the ballots for some upcoming elections.
         <a href="#step-1" class="permalink"></a>
     </h3>
     <p>
-        We'll start by getting the ballot measures and races (both of these are
-        called "measures" in our API) for the next general election for San
-        Francisco. To do that you can make a request to the
-        <a href="{% url 'docs:api_measures_list' %}">/measures</a>
-        API endpoint with filters for the coordinates, date, and election type:
+        We'll start by getting all of the upcoming elections for a San Francisco
+        location, and include the ballots for these elections. To do this you can
+        make a request to the <a href="{% url 'docs:api_elections_list' %}">/elections</a>
+        API endpoint with filters for the coordinates and to also include the
+        ballot measures and races (both of these are called "contests" in our API):
     </p>
     <ul>
         <li>
-            <a href="{% url 'docs:api_measures_list' %}#election_type"><code>election_types=public</code></a> -
-            Limit to public elections (e.g. ignore party-specific elections).
+            <a href="{% url 'docs:api_elections_list' %}#coords"><code>coords=37.7942635,-122.395586</code></a> -
+            Filter elections to this latitude, longitude of a point in San Francisco.
         </li>
         <li>
-            <a href="{% url 'docs:api_measures_list' %}#election_dates"><code>election_dates=next</code></a> -
-            Limit to the next election.
+            <a href="{% url 'docs:api_elections_list' %}#dates"><code>dates=now,future</code></a> -
+            Filter elections happening between now and any future date.
         </li>
         <li>
-            <a href="{% url 'docs:api_measures_list' %}#coords"><code>coords=37.7942635,-122.395586</code></a> -
-            The latitude, longitude of a point in San Francisco.
+            <a href="{% url 'docs:api_elections_list' %}#include"><code>include=contests</code></a> -
+            Include the ballot measures and races for each election.
         </li>
     </ul>
     <p>
         Command:
     </p>
 <pre>
-curl https://api.ballotapi.com/v1/measures?election_types=public&election_dates=next&coords=37.7942635,-122.3955861
+curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates=now,future&include=contests
 </pre>
     <p>
         Returns:
     </p>
 <pre class="fixed-height-lg">
 {
-    "measures": [
+    "object": "result",
+    "data": [
         {
-            "id": 123,
-            "election_id": 123,
-            "type": "...",
-            "voting_method": "...",
-            "threshold": "...",
-            "title": "...",
-            "question": "...",
+            "object": "election",
+            "id": "123-4",
+            "type": "..."
+            "date": "...",
             "short_info": "...",
-            "full_info": "...",
-            "choices": [...],
+            "long_info": "...",
+            "restrictions": [...],
+            "contests": {
+                "object": "result",
+                "data": [
+                    {
+                        "object": "contest",
+                        "id": "234-5",
+                        "election_id": "123-4",
+                        "type": "...",
+                        "voting_method": "...",
+                        "threshold": "...",
+                        "title": "...",
+                        "question": "...",
+                        "short_info": "...",
+                        "full_info": "...",
+                        "choices": [...],
+                        "zz9845t9834uihdgd": "debug",
+                    },
+                    ...
+                ],
+                "next": null,
+                "extra": {},
+                "timestamp": "2018-01-01T00:00:00+00:00",
+                "uri": "https://api.ballotapi.org/v1/contests?elections=123",
+                "zz13ru49823jsvkjhie": "debug",
+            },
+            "zz309u3498kasdkje": "debug",
         },
         ...
     ],
     "next": null,
+    "extra": {},
     "timestamp": "2018-01-01T00:00:00+00:00",
-    "uri": "https://api.ballotapi.com/v1/elections?election_types=public&election_dates=next&coords=37.7942635,-122.3955861",
-    "debug": "1111-111-1111-11111",
+    "uri": "https://api.ballotapi.org/v1/elections?coords=37.7942635%2C-122.3955861&dates=now%2Cfuture&include=contests",
+    "zz13ru49823jsvkjhie": "debug",
 }
 </pre>
+    <p>
+        The return format of every request is a <a href="{% url 'docs:data_types' %}#result">Result</a>,
+        which contains a list of results inside <code>data</code> (in this case, the results are
+        <a href="{% url 'docs:api_elections_object' %}">Elections</a> objects). Also, since we
+        added the <code>include=contests</code> parameter, in each election object, there's a Result
+        with the <a href="{% url 'docs:api_contests_object' %}">Contest</a> for that election.
+    </p>
 
     {############}
     {## Step 2 ##}
     {############}
     <h3 id="step-2" class="permalink-wrapper">
-        Step 2: Get upcoming elections.
+        Step 2: Get a district map.
         <a href="#step-2" class="permalink"></a>
     </h3>
     <p>
-        Next, we'll get a list of the upcoming elections in San Francisco.
-        To do that you can make a request to the <a href="{% url 'docs:api_elections_list' %}">/elections</a>
-        API endpoint with filters for the coordinates and an open-ended date range:
+        Next, we'll see where a specific ballot contest will
+        show up on the ballot. To do that we can make a request to the
+        <a href="{% url 'docs:api_precincts_list' %}">/precincts</a>
+        API endpoint with filters for the contest and to also include
+        a merged area of all the precincts:
     </p>
     <ul>
         <li>
-            <a href="{% url 'docs:api_elections_list' %}#election_dates"><code>election_dates=2018-01-01:anytime</code></a> -
-            Limit to elections on or after 2018-01-01.
+            <a href="{% url 'docs:api_precincts_list' %}#contests"><code>contests=234</code></a> -
+            Filter precincts to those that a specific contest covers.
         </li>
         <li>
-            <a href="{% url 'docs:api_elections_list' %}#coords"><code>coords=37.7942635,-122.395586</code></a> -
-            The latitude, longitude of a point in San Francisco.
+            <a href="{% url 'docs:api_precincts_list' %}#extra"><code>extra=merge_geos</code></a> -
+            Include a merged geometry of the precincts in the results.
         </li>
     </ul>
     <p>
         Command:
     </p>
 <pre>
-curl https://api.ballotapi.com/v1/elections?date=2018-01-01:anytime&coords=37.7942635,-122.3955861
+curl https://api.ballotapi.com/v1/precincts?contests=234&extra=merge_geos
 </pre>
     <p>
         Returns:
     </p>
 <pre class="fixed-height-lg">
 {
-    "elections": [
+    "object": "result",
+    "data": [
         {
-            "id": 123,
-            "type": "..."
-            "date": "...",
-            "short_info": "...",
-            "long_info": "...",
-            "restrictions": [...]
+            "object": "precinct",
+            "id": "345-6",
+            "election_id": "123-4",
+            "geo": {...},
+            "zz3409uwiufuuhd": "debug",
         },
         ...
     ]
-    "next": null,
+    "next": "https://api.ballotapi.com/v1/precincts?contests=234&extra=merge_geos&after=984tiuhd",
+    "extra": {
+        "merge_geos": {...},
+    },
     "timestamp": "2018-01-01T00:00:00+00:00",
-    "uri": "/v1/elections?date=2018-01-01:anytime&coords=37.7942635,-122.3955861",
-    "debug": "1111-111-1111-11111",
+    "uri": "https://api.ballotapi.org/v1/elections?date=2018-01-01:anytime&coords=37.7942635,-122.3955861",
+    "zz0945uihsjjdkiw": "debug",
 }
 </pre>
+    <p>
+        This <a href="{% url 'docs:data_types' %}#result">Result</a> contains a list of
+        <a href="{% url 'docs:api_precincts_object' %}">Precinct</a> objects. Also, since
+        we added the <code>extra=merge_geos</code> parameter, the <code>extra</code>
+        object in the Result contains a merged geometry of all the precincts in the
+        results (NOTE: this is not just a merge of the precincts on this page, but
+        all the precincts for the contest).
+    </p>
+    <p>
+        Also, notice the <code>next</code> parameter is not <code>null</code>. This means
+        that there are too many precincts in the results and we've split the data list
+        into multiple pages. The next Result page is at the next url. NOTE: extra
+        data (e.g. <code>merge_geos</code>) will always return a result based on the
+        full results, not just this particular page.
+    </p>
 
     {############}
     {## Step 3 ##}
     {############}
     <h3 id="step-3" class="permalink-wrapper">
-        Step 3: Get the area for a ballot measure.
+        Step 3: Search for a candidate's races.
         <a href="#step-3" class="permalink"></a>
     </h3>
     <p>
-        Next, let's get the geographic area for a particular ballot measure or race.
-        To do that, we'll query the <a href="{% url 'docs:api_measures_list' %}">/measures</a>
-        API endpoint with filters for the specific measure and to also include the combined
-        geography for all the precincts that have that measure on their ballot:
+        Finally, we'll search for the recent races that a candidate is in.
+        To do that we can make a request to the <a href="{% url 'docs:api_contests_list' %}">/contests</a>
+        API endpoint with with a string search and date range:
     </p>
     <ul>
         <li>
-            <a href="{% url 'docs:api_measures_list' %}#ids"><code>ids=123</code></a> -
-            Limit to a specific ballot measure.
+            <a href="{% url 'docs:api_contests_list' %}#q"><code>q=Barbara%20Lee</code></a> -
+            Search contests for "Barbara Lee".
         </li>
         <li>
-            <a href="{% url 'docs:api_precincts_list' %}#include"><code>include=geo</code></a> -
-            Merge the measure's precinct geographies into a single area, and include that as well.
+            <a href="{% url 'docs:api_contests_list' %}#dates"><code>dates=-1y,future</code></a> -
+            Limit results to the past year and going forward.
         </li>
     </ul>
     <p>
         Command:
     </p>
 <pre>
-curl https://api.ballotapi.com/v1/measures?ids=123&include=geo
+curl https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-1y,future
 </pre>
     <p>
         Returns:
     </p>
 <pre class="fixed-height-lg">
 {
-    "measures": [
+    "object": "result",
+    "data": [
         {
-            "id": 123,
-            "election_id": 123,
+            "object": "contest",
+            "id": "234-5",
+            "election_id": "123-4",
             "type": "...",
             "voting_method": "...",
             "threshold": "...",
@@ -170,19 +223,41 @@ curl https://api.ballotapi.com/v1/measures?ids=123&include=geo
             "question": "...",
             "short_info": "...",
             "full_info": "...",
-            "choices": [...],
-            "precinct_ids": [...],
-            "geo": {...}
+            "choices": [
+                {
+                    "object": "choice",
+                    "title": "Barbara Lee",
+                    "info": "..."
+                    "zz0965897hutqk": "debug",
+                },
+                ...
+            ]
+            "zzdjnbvqt23ui3": "debug",
         },
         ...
     ],
     "next": null,
+    "extra": {},
     "timestamp": "2018-01-01T00:00:00+00:00",
-    "uri": "/v1/measures?ids=123&include=geo",
-    "debug": "1111-111-1111-11111",
+    "uri": "https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-1y%2Cfuture",
+    "zzjreytgfwjns984": "debug",
 }
 </pre>
+    <p>
+        This <a href="{% url 'docs:data_types' %}#result">Result</a> contains a list of
+        <a href="{% url 'docs:api_contests_object' %}">Contest</a> objects. Using these
+        results, you can look up election or precinct information on the other API
+        endoints.
+    </p>
 
+    <h3>
+        Step 4: <a href="{% url 'docs:api_endpoints' %}">Check out more examples</a>
+    </h3>
+    <p>
+        Congratulations on finishing the Quickstart! Next, we recommend reading
+        through the <a href="{% url 'docs:examples' %}">examples</a>
+        to see a variety of various other awesome features of the API.
+    </p>
 
 {% endblock %}
 

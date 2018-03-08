@@ -83,23 +83,23 @@ urlpatterns = [
         "subtoc": "api_precincts_get",
     }), name='api_precincts_get'),
 
-    # Measures
-    path('api/measures', TemplateView.as_view(template_name='docs/api_measures_object.html', extra_context={
-        "title": "measures",
+    # Contests
+    path('api/contests', TemplateView.as_view(template_name='docs/api_contests_object.html', extra_context={
+        "title": "Contests",
         "nav": "docs",
-        "toc": "api_measures",
-        "subtoc": "api_measures_object",
-    }), name='api_measures_object'),
-    path('api/measures/list', TemplateView.as_view(template_name='docs/api_measures_list.html', extra_context={
-        "title": "measures - List",
+        "toc": "api_contests",
+        "subtoc": "api_contests_object",
+    }), name='api_contests_object'),
+    path('api/contests/list', TemplateView.as_view(template_name='docs/api_contests_list.html', extra_context={
+        "title": "Contests - List",
         "nav": "docs",
-        "toc": "api_measures",
-        "subtoc": "api_measures_list",
-    }), name='api_measures_list'),
-    path('api/measures/get', TemplateView.as_view(template_name='docs/api_measures_get.html', extra_context={
-        "title": "measures - Get",
+        "toc": "api_contests",
+        "subtoc": "api_contests_list",
+    }), name='api_contests_list'),
+    path('api/contests/get', TemplateView.as_view(template_name='docs/api_contests_get.html', extra_context={
+        "title": "Contests - Get",
         "nav": "docs",
-        "toc": "api_measures",
-        "subtoc": "api_measures_get",
-    }), name='api_measures_get'),
+        "toc": "api_contests",
+        "subtoc": "api_contests_get",
+    }), name='api_contests_get'),
 ]

@@ -120,30 +120,30 @@
         </li>
 
         <li class="margin-top-sm">
-            <a href="{% url 'docs:api_measures_object' %}"
-               ><code>/measures</code></a>
+            <a href="{% url 'docs:api_contests_object' %}"
+               ><code>/contests</code></a>
             <a class=""
                role="button"
                data-toggle="collapse"
-               href="#toc-measures"
+               href="#toc-contests"
                aria-expanded="false"
-               aria-controls="toc-measures"
+               aria-controls="toc-contests"
                ><span class="caret"></span></a>
-            <ul id="toc-measures"
-                class="collapse {% if toc == 'api_measures' %}in{% endif %} list-unstyled indent">
+            <ul id="toc-contests"
+                class="collapse {% if toc == 'api_contests' %}in{% endif %} list-unstyled indent">
                 <li class="margin-top-sm">
-                    <a href="{% url 'docs:api_measures_object' %}"
-                       class="{% if subtoc == 'api_measures_object' %}font-strong font-underline{% endif %}"
+                    <a href="{% url 'docs:api_contests_object' %}"
+                       class="{% if subtoc == 'api_contests_object' %}font-strong font-underline{% endif %}"
                         >Object</a>
                 </li>
                 <li class="margin-top-sm">
-                    <a href="{% url 'docs:api_measures_list' %}"
-                       class="{% if subtoc == 'api_measures_list' %}font-strong font-underline{% endif %}"
+                    <a href="{% url 'docs:api_contests_list' %}"
+                       class="{% if subtoc == 'api_contests_list' %}font-strong font-underline{% endif %}"
                         >List</a>
                 </li>
                 <li class="margin-top-sm">
-                    <a href="{% url 'docs:api_measures_get' %}"
-                       class="{% if subtoc == 'api_measures_get' %}font-strong font-underline{% endif %}"
+                    <a href="{% url 'docs:api_contests_get' %}"
+                       class="{% if subtoc == 'api_contests_get' %}font-strong font-underline{% endif %}"
                         >Get</a>
                 </li>
             </ul>
