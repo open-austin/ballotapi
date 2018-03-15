@@ -8,6 +8,187 @@
     <h1>
         Data Types
     </h1>
-    {# TODO #}
+    <p>
+        We don't want there to be any surprises when you're using our API, so we
+        have defined the specific data formats you'll see across our API below.
+        In general, you will be linked back here from elsewhere, so feel free to
+        skip right to reading the full documentation for the
+        <a href="{% url 'docs:api_endpoints' %}">API Endpoints</a>.
+    </p>
+
+    {#######################}
+    {## Data Type: Result ##}
+    {#######################}
+    <hr>
+    <h2 id="result" class="permalink-wrapper">
+        Result
+        <a href="#result" class="permalink"></a>
+    </h2>
+    <p>
+        Results objects contain a list of data results, as well as any extra
+        aggregated data and some meta-data about the request. In general, this
+        will be the response format for any list API endpoints (e.g.
+        <code>/elections</code>), where the data list are the API request results.
+        Also, if you request that some additional sub-queries be included with your
+        results (e.g. <code>include=contests</code>), those includes will be
+        contained within another Result object.
+    </p>
+    <h3 id="result-attributes" class="permalink-wrapper">
+        Result attributes
+        <a href="#result-attributes" class="permalink"></a>
+    </h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Format</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="result-attributes-object" class="permalink-wrapper">
+                        <code>object</code>
+                        <a href="#result-attributes-object" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#string">String</a>
+                    </td>
+                    <td>
+                        This object's data type. Will always be "result".
+                    </td>
+                    <td>
+                        <code>"result"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="result-attributes-data" class="permalink-wrapper">
+                        <code>data</code>
+                        <a href="#result-attributes-data" class="permalink"></a>
+                    </td>
+                    <td>
+                        List(<a href="{% url 'docs:api_elections_object' %}">Election</a>
+                            | <a href="{% url 'docs:api_contests_object' %}">Contest</a>
+                            | <a href="{% url 'docs:api_precincts_object' %}">Precinct</a>)
+                    </td>
+                    <td>
+                        The actual result content for the API request. Will be
+                        a list of whatever particular endpoint object is being
+                        queried.
+                    </td>
+                    <td>
+                        <code>[{"object": "election", ...}, ...]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="result-attributes-next" class="permalink-wrapper">
+                        <code>next</code>
+                        <a href="#result-attributes-next" class="permalink"></a>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="result-attributes-extra" class="permalink-wrapper">
+                        <code>extra</code>
+                        <a href="#result-attributes-extra" class="permalink"></a>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="result-attributes-timestamp" class="permalink-wrapper">
+                        <code>timestamp</code>
+                        <a href="#result-attributes-timestamp" class="permalink"></a>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="result-attributes-uri" class="permalink-wrapper">
+                        <code>uri</code>
+                        <a href="#result-attributes-uri" class="permalink"></a>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="result-attributes-zz" class="permalink-wrapper">
+                        <code>zz*</code>
+                        <a href="#result-attributes-zz" class="permalink"></a>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="result-attributes-more" class="permalink-wrapper">
+                        <code>...</code>
+                        <a href="#result-attributes-more" class="permalink"></a>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3 id="result-example" class="permalink-wrapper">
+        Result example
+        <a href="#result-example" class="permalink"></a>
+    </h3>
+<pre>
+{
+    "object": "result",
+    "data": [...],
+    "next": null,
+    "extra": {},
+    "timestamp": "2018-01-01T00:00:00+00:00",
+    "uri": "https://api.ballotapi.org/...",
+    "zz945utuiwdjdje3h": "debug",
+}
+</pre>
+
+
+
+
+    {##############################################}
+    {## Footer (insert more examples above this) ##}
+    {##############################################}
+    <hr>
+    <p>
+        Did we miss a data type? Please open an
+        <a href="https://github.com/sfbrigade/ballotapi/issues" target="_blank" rel="noopener noreferrer">
+            issue
+            <small class="glyphicon glyphicon-new-window"></small></a>
+        or
+        <a href="https://github.com/sfbrigade/ballotapi/pulls" target="_blank" rel="noopener noreferrer">
+            pull request
+            <small class="glyphicon glyphicon-new-window"></small></a>
+    </p>
 {% endblock %}
 

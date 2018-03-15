@@ -122,7 +122,7 @@ curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates
     </p>
     <ul>
         <li>
-            <a href="{% url 'docs:api_precincts_list' %}#contests"><code>contests=234</code></a> -
+            <a href="{% url 'docs:api_precincts_list' %}#contests"><code>contests=234-5</code></a> -
             Filter precincts to those that a specific contest covers.
         </li>
         <li>
@@ -134,7 +134,7 @@ curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates
         Command:
     </p>
 <pre>
-curl https://api.ballotapi.com/v1/precincts?contests=234&extra=merge_geos
+curl https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos
 </pre>
     <p>
         Returns:
@@ -152,12 +152,12 @@ curl https://api.ballotapi.com/v1/precincts?contests=234&extra=merge_geos
         },
         ...
     ]
-    "next": "https://api.ballotapi.com/v1/precincts?contests=234&extra=merge_geos&after=984tiuhd",
+    "next": "https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos&after=789-0",
     "extra": {
         "merge_geos": {...},
     },
     "timestamp": "2018-01-01T00:00:00+00:00",
-    "uri": "https://api.ballotapi.org/v1/elections?date=2018-01-01:anytime&coords=37.7942635,-122.3955861",
+    "uri": "https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos",
     "zz0945uihsjjdkiw": "debug",
 }
 </pre>
@@ -203,7 +203,7 @@ curl https://api.ballotapi.com/v1/precincts?contests=234&extra=merge_geos
         Command:
     </p>
 <pre>
-curl https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-1y,future
+curl https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-1y,future
 </pre>
     <p>
         Returns:
@@ -239,7 +239,7 @@ curl https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-1y,future
     "next": null,
     "extra": {},
     "timestamp": "2018-01-01T00:00:00+00:00",
-    "uri": "https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-1y%2Cfuture",
+    "uri": "https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-1y%2Cfuture",
     "zzjreytgfwjns984": "debug",
 }
 </pre>
@@ -251,7 +251,7 @@ curl https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-1y,future
     </p>
 
     <h3>
-        Step 4: <a href="{% url 'docs:api_endpoints' %}">Check out more examples</a>
+        Step 4: <a href="{% url 'docs:examples' %}">Check out more examples</a>
     </h3>
     <p>
         Congratulations on finishing the Quickstart! Next, we recommend reading
