@@ -52,24 +52,24 @@ curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates
     </p>
 <pre class="fixed-height-lg">
 {
-    "object": "result",
+    "type": "response",
     "data": [
         {
-            "object": "election",
+            "type": "election",
             "id": "123-4",
-            "type": "..."
+            "election_type": "..."
             "date": "...",
             "short_info": "...",
             "long_info": "...",
             "restrictions": [...],
             "contests": {
-                "object": "result",
+                "type": "response",
                 "data": [
                     {
-                        "object": "contest",
+                        "type": "contest",
                         "id": "234-5",
                         "election_id": "123-4",
-                        "type": "...",
+                        "contest_type": "...",
                         "voting_method": "...",
                         "threshold": "...",
                         "title": "...",
@@ -77,25 +77,21 @@ curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates
                         "short_info": "...",
                         "full_info": "...",
                         "choices": [...],
-                        "zz9845t9834uihdgd": "debug",
                     },
                     ...
                 ],
                 "next": null,
                 "extra": {},
                 "timestamp": "2018-01-01T00:00:00+00:00",
-                "uri": "https://api.ballotapi.org/v1/contests?elections=123",
-                "zz13ru49823jsvkjhie": "debug",
+                "url": "https://api.ballotapi.org/v1/contests?elections=123",
             },
-            "zz309u3498kasdkje": "debug",
         },
         ...
     ],
     "next": null,
     "extra": {},
     "timestamp": "2018-01-01T00:00:00+00:00",
-    "uri": "https://api.ballotapi.org/v1/elections?coords=37.7942635%2C-122.3955861&dates=now%2Cfuture&include=contests",
-    "zz13ru49823jsvkjhie": "debug",
+    "url": "https://api.ballotapi.org/v1/elections?coords=37.7942635%2C-122.3955861&dates=now%2Cfuture&include=contests",
 }
 </pre>
     <p>
@@ -141,24 +137,25 @@ curl https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos
     </p>
 <pre class="fixed-height-lg">
 {
-    "object": "result",
+    "type": "response",
     "data": [
         {
-            "object": "precinct",
+            "type": "precinct",
             "id": "345-6",
             "election_id": "123-4",
-            "geo": {...},
-            "zz3409uwiufuuhd": "debug",
+            "geo": {"type": "Polygon", ...},
         },
         ...
     ]
     "next": "https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos&after=789-0",
     "extra": {
-        "merge_geos": {...},
+        "merge_geos": {
+            "type": "MultiPolygon",
+            ...
+        },
     },
     "timestamp": "2018-01-01T00:00:00+00:00",
-    "uri": "https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos",
-    "zz0945uihsjjdkiw": "debug",
+    "url": "https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos",
 }
 </pre>
     <p>
@@ -210,13 +207,13 @@ curl https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-1y,future
     </p>
 <pre class="fixed-height-lg">
 {
-    "object": "result",
+    "type": "response",
     "data": [
         {
-            "object": "contest",
+            "type": "contest",
             "id": "234-5",
             "election_id": "123-4",
-            "type": "...",
+            "election_type": "...",
             "voting_method": "...",
             "threshold": "...",
             "title": "...",
@@ -225,22 +222,19 @@ curl https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-1y,future
             "full_info": "...",
             "choices": [
                 {
-                    "object": "choice",
+                    "type": "choice",
                     "title": "Barbara Lee",
                     "info": "..."
-                    "zz0965897hutqk": "debug",
                 },
                 ...
             ]
-            "zzdjnbvqt23ui3": "debug",
         },
         ...
     ],
     "next": null,
     "extra": {},
     "timestamp": "2018-01-01T00:00:00+00:00",
-    "uri": "https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-1y%2Cfuture",
-    "zzjreytgfwjns984": "debug",
+    "url": "https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-1y%2Cfuture",
 }
 </pre>
     <p>
