@@ -17,6 +17,11 @@
         available and what query parameters you can use, checkout the
         <a href="{% url 'docs:api_endpoints' %}">API Endpoints</a> documentation.
     </p>
+    <ul>
+        <li><a href="#elections-ballots">Get the ballots for some upcoming elections</a></li>
+        <li><a href="#district-map">Get a district map</a></li>
+        <li><a href="#candidate-search">Search for a candidate's races</a></li>
+    </ul>
     <p>
         Can't find an example for your use case? We encourage you to open an
         <a href="https://github.com/sfbrigade/ballotapi/issues" target="_blank" rel="noopener noreferrer">
@@ -73,7 +78,7 @@
     {#############}
     <hr>
     <h3 id="district-map" class="permalink-wrapper">
-        Example: Get a district map.
+        Example: Get a district map
         <a href="#district-map" class="permalink"></a>
     </h3>
     <p>
@@ -109,7 +114,7 @@
     {#############}
     <hr>
     <h3 id="candidate-search" class="permalink-wrapper">
-        Example: Search for a candidate's races.
+        Example: Search for a candidate's races
         <a href="#candidate-search" class="permalink"></a>
     </h3>
     <p>
@@ -119,10 +124,10 @@
         API request:
     </p>
     <p>
-        <a href="https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-1y,future"
+        <a href="https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-365d,future"
            target="_blank"
            rel="noopener noreferrer">
-            https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-1y,future
+            https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-365d,future
             <small class="glyphicon glyphicon-new-window"></small></a>
     </p>
     <p>
@@ -134,7 +139,7 @@
             Search contests for an string (e.g. "Barbara Lee").
         </li>
         <li>
-            <a href="{% url 'docs:api_contests_list' %}#dates"><code>dates=-1y,future</code></a> -
+            <a href="{% url 'docs:api_contests_list' %}#dates"><code>dates=-365d,future</code></a> -
             Limit results to the past year and going forward.
         </li>
     </ul>

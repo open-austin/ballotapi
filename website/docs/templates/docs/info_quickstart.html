@@ -159,7 +159,7 @@ curl https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos
 }
 </pre>
     <p>
-        This <a href="{% url 'docs:data_types' %}#result">Result</a> contains a list of
+        This <a href="{% url 'docs:data_types' %}#response">Response</a> contains a list of
         <a href="{% url 'docs:api_precincts_object' %}">Precinct</a> objects. Also, since
         we added the <code>extra=merge_geos</code> parameter, the <code>extra</code>
         object in the Result contains a merged geometry of all the precincts in the
@@ -192,7 +192,7 @@ curl https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos
             Search contests for "Barbara Lee".
         </li>
         <li>
-            <a href="{% url 'docs:api_contests_list' %}#dates"><code>dates=-1y,future</code></a> -
+            <a href="{% url 'docs:api_contests_list' %}#dates"><code>dates=-365d,future</code></a> -
             Limit results to the past year and going forward.
         </li>
     </ul>
@@ -200,7 +200,7 @@ curl https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos
         Command:
     </p>
 <pre>
-curl https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-1y,future
+curl https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-365d,future
 </pre>
     <p>
         Returns:
@@ -234,11 +234,11 @@ curl https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-1y,future
     "next": null,
     "extra": {},
     "timestamp": "2018-01-01T00:00:00+00:00",
-    "url": "https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-1y%2Cfuture",
+    "url": "https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-365d%2Cfuture",
 }
 </pre>
     <p>
-        This <a href="{% url 'docs:data_types' %}#result">Result</a> contains a list of
+        This <a href="{% url 'docs:data_types' %}#response">Response</a> contains a list of
         <a href="{% url 'docs:api_contests_object' %}">Contest</a> objects. Using these
         results, you can look up election or precinct information on the other API
         endoints.
