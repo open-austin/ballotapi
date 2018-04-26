@@ -51,7 +51,7 @@
             <a href="#datetime">DateTime</a>
         </li>
         <li>
-            <a href="#date-range">DateRange</a>
+            <a href="#datetime-range">DateTimeRange</a>
         </li>
         <li>
             <a href="#coordinates">Coordinates</a>
@@ -513,17 +513,59 @@
 </pre>
 
 
-    {##########################}
-    {## Data Type: DateRange ##}
-    {##########################}
+    {##############################}
+    {## Data Type: DateTimeRange ##}
+    {##############################}
     <hr>
-    <h2 id="date-range" class="permalink-wrapper">
-        DateRange
-        <a href="#date-range" class="permalink"></a>
+    <h2 id="datetime-range" class="permalink-wrapper">
+        DateTimeRange
+        <a href="#datetime-range" class="permalink"></a>
     </h2>
     <p>
-        TODO
+        This is a timespan between two <a href="#datetime">DateTimes</a> or special values, separated
+        by a comma (<code>,</code>). There are also special formats that allow you to easily build
+        dynamic ranges you can re-use without having to build new datetimes.
     </p>
+    <p>
+        Formats accepted:
+    </p>
+    <ul>
+        <li>
+            <code>YYYY-MM-DDTHH:MM:SS+00:00</code> - ISO 8601 <a href="#datetime">DateTime</a>
+        </li>
+        <li>
+            <code>now</code> - the current time
+        </li>
+        <li>
+            <code>future</code> - anytime after the current time
+        </li>
+        <li>
+            <code>past</code> - anytime before the current time
+        </li>
+        <li>
+            <code>+{N}d</code> - a number of days (24 hours) after the current time (e.g. <code>+30d</code>)
+        </li>
+        <li>
+            <code>-{N}d</code> - a number of days (24 hours) before the current time (e.g. <code>-365d</code>)
+        </li>
+    </ul>
+    <h4 id="datetime-range-example" class="permalink-wrapper">
+        DateTimeRange Examples:
+        <a href="#datetime-range-example" class="permalink"></a>
+    </h4>
+<pre>
+Valid:
+"2018-01-01T00:00:00-08:00,2019-01-01T00:00:00-08:00" (all of 2018 in PST Timezone)
+"now,future"                    (everything going forward)
+"past,now"                      (everything prior to now)
+"-365d,+30d"                    (everything in the past year and in the next 30 days)
+"2016-11-08T00:00:00-05:00,now" (everything since Nov 8, 2016 EST up to now)
+
+Invalid:
+"2018-01-01,2019-01-01"         (dates without timezones aren't allowed)
+"365d,now"                      (day values need to have a "+" or "-")
+"now,"                          (need two values in the range, if you need open ended, use "past" and "future")
+</pre>
 
 
     {############################}
@@ -535,8 +577,28 @@
         <a href="#coordinates" class="permalink"></a>
     </h2>
     <p>
-        TODO
+        These are a single point or area of
+        <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system" target="_blank" rel="noopener noreferrer">
+            geographic coordinates
+            <small class="glyphicon glyphicon-new-window"></small></a>.
+        Single coordinates are a comma separated latitude, longitude pair
+        (e.g. <code>"{lat},{lon}"</code>). Areas are semicolon separated
+        single coordinates (e.g. <code>"{lat},{lon};{lat},{lon};..."</code>),
+        where the area is the polygon created by the list of single coords (the
+        first and last coords are assumed to connect, so you don't have to copy
+        the first the coord at the end).
     </p>
+    <h4 id="coordinates-example" class="permalink-wrapper">
+        Coordinates Example
+        <a href="#coordinates-example" class="permalink"></a>
+    </h4>
+<pre>
+(Ferry Building, San Francisco, CA)
+"37.795508,-122.393478,"
+
+(Treasure Island, CA)
+37.832225,-122.373404;37.830429,-122.377653;37.826768,-122.379198;37.815751,-122.371687;37.818632,-122.364521;37.820565,-122.363705;37.819785,-122.360444;37.820124,-122.360444;37.820870,-122.363491;37.822565,-122.362890;37.831073,-122.368597
+</pre>
 
 
     {########################}
@@ -548,8 +610,41 @@
         <a href="#geojson" class="permalink"></a>
     </h2>
     <p>
-        TODO
+        These are
+        <a href="https://en.wikipedia.org/wiki/GeoJSON" target="_blank" rel="noopener noreferrer">
+            GeoJSON
+            <small class="glyphicon glyphicon-new-window"></small></a>:
+        objects. You will see mostly Polygon and Multipolygon objects that
+        outline district or precinct boundaries.
     </p>
+    <h4 id="coordinates-example" class="permalink-wrapper">
+        GeoJSON Example
+        <a href="#coordinates-example" class="permalink"></a>
+    </h4>
+<p>
+Treasure Island, CA:
+</p>
+<pre>
+{
+    "type": "Polygon",
+    "coordinates": [
+        [
+            [-122.37340450,37.83222583],
+            [-122.37765312,37.83042938],
+            [-122.37919807,37.82676854],
+            [-122.37168788,37.81575104],
+            [-122.36452102,37.81863270],
+            [-122.36370563,37.82056504],
+            [-122.36044406,37.81978533],
+            [-122.36044406,37.82012433],
+            [-122.36349105,37.82087014],
+            [-122.36289024,37.82256513],
+            [-122.36859798,37.83107340],
+            [-122.37340450,37.83222583]
+        ]
+    ]
+}
+</pre>
 
 
     {##############################################}
