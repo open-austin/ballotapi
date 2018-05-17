@@ -58,10 +58,9 @@ curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates
             "type": "election",
             "id": "123-4",
             "election_type": "..."
+            "election_name": "...",
             "date": "...",
             "short_info": "...",
-            "long_info": "...",
-            "restrictions": [...],
             "contests": {
                 "type": "response",
                 "data": [
@@ -143,6 +142,7 @@ curl https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos
             "type": "precinct",
             "id": "345-6",
             "election_id": "123-4",
+            "voting_times": {...},
             "geo": {"type": "Polygon", ...},
         },
         ...

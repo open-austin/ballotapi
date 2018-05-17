@@ -500,16 +500,16 @@
             ISO-8601
             <small class="glyphicon glyphicon-new-window"></small></a>
         combined date and time with timezone (e.g. <code>YYYY-MM-DDTHH:MM:SS+00:00</code>).
-        All API response datetimes are in UTC. If you provide a datetime in
+        All API response datetimes have a timezone. If you provide a datetime in
         a request parameter, be sure to specify the timezone offset (so we can
-        convert it to UTC).
+        know how to compare it to other datetimes).
     </p>
     <h4 id="datetime-example" class="permalink-wrapper">
         DateTime Example
         <a href="#datetime-example" class="permalink"></a>
     </h4>
 <pre>
-"2018-01-23T04:55:12+00:00"
+"2018-01-23T22:55:12-08:00"
 </pre>
 
 
