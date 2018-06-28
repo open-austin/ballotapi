@@ -10,6 +10,217 @@
     <h1>
         Get an Election
     </h1>
-    {# TODO #}
+    <p>
+        Get a specific <a href="{% url 'docs:api_elections_object' %}">Election</a>.
+    </p>
+
+    <h2 id="http-request" class="permalink-wrapper">
+        HTTP Request
+        <a href="#http-request" class="permalink"></a>
+    </h2>
+<pre>
+GET /v1/elections/<em>{id}</em>
+</pre>
+
+    <h2 id="examples" class="permalink-wrapper">
+        Examples
+        <a href="#examples" class="permalink"></a>
+    </h2>
+    <dl>
+        <dt id="example-get-general-election" class="permalink-wrapper">
+            Get a specific Election:
+            <a href="#example-get-general-election" class="permalink"></a>
+        </dt>
+        <dd class="margin-bottom-sm">
+            <a href="https://api.ballotapi.org/v1/elections/a12345"
+               target="_blank"
+               rel="noopener noreferrer">
+                https://api.ballotapi.org/v1/elections/a12345
+                <small class="glyphicon glyphicon-new-window"></small></a>
+        </dd>
+        <dt id="example-include-contests" class="permalink-wrapper">
+            Include Contests in the Election:
+            <a href="#example-include-contests" class="permalink"></a>
+        </dt>
+        <dd class="margin-bottom-sm">
+            <a href="https://api.ballotapi.org/v1/elections/a12345?include=contests"
+               target="_blank"
+               rel="noopener noreferrer">
+                https://api.ballotapi.org/v1/elections/a12345?include=contests
+                <small class="glyphicon glyphicon-new-window"></small></a>
+        </dd>
+    </dl>
+
+    <h2 id="query-parameters" class="permalink-wrapper">
+        Query Parameters
+        <a href="#query-parameters" class="permalink"></a>
+    </h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Format</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="include" class="permalink-wrapper">
+                        <code>include</code>
+                        <a href="#include" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        A comma separated list of resources to include
+                        for each Election object response. Options are:
+                        <code>"contests"</code> and <code>"precincts"</code>
+                    </td>
+                    <td>
+                        <code>include=contests</code><br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 id="response" class="permalink-wrapper">
+        Response
+        <a href="#response" class="permalink"></a>
+    </h2>
+    <p>
+        We will return an
+        <a href="{% url 'docs:api_elections_object' %}">Election object</a>
+        for the specified id.
+    </p>
+    <p>
+        Example response:
+    </p>
+<pre>
+{
+    "type": "election",
+    "id": "123-4",
+    "election_type": "general",
+    "election_name": "Midterm Election",
+    "date": "2018-11-05",
+    "short_info": "This is a major national election that..."
+}
+</pre>
+
+    <h2 id="http-codes" class="permalink-wrapper">
+        HTTP Response Codes
+        <a href="#http-codes" class="permalink"></a>
+    </h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Response Format</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="http-code-200" class="permalink-wrapper">
+                        <code>200</code>
+                        <a href="#http-code-200" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#response">Response</a>
+                    </td>
+                    <td>
+                        Successful request.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-400" class="permalink-wrapper">
+                        <code>400</code>
+                        <a href="#http-code-400" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#error-response">Error Response</a>
+                    </td>
+                    <td>
+                        The query parameters you included were invalid.
+                        The <a href="{% url 'docs:data_types' %}#error-response">Error Response</a>
+                        will include a message describing exactly was invalid.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-404" class="permalink-wrapper">
+                        <code>404</code>
+                        <a href="#http-code-404" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#error-response">Error Response</a>
+                    </td>
+                    <td>
+                        We could not find an Election with that id.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-429" class="permalink-wrapper">
+                        <code>429</code>
+                        <a href="#http-code-429" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        You are making too many requests to the API. Check the
+                        <code>Retry-After</code> header for how many seconds to
+                        wait until trying the request again. See our docs on
+                        <a href="{% url 'docs:rate_limits' %}">Rate Limiting</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-500" class="permalink-wrapper">
+                        <code>500</code>
+                        <a href="#http-code-500" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        An internal server error occurred. We log these errors
+                        and try to fix them quickly, so if you keep getting
+                        500 errors for a few days, please
+                        <a "mailto:errors@ballotapi.org">email us</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-503" class="permalink-wrapper">
+                        <code>503</code>
+                        <a href="#http-code-503" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        We are down for maintenance. Please try your
+                        request again in a few minutes.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-504" class="permalink-wrapper">
+                        <code>504</code>
+                        <a href="#http-code-504" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        Your request timed out. Please try your
+                        request again in a few minutes.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}
 

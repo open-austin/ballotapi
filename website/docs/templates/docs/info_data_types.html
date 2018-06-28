@@ -21,6 +21,9 @@
             <a href="#response">Response</a>
         </li>
         <li>
+            <a href="#error-response">Error Response</a>
+        </li>
+        <li>
             <a href="{% url 'docs:api_elections_object' %}">Election</a>
             <small class="text-muted">(on separate page)</small>
         </li>
@@ -227,6 +230,102 @@
                         able to unknown attributes.
                     </td>
                     <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    {###############################}
+    {## Data Type: Error Response ##}
+    {###############################}
+    <hr>
+    <h2 id="error-response" class="permalink-wrapper">
+        Error Response object
+        <a href="#error-response" class="permalink"></a>
+    </h2>
+    <p>
+        These are responses that are returned when something you requested
+        raised an error. The most common case you will see these is when the
+        query parameters you set in your request are malformed and you get
+        back a 400 HTTP response code.
+    </p>
+    <h3 id="error-response-example" class="permalink-wrapper">
+        Error Response example
+        <a href="#error-response-example" class="permalink"></a>
+    </h3>
+<pre>
+{
+    "error": "invalid_param",
+    "message": "You need to specify a timezone for each datetime in your 'dates' parameter.",
+    "docs": "https://ballotapi.org/docs/data-types#datetime-range"
+}
+</pre>
+    <h3 id="error-response-attributes" class="permalink-wrapper">
+        Error Response attributes
+        <a href="#error-response-attributes" class="permalink"></a>
+    </h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Format</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="error-response-attributes-error" class="permalink-wrapper">
+                        <code>error</code>
+                        <a href="#error-response-attributes-error" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#string">String</a>
+                    </td>
+                    <td>
+                        The error type raised. Usually something like
+                        <code>invalid_param</code>, but could be any string.
+                    </td>
+                    <td>
+                        <code>"missing_param"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="error-response-attributes-message" class="permalink-wrapper">
+                        <code>message</code>
+                        <a href="#error-response-attributes-message" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#string">String</a>
+                    </td>
+                    <td>
+                        A human-readable error message describing what caused the error.
+                        We try to make our error messages clear so you know exactly what
+                        went wrong. Please feel free to reach out to us if you think an
+                        error message is confusing!
+                    </td>
+                    <td>
+                        <code>"Your 'coords' parameter doesn't look like coordinates (e.g. '12.2928,-84.7573')"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="error-response-attributes-docs" class="permalink-wrapper">
+                        <code>docs</code>
+                        <a href="#error-response-attributes-docs" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#url">URL</a> or <code>null</code>
+                    </td>
+                    <td>
+                        A link to the documentation where you can find more information.
+                        We try to include links to docs for each error, but sometimes we
+                        haven't set that link yet, so this attribute may be <code>null</code>.
+                    </td>
+                    <td>
+                        <code>"https://ballotapi.org/docs/api/elections/list#include"</code>
                     </td>
                 </tr>
             </tbody>

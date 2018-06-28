@@ -10,6 +10,300 @@
     <h1>
         Listing Elections
     </h1>
-    {# TODO #}
+    <p>
+        Get a list of <a href="{% url 'docs:api_elections_object' %}">Elections</a>,
+        reverse ordered by election date. By default, we return a paginated list all elections,
+        which problaby isn't very useful to you, so you probably want to include some
+        <a href="#query-parameters">query parameters</a> to filter the list for the
+        elections you actually want.
+    </p>
+
+    <h2 id="http-request" class="permalink-wrapper">
+        HTTP Request
+        <a href="#http-request" class="permalink"></a>
+    </h2>
+<pre>
+GET /v1/elections
+</pre>
+
+    <h2 id="examples" class="permalink-wrapper">
+        Examples
+        <a href="#examples" class="permalink"></a>
+    </h2>
+    <dl>
+        <dt id="example-all-elections" class="permalink-wrapper">
+            Get a list of all Elections:
+            <a href="#example-all-elections" class="permalink"></a>
+        </dt>
+        <dd class="margin-bottom-sm">
+            <a href="https://api.ballotapi.org/v1/elections"
+               target="_blank"
+               rel="noopener noreferrer">
+                https://api.ballotapi.org/v1/elections
+                <small class="glyphicon glyphicon-new-window"></small></a>
+        </dd>
+        <dt id="example-upcoming-elections" class="permalink-wrapper">
+            Get a list of all upcoming Elections:
+            <a href="#example-upcoming-elections" class="permalink"></a>
+        </dt>
+        <dd class="margin-bottom-sm">
+            <a href="https://api.ballotapi.org/v1/elections?dates=now,future"
+               target="_blank"
+               rel="noopener noreferrer">
+                https://api.ballotapi.org/v1/elections?dates=now,future
+                <small class="glyphicon glyphicon-new-window"></small></a>
+        </dd>
+        <dt id="example-location-query" class="permalink-wrapper">
+            Get a list of upcoming Elections for a specific location:
+            <a href="#example-location-query" class="permalink"></a>
+        </dt>
+        <dd class="margin-bottom-sm">
+            <a href="https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates=now,future"
+               target="_blank"
+               rel="noopener noreferrer">
+                https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates=now,future
+                <small class="glyphicon glyphicon-new-window"></small></a>
+        </dd>
+        <dt id="example-include-contests" class="permalink-wrapper">
+            Include Contests for each Election:
+            <a href="#example-include-contests" class="permalink"></a>
+        </dt>
+        <dd class="margin-bottom-sm">
+            <a href="https://api.ballotapi.org/v1/elections?include=contests"
+               target="_blank"
+               rel="noopener noreferrer">
+                https://api.ballotapi.org/v1/elections?include=contests
+                <small class="glyphicon glyphicon-new-window"></small></a>
+        </dd>
+    </dl>
+
+    <h2 id="query-parameters" class="permalink-wrapper">
+        Query Parameters
+        <a href="#query-parameters" class="permalink"></a>
+    </h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Format</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="ids" class="permalink-wrapper">
+                        <code>ids</code>
+                        <a href="#ids" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        A comma separated list of specific Election
+                        <a href="{% url 'docs:api_elections_object' %}#id">ids</a>
+                        to include in the response.
+                    </td>
+                    <td>
+                        <code>ids=a12345,a23456</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="coords" class="permalink-wrapper">
+                        <code>coords</code>
+                        <a href="#coords" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#coordinates">Coordinates</a>
+                    </td>
+                    <td>
+                        Filter by a specific location point or area.
+                        For areas, if any part of Election precincts overlaps
+                        the query area, that Election is included.
+                    </td>
+                    <td>
+                        <code>coords=37.7942635,-122.3955861</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="dates" class="permalink-wrapper">
+                        <code>dates</code>
+                        <a href="#dates" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#datetime-range">DateTimeRange</a>
+                    </td>
+                    <td>
+                        Filter to elections occurring only within a certain
+                        datetime range. You can include
+                        <a href="{% url 'docs:data_types' %}#datetime-range">shorthand names</a>
+                        in addition to normal datetimes.
+                    </td>
+                    <td>
+                        <code>coords=now,future</code><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="include" class="permalink-wrapper">
+                        <code>include</code>
+                        <a href="#include" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        A comma separated list of resources to include
+                        for each Election object response. Options are:
+                        <code>"contests"</code> and <code>"precincts"</code>
+                    </td>
+                    <td>
+                        <code>include=contests</code><br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 id="response" class="permalink-wrapper">
+        Response
+        <a href="#response" class="permalink"></a>
+    </h2>
+    <p>
+        We will return the results of your request as a
+        <a href="{% url 'docs:data_types' %}#response">Response object</a>
+        with the <a href="{% url 'docs:data_types' %}#response-attributes-data"><code>data</code></a>
+        attribute as the list of Elections.
+    </p>
+    <p>
+        <strong><em>Responses can be paginated!</em></strong>
+        Be sure to check the
+        <a href="{% url 'docs:data_types' %}#response-attributes-next"><code>next</code></a>
+        attribute for the next page of data.
+    </p>
+    <p>
+        Example response:
+    </p>
+<pre>
+{
+    "type": "response",
+    "data": [
+        {
+            "type": "election",
+            "id": "123-4",
+            "election_type": "general",
+            "election_name": "Midterm Election",
+            "date": "2018-11-05",
+            "short_info": "This is a major national election that..."
+        },
+        ...
+    ],
+    "next": "https://api.ballotapi.org/...",
+    "extra": {},
+    "timestamp": "2018-01-01T00:00:00+00:00",
+    "url": "https://api.ballotapi.org/..."
+}
+</pre>
+
+    <h2 id="http-codes" class="permalink-wrapper">
+        HTTP Response Codes
+        <a href="#http-codes" class="permalink"></a>
+    </h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Response Format</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="http-code-200" class="permalink-wrapper">
+                        <code>200</code>
+                        <a href="#http-code-200" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#response">Response</a>
+                    </td>
+                    <td>
+                        Successful request.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-400" class="permalink-wrapper">
+                        <code>400</code>
+                        <a href="#http-code-400" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#error-response">Error Response</a>
+                    </td>
+                    <td>
+                        The query parameters you included were invalid.
+                        The <a href="{% url 'docs:data_types' %}#error-response">Error Response</a>
+                        will include a message describing exactly was invalid.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-429" class="permalink-wrapper">
+                        <code>429</code>
+                        <a href="#http-code-429" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        You are making too many requests to the API. Check the
+                        <code>Retry-After</code> header for how many seconds to
+                        wait until trying the request again. See our docs on
+                        <a href="{% url 'docs:rate_limits' %}">Rate Limiting</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-500" class="permalink-wrapper">
+                        <code>500</code>
+                        <a href="#http-code-500" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        An internal server error occurred. We log these errors
+                        and try to fix them quickly, so if you keep getting
+                        500 errors for a few days, please
+                        <a "mailto:errors@ballotapi.org">email us</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-503" class="permalink-wrapper">
+                        <code>503</code>
+                        <a href="#http-code-503" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        We are down for maintenance. Please try your
+                        request again in a few minutes.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-504" class="permalink-wrapper">
+                        <code>504</code>
+                        <a href="#http-code-504" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        Your request timed out. Please try your
+                        request again in a few minutes.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}
 
