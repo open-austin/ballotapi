@@ -57,6 +57,7 @@ curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates
         {
             "type": "election",
             "id": "123-4",
+            "ocd_id": null,
             "election_type": "..."
             "election_name": "...",
             "date": "...",
@@ -67,6 +68,7 @@ curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates
                     {
                         "type": "contest",
                         "id": "234-5",
+                        "ocd_id": null,
                         "election_id": "123-4",
                         "contest_type": "...",
                         "voting_method": "...",
@@ -141,8 +143,9 @@ curl https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos
         {
             "type": "precinct",
             "id": "345-6",
+            "ocd_id": null,
             "election_id": "123-4",
-            "voting_times": {...},
+            "voting_info": {...},
             "geo": {"type": "Polygon", ...},
         },
         ...
@@ -212,6 +215,7 @@ curl https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-365d,future
         {
             "type": "contest",
             "id": "234-5",
+            "ocd_id": null,
             "election_id": "123-4",
             "election_type": "...",
             "voting_method": "...",
