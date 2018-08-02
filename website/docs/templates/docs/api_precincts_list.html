@@ -10,6 +10,369 @@
     <h1>
         Listing Precincts
     </h1>
-    {# TODO #}
+    <p>
+        Get a list of <a href="{% url 'docs:api_precincts_object' %}">Precinct</a>.
+        By default, we return a paginated list all precincts across all elections,
+        which problaby isn't very useful to you, so you probably want to include some
+        <a href="#query-parameters">query parameters</a> to filter the list for the
+        precincts you actually want.
+    </p>
+
+    <h2 id="http-request" class="permalink-wrapper">
+        HTTP Request
+        <a href="#http-request" class="permalink"></a>
+    </h2>
+<pre>
+GET /v1/precincts
+</pre>
+
+    <h2 id="examples" class="permalink-wrapper">
+        Examples
+        <a href="#examples" class="permalink"></a>
+    </h2>
+    <dl>
+        <dt id="example-all-precincts" class="permalink-wrapper">
+            Get a list of all Precincts:
+            <a href="#example-all-precincts" class="permalink"></a>
+        </dt>
+        <dd class="margin-bottom-sm">
+            <a href="https://api.ballotapi.org/v1/precincts"
+               target="_blank"
+               rel="noopener noreferrer">
+                https://api.ballotapi.org/v1/precincts
+                <small class="glyphicon glyphicon-new-window"></small></a>
+        </dd>
+        <dt id="example-specific-election" class="permalink-wrapper">
+            Get a list of Precincts for a specific election:
+            <a href="#example-specific-election" class="permalink"></a>
+        </dt>
+        <dd class="margin-bottom-sm">
+            <a href="https://api.ballotapi.org/v1/precincts?elections=1238es8f"
+               target="_blank"
+               rel="noopener noreferrer">
+                https://api.ballotapi.org/v1/precincts?elections=1238es8f
+                <small class="glyphicon glyphicon-new-window"></small></a>
+        </dd>
+        <dt id="example-specific-contest" class="permalink-wrapper">
+            Get a list of Precincts for a specific contest:
+            <a href="#example-specific-contest" class="permalink"></a>
+        </dt>
+        <dd class="margin-bottom-sm">
+            <a href="https://api.ballotapi.org/v1/precincts?contests=3094ur4u2e"
+               target="_blank"
+               rel="noopener noreferrer">
+                https://api.ballotapi.org/v1/precincts?contests=3094ur4u2e
+                <small class="glyphicon glyphicon-new-window"></small></a>
+        </dd>
+        <dt id="example-distric-map" class="permalink-wrapper">
+            Get a district map (i.e. merged geometry of the precinct list) for a specific contest:
+            <a href="#example-distric-map" class="permalink"></a>
+        </dt>
+        <dd class="margin-bottom-sm">
+            <a href="https://api.ballotapi.org/v1/precincts?contests=3094ur4u2e&extra=merge_geos"
+               target="_blank"
+               rel="noopener noreferrer">
+                https://api.ballotapi.org/v1/precincts?contests=3094ur4u2e&extra=merge_geos
+                <small class="glyphicon glyphicon-new-window"></small></a>
+        </dd>
+    </dl>
+
+    <h2 id="query-parameters" class="permalink-wrapper">
+        Query Parameters
+        <a href="#query-parameters" class="permalink"></a>
+    </h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Format</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="ids" class="permalink-wrapper">
+                        <code>ids</code>
+                        <a href="#ids" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        A comma separated list of specific Precinct
+                        <a href="{% url 'docs:api_precincts_object' %}#id">ids</a>
+                        to include in the response.
+                    </td>
+                    <td>
+                        <code>ids=49uhe3,493u03-5</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="elections" class="permalink-wrapper">
+                        <code>elections</code>
+                        <a href="#elections" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        Filter by a comma separated list of Election
+                        <a href="{% url 'docs:api_elections_object' %}#id">ids</a>.
+                    </td>
+                    <td>
+                        <code>elections=08h31-0,i5uu03</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contests" class="permalink-wrapper">
+                        <code>contests</code>
+                        <a href="#contests" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        Filter by a comma separated list of Contest
+                        <a href="{% url 'docs:api_contests_object' %}#id">ids</a>.
+                    </td>
+                    <td>
+                        <code>contests=aaaa12,bbbb13</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="extra" class="permalink-wrapper">
+                        <code>extra</code>
+                        <a href="#extra" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        <p>
+                            A comma separated list of extra values you want
+                            to include in the
+                            <a href="{% url 'docs:data_types' %}#extra"><code>extra</code> results parameter</a>.
+                        </p>
+                        <div>
+                            Options are:
+                            <ul>
+                                <li id="merge-geos-option" class="permalink-wrapper">
+                                    <a href="#merge-geos"><code>merge_geos</code></a>
+                                    - A <a href="#merge-geos">merged geometry</a>
+                                    of all of the precincts in the results. This
+                                    is useful for generating district maps.
+                                    <a href="#merge-geos-option" class="permalink"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <code>extra=merge_geos</code><br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 id="merge-geos" class="permalink-wrapper">
+        Merge Geometries
+        <a href="#merge-geos" class="permalink"></a>
+    </h2>
+    <p>
+        If you include the
+        <a href="#merge-geos-option"><code>extra=merge_geos</code></a>
+        query parameter in your request, we will merge all of
+        the areas of the resulting precincts and return that
+        merged geometry as a
+        <a href="{% url 'docs:data_types' %}#geojson">GeoJSON</a>
+        object in the
+        <a href="{% url 'docs:data_types' %}#extra"><code>extra</code></a>
+        results parameter. This is useful for generating district maps.
+    </p>
+    <p id="merge-geos-example" class="permalink-wrapper">
+        <strong>Example merged geometry result:</strong>
+        <a href="#merge-geos-example" class="permalink"></a>
+    </p>
+<pre>
+{
+    "type": "response",
+    "data": [...],
+    "next": "...",
+    "extra": {
+        "merge_geos": {
+            "type": "MultiPolygon",
+            ...
+        },
+    },
+    "timestamp": "...",
+    "url": "..."
+}
+</pre>
+    <p id="merge-geos-all-results" class="permalink-wrapper">
+        <strong>NOTE:</strong> We merge the results of <em>all</em>
+        the Precinct results for your request, not just the precincts
+        shown on the first page of results. That way, you don't need
+        to page through the results to get a full district map.
+        If you don't want to merge all of the results, use the
+        <a href="#ids"><code>ids</code></a> query parameter to
+        specify exactly what precincts you want us to merge.
+        <a href="#merge-geos-all-results" class="permalink"></a>
+    </p>
+    <p id="merge-geos-paging" class="permalink-wrapper">
+        <strong>NOTE:</strong> In the
+        <a href="{% url 'docs:data_types' %}#response-attributes-next"><code>next</code></a>
+        results parameter we do not inlcude the
+    <a href="#merge-geos"><code>merge_geos</code></a>
+        parameter. So if you start paging through the precint results,
+        you'll only see the merged geometry on the first page. We do this
+        so we're not generating full district maps on every page request.
+        <a href="#merge-geos-paging" class="permalink"></a>
+    </p>
+
+    <h2 id="response" class="permalink-wrapper">
+        Response
+        <a href="#response" class="permalink"></a>
+    </h2>
+    <p>
+        We will return the results of your request as a
+        <a href="{% url 'docs:data_types' %}#response">Response object</a>
+        with the <a href="{% url 'docs:data_types' %}#response-attributes-data"><code>data</code></a>
+        attribute as the list of <a href="{% url 'docs:api_precincts_object' %}">Precincts</a>.
+    </p>
+    <p>
+        <strong><em>Responses can be paginated!</em></strong>
+        Be sure to check the
+        <a href="{% url 'docs:data_types' %}#response-attributes-next"><code>next</code></a>
+        attribute for the next page of data.
+    </p>
+    <p>
+        Example response:
+    </p>
+<pre>
+{
+    "type": "response",
+    "data": [
+        {
+            "type": "precinct",
+            "id": "345-6",
+            "ocd_id": null,
+            "election_id": "123-4",
+            "voting_info": {...},
+            "geo": {...},
+        },
+        ...
+    ],
+    "next": "https://api.ballotapi.org/...",
+    "extra": {},
+    "timestamp": "2018-01-01T00:00:00+00:00",
+    "url": "https://api.ballotapi.org/..."
+}
+</pre>
+
+    <h2 id="http-codes" class="permalink-wrapper">
+        HTTP Response Codes
+        <a href="#http-codes" class="permalink"></a>
+    </h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Response Format</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="http-code-200" class="permalink-wrapper">
+                        <code>200</code>
+                        <a href="#http-code-200" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#response">Response</a>
+                    </td>
+                    <td>
+                        Successful request.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-400" class="permalink-wrapper">
+                        <code>400</code>
+                        <a href="#http-code-400" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#error-response">Error Response</a>
+                    </td>
+                    <td>
+                        The query parameters you included were invalid.
+                        The <a href="{% url 'docs:data_types' %}#error-response">Error Response</a>
+                        will include a message describing exactly was invalid.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-429" class="permalink-wrapper">
+                        <code>429</code>
+                        <a href="#http-code-429" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        You are making too many requests to the API. Check the
+                        <code>Retry-After</code> header for how many seconds to
+                        wait until trying the request again. See our docs on
+                        <a href="{% url 'docs:rate_limits' %}">Rate Limiting</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-500" class="permalink-wrapper">
+                        <code>500</code>
+                        <a href="#http-code-500" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        An internal server error occurred. We log these errors
+                        and try to fix them quickly, so if you keep getting
+                        500 errors for a few days, please
+                        <a href="mailto:errors@ballotapi.org">email us</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-503" class="permalink-wrapper">
+                        <code>503</code>
+                        <a href="#http-code-503" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        We are down for maintenance. Please try your
+                        request again in a few minutes.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="http-code-504" class="permalink-wrapper">
+                        <code>504</code>
+                        <a href="#http-code-504" class="permalink"></a>
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        Your request timed out. Please try your
+                        request again in a few minutes.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
 {% endblock %}
 
