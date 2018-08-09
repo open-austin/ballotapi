@@ -8,6 +8,254 @@
     <h1>
         Testing
     </h1>
-    {# TODO #}
+    <p>
+        We don't require authentication to use our production API
+        endpoints, so you are welcome to develop and test against
+        our real API. However, if you're running a bunch of
+        continuous integration tests (Jenkins, Travis CI, etc.),
+        you'll likely hit our
+        <a href="{% url 'docs:rate_limits' %}">rate limits</a>
+        quickly.
+    </p>
+    <p>
+        <em>NOTE: If you want to setup a development environment and
+        run tests for the ballotapi code itself, check out our
+        <a href="#TODO">contributing docs</a>.</em>
+    </p>
+
+    <h2 id="test-domains" class="permalink-wrapper">
+        Option 1: Use Our Test Domains
+        <a href="#test-domains" class="permalink"></a>
+    </h2>
+    <p class="margin-bottom-md">
+        To make your lives easier, we have setup several testing
+        domains with a small subset of data from our ballot
+        database that have more test-friendly rate limits. That
+        way, you can still run automated tests against them
+        without constantly hitting our production rate limits.
+    </p>
+    <ul>
+        <li class="margin-bottom-md">
+            <h4 id="api-test-domain" class="permalink-wrapper">
+                <code>api-test.ballotapi.org</code>
+                <a href="#api-test-domain" class="permalink"></a>
+            </h4>
+            <ul>
+                <li>
+                    <strong>Description:</strong>
+                    This API domain only has a small subset of our real
+                    database (specifically, it only has ballot data for
+                    Treasure Island). However, it has much higher rate
+                    limits, so you can run most automated tests against
+                    it.
+                </li>
+                <li>
+                    <strong>Example:</strong>
+                    <a href="https://api-test.ballotapi.org/v1/elections"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        https://api-test.ballotapi.org/v1/elections
+                        <small class="glyphicon glyphicon-new-window"></small></a>
+                </li>
+                <li>
+                    <strong>Rate limit</strong>:
+                    1000 requests per minute per IP address.
+                    <small><a href="{% url 'docs:rate_limits' %}">What's this?</a></small>
+                </li>
+                <li>
+                    <strong>Queue limit</strong>:
+                    100 requests per IP address.
+                    <small><a href="{% url 'docs:rate_limits' %}">What's this?</a></small>
+                </li>
+            </ul>
+        </li>
+        <li class="margin-bottom-md">
+            <h4 id="rate-limited" class="permalink-wrapper">
+                <code>api-test-ratelimited.ballotapi.org</code>
+                <a href="#rate-limited" class="permalink"></a>
+            </h4>
+            <ul>
+                <li>
+                    <strong>Description:</strong>
+                    This API domain has the same subset of data as
+                    <a href="#api-test-domain"><code>api-test.ballotapi.org</code></a>,
+                    but rate limits are set very low. You typically
+                    want to use this domain to test your rate limit
+                    handling logic.
+                </li>
+                <li>
+                    <strong>Example:</strong>
+                    <a href="https://api-test-ratelimited.ballotapi.org/v1/elections"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        https://api-test-ratelimited.ballotapi.org/v1/elections
+                        <small class="glyphicon glyphicon-new-window"></small></a>
+                </li>
+                <li>
+                    <strong>Rate limit</strong>:
+                    1 requests per second per IP address.
+                    <small><a href="{% url 'docs:rate_limits' %}">What's this?</a></small>
+                </li>
+                <li>
+                    <strong>Queue limit</strong>:
+                    0 requests per IP address.
+                    <small><a href="{% url 'docs:rate_limits' %}">What's this?</a></small>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2 id="test-server" class="permalink-wrapper">
+        Option 2: Run Your Own Test Server
+        <a href="#test-server" class="permalink"></a>
+    </h2>
+    <p class="margin-bottom-md">
+        If you want to run your tests completely internally, you
+        are welcome to spin up your own test server. Below are the
+        steps to quickly spin up an equivalent of
+        <a href="#api-test-domain"><code>api-test.ballotapi.org</code></a>
+        on your own system.
+    </p>
+    <ul>
+        <li class="margin-bottom-md">
+            <h4 id="test-server-debian" class="permalink-wrapper">
+                Debian/Ubuntu Linux setup:
+                <a href="#test-server-debian" class="permalink"></a>
+            </h4>
+            <ol>
+                <li>
+                    Install prerequisites:<br>
+                    <code>sudo apt-get install python postgresql postgis</code>
+                </li>
+                <li>
+                    Create a test user and database:<br>
+                    <code>sudo -u postgres psql -c "CREATE USER bapiuser WITH ENCRYPTED PASSWORD 'hunter2';"</code><br>
+                    <code>sudo -u postgres psql -c "CREATE DATABASE bapidb;"</code><br>
+                    <code>sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE bapidb TO bapiuser;"</code>
+                </li>
+                <li>
+                    Download our repo:<br>
+                    <code>wget https://code.ballotapi.org/ballotapi/releases/ballotapi-latest.tar.gz</code><br>
+                    <code>tar -xzvf ballotapi-latest.tar.gz</code><br>
+                    <code>rm ballotapi-latest.tar.gz</code>
+                </li>
+                <li>
+                    Run the test server:<br>
+                    <code>cd ballotapi/api</code><br>
+                    <code>python server.py --load "testdata" --dbname "bapidb" --dbuser "bapiuser" --dbpass "hunter2"</code>
+                </li>
+                <li>
+                    Try it out:<br>
+                    <a href="http://localhost:8000/v1/elections"
+                       target="_blank"
+                       rel="noopener noreferrer">http://localhost:8000/v1/elections</a>
+                </li>
+            </ol>
+        </li>
+        <li class="margin-bottom-md">
+            <h4 id="test-server-mac" class="permalink-wrapper">
+                Mac setup:
+                <a href="#test-server-mac" class="permalink"></a>
+            </h4>
+            <ol>
+                <li>
+                    Install PostgreSQL and PostGIS:<br>
+                    <code>brew install postgres</code><br>
+                    <code>brew install postgis</code>
+                </li>
+                <li>
+                    Create a test user and database:<br>
+                    <code>sudo -u postgres psql -c "CREATE USER bapiuser WITH ENCRYPTED PASSWORD 'hunter2';"</code><br>
+                    <code>sudo -u postgres psql -c "CREATE DATABASE bapidb;"</code><br>
+                    <code>sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE bapidb TO bapiuser;"</code>
+                </li>
+                <li>
+                    Download and unzip the repo:<br>
+                    <a href="https://code.ballotapi.org/ballotapi/releases/ballotapi-latest.zip"
+                       target="_blank"
+                       rel="noopener noreferrer">https://code.ballotapi.org/ballotapi/releases/ballotapi-latest.zip</a>
+                </li>
+                <li>
+                    Run the test server in your Terminal:<br>
+                    <code>cd ~/Downloads/ballotapi/api</code> (or wherever you unzipped the archive)<br>
+                    <code>python server.py --load "testdata" --dbname "bapidb" --dbuser "bapiuser" --dbpass "hunter2"</code>
+                </li>
+                <li>
+                    Try it out:<br>
+                    <a href="http://localhost:8000/v1/elections">http://localhost:8000/v1/elections</a>
+                </li>
+            </ol>
+        </li>
+        <li class="margin-bottom-md">
+            <h4 id="test-server-windows" class="permalink-wrapper">
+                Windows setup:
+                <a href="#test-server-windows" class="permalink"></a>
+            </h4>
+            <ol>
+                <li>
+                    Install python:<br>
+                    <a href="https://www.python.org/downloads/windows/"
+                       target="_blank"
+                       rel="noopener noreferrer">https://www.python.org/downloads/windows/</a>
+                </li>
+                <li>
+                    Install PostgreSQL:<br>
+                    <a href="https://www.postgresql.org/download/windows/"
+                       target="_blank"
+                       rel="noopener noreferrer">https://www.postgresql.org/download/windows/</a>
+                </li>
+                <li>
+                    Install PostGIS:<br>
+                    <a href="https://postgis.net/windows_downloads/"
+                       target="_blank"
+                       rel="noopener noreferrer">https://postgis.net/windows_downloads/</a>
+                </li>
+                <li>
+                    Create a test user and database:<br>
+                    <code>psql.exe -c "CREATE USER bapiuser WITH ENCRYPTED PASSWORD 'hunter2';"</code><br>
+                    <code>psql.exe -c "CREATE DATABASE bapidb;"</code><br>
+                    <code>psql.exe -c "GRANT ALL PRIVILEGES ON DATABASE bapidb TO bapiuser;"</code>
+                </li>
+                <li>
+                    Download and unzip the repo:<br>
+                    <a href="https://code.ballotapi.org/ballotapi/releases/ballotapi-latest.zip"
+                       target="_blank"
+                       rel="noopener noreferrer">https://code.ballotapi.org/ballotapi/releases/ballotapi-latest.zip</a>
+                </li>
+                <li>
+                    Run the test server in your command line:<br>
+                    <code>cd Downloads\ballotapi\api</code> (or wherever you unzipped the archive)<br>
+                    <code>python.exe server.py --load "testdata" --dbname "bapidb" --dbuser "bapiuser" --dbpass "hunter2"</code>
+                </li>
+                <li>
+                    Try it out:<br>
+                    <a href="http://localhost:8000/v1/elections">http://localhost:8000/v1/elections</a>
+                </li>
+            </ol>
+        </li>
+    </ul>
+    <h4 id="test-server-updating" class="permalink-wrapper">
+        Updating your test server
+        <a href="#test-server-updating" class="permalink"></a>
+    </h4>
+    <p class="margin-bottom-lg">
+        If you want to update your existing installation, simply
+        download our repo again (see "Download and unzip the repo..." steps above)
+        and run the same command (<code>python server.py --load ...</code>).
+        It will automatically clear and reload the testdata dataset
+        into the database.
+    </p>
+    <p>
+        <em>
+            Are these setup instructions incorrect?
+            Help us out by opening an
+            <a href="https://github.com/sfbrigade/ballotapi/issues" target="_blank" rel="noopener noreferrer">
+                issue
+                <small class="glyphicon glyphicon-new-window"></small></a>
+            or
+            <a href="https://github.com/sfbrigade/ballotapi/pulls" target="_blank" rel="noopener noreferrer">
+                pull request
+                <small class="glyphicon glyphicon-new-window"></small></a>
+    </p>
 {% endblock %}
 
