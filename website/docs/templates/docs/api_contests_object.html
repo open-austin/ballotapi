@@ -9,6 +9,781 @@
     <h1>
         Contests
     </h1>
-    {# TODO #}
+    <p>
+        <a href="#examples">See examples of Contest objects.</a>
+    </p>
+    <p>
+        Contest objects contain information about specific ballot
+        measures or races. This is where you want to look for the
+        actual list of candidates and text of ballot measures. To
+        search contests (e.g. search for a particular candidate),
+        use the <a href="{% url 'docs:api_contests_list' %}">/contests</a>
+        endpoint.
+    </p>
+    <p id="gotchas" class="permalink-wrapper">
+        <strong>Things that you should know:</strong>
+        <a href="#gotchas" class="permalink"></a>
+    </p>
+    <ul>
+        <li id="changes" class="permalink-wrapper">
+            Contest and candidate lists change can change unexpectedly
+            (e.g. when a candidate is added or dropped last minute),
+            so if you are caching objects on your end, be able to handle
+            situations where Contest attributes don't match what you had
+            previously and where candidates lists have had candidates
+            added/removed/modified.
+            <a href="#changes" class="permalink"></a>
+        </li>
+        <li id="new-ids" class="permalink-wrapper">
+            For the same elected position (e.g. mayor) we still assign
+            a new Contest <a href="#id"><code>id</code></a> for that
+            race every election, because these positions can change from
+            election-to-election (e.g. the city's boundary changes).
+            To see the same position's contests over multiple elections,
+            filter by <a href="#ocd_id"><code>ocd_id</code></a>, which
+            corresponds to the position, not the contest.
+            <a href="#new-ids" class="permalink"></a>
+        </li>
+    </ul>
+
+    <h3 id="api-endpoints" class="permalink-wrapper">
+        API Endpoints
+        <a href="#api-endpoints" class="permalink"></a>
+    </h3>
+    <ul class="list-unstyled">
+        <li>
+            <a href="{% url 'docs:api_contests_list' %}">
+                <span class="label label-success">GET</span>
+                <code>/contests</code></a> -
+            List contests (can be searched and filtered).
+        </li>
+        <li>
+            <a href="{% url 'docs:api_contests_get' %}">
+                <span class="label label-success">GET</span>
+                <code>/contests/<em>{id}</em></code></a> -
+            Get a specific contest.
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="attributes" class="permalink-wrapper">
+        Attributes
+        <a href="#attributes" class="permalink"></a>
+    </h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Format</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="type" class="permalink-wrapper">
+                        <code>type</code>
+                        <a href="#type" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#object-type">ObjectType</a>
+                    </td>
+                    <td>
+                        This object's data type. Will always be "contest".
+                    </td>
+                    <td>
+                        <code>"contest"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="id" class="permalink-wrapper">
+                        <code>id</code>
+                        <a href="#id" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        This is the unique id we assign to the Contest.
+                        NOTE: The same elected position (e.g. mayor) is
+                        assigned a new id every election (<a href="#new-ids">read more</a>).
+                    </td>
+                    <td>
+                        <code>"a74635..."</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="ocd_id" class="permalink-wrapper">
+                        <code>ocd_id</code>
+                        <a href="#ocd_id" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#ocd-id">OCD-ID</a>
+                        or <code>null</code>
+                    </td>
+                    <td>
+                        This is the
+                        <a href="{% url 'docs:data_types' %}#ocd-id">Open Civic Data Identifier</a>
+                        (OCD-ID) for the elected position in this contest.
+                        If there is no OCD-ID (often the case for ballot
+                        measures), this value will be <code>null</code>.
+                    </td>
+                    <td>
+                        <code>"ocd-jurisdiction/country:us/..."</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="election_id" class="permalink-wrapper">
+                        <code>election_id</code>
+                        <a href="#election_id" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        This is the
+                        <a href="{% url 'docs:api_elections_object' %}#id">Election.id</a>
+                        to which this Contest belongs.
+                    </td>
+                    <td>
+                        <code>"95hrhf3..."</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contest_type" class="permalink-wrapper">
+                        <code>contest_type</code>
+                        <a href="#contest_type" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#contest-types">ContestType</a>
+                    </td>
+                    <td>
+                        This is the type of contest (e.g. ballot measure,
+                        elected position, etc.). See <a href="#contest-types">ContestType</a>
+                        for a full list of possible values.
+                    </td>
+                    <td>
+                        <code>"ballot_measure"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contest_level" class="permalink-wrapper">
+                        <code>contest_level</code>
+                        <a href="#contest_level" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#contest-levels">ContestLevel</a>
+                    </td>
+                    <td>
+                        This is jurisdictional level of contest (e.g. federal,
+                        state, etc.). See <a href="#contest-levels">ContestLevel</a>
+                        for a full list of possible values.
+                    </td>
+                    <td>
+                        <code>"federal"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="voting_method" class="permalink-wrapper">
+                        <code>voting_method</code>
+                        <a href="#voting_method" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#voting-methods">VotingMethod</a>
+                    </td>
+                    <td>
+                        This is how a winner is selected (e.g. ranked choice,
+                        plurality, etc.). See <a href="#voting-methods">VotingMethod</a>
+                        for a full list of possible values.
+                    </td>
+                    <td>
+                        <code>"plurality"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="voting_instructions" class="permalink-wrapper">
+                        <code>voting_instructions</code>
+                        <a href="#voting_instructions" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        These are the human-readable instructions for
+                        a particular voting method. This may also contain
+                        special instructions or restrictions on who can
+                        vote in this contest.
+                    </td>
+                    <td>
+                        <code>"Select only one candidate."</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="title" class="permalink-wrapper">
+                        <code>title</code>
+                        <a href="#title" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        This is the title of the ballot measure or race.
+                    </td>
+                    <td>
+                        <code>"U.S. Senate"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="question" class="permalink-wrapper">
+                        <code>question</code>
+                        <a href="#question" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                        or <code>null</code>
+                    </td>
+                    <td>
+                        For ballot measures, this is the question being
+                        asked for approval or disapproval. For elected
+                        positions, this value will be <code>null</code>.
+                    </td>
+                    <td>
+                        <code>"Do you approve of allocating..."</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="choices" class="permalink-wrapper">
+                        <code>choices</code>
+                        <a href="#choices" class="permalink"></a>
+                    </td>
+                    <td>
+                        List(<a href="#choice-object">ChoiceObject</a>)
+                    </td>
+                    <td>
+                        This is a list of choices for the Contest.
+                        For ballot measures, the list is usally approve
+                        or disapprove. For elected positions, this is a
+                        list of candidates.
+                    </td>
+                    <td>
+                        <code>[{"type": "candidate", ...}, ...]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="more" class="permalink-wrapper">
+                        <code>...</code>
+                        <a href="#more" class="permalink"></a>
+                    </td>
+                    <td></td>
+                    <td>
+                        We may add more Contest attributes in the future, so be able to
+                        handle unknown attributes.
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <h2 id="examples" class="permalink-wrapper">
+        Examples
+        <a href="#examples" class="permalink"></a>
+    </h2>
+    <h5 id="example-ballot-measure" class="permalink-wrapper">
+        A ballot measure example:
+        <a href="#example-ballot-measure" class="permalink"></a>
+    </h5>
+<pre>
+{
+    "type": "contest",
+    "id": "234-5",
+    "ocd_id": null,
+    "election_id": "123-4",
+    "contest_type": "ballot_measure",
+    "contest_level": "state",
+    "voting_method": "plurality",
+    "voting_instructions": "Choose Approve or Disapprove.",
+    "title": "Measure B: Tax Incentive Plan",
+    "question": "Shall the Deleware constitution be updated to...",
+    "choices": [
+        {
+            "type": "choice",
+            "title": "Approve",
+            "info": null,
+        },
+        {
+            "type": "choice",
+            "title": "Disapprove",
+            "info": null,
+        }
+    ]
+}
+</pre>
+    <h5 id="example-elected-position" class="permalink-wrapper">
+        An elected position example:
+        <a href="#example-elected-position" class="permalink"></a>
+    </h5>
+<pre>
+{
+    "type": "contest",
+    "id": "234-5",
+    "ocd_id": null,
+    "election_id": "123-4",
+    "contest_type": "elected_position",
+    "contest_level": "city",
+    "voting_method": "ranked_choice",
+    "voting_instructions": "Number candidates in the order...",
+    "title": "Mayor of Springfield",
+    "question": null,
+    "choices": [
+        {
+            "type": "candidate",
+            "title": "Jane Smith",
+            "info": "Teacher/Mother",
+        },
+        {
+            "type": "candidate",
+            "title": "John Smith",
+            "info": "Current Mayor",
+        },
+        {
+            "type": "candidate",
+            "title": "Montgomery Burns",
+            "info": "Tycoon/Chairman",
+        }
+    ]
+}
+</pre>
+
+    <hr>
+
+    <h2 id="contest-types" class="permalink-wrapper">
+        Contest Types
+        <a href="#contest-types" class="permalink"></a>
+    </h2>
+    <p>
+        These are our general categories of contest types.
+    </p>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Contest Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="contest-type-ballot-measure" class="permalink-wrapper">
+                        <code>ballot_measure</code>
+                        <a href="#contest-type-ballot-measure" class="permalink"></a>
+                    </td>
+                    <td>
+                        A proposed piece of legislation or question to be
+                        voted on directly by voters.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contest-type-elected-position" class="permalink-wrapper">
+                        <code>elected_position</code>
+                        <a href="#contest-type-elected-position" class="permalink"></a>
+                    </td>
+                    <td>
+                        A contest to elect one or more candidates to a
+                        specific political seat.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contest-type-more" class="permalink-wrapper">
+                        <code>...</code>
+                        <a href="#contest-type-more" class="permalink"></a>
+                    </td>
+                    <td>
+                        We may add more contest types in the future, so be able to
+                        handle unknown attributes.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <h2 id="contest-levels" class="permalink-wrapper">
+        Contest Levels
+        <a href="#contest-levels" class="permalink"></a>
+    </h2>
+    <p>
+        These are our general government level of the contest.
+    </p>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Contest Level</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="contest-level-federal" class="permalink-wrapper">
+                        <code>federal</code>
+                        <a href="#contest-level-federal" class="permalink"></a>
+                    </td>
+                    <td>
+                        National contests (e.g. U.S. Senate).
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contest-level-state" class="permalink-wrapper">
+                        <code>state</code>
+                        <a href="#contest-level-state" class="permalink"></a>
+                    </td>
+                    <td>
+                        State-level contests (e.g. California State
+                        Assembly District 15).
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contest-level-regional" class="permalink-wrapper">
+                        <code>regional</code>
+                        <a href="#contest-level-regional" class="permalink"></a>
+                    </td>
+                    <td>
+                        Covers a widespread area across multiple counties or cities
+                        (e.g. Bay Area Transit Region).
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contest-level-county" class="permalink-wrapper">
+                        <code>county</code>
+                        <a href="#contest-level-county" class="permalink"></a>
+                    </td>
+                    <td>
+                        County-level contests (e.g. Tax Assessor-Collector).
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contest-level-city" class="permalink-wrapper">
+                        <code>city</code>
+                        <a href="#contest-level-city" class="permalink"></a>
+                    </td>
+                    <td>
+                        City-level contests (e.g. City Council Seat 4).
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contest-level-sublocality" class="permalink-wrapper">
+                        <code>sublocality</code>
+                        <a href="#contest-level-sublocality" class="permalink"></a>
+                    </td>
+                    <td>
+                        Covers a local area/neighborhood/ward (e.g. school district).
+                    </td>
+                </tr>
+                <tr>
+                    <td id="contest-level-more" class="permalink-wrapper">
+                        <code>...</code>
+                        <a href="#contest-level-more" class="permalink"></a>
+                    </td>
+                    <td>
+                        We may add more contest levels in the future, so be able to
+                        handle unknown attributes.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <h2 id="voting-methods" class="permalink-wrapper">
+        Voting Methods
+        <a href="#voting-methods" class="permalink"></a>
+    </h2>
+    <p>
+        These are our general categories of voting methods.
+    </p>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Voting Method</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="voting-method-plurality" class="permalink-wrapper">
+                        <code>plurality</code>
+                        <a href="#voting-method-plurality" class="permalink"></a>
+                    </td>
+                    <td>
+                        Vote for one choice. The choice/candidate with the most
+                        votes wins the election. NOTE: Special win conditions,
+                        such as when the winner has a plurality but not over 50%
+                        of the vote, are not usually listed on the ballot, so
+                        they will still appear as a plurality voting method.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="voting-method-plurality-multiple" class="permalink-wrapper">
+                        <code>plurality_multiple</code>
+                        <a href="#voting-method-plurality-multiple" class="permalink"></a>
+                    </td>
+                    <td>
+                        Vote for multiple choices. A specific number of choices
+                        with the most votes win the election. See the
+                        <a href="#voting_instructions"><code>voting_instructions</code></a>
+                        attribute for the maximum number of choices the
+                        voter is allowed to choose (e.g. "Choose up to five
+                        candidates. The top two candidates will win the two
+                        open seats.").
+                    </td>
+                </tr>
+                <tr>
+                    <td id="voting-method-ranked-choice" class="permalink-wrapper">
+                        <code>ranked_choice</code>
+                        <a href="#voting-method-ranked-choice" class="permalink"></a>
+                    </td>
+                    <td>
+                        Rank choices from most approved to least approved.
+                        See the
+                        <a href="#voting_instructions"><code>voting_instructions</code></a>
+                        attribute for specifics on how voters should number
+                        their votes (e.g. "Assign numbers 1 through 10 to each of the
+                        candidates, 10 being the most approved, 1 being the least approved.
+                        Do not assign the same number to multiple candidates. You can also
+                        choose to not assign a candidate any number.").
+                    </td>
+                </tr>
+                <tr>
+                    <td id="voting-method-instant-runoff" class="permalink-wrapper">
+                        <code>instant_runoff</code>
+                        <a href="#voting-method-instant-runoff" class="permalink"></a>
+                    </td>
+                    <td>
+                        Choose a first and second choice.
+                        See the
+                        <a href="#voting_instructions"><code>voting_instructions</code></a>
+                        attribute for specifics on how voters should mark their votes
+                        (e.g. "Assign 1 to the candidate that you most prefer. Assign
+                        2 to the second candidate preferred after your first choice.").
+                    </td>
+                </tr>
+                <tr>
+                    <td id="voting-method-more" class="permalink-wrapper">
+                        <code>...</code>
+                        <a href="#voting-method-more" class="permalink"></a>
+                    </td>
+                    <td>
+                        We may add more voting methods in the future, so be able to
+                        handle unknown attributes.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <h2 id="choice-object" class="permalink-wrapper">
+        Choice Object
+        <a href="#choice-object" class="permalink"></a>
+    </h2>
+    <p>
+        These are the objects in the <a href="#choices">choices</a>
+        list in Contest objects. They contain information about specific
+        contest choices (e.g. candidates and ballot measure choices).
+        <a href="#choice-examples">See examples of Contest objects.</a>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Format</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="choice-object-type" class="permalink-wrapper">
+                        <code>type</code>
+                        <a href="#choice-object-type" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="#choice-types">ChoiceType</a>
+                    </td>
+                    <td>
+                        This choice's type. See <a href="#choice-types">ChoiceType</a>
+                        for a full list of possible values.
+                    </td>
+                    <td>
+                        <code>"candidate"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="choice-object-title" class="permalink-wrapper">
+                        <code>title</code>
+                        <a href="#choice-object-title" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                    </td>
+                    <td>
+                        This name of the choice. For ballot measures, this is
+                        usually "Approve" or "Disapprove". For elected positions,
+                        this is usually the name of the candidate.
+                    </td>
+                    <td>
+                        <code>"Barbra Lee"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="choice-object-info" class="permalink-wrapper">
+                        <code>info</code>
+                        <a href="#choice-object-info" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                        or <code>null</code>
+                    </td>
+                    <td>
+                        Text with any additional information about the choice.
+                        For elected positions, this is usually the official short
+                        description of the candidate. For ballot measures, this
+                        is usually <code>null</code>.
+                    </td>
+                    <td>
+                        <code>"Teacher/mother"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="choice-more" class="permalink-wrapper">
+                        <code>...</code>
+                        <a href="#choice-more" class="permalink"></a>
+                    </td>
+                    <td></td>
+                    <td>
+                        We may add more Choice attributes in the future, so be able to
+                        handle unknown attributes.
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <h2 id="choice-types" class="permalink-wrapper">
+        Choice Types
+        <a href="#choice-types" class="permalink"></a>
+    </h2>
+    <p>
+        These are our general types of choices.
+    </p>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Choice Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="choice-type-choice" class="permalink-wrapper">
+                        <code>choice</code>
+                        <a href="#choice-type-choice" class="permalink"></a>
+                    </td>
+                    <td>
+                        This is a ballot measure choice (Approve/Disapprove).
+                    </td>
+                </tr>
+                <tr>
+                    <td id="choice-type-candidate" class="permalink-wrapper">
+                        <code>candidate</code>
+                        <a href="#choice-type-candidate" class="permalink"></a>
+                    </td>
+                    <td>
+                        This is specific candidate in an elected position contest.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="choice-type-write-in" class="permalink-wrapper">
+                        <code>write_in</code>
+                        <a href="#choice-type-write-in" class="permalink"></a>
+                    </td>
+                    <td>
+                        This is a choice to write in a candidate in an
+                        elected position contest.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="choice-type-more" class="permalink-wrapper">
+                        <code>...</code>
+                        <a href="#choice-type-more" class="permalink"></a>
+                    </td>
+                    <td>
+                        We may add more Choice types in the future, so be able to
+                        handle unknown attributes.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <h2 id="choice-examples" class="permalink-wrapper">
+        Choice Object Examples
+        <a href="#choice-examples" class="permalink"></a>
+    </h2>
+    <p>
+        These are some examples of <a href="#choice-object">Choice Objects</a>.
+    </p>
+
+    <h5 id="example-ballot-measure-choice" class="permalink-wrapper">
+        A ballot measure choice example:
+        <a href="#example-ballot-measure-choice" class="permalink"></a>
+    </h5>
+<pre>
+{
+    "type": "choice",
+    "title": "Approve",
+    "info": null,
+}
+</pre>
+    <h5 id="example-candidate-choice" class="permalink-wrapper">
+        A candidate example:
+        <a href="#example-candidate-choice" class="permalink"></a>
+    </h5>
+<pre>
+{
+    "type": "candidate",
+    "title": "Barbra Lee",
+    "info": "Politician/activist",
+}
+</pre>
+    <h5 id="example-write-in-choice" class="permalink-wrapper">
+        A write-in example:
+        <a href="#example-write-in-choice" class="permalink"></a>
+    </h5>
+<pre>
+{
+    "type": "write_in",
+    "title": "Write-in Candidate",
+    "info": null,
+}
+</pre>
+
+
 {% endblock %}
 
