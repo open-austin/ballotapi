@@ -194,12 +194,12 @@
                         <a href="#voting-methods">VotingMethod</a>
                     </td>
                     <td>
-                        This is how a winner is selected (e.g. ranked choice,
-                        plurality, etc.). See <a href="#voting-methods">VotingMethod</a>
+                        This is the specific method of voting (e.g. choose one,
+                        ranked choice, approval, etc.). See <a href="#voting-methods">VotingMethod</a>
                         for a full list of possible values.
                     </td>
                     <td>
-                        <code>"plurality"</code>
+                        <code>"choose_one"</code>
                     </td>
                 </tr>
                 <tr>
@@ -305,7 +305,7 @@
     "election_id": "123-4",
     "contest_type": "ballot_measure",
     "contest_level": "state",
-    "voting_method": "plurality",
+    "voting_method": "choose_one",
     "voting_instructions": "Choose Approve or Disapprove.",
     "title": "Measure B: Tax Incentive Plan",
     "question": "Shall the Deleware constitution be updated to...",
@@ -518,22 +518,21 @@
             </thead>
             <tbody>
                 <tr>
-                    <td id="voting-method-plurality" class="permalink-wrapper">
-                        <code>plurality</code>
-                        <a href="#voting-method-plurality" class="permalink"></a>
+                    <td id="voting-method-choose-one" class="permalink-wrapper">
+                        <code>choose_one</code>
+                        <a href="#voting-method-choose-one" class="permalink"></a>
                     </td>
                     <td>
-                        Vote for one choice. The choice/candidate with the most
-                        votes wins the election. NOTE: Special win conditions,
+                        Vote for one choice. This is the NOTE: Special win conditions,
                         such as when the winner has a plurality but not over 50%
                         of the vote, are not usually listed on the ballot, so
-                        they will still appear as a plurality voting method.
+                        they will still appear as a choose_one voting method.
                     </td>
                 </tr>
                 <tr>
-                    <td id="voting-method-plurality-multiple" class="permalink-wrapper">
-                        <code>plurality_multiple</code>
-                        <a href="#voting-method-plurality-multiple" class="permalink"></a>
+                    <td id="voting-method-choose-multiple" class="permalink-wrapper">
+                        <code>choose_multiple</code>
+                        <a href="#voting-method-choose-multiple" class="permalink"></a>
                     </td>
                     <td>
                         Vote for multiple choices. A specific number of choices
@@ -573,6 +572,22 @@
                         attribute for specifics on how voters should mark their votes
                         (e.g. "Assign 1 to the candidate that you most prefer. Assign
                         2 to the second candidate preferred after your first choice.").
+                    </td>
+                </tr>
+                <tr>
+                    <td id="voting-method-approval" class="permalink-wrapper">
+                        <code>approval</code>
+                        <a href="#voting-method-approval" class="permalink"></a>
+                    </td>
+                    <td>
+                        Choose any number of candidates of which you approve.
+                        This is basically the most extreme version of
+                        <a href="#voting-method-choose-multiple"><code>choose_multiple</code></a>
+                        where you can choose any number of candidates (i.e. you could choose
+                        all candidates if you wanted). As with choose_multiple, see the
+                        <a href="#voting_instructions"><code>voting_instructions</code></a>
+                        attribute for any specific instructions or additional info on
+                        candidates.
                     </td>
                 </tr>
                 <tr>
@@ -643,6 +658,25 @@
                     </td>
                     <td>
                         <code>"Barbra Lee"</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="choice-object-party" class="permalink-wrapper">
+                        <code>party</code>
+                        <a href="#choice-object-party" class="permalink"></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'docs:data_types' %}#string">String</a>
+                        or <code>null</code>
+                    </td>
+                    <td>
+                        Any party affiliation associated with the choice.
+                        For ballot measures and contests that are non-partisan
+                        (e.g. school board races), this value will be
+                        <code>null</code>.
+                    </td>
+                    <td>
+                        <code>"Democrat"</code>
                     </td>
                 </tr>
                 <tr>
@@ -758,6 +792,7 @@
 {
     "type": "choice",
     "title": "Approve",
+    "party": null,
     "info": null,
 }
 </pre>
@@ -769,6 +804,7 @@
 {
     "type": "candidate",
     "title": "Barbra Lee",
+    "party": "Democrat",
     "info": "Politician/activist",
 }
 </pre>
@@ -780,6 +816,7 @@
 {
     "type": "write_in",
     "title": "Write-in Candidate",
+    "party": null,
     "info": null,
 }
 </pre>
