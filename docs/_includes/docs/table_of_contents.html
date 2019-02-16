@@ -18,38 +18,38 @@
     </h3>
     <ul class="list-unstyled margin-bottom">
         <li>
-            <a href="{{ site.url }}/docs/"
-               class="font-16px {% if toc == 'overview' %}font-strong font-underline{% endif %}"
+            <a href="{{ '/docs/' | relative_url }}"
+               class="font-16px {% if page.toc == 'overview' %}font-strong font-underline{% endif %}"
                 >Overview</a>
         </li>
         <li class="margin-top-sm">
-            <a href="{{ site.url }}/docs/quickstart/"
-               class="font-16px {% if toc == 'quickstart' %}font-strong font-underline{% endif %}"
+            <a href="{{ '/docs/quickstart/' | relative_url }}"
+               class="font-16px {% if page.toc == 'quickstart' %}font-strong font-underline{% endif %}"
                 >Quickstart</a>
         </li>
         <li class="margin-top-sm">
-            <a href="{{ site.url }}/docs/examples/"
-               class="font-16px {% if toc == 'examples' %}font-strong font-underline{% endif %}"
+            <a href="{{ '/docs/examples/' | relative_url }}"
+               class="font-16px {% if page.toc == 'examples' %}font-strong font-underline{% endif %}"
                 >Examples</a>
         </li>
         <li class="margin-top-sm">
-            <a href="{{ site.url }}/docs/data-types/"
-               class="font-16px {% if toc == 'data_types' %}font-strong font-underline{% endif %}"
+            <a href="{{ '/docs/data-types/' | relative_url }}"
+               class="font-16px {% if page.toc == 'data_types' %}font-strong font-underline{% endif %}"
                 >Data Types</a>
         </li>
         <li class="margin-top-sm">
-            <a href="{{ site.url }}/docs/testing"
-               class="font-16px {% if toc == 'testing' %}font-strong font-underline{% endif %}"
+            <a href="{{ '/docs/testing/' | relative_url }}"
+               class="font-16px {% if page.toc == 'testing' %}font-strong font-underline{% endif %}"
                 >Testing</a>
         </li>
         <li class="margin-top-sm">
-            <a href="{{ site.url }}/docs/rate-limits/"
-               class="font-16px {% if toc == 'rate_limits' %}font-strong font-underline{% endif %}"
+            <a href="{{ '/docs/rate-limits/' | relative_url }}"
+               class="font-16px {% if page.toc == 'rate_limits' %}font-strong font-underline{% endif %}"
                 >Rate Limits</a>
         </li>
         <li class="margin-top-sm">
-            <a href="{{ site.url }}/docs/api/"
-               class="font-16px {% if toc == 'api_endpoints' %}font-strong font-underline{% endif %}"
+            <a href="{{ '/docs/api/' | relative_url }}"
+               class="font-16px {% if page.toc == 'api_endpoints' %}font-strong font-underline{% endif %}"
                 >API Docs</a>
         </li>
     </ul>
@@ -60,7 +60,7 @@
     <ul class="list-unstyled">
 
         <li class="margin-top-sm">
-            <a href="{{ site.url }}/docs/api/elections/"
+            <a href="{{ '/docs/api/elections/' | relative_url }}"
                ><code>/elections</code></a>
             <a class=""
                role="button"
@@ -70,27 +70,27 @@
                aria-controls="toc-elections"
                ><span class="caret"></span></a>
             <ul id="toc-elections"
-                class="collapse {% if toc == 'api_elections' %}in{% endif %} list-unstyled indent">
+                class="collapse {% if page.toc == 'api_elections' %}in{% endif %} list-unstyled indent">
                 <li class="margin-top-sm">
-                    <a href="{{ site.url }}/docs/api/elections/"
-                       class="{% if subtoc == 'api_elections_object' %}font-strong font-underline{% endif %}"
+                    <a href="{{ '/docs/api/elections/' | relative_url }}"
+                       class="{% if page.subtoc == 'api_elections_object' %}font-strong font-underline{% endif %}"
                         >Object</a>
                 </li>
                 <li class="margin-top-sm">
-                    <a href="{{ site.url }}/docs/api/elections/list/"
-                       class="{% if subtoc == 'api_elections_list' %}font-strong font-underline{% endif %}"
+                    <a href="{{ '/docs/api/elections/list/' | relative_url }}"
+                       class="{% if page.subtoc == 'api_elections_list' %}font-strong font-underline{% endif %}"
                         >List</a>
                 </li>
                 <li class="margin-top-sm">
-                    <a href="{{ site.url }}/docs/api/elections/get/"
-                       class="{% if subtoc == 'api_elections_get' %}font-strong font-underline{% endif %}"
+                    <a href="{{ '/docs/api/elections/get/' | relative_url }}"
+                       class="{% if page.subtoc == 'api_elections_get' %}font-strong font-underline{% endif %}"
                         >Get</a>
                 </li>
             </ul>
         </li>
 
         <li class="margin-top-sm">
-            <a href="{{ site.url }}/docs/api/precincts/"
+            <a href="{{ '/docs/api/precincts/' | relative_url }}"
                ><code>/precincts</code></a>
             <a class=""
                role="button"
@@ -100,27 +100,27 @@
                aria-controls="toc-precincts"
                ><span class="caret"></span></a>
             <ul id="toc-precincts"
-                class="collapse {% if toc == 'api_precincts' %}in{% endif %} list-unstyled indent">
+                class="collapse {% if page.toc == 'api_precincts' %}in{% endif %} list-unstyled indent">
                 <li class="margin-top-sm">
-                    <a href="{{ site.url }}/docs/api/precincts/"
-                       class="{% if subtoc == 'api_precincts_object' %}font-strong font-underline{% endif %}"
+                    <a href="{{ '/docs/api/precincts/' | relative_url }}"
+                       class="{% if page.subtoc == 'api_precincts_object' %}font-strong font-underline{% endif %}"
                         >Object</a>
                 </li>
                 <li class="margin-top-sm">
-                    <a href="{{ site.url }}/docs/api/precincts/list/"
-                       class="{% if subtoc == 'api_precincts_list' %}font-strong font-underline{% endif %}"
+                    <a href="{{ '/docs/api/precincts/list/' | relative_url }}"
+                       class="{% if page.subtoc == 'api_precincts_list' %}font-strong font-underline{% endif %}"
                         >List</a>
                 </li>
                 <li class="margin-top-sm">
-                    <a href="{{ site.url }}/docs/api/precincts/get/"
-                       class="{% if subtoc == 'api_precincts_get' %}font-strong font-underline{% endif %}"
+                    <a href="{{ '/docs/api/precincts/get/' | relative_url }}"
+                       class="{% if page.subtoc == 'api_precincts_get' %}font-strong font-underline{% endif %}"
                         >Get</a>
                 </li>
             </ul>
         </li>
 
         <li class="margin-top-sm">
-            <a href="{{ site.url }}/docs/api/contests/"
+            <a href="{{ '/docs/api/contests/' | relative_url }}"
                ><code>/contests</code></a>
             <a class=""
                role="button"
@@ -130,20 +130,20 @@
                aria-controls="toc-contests"
                ><span class="caret"></span></a>
             <ul id="toc-contests"
-                class="collapse {% if toc == 'api_contests' %}in{% endif %} list-unstyled indent">
+                class="collapse {% if page.toc == 'api_contests' %}in{% endif %} list-unstyled indent">
                 <li class="margin-top-sm">
-                    <a href="{{ site.url }}/docs/api/contests/"
-                       class="{% if subtoc == 'api_contests_object' %}font-strong font-underline{% endif %}"
+                    <a href="{{ '/docs/api/contests/' | relative_url }}"
+                       class="{% if page.subtoc == 'api_contests_object' %}font-strong font-underline{% endif %}"
                         >Object</a>
                 </li>
                 <li class="margin-top-sm">
-                    <a href="{{ site.url }}/docs/api/contests/list/"
-                       class="{% if subtoc == 'api_contests_list' %}font-strong font-underline{% endif %}"
+                    <a href="{{ '/docs/api/contests/list/' | relative_url }}"
+                       class="{% if page.subtoc == 'api_contests_list' %}font-strong font-underline{% endif %}"
                         >List</a>
                 </li>
                 <li class="margin-top-sm">
-                    <a href="{{ site.url }}/docs/api/contests/get/"
-                       class="{% if subtoc == 'api_contests_get' %}font-strong font-underline{% endif %}"
+                    <a href="{{ '/docs/api/contests/list/' | relative_url }}"
+                       class="{% if page.subtoc == 'api_contests_get' %}font-strong font-underline{% endif %}"
                         >Get</a>
                 </li>
             </ul>
