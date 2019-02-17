@@ -1,0 +1,102 @@
+---
+layout: docs
+title: Docs - API
+nav: docs
+toc: api_endpoints
+---
+
+<ol class="breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
+    <li class="active">API</li>
+</ol>
+<h1>
+    API Endpoints
+</h1>
+<p>
+    Using our API is free and easy! All you need to do is start making HTTP
+    requests to any of the REST endpoints below (there's no authentication
+    or cost). If you want a guided tour of what endpoints there are and what
+    kind of data you can access, check out the
+    <a href="{{ '/docs/quickstart' | relative_url }}">Quickstart</a>.
+</p>
+<hr>
+<h2 id="elections" class="permalink-wrapper">
+    Elections
+    <code>/elections</code>
+    <a href="#elections" class="permalink"></a>
+</h2>
+<p>
+    <a href="{{ '/docs/api/elections' | relative_url }}">Elections</a> are groups
+    of contests to be voted on at the same time (e.g. "2020 General Election").
+    These can be anywhere from nation-wide elections to single-district special
+    elections and primaries.
+</p>
+<ul class="list-unstyled">
+    <li>
+        <a href="{{ '/docs/api/elections/list' | relative_url }}">
+            <span class="label label-success">GET</span>
+            <code>/elections</code></a> -
+        List elections (can be searched and filtered).
+    </li>
+    <li>
+        <a href="{{ '/docs/api/elections/get' | relative_url }}">
+            <span class="label label-success">GET</span>
+            <code>/elections/<em>{id}</em></code></a> -
+        Get a specific election.
+    </li>
+</ul>
+<hr>
+<h2 id="contests" class="permalink-wrapper">
+    Contests
+    <code>/contests</code>
+    <a href="#contests" class="permalink"></a>
+</h2>
+<p>
+    <a href="{{ '/docs/api/contests' | relative_url }}">Contests</a> are
+    individual races and ballot measures that will be on a ballot (e.g.
+    "Oakland Mayor", "Prop 12", etc.). We include whatever information will
+    be on the ballot, but don't include any analysis or news reports on the
+    contests. We encourage you to use our ballot API and data in your own
+    analysis and apps!
+</p>
+<ul class="list-unstyled">
+    <li>
+        <a href="{{ '/docs/api/contests/list' | relative_url }}">
+            <span class="label label-success">GET</span>
+            <code>/contests</code></a> -
+        List contests (can be searched and filtered).
+    </li>
+    <li>
+        <a href="{{ '/docs/api/contests/get' | relative_url }}">
+            <span class="label label-success">GET</span>
+            <code>/contests/<em>{id}</em></code></a> -
+        Get a specific contest.
+    </li>
+</ul>
+<hr>
+<h2 id="precincts" class="permalink-wrapper">
+    Precincts
+    <code>/precincts</code>
+    <a href="#precincts" class="permalink"></a>
+</h2>
+<p>
+    <a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a> contain
+    information for a particular geographical area. They are the lowest
+    common denominator for ballot contests in a particular election, so any
+    location with that precinct will have the same list of ballot contests.
+</p>
+<ul class="list-unstyled">
+    <li>
+        <a href="{{ '/docs/api/precincts/list' | relative_url }}">
+            <span class="label label-success">GET</span>
+            <code>/precincts</code></a> -
+        List precincts (can be searched and filtered).
+    </li>
+    <li>
+        <a href="{{ '/docs/api/precincts/get' | relative_url }}">
+            <span class="label label-success">GET</span>
+            <code>/precincts/<em>{id}</em></code></a> -
+        Get a specific precinct.
+    </li>
+</ul>
+

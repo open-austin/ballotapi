@@ -1,0 +1,123 @@
+---
+layout: docs
+title: Docs - Rate Limits
+nav: docs
+toc: rate_limits
+---
+
+<ol class="breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
+    <li class="active">Rate Limits</li>
+</ol>
+<h1>
+    Rate Limits
+</h1>
+<p>
+    By default, you don't need an access token to use Ballot API. Just start
+    making requests to <a href="{{ '/docs/api' | relative_url }}">endpoints</a>!
+    However, since these requests are unauthenticated we will rate limit
+    how fast you can make requests to prevent abuse.
+</p>
+<ul>
+    <li id="rate-limit" class="permalink-wrapper">
+        <strong>Current rate limit:</strong>
+        2 requests per second per IP address.
+        <a href="#rate-limit" class="permalink"></a>
+    </li>
+    <li id="queue-limit" class="permalink-wrapper">
+        <strong>Current queue limit:</strong>
+        20 requests per IP address.
+        <a href="#queue-limit" class="permalink"></a>
+    </li>
+</ul>
+<p>
+    We rate limit requests using the "leaky bucket" method. We only
+    respond to requests at the above rate (e.g. the leak in the bucket). If
+    you send more requests than the rate limit, your requests will queue up
+    (e.g. filling up the bucket). If you max out the queue limit (e.g.
+    overflow the bucket), we will begin rejecting your requests with a
+    <code>429 Too Many Requests</code> response.
+</p>
+<p>
+    If you see a
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429" target="_blank" rel="noopener noreferrer">
+        429 response code
+        <small class="glyphicon glyphicon-new-window"></small></a>, check the
+    <code>Retry-After</code> header for how many seconds to wait until trying
+    the request again.
+</p>
+
+<h3 id="client-apps" class="permalink-wrapper">
+    Making requests from client applications
+    <a href="#client-apps" class="permalink"></a>
+</h3>
+<p>
+    If you have an website or native app where you are making requests from
+    that client, our rate limits shouldn't affect your application much.
+    Since our rate limits are per-IP address, each of your users will likely
+    be able to use the API at the default rate limit.
+</p>
+<p>
+    A good practice for websites (e.g. javascript webapps), and native apps
+    is to only send one API request at a time and wait for the response
+    before sending another request.
+</p>
+
+<h3 id="central-server" class="permalink-wrapper">
+    Making requests from a central server
+    <a href="#central-server" class="permalink"></a>
+</h3>
+<p>
+    If you have a central server that is going to make a significant volume
+    of requests, you will likely run into our default rate limits pretty
+    quickly. There are several options to get around our default limits.
+</p>
+<p>
+    <strong>Option 1: Self-rate limit.</strong><br>
+    Queue up requests on your server and then dispatch them to our API until
+    you start seeing 429 responses. Then, wait the given Retry-After seconds
+    and start making requests again. This basically is making a leaky bucket
+    you can manage on your side.
+</p>
+<p>
+    <strong>Option 2: Run a local mirror.</strong><br>
+    Our dataset is public domain and our software is open source, so you are
+    welcome to <a href="#TODO">download a copy</a> and run the API on
+    your internal network.
+</p>
+<p>
+    <strong>Option 3: Donate hosting costs.</strong><br>
+    If you don't want to mirror the API yourself, you can donate to this
+    project and we'll dedicate some extra servers to accomodate your extra
+    requests.
+</p>
+
+<h3 id="large-networks" class="permalink-wrapper">
+    Making requests from large networks/public wifi
+    <a href="#large-networks" class="permalink"></a>
+</h3>
+<p>
+    If you are on a large shared or public network (e.g. a college campus or
+    conference center), everyone on your network will likely have the same
+    IP address and so everyone will be sharing the same rate limit. If
+    there's a lot of people using our API on your network, you might start
+    seeing 429 responses fairly often.
+</p>
+<p>
+    We don't want shared networks to disrupt user experience, so we do offer
+    whitelisting certain IP ranges for bigger rate limits. Simply open a
+    <a href="https://github.com/open-austin/ballotapi/pulls" target="_blank" rel="noopener noreferrer">
+        pull request
+        <small class="glyphicon glyphicon-new-window"></small></a>, and
+    we'll see what we can do.
+</p>
+
+<h3 id="scraping" class="permalink-wrapper">
+    Scraping the API
+    <a href="#scraping" class="permalink"></a>
+</h3>
+<p>
+    With the default rate limits, it would take quite a long time to scan
+    or scrape the entire API. But there's really no reason to! The entire
+    dataset is public domain and you can <a href="#TODO">download a copy</a>.
+</p>

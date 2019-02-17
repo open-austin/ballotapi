@@ -1,0 +1,796 @@
+---
+layout: docs
+title: Docs - Data Types
+nav: docs
+toc: data_types
+---
+
+<ol class="breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
+    <li class="active">Data Types</li>
+</ol>
+<h1>
+    Data Types
+</h1>
+<p>
+    We don't want there to be any surprises when you're using our API, so we
+    have defined the specific data formats you'll see across our API below.
+    In general, you will be linked back here from elsewhere, so feel free to
+    skip right to reading the full documentation for the
+    <a href="{{ '/docs/api' | relative_url }}">API Endpoints</a>.
+</p>
+
+<ul>
+    <li>
+        <a href="#response">Response</a>
+    </li>
+    <li>
+        <a href="#error-response">Error Response</a>
+    </li>
+    <li>
+        <a href="{{ '/docs/api/elections' | relative_url }}">Election</a>
+        <small class="text-muted">(on separate page)</small>
+    </li>
+    <li>
+        <a href="{{ '/docs/api/precincts' | relative_url }}">Precinct</a>
+        <small class="text-muted">(on separate page)</small>
+    </li>
+    <li>
+        <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a>
+        <small class="text-muted">(on separate page)</small>
+    </li>
+    <li>
+        <a href="#extra">ExtraObject</a>
+    </li>
+    <li>
+        <a href="#object-type">ObjectType</a>
+    </li>
+    <li>
+        <a href="#ocd-id">OCD-ID</a>
+    </li>
+    <li>
+        <a href="#string">String</a>
+    </li>
+    <li>
+        <a href="#url">URL</a>
+    </li>
+    <li>
+        <a href="#date">Date</a>
+    </li>
+    <li>
+        <a href="#datetime">DateTime</a>
+    </li>
+    <li>
+        <a href="#datetime-range">DateTimeRange</a>
+    </li>
+    <li>
+        <a href="#coordinates">Coordinates</a>
+    </li>
+    <li>
+        <a href="#geojson">GeoJSON</a>
+    </li>
+</ul>
+
+
+<!------------------------->
+<!-- Data Type: Response -->
+<!------------------------->
+<hr>
+<h2 id="response" class="permalink-wrapper">
+    Response object
+    <a href="#response" class="permalink"></a>
+</h2>
+<p>
+    Response objects contain a list of data results, as well as any extra
+    aggregated data and some meta-data about the request. In general, this
+    will be the response format for any list API endpoints (e.g.
+    <code>/elections</code>), where the data list are the API request results.
+    Also, if you request that some additional sub-queries be included with your
+    results (e.g. <code>include=contests</code>), those includes will be
+    contained within another Response object.
+</p>
+<h3 id="response-example" class="permalink-wrapper">
+    Response example
+    <a href="#response-example" class="permalink"></a>
+</h3>
+<pre>
+{
+    "type": "response",
+    "data": [...],
+    "next": null,
+    "extra": {},
+    "timestamp": "2018-01-01T00:00:00+00:00",
+    "url": "https://api.ballotapi.org/...",
+}
+</pre>
+<h3 id="response-attributes" class="permalink-wrapper">
+    Response attributes
+    <a href="#response-attributes" class="permalink"></a>
+</h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Format</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="response-attributes-type" class="permalink-wrapper">
+                    <code>type</code>
+                    <a href="#response-attributes-type" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#object-type">ObjectType</a>
+                </td>
+                <td>
+                    This object's data type. Will always be "response".
+                </td>
+                <td>
+                    <code>"response"</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="response-attributes-data" class="permalink-wrapper">
+                    <code>data</code>
+                    <a href="#response-attributes-data" class="permalink"></a>
+                </td>
+                <td>
+                    List(<a href="{{ '/docs/api/elections' | relative_url }}">Election</a>
+                        | <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a>
+                        | <a href="{{ '/docs/api/precincts' | relative_url }}">Precinct</a>)
+                </td>
+                <td>
+                    The actual response content for the API request. Will be
+                    a list of whatever particular endpoint object is being
+                    queried.
+                </td>
+                <td>
+                    <code>[{"type": "election", ...}, ...]</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="response-attributes-next" class="permalink-wrapper">
+                    <code>next</code>
+                    <a href="#response-attributes-next" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#url">URL</a> or <code>null</code>
+                </td>
+                <td>
+                    If there are more data objects in the results, this will
+                    be a url to the next page of results. If there are no
+                    more results, this will be <code>null</code>.
+                </td>
+                <td>
+                    <code>"https://api.ballotapi.org/..."</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="response-attributes-extra" class="permalink-wrapper">
+                    <code>extra</code>
+                    <a href="#response-attributes-extra" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#extra">ExtraObject</a>
+                </td>
+                <td>
+                    If an <code>extra</code> parameter was included in the
+                    api request, this object will contain the results of
+                    that extra parameter. If no extra parameter was given,
+                    this will be an empty object (i.e. <code>{}</code>).
+                </td>
+                <td>
+                    <code>{"merge_geos": {"type": "MultiPolygon", ...}}</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="response-attributes-timestamp" class="permalink-wrapper">
+                    <code>timestamp</code>
+                    <a href="#response-attributes-timestamp" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#datetime">DateTime</a>
+                </td>
+                <td>
+                    The datetime at which the results were generated. Since
+                    results are often cached, this timestamp won't necessarily
+                    be close to the current time, but we do invalidate
+                    caches when data changes, so you will always be receiving
+                    the latest available results.
+                </td>
+                <td>
+                    <code>"2018-01-23T04:55:12+00:00"</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="response-attributes-url" class="permalink-wrapper">
+                    <code>url</code>
+                    <a href="#response-attributes-url" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#url">URL</a>
+                </td>
+                <td>
+                    The API request that was performed to produce the results.
+                    If you included extra request parameters that we didn't
+                    recognize, they will be ignored, so this is helpful to
+                    compare against to see if you got the parameters right
+                    for your API request.
+                </td>
+                <td>
+                    <code>"https://api.ballotapi.org/..."</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="response-attributes-more" class="permalink-wrapper">
+                    <code>...</code>
+                    <a href="#response-attributes-more" class="permalink"></a>
+                </td>
+                <td>
+                </td>
+                <td>
+                    We may add additional attributes in the future, so be
+                    able to unknown attributes.
+                </td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!------------------------------->
+<!-- Data Type: Error Response -->
+<!------------------------------->
+<hr>
+<h2 id="error-response" class="permalink-wrapper">
+    Error Response object
+    <a href="#error-response" class="permalink"></a>
+</h2>
+<p>
+    These are responses that are returned when something you requested
+    raised an error. The most common case you will see these is when the
+    query parameters you set in your request are malformed and you get
+    back a 400 HTTP response code.
+</p>
+<h3 id="error-response-example" class="permalink-wrapper">
+    Error Response example
+    <a href="#error-response-example" class="permalink"></a>
+</h3>
+<pre>
+{
+    "error": "invalid_param",
+    "message": "You need to specify a timezone for each datetime in your 'dates' parameter.",
+    "docs": "https://ballotapi.org/docs/data-types#datetime-range"
+}
+</pre>
+<h3 id="error-response-attributes" class="permalink-wrapper">
+    Error Response attributes
+    <a href="#error-response-attributes" class="permalink"></a>
+</h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Format</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="error-response-attributes-error" class="permalink-wrapper">
+                    <code>error</code>
+                    <a href="#error-response-attributes-error" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#string">String</a>
+                </td>
+                <td>
+                    The error type raised. Usually something like
+                    <code>invalid_param</code>, but could be any string.
+                </td>
+                <td>
+                    <code>"missing_param"</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="error-response-attributes-message" class="permalink-wrapper">
+                    <code>message</code>
+                    <a href="#error-response-attributes-message" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#string">String</a>
+                </td>
+                <td>
+                    A human-readable error message describing what caused the error.
+                    We try to make our error messages clear so you know exactly what
+                    went wrong. Please feel free to reach out to us if you think an
+                    error message is confusing!
+                </td>
+                <td>
+                    <code>"Your 'coords' parameter doesn't look like coordinates (e.g. '12.2928,-84.7573')"</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="error-response-attributes-docs" class="permalink-wrapper">
+                    <code>docs</code>
+                    <a href="#error-response-attributes-docs" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#url">URL</a> or <code>null</code>
+                </td>
+                <td>
+                    A link to the documentation where you can find more information.
+                    We try to include links to docs for each error, but sometimes we
+                    haven't set that link yet, so this attribute may be <code>null</code>.
+                </td>
+                <td>
+                    <code>"https://ballotapi.org/docs/api/elections/list#include"</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!---------------------->
+<!-- Data Type: Extra -->
+<!---------------------->
+<hr>
+<h2 id="extra" class="permalink-wrapper">
+    Extra object
+    <a href="#extra" class="permalink"></a>
+</h2>
+<p>
+    The Extra object is an object in <a href="#response">Response</a> objects
+    that contain attributes requested via <code>extra</code>
+    parameters. The data in this object are usually aggregated from the
+    results. For example, if you specify <code>extra=merge_geos</code> in a
+    request, the Extra object will contain the <code>merge_geos</code>
+    attribute with the merged geography of the results in the Response
+    <a href="#response-attributes-data"><code>data</code></a> attribute.
+</p>
+<h3 id="extra-example" class="permalink-wrapper">
+    Extra object example
+    <a href="#extra-example" class="permalink"></a>
+</h3>
+<pre>
+{
+    "merge_geos", {
+        "type": "MultiPolygon",
+        ...
+    },
+    ...
+}
+</pre>
+<h3 id="extra-attributes" class="permalink-wrapper">
+    Extra object attributes
+    <a href="#extra-attributes" class="permalink"></a>
+</h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Format</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="extra-attributes-open" class="permalink-wrapper">
+                    <code>...</code>
+                    <a href="#extra-attributes-open" class="permalink"></a>
+                </td>
+                <td>
+                </td>
+                <td>
+                    Extra object attributes can be any value that is defined
+                    in the <code>extra</code> request parameters for the
+                    various <a href="{{ '/docs/api' | relative_url }}">API Endpoints</a>.
+                </td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--------------------------->
+<!-- Data Type: ObjectType -->
+<!--------------------------->
+<hr>
+<h2 id="object-type" class="permalink-wrapper">
+    ObjectType
+    <a href="#object-type" class="permalink"></a>
+</h2>
+<p>
+    For complex data objects returned by the API, there is a defined
+    object type value that lets you know what kind of object it is.
+</p>
+<h3 id="object-type-values" class="permalink-wrapper">
+    ObjectType values
+    <a href="#object-type-values" class="permalink"></a>
+</h3>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Value</th>
+                <th>Format</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="object-types-response" class="permalink-wrapper">
+                    <code>"response"</code>
+                    <a href="#object-types-response" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#string">String</a>
+                </td>
+                <td>
+                    Will be the object type for <a href="#response">Response</a> objects.
+                </td>
+            </tr>
+            <tr>
+                <td id="object-types-election" class="permalink-wrapper">
+                    <code>"election"</code>
+                    <a href="#object-types-election" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#string">String</a>
+                </td>
+                <td>
+                    Will be the object type for <a href="{{ '/docs/api/elections' | relative_url }}">Election</a> objects.
+                </td>
+            </tr>
+            <tr>
+                <td id="object-types-precinct" class="permalink-wrapper">
+                    <code>"precinct"</code>
+                    <a href="#object-types-precinct" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#string">String</a>
+                </td>
+                <td>
+                    Will be the object type for <a href="{{ '/docs/api/precincts' | relative_url }}">Precinct</a> objects.
+                </td>
+            </tr>
+            <tr>
+                <td id="object-types-contest" class="permalink-wrapper">
+                    <code>"contest"</code>
+                    <a href="#object-types-contest" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#string">String</a>
+                </td>
+                <td>
+                    Will be the object type for <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a> objects.
+                </td>
+            </tr>
+            <tr>
+                <td id="object-types-choice" class="permalink-wrapper">
+                    <code>"choice"</code>
+                    <a href="#object-types-choice" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#string">String</a>
+                </td>
+                <td>
+                    Will be the object type for <a href="{{ '/docs/api/contests' | relative_url }}#choice-object">Choice</a> objects
+                    (these are included in <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a> objects).
+                </td>
+            </tr>
+            <tr>
+                <td id="object-types-more" class="permalink-wrapper">
+                    <code>...</code>
+                    <a href="#object-types-more" class="permalink"></a>
+                </td>
+                <td>
+                </td>
+                <td>
+                    We may add additional object types in the future, so be
+                    able to unknown object type values.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!----------------------->
+<!-- Data Type: OCD-ID -->
+<!----------------------->
+<hr>
+<h2 id="ocd-id" class="permalink-wrapper">
+    OCD-ID
+    <a href="#ocd-id" class="permalink"></a>
+</h2>
+<p>
+    These are
+    <a href="https://en.wikipedia.org/wiki/UTF-8" target="_blank" rel="noopener noreferrer">
+        Open Civic Data Identifiers
+        <small class="glyphicon glyphicon-new-window"></small></a>
+    (OCD-ID), which is an open standard for giving unique identifiers
+    for civic information, such as localities, elected officials, or jurisdictions.
+    When available, we include the OCD-ID in our API so you can map our
+    data to other civic database that also use OCD-ID.
+</p>
+<h4 id="ocd-id-example" class="permalink-wrapper">
+    OCD-ID Example
+    <a href="#ocd-id-example" class="permalink"></a>
+</h4>
+<pre>
+"ocd-jurisdiction/country:us/state:ex/place:example/legislature"
+</pre>
+
+
+<!----------------------->
+<!-- Data Type: String -->
+<!----------------------->
+<hr>
+<h2 id="string" class="permalink-wrapper">
+    String
+    <a href="#string" class="permalink"></a>
+</h2>
+<p>
+    These are arbitrary strings of text. In API responses, they are encoded in
+    <a href="https://en.wikipedia.org/wiki/UTF-8" target="_blank" rel="noopener noreferrer">
+        UTF-8
+        <small class="glyphicon glyphicon-new-window"></small></a>.
+    In URL parameters, they are
+    <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank" rel="noopener noreferrer">
+        percent encoded
+        <small class="glyphicon glyphicon-new-window"></small></a>.
+</p>
+<h4 id="string-utf8-example" class="permalink-wrapper">
+    UTF-8 Example
+    <a href="#string-utf8-example" class="permalink"></a>
+</h4>
+<pre>
+"ὁ ἄνθρωπος φύσει πολιτικὸν ζῷον —Aristotle"
+</pre>
+    <h4 id="string-percent-example" class="permalink-wrapper">
+        Percent Encoded Example
+        <a href="#string-percent-example" class="permalink"></a>
+    </h4>
+<pre>
+"Man%20is%20by%20nature%20a%20political%20animal%20%E2%80%94Aristotle"
+</pre>
+
+
+<!-------------------->
+<!-- Data Type: URL -->
+<!-------------------->
+<hr>
+<h2 id="url" class="permalink-wrapper">
+    URL
+    <a href="#url" class="permalink"></a>
+</h2>
+<p>
+    This is a
+    <a href="https://en.wikipedia.org/wiki/URL" target="_blank" rel="noopener noreferrer">
+        URL
+        <small class="glyphicon glyphicon-new-window"></small></a>
+    that points to somewhere on the API. We do not link to external resources.
+</p>
+<h4 id="url-example" class="permalink-wrapper">
+    URL Example
+    <a href="#url-example" class="permalink"></a>
+</h4>
+<pre>
+"https://api.ballotapi.org/v1/elections?dates=now,future"
+</pre>
+
+
+<!--------------------->
+<!-- Data Type: Date -->
+<!--------------------->
+<hr>
+<h2 id="date" class="permalink-wrapper">
+    Date
+    <a href="#date" class="permalink"></a>
+</h2>
+<p>
+    This is a
+    <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener noreferrer">
+        ISO-8601
+        <small class="glyphicon glyphicon-new-window"></small></a>
+    date (e.g. <code>YYYY-MM-DD</code>). There is no timezone associated
+    with dates, so if timezone is important, use <a href="#datetime">DateTime</a>.
+</p>
+<h4 id="date-example" class="permalink-wrapper">
+    Date Example
+    <a href="#date-example" class="permalink"></a>
+</h4>
+<pre>
+"2018-01-23"
+</pre>
+
+
+<!------------------------->
+<!-- Data Type: DateTime -->
+<!------------------------->
+<hr>
+<h2 id="datetime" class="permalink-wrapper">
+    DateTime
+    <a href="#datetime" class="permalink"></a>
+</h2>
+<p>
+    This is a
+    <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener noreferrer">
+        ISO-8601
+        <small class="glyphicon glyphicon-new-window"></small></a>
+    combined date and time with timezone (e.g. <code>YYYY-MM-DDTHH:MM:SS+00:00</code>).
+    All API response datetimes have a timezone. If you provide a datetime in
+    a request parameter, be sure to specify the timezone offset (so we can
+    know how to compare it to other datetimes).
+</p>
+<h4 id="datetime-example" class="permalink-wrapper">
+    DateTime Example
+    <a href="#datetime-example" class="permalink"></a>
+</h4>
+<pre>
+"2018-01-23T22:55:12-08:00"
+</pre>
+
+
+<!------------------------------>
+<!-- Data Type: DateTimeRange -->
+<!------------------------------>
+<hr>
+<h2 id="datetime-range" class="permalink-wrapper">
+    DateTimeRange
+    <a href="#datetime-range" class="permalink"></a>
+</h2>
+<p>
+    This is a timespan between two <a href="#datetime">DateTimes</a> or special values, separated
+    by a comma (<code>,</code>). There are also special formats that allow you to easily build
+    dynamic ranges you can re-use without having to build new datetimes.
+</p>
+<p>
+    Formats accepted:
+</p>
+<ul>
+    <li>
+        <code>YYYY-MM-DDTHH:MM:SS+00:00</code> - ISO 8601 <a href="#datetime">DateTime</a>
+    </li>
+    <li>
+        <code>now</code> - the current time
+    </li>
+    <li>
+        <code>future</code> - anytime after the current time
+    </li>
+    <li>
+        <code>past</code> - anytime before the current time
+    </li>
+    <li>
+        <code>+{N}d</code> - a number of days (24 hours) after the current time (e.g. <code>+30d</code>)
+    </li>
+    <li>
+        <code>-{N}d</code> - a number of days (24 hours) before the current time (e.g. <code>-365d</code>)
+    </li>
+</ul>
+<h4 id="datetime-range-example" class="permalink-wrapper">
+    DateTimeRange Examples:
+    <a href="#datetime-range-example" class="permalink"></a>
+</h4>
+<pre>
+Valid:
+"2018-01-01T00:00:00-08:00,2019-01-01T00:00:00-08:00" (all of 2018 in PST Timezone)
+"now,future"                    (everything going forward)
+"past,now"                      (everything prior to now)
+"-365d,+30d"                    (everything in the past year and in the next 30 days)
+"2016-11-08T00:00:00-05:00,now" (everything since Nov 8, 2016 EST up to now)
+
+Invalid:
+"2018-01-01,2019-01-01"         (dates without timezones aren't allowed)
+"365d,now"                      (day values need to have a "+" or "-")
+"now,"                          (need two values in the range, if you need open ended, use "past" and "future")
+</pre>
+
+
+<!---------------------------->
+<!-- Data Type: Coordinates -->
+<!---------------------------->
+<hr>
+<h2 id="coordinates" class="permalink-wrapper">
+    Coordinates
+    <a href="#coordinates" class="permalink"></a>
+</h2>
+<p>
+    These are a single point or area of
+    <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system#Geographic_latitude_and_longitude" target="_blank" rel="noopener noreferrer">
+        geographic coordinates
+        <small class="glyphicon glyphicon-new-window"></small></a>.
+    Single coordinates are a comma separated latitude, longitude pair
+    (e.g. <code>"{lat},{lon}"</code>). Areas are semicolon separated
+    single coordinates (e.g. <code>"{lat},{lon};{lat},{lon};..."</code>),
+    where the area is the polygon created by the list of single coords (the
+    first and last coords are assumed to connect, so you don't have to copy
+    the first the coord at the end).
+</p>
+<h4 id="coordinates-example" class="permalink-wrapper">
+    Coordinates Example
+    <a href="#coordinates-example" class="permalink"></a>
+</h4>
+<pre>
+(Ferry Building, San Francisco, CA)
+"37.795508,-122.393478"
+
+(Treasure Island, CA)
+"37.832225,-122.373404;37.830429,-122.377653;37.826768,-122.379198;37.815751,-122.371687;37.818632,-122.364521;37.820565,-122.363705;37.819785,-122.360444;37.820124,-122.360444;37.820870,-122.363491;37.822565,-122.362890;37.831073,-122.368597"
+</pre>
+
+
+<!------------------------>
+<!-- Data Type: GeoJSON -->
+<!------------------------>
+<hr>
+<h2 id="geojson" class="permalink-wrapper">
+    GeoJSON
+    <a href="#geojson" class="permalink"></a>
+</h2>
+<p>
+    These are
+    <a href="https://en.wikipedia.org/wiki/GeoJSON" target="_blank" rel="noopener noreferrer">
+        GeoJSON
+        <small class="glyphicon glyphicon-new-window"></small></a>:
+    objects. You will see mostly Polygon and Multipolygon objects that
+    outline district or precinct boundaries.
+</p>
+<h4 id="coordinates-example" class="permalink-wrapper">
+    GeoJSON Example
+    <a href="#coordinates-example" class="permalink"></a>
+</h4>
+<p>
+    Treasure Island, CA:
+</p>
+<pre>
+{
+    "type": "Polygon",
+    "coordinates": [
+        [
+            [-122.37340450,37.83222583],
+            [-122.37765312,37.83042938],
+            [-122.37919807,37.82676854],
+            [-122.37168788,37.81575104],
+            [-122.36452102,37.81863270],
+            [-122.36370563,37.82056504],
+            [-122.36044406,37.81978533],
+            [-122.36044406,37.82012433],
+            [-122.36349105,37.82087014],
+            [-122.36289024,37.82256513],
+            [-122.36859798,37.83107340],
+            [-122.37340450,37.83222583]
+        ]
+    ]
+}
+</pre>
+
+<!---------------------------------------------->
+<!-- Footer (insert more examples above this) -->
+<!---------------------------------------------->
+<hr>
+<p>
+    Did we miss a data type? Please open an
+    <a href="https://github.com/open-austin/ballotapi/issues" target="_blank" rel="noopener noreferrer">
+        issue
+        <small class="glyphicon glyphicon-new-window"></small></a>
+    or
+    <a href="https://github.com/open-austin/ballotapi/pulls" target="_blank" rel="noopener noreferrer">
+        pull request
+        <small class="glyphicon glyphicon-new-window"></small></a>
+</p>
+

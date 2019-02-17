@@ -1,0 +1,393 @@
+---
+layout: docs
+title: Docs - API - Elections
+nav: docs
+toc: api_elections
+subtoc: api_elections_object
+---
+
+<ol class="breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
+    <li><a href="{{ '/docs/api' | relative_url }}">API</a></li>
+    <li class="active">Elections</li>
+</ol>
+<h1>
+    Elections
+</h1>
+<p>
+    <a href="#examples">See examples of Election objects.</a>
+</p>
+<p>
+    Election objects contain general details about a particular election,
+    such as election type, date, a short description, and any particular
+    overall requirements for the election. Additionally, you can optionally
+    <a href="{{ '/docs/api/elections/list' | relative_url }}#include">include</a> the
+    particular <a href="{{ '/docs/api/contests' | relative_url }}">Contests</a> or
+    <a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a> for an Election.
+</p>
+
+<h3 id="api-endpoints" class="permalink-wrapper">
+    API Endpoints
+    <a href="#api-endpoints" class="permalink"></a>
+</h3>
+<ul class="list-unstyled">
+    <li>
+        <a href="{{ '/docs/api/elections/list' | relative_url }}">
+            <span class="label label-success">GET</span>
+            <code>/elections</code></a> -
+        List elections (can be searched and filtered).
+    </li>
+    <li>
+        <a href="{{ '/docs/api/elections/get' | relative_url }}">
+            <span class="label label-success">GET</span>
+            <code>/elections/<em>{id}</em></code></a> -
+        Get a specific election.
+    </li>
+</ul>
+
+<hr>
+
+<h2 id="attributes" class="permalink-wrapper">
+    Attributes
+    <a href="#attributes" class="permalink"></a>
+</h2>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Format</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="type" class="permalink-wrapper">
+                    <code>type</code>
+                    <a href="#type" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#object-type">ObjectType</a>
+                </td>
+                <td>
+                    This object's data type. Will always be "election".
+                </td>
+                <td>
+                    <code>"election"</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="id" class="permalink-wrapper">
+                    <code>id</code>
+                    <a href="#id" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                </td>
+                <td>
+                    This is the unique id we assign to the Election. This is
+                    the id used in
+                    <a href="{{ '/docs/api/contests' | relative_url }}#election_id">Contest.election_id</a>
+                    and
+                    <a href="{{ '/docs/api/precincts' | relative_url }}#election_id">Precinct.election_id</a>.
+                    NOTE: This is our own unique identifier for the election,
+                    which is different from the <a href="#ocd_id">ocd_id</a>
+                    for the election.
+                </td>
+                <td>
+                    <code>"a74635..."</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="ocd_id" class="permalink-wrapper">
+                    <code>ocd_id</code>
+                    <a href="#ocd_id" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">OCD-ID</a>
+                    or <code>null</code>
+                </td>
+                <td>
+                    This is the
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">Open Civic Data Identifier</a>
+                    (OCD-ID) for this Election. If there is no OCD-ID, this
+                    value will be <code>null</code>.
+                </td>
+                <td>
+                    <code>"ocd-election/country:us/..."</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="election_type" class="permalink-wrapper">
+                    <code>election_type</code>
+                    <a href="#election_type" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="#election-types">ElectionType</a>
+                </td>
+                <td>
+                    This is the type of election (e.g. general, primary, etc.).
+                    See the full list of <a href="#election-types">Election Types</a>
+                    for possible values and what they mean.
+                </td>
+                <td>
+                    <code>"general"</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="election_name" class="permalink-wrapper">
+                    <code>election_name</code>
+                    <a href="#election_name" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                </td>
+                <td>
+                    This is a short display name for the election. We try to
+                    keep it under 10 words.
+                </td>
+                <td>
+                    <code>"2018 Midterm Election"</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="date" class="permalink-wrapper">
+                    <code>date</code>
+                    <a href="#date" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#date">Date</a>
+                </td>
+                <td>
+                    This is the official election date. NOTE: Since polling
+                    hours vary by location, we put those specific dates and
+                    times (with local timezones) in the
+                    <a href="{{ '/docs/api/precincts' | relative_url }}#voting_info">Precinct.voting_info</a>
+                    attribute.
+                </td>
+                <td>
+                    <code>"2018-05-15"</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="short_info" class="permalink-wrapper">
+                    <code>short_info</code>
+                    <a href="#short_info" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                </td>
+                <td>
+                    This is a short description for the election. We try to
+                    keep it to a single sentence under 25 words.
+                </td>
+                <td>
+                    <code>"This is a major national election that happens every two years to elect many federal, state, and local positions."</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="contests" class="permalink-wrapper">
+                    <code>contests</code>
+                    <a href="#contests" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#response">Response</a>
+                </td>
+                <td>
+                    <strong>
+                        (only if
+                        <a href="{{ '/docs/api/elections/list' | relative_url }}#include">included</a>)
+                    </strong>
+                    These are the
+                    <a href="{{ '/docs/api/contests' | relative_url }}">Contests</a>
+                    that are part of this Election.
+                    NOTE: This response list can be paginated, so be sure
+                    to know how to handle
+                    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next">paginated responses</a>.
+                </td>
+                <td>
+                    <code>{"type": "response", "data": [...], ...}</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="precincts" class="permalink-wrapper">
+                    <code>precincts</code>
+                    <a href="#precincts" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#response">Response</a>
+                </td>
+                <td>
+                    <strong>
+                        (only if
+                        <a href="{{ '/docs/api/elections/list' | relative_url }}#include">included</a>)
+                    </strong>
+                    These are the
+                    <a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a>
+                    that are part of this Election.
+                    NOTE: This response list can be paginated, so be sure
+                    to know how to handle
+                    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next">paginated responses</a>.
+                </td>
+                <td>
+                    <code>{"type": "response", "data": [...], ...}</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="more" class="permalink-wrapper">
+                    <code>...</code>
+                    <a href="#more" class="permalink"></a>
+                </td>
+                <td></td>
+                <td>
+                    We may add more Election attributes in the future, so be able to
+                    handle unknown attributes.
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<hr>
+
+<h2 id="examples" class="permalink-wrapper">
+    Examples
+    <a href="#examples" class="permalink"></a>
+</h2>
+<h5 id="example-general-election" class="permalink-wrapper">
+    A general election:
+    <a href="#example-general-election" class="permalink"></a>
+</h5>
+<pre>
+{
+    "type": "election",
+    "id": "123-4",
+    "election_type": "general",
+    "election_name": "Midterm Election",
+    "date": "2018-11-05",
+    "short_info": "This is a major national election that happens every two years to elect many federal, state, and local positions."
+}
+</pre>
+<h5 id="example-special-election" class="permalink-wrapper">
+    A primary election:
+    <a href="#example-special-election" class="permalink"></a>
+</h5>
+<pre>
+{
+    "type": "election",
+    "id": "3983-b823",
+    "election_type": "primary",
+    "election_name": "California Primary Election",
+    "date": "2018-06-05",
+    "short_info": "This is a major primary election for political parties in California."
+}
+</pre>
+<h5 id="example-special-election" class="permalink-wrapper">
+    A special election:
+    <a href="#example-special-election" class="permalink"></a>
+</h5>
+<pre>
+{
+    "type": "election",
+    "id": "339-83az",
+    "election_type": "special",
+    "election_name": "Arizona 8th U.S. Congressional District Special Election",
+    "date": "2018-04-24",
+    "short_info": "This is a special election to fill the vacant Arizona 8th U.S. Congressional District seat."
+}
+</pre>
+
+<hr>
+
+<h2 id="election-types" class="permalink-wrapper">
+    Election Types
+    <a href="#election-types" class="permalink"></a>
+</h2>
+<p>
+    These are our general categories of election types.
+</p>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Election Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="election-type-general" class="permalink-wrapper">
+                    <code>general</code>
+                    <a href="#election-type-general" class="permalink"></a>
+                </td>
+                <td>
+                    A regularly-scheduled general election with many contests
+                    covering multiple states.
+                </td>
+            </tr>
+            <tr>
+                <td id="election-type-state" class="permalink-wrapper">
+                    <code>state</code>
+                    <a href="#election-type-state" class="permalink"></a>
+                </td>
+                <td>
+                    A regularly-scheduled state election covering all or the
+                    majority of a single state.
+                </td>
+            </tr>
+            <tr>
+                <td id="election-type-local" class="permalink-wrapper">
+                    <code>local</code>
+                    <a href="#election-type-local" class="permalink"></a>
+                </td>
+                <td>
+                    A regularly-scheduled local election convering all or the
+                    majority of a local municipality or region.
+                </td>
+            </tr>
+            <tr>
+                <td id="election-type-primary" class="permalink-wrapper">
+                    <code>primary</code>
+                    <a href="#election-type-primary" class="permalink"></a>
+                </td>
+                <td>
+                    A regularly-scheduled election for political parties
+                    (can be for one or more political party).
+                </td>
+            </tr>
+            <tr>
+                <td id="election-type-special" class="permalink-wrapper">
+                    <code>special</code>
+                    <a href="#election-type-special" class="permalink"></a>
+                </td>
+                <td>
+                    A non-regularly-scheduled (e.g. one-time) election for
+                    specific contests.
+                </td>
+            </tr>
+            <tr>
+                <td id="election-type-special-primary" class="permalink-wrapper">
+                    <code>special_primary</code>
+                    <a href="#election-type-special-primary" class="permalink"></a>
+                </td>
+                <td>
+                    A non-regularly-scheduled (e.g. one-time) primary election
+                    for political parties (can be for one or more political party).
+                </td>
+            </tr>
+            <tr>
+                <td id="election-type-more" class="permalink-wrapper">
+                    <code>...</code>
+                    <a href="#election-type-more" class="permalink"></a>
+                </td>
+                <td>
+                    We may add more election types in the future, so be able to
+                    handle unknown attributes.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
