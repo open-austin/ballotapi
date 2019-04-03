@@ -69,6 +69,17 @@ GET /v1/contests
             https://api.ballotapi.com/v1/contests?q=soda%20tax&dates=now,future
             <small class="glyphicon glyphicon-new-window"></small></a>
     </dd>
+    <dt id="example-contest-maps" class="permalink-wrapper">
+        Get the district maps for two contests:
+        <a href="#example-contest-maps" class="permalink"></a>
+    </dt>
+    <dd class="margin-bottom-sm">
+        <a href="https://api.ballotapi.org/v1/contests?ids=958hd92,9584h3b1&extra=contest_geos"
+           target="_blank"
+           rel="noopener noreferrer">
+            https://api.ballotapi.org/v1/contests?ids=958hd92,9584h3b1&extra=contest_geos
+            <small class="glyphicon glyphicon-new-window"></small></a>
+    </dd>
 </dl>
 
 <h2 id="query-parameters" class="permalink-wrapper">
@@ -101,6 +112,43 @@ GET /v1/contests
                 </td>
                 <td>
                     <code>ids=19573n3,i89i03jf</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="ocd_ids" class="permalink-wrapper">
+                    <code>ocd_ids</code>
+                    <a href="#ocd_ids" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">OCD-ID</a>
+                </td>
+                <td>
+                    Filter by a comma separated list of specific Open Civic Data Identifers.
+                    This searches both the
+                    <a href="{{ '/docs/api/contests' | relative_url }}#ocd_id">Contest OCD-ID</a>
+                    and
+                    <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-ocd-id">Choice OCD-ID</a>,
+                    so you can filter for both contest identifiers and person identifiers.
+                </td>
+                <td>
+                    <code>ocd_ids=ocd-division%2F...</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="coords" class="permalink-wrapper">
+                    <code>coords</code>
+                    <a href="#coords" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#coordinates">Coordinates</a>
+                </td>
+                <td>
+                    Filter by a specific location point or area.
+                    For areas, if any part of a Contest's precincts overlap
+                    the query area, that Contest is included.
+                </td>
+                <td>
+                    <code>coords=37.7942635,-122.3955861</code>
                 </td>
             </tr>
             <tr>
@@ -191,7 +239,7 @@ GET /v1/contests
                     <a href="#q" class="permalink"></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="#search-strings">Search</a>
                 </td>
                 <td>
                     Search contests and choices for a specific string. See
@@ -200,6 +248,56 @@ GET /v1/contests
                 </td>
                 <td>
                     <code>q=title%3A%22Barbra%20Lee%22</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="include" class="permalink-wrapper">
+                    <code>include</code>
+                    <a href="#include" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                </td>
+                <td>
+                    A comma separated list of resources to include
+                    for each Contest object response. Options are:
+                    <a href="{{ '/docs/api/contests' | relative_url }}#election"><code>"election"</code></a>
+                    and
+                    <a href="{{ '/docs/api/contests' | relative_url }}#precincts"><code>"precincts"</code></a>.
+                </td>
+                <td>
+                    <code>include=precincts</code><br>
+                </td>
+            </tr>
+            <tr>
+                <td id="extra" class="permalink-wrapper">
+                    <code>extra</code>
+                    <a href="#extra" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                </td>
+                <td>
+                    <p>
+                        A comma separated list of extra values you want
+                        to include in the
+                        <a href="{{ '/docs/data-types' | relative_url }}#extra"><code>extra</code> results parameter</a>.
+                    </p>
+                    <div>
+                        Options are:
+                        <ul>
+                            <li id="contest-geos-option" class="permalink-wrapper">
+                                <a href="#contest-geos"><code>contest_geos</code></a>
+                                - <a href="#contest-geos">Merged geometry</a>
+                                of all precincts for each Contest in the results.
+                                This is useful for generating district maps.
+                                <a href="#contest-geos-option" class="permalink"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    <code>extra=contest_geos</code><br>
                 </td>
             </tr>
         </tbody>
@@ -254,6 +352,64 @@ GET /v1/contests
     </li>
 </ul>
 
+<h2 id="contest-geos" class="permalink-wrapper">
+    Contest Geometries
+    <a href="#contest-geos" class="permalink"></a>
+</h2>
+<p>
+    If you include the
+    <a href="#contest-geos-option"><code>extra=contest_geos</code></a>
+    query parameter in your request, we will merge all of
+    the areas of the precincts for each contest in the results
+    and return those merged geometries as a key-value object of Contest
+    <a href="{{ '/docs/api/contests' | relative_url }}#id"><code>id</code></a>
+    to <a href="{{ '/docs/data-types' | relative_url }}#geojson">GeoJSON</a>
+    object in the
+    <a href="{{ '/docs/data-types' | relative_url }}#extra"><code>extra</code></a>
+    results parameter. This is useful for generating district maps for
+    races and ballot measures.
+</p>
+<p id="contest-geos-example" class="permalink-wrapper">
+    <strong>Example contest geometries in response:</strong>
+    <a href="#contest-geos-example" class="permalink"></a>
+</p>
+<pre>
+{
+    "type": "response",
+    "data": [
+        {"type": "contest", "id": "c239842", ...},
+        {"type": "contest", "id": "494y185", ...},
+        ...
+    ],
+    "next": "...",
+    "extra": {
+        "contest_geos": {
+            "c239842": {"type": "MultiPolygon", ...},
+            "494y185": {"type": "MultiPolygon", ...},
+            ...
+        },
+    },
+    "timestamp": "...",
+    "url": "..."
+}
+</pre>
+<p id="contest-geos-pagination" class="permalink-wrapper">
+    <strong>NOTE:</strong> We merge all the precincts of only
+    the Contests in the current page of results. So, if the
+    response is
+    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next">paginated</a>,
+    you will need to go to each page to get all the contest
+    merged precinct geometries.
+    <a href="#contest-geos-pagination" class="permalink"></a>
+</p>
+<p id="contest-geos-include" class="permalink-wrapper">
+    <strong>NOTE:</strong> If you want to also get the ids
+    of the Precincts for each of the contest geometries, use
+    the <a href="#include"><code>include=precincts</code></a>
+    parameter to include the Precints for each contest in
+    the results.
+    <a href="#contest-geos-include" class="permalink"></a>
+</p>
 
 <h2 id="response" class="permalink-wrapper">
     Response

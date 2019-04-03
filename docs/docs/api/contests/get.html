@@ -49,9 +49,39 @@ GET /v1/contests/<em>{id}</em>
     Query Parameters
     <a href="#query-parameters" class="permalink"></a>
 </h2>
-<p>
-    There are currently no query parameters for this endpoint.
-</p>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Format</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="include" class="permalink-wrapper">
+                    <code>include</code>
+                    <a href="#include" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                </td>
+                <td>
+                    A comma separated list of resources to include
+                    for each Contest object response. Options are:
+                    <a href="{{ '/docs/api/contests' | relative_url }}#election"><code>"election"</code></a>
+                    and
+                    <a href="{{ '/docs/api/contests' | relative_url }}#precincts"><code>"precincts"</code></a>.
+                </td>
+                <td>
+                    <code>include=precincts</code><br>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <h2 id="response" class="permalink-wrapper">
     Response

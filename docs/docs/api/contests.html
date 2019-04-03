@@ -45,7 +45,7 @@ subtoc: api_contests_object
         race every election, because these positions can change from
         election-to-election (e.g. the city's boundary changes).
         To see the same position's contests over multiple elections,
-        filter by <a href="#ocd_id"><code>ocd_id</code></a>, which
+        filter by <a href="{{ '/docs/api/contests/list' | relative_url }}#ocd_ids"><code>ocd_id</code></a>, which
         corresponds to the position, not the contest.
         <a href="#new-ids" class="permalink"></a>
     </li>
@@ -154,6 +154,29 @@ subtoc: api_contests_object
                 </td>
                 <td>
                     <code>"95hrhf3..."</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="election" class="permalink-wrapper">
+                    <code>election</code>
+                    <a href="#election" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/api/elections' | relative_url }}">Election</a>
+                </td>
+                <td>
+                    <strong>
+                        (only if
+                        <a href="{{ '/docs/api/contests/list' | relative_url }}#include">included</a>)
+                    </strong>
+                    This is the full object for the Contest's
+                    <a href="{{ '/docs/api/elections' | relative_url }}">Election</a>.
+                    This is useful if you are querying contests across
+                    multiple elections and want to get information each
+                    election.
+                </td>
+                <td>
+                    <code>{"type": "election", ...}</code>
                 </td>
             </tr>
             <tr>
@@ -277,6 +300,30 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
+                <td id="precincts" class="permalink-wrapper">
+                    <code>precincts</code>
+                    <a href="#precincts" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#response">Response</a>
+                </td>
+                <td>
+                    <strong>
+                        (only if
+                        <a href="{{ '/docs/api/contests/list' | relative_url }}#include">included</a>)
+                    </strong>
+                    These are the
+                    <a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a>
+                    that are part of this Contest.
+                    NOTE: This response list can be paginated, so be sure
+                    to know how to handle
+                    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next">paginated responses</a>.
+                </td>
+                <td>
+                    <code>{"type": "response", "data": [...], ...}</code>
+                </td>
+            </tr>
+            <tr>
                 <td id="more" class="permalink-wrapper">
                     <code>...</code>
                     <a href="#more" class="permalink"></a>
@@ -317,12 +364,14 @@ subtoc: api_contests_object
     "choices": [
         {
             "type": "choice",
+            "ocd_id": null,
             "title": "Approve",
             "party": null,
             "info": null,
         },
         {
             "type": "choice",
+            "ocd_id": null,
             "title": "Disapprove",
             "party": null,
             "info": null,
@@ -349,18 +398,21 @@ subtoc: api_contests_object
     "choices": [
         {
             "type": "candidate",
+            "ocd_id": "ocd-person/11111-22222-33333-4444-5555555",
             "title": "Jane Smith",
             "party": null,
             "info": "Teacher/Mother",
         },
         {
             "type": "candidate",
+            "ocd_id": "ocd-person/11111-22222-33333-4444-5555556",
             "title": "John Smith",
             "party": null,
             "info": "Current Mayor",
         },
         {
             "type": "candidate",
+            "ocd_id": null,
             "title": "Montgomery Burns",
             "party": null,
             "info": "Tycoon/Chairman",
@@ -651,6 +703,26 @@ subtoc: api_contests_object
                 </td>
                 <td>
                     <code>"candidate"</code>
+                </td>
+            </tr>
+            <tr>
+                <td id="choice-object-ocd-id" class="permalink-wrapper">
+                    <code>ocd_id</code>
+                    <a href="#choice-object-ocd-id" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">OCD-ID</a>
+                    or <code>null</code>
+                </td>
+                <td>
+                    This is the
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">Open Civic Data Identifier</a>
+                    (OCD-ID) for the specific person or ballot measure.
+                    If there is no OCD-ID (often the case for ballot
+                    measures), this value will be <code>null</code>.
+                </td>
+                <td>
+                    <code>"ocd-person/..."</code>
                 </td>
             </tr>
             <tr>
