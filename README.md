@@ -15,7 +15,7 @@ This project is maintained by [Open Austin](https://www.open-austin.org),
 a [Code for America](https://www.codeforamerica.org/) brigade.
 
 ## Current Status
-* [x] Docs - what the API should do **(Initial docs done! https://ballotapi.org/docs)**
+* [x] Docs - what the API should do ([see project](https://github.com/open-austin/ballotapi/projects/3)) **(Initial docs done! https://ballotapi.org/docs)**
 * [ ] Prototype - server that follows the docs ([see project](https://github.com/open-austin/ballotapi/projects/1))
 * [ ] Website - website design/logo/content ([see project](https://github.com/open-austin/ballotapi/projects/2))
 * [ ] Demo - example app that uses the API
