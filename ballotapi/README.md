@@ -45,11 +45,11 @@ sudo -u postgres psql -c "CREATE DATABASE ballotapi;"
 sudo -u postgres psql -c "CREATE USER ballotapiuser WITH ENCRYPTED PASSWORD 'yourpasswordhere';"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE ballotapi TO ballotapiuser;"
 
-# Set database connection uri
+# Set database connection uri environmental variable
 export BALLOTAPI_DB_URI="postgresql://ballotapiuser:yourpasswordhere@localhost:5432/ballotapi"
 
 # Load a dataset into your database
-ballotapi load "https://dumps.ballotapi.org/latest/ballotapi_testdata_default.tar.gz"
+ballotapi load "https://dumps.ballotapi.org/latest/ballotapi_testdata_default.sql"
 ```
 
 ## Usage
