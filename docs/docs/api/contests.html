@@ -364,6 +364,7 @@ subtoc: api_contests_object
     "choices": [
         {
             "type": "choice",
+            "id": "39u31",
             "ocd_id": null,
             "title": "Approve",
             "party": null,
@@ -371,6 +372,7 @@ subtoc: api_contests_object
         },
         {
             "type": "choice",
+            "id": "303-21",
             "ocd_id": null,
             "title": "Disapprove",
             "party": null,
@@ -398,6 +400,7 @@ subtoc: api_contests_object
     "choices": [
         {
             "type": "candidate",
+            "id": "49547yd",
             "ocd_id": "ocd-person/11111-22222-33333-4444-5555555",
             "title": "Jane Smith",
             "party": null,
@@ -405,6 +408,7 @@ subtoc: api_contests_object
         },
         {
             "type": "candidate",
+            "id": "60id3j9",
             "ocd_id": "ocd-person/11111-22222-33333-4444-5555556",
             "title": "John Smith",
             "party": null,
@@ -412,6 +416,7 @@ subtoc: api_contests_object
         },
         {
             "type": "candidate",
+            "id": "0i3okee",
             "ocd_id": null,
             "title": "Montgomery Burns",
             "party": null,
@@ -706,6 +711,24 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
+                <td id="choice-object-id" class="permalink-wrapper">
+                    <code>id</code>
+                    <a href="#choice-object-id" class="permalink"></a>
+                </td>
+                <td>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                </td>
+                <td>
+                    This is the unique id we assign to the Choice. NOTE: Even though
+                    the same person may run for multiple races, we will assign them
+                    a unique id for every contest. If you want to track the same person
+                    across multiple contests, use <a href="#choice-object-ocd-id">ocd_id</a>.
+                </td>
+                <td>
+                    <code>"ch_94yehd..."</code>
+                </td>
+            </tr>
+            <tr>
                 <td id="choice-object-ocd-id" class="permalink-wrapper">
                     <code>ocd_id</code>
                     <a href="#choice-object-ocd-id" class="permalink"></a>
@@ -873,6 +896,8 @@ subtoc: api_contests_object
 <pre>
 {
     "type": "choice",
+    "id": "ch0-349u3",
+    "ocd_id": null,
     "title": "Approve",
     "party": null,
     "info": null,
@@ -885,6 +910,8 @@ subtoc: api_contests_object
 <pre>
 {
     "type": "candidate",
+    "id": "ch10450-3",
+    "ocd_id": "ocd-person/11111-22222-33333-4444-5555556",
     "title": "Barbra Lee",
     "party": "Democrat",
     "info": "Politician/activist",
@@ -897,6 +924,8 @@ subtoc: api_contests_object
 <pre>
 {
     "type": "write_in",
+    "id": "5i5441",
+    "ocd_id": null,
     "title": "Write-in Candidate",
     "party": null,
     "info": null,
