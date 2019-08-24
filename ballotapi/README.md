@@ -26,6 +26,14 @@ git clone https://github.com/open-austin/ballotapi.git
 pip install -e ballotapi/
 ```
 
+Alternatively, you can run from source directly:
+```bash
+git clone https://github.com/open-austin/ballotapi.git
+cd ballotapi
+pip install -r requirements.txt
+python3 -m ballotapi.cli --help
+```
+
 ### 2. Setup your database
 
 The BallotAPI server requires a database of ballot data be loaded.
@@ -49,7 +57,7 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE ballotapi TO ballotap
 export BALLOTAPI_DB_URI="postgresql://ballotapiuser:yourpasswordhere@localhost:5432/ballotapi"
 
 # Load a dataset into your database
-ballotapi load "https://dumps.ballotapi.org/latest/ballotapi_testdata_default.sql"
+ballotapi load "testdata-default"
 ```
 
 ## Usage
@@ -65,20 +73,18 @@ To customize the settings of your server, check out which options
 there are using `ballotapi runserver --help`.
 
 ```bash
-usage: ballotapi runserver [-h] [--db-uri DB] [--cache-uri CACHE]
-                           [--host H] [--port N] [--uwsgi-ini FILE]
-                           [--daemon] [--pidfile FILE]
+usage: ballotapi runserver [-h] [--db-uri URI] [--cache-uri URI] [--host HOST]
+                           [--port PORT] [--uwsgi-ini FILE] [--daemon]
 
 optional arguments:
-  -h, --help         show this help message and exit
-  --db-uri DB        connection information to the postgres database (default
-                     is to look at the BALLOTAPI_DB_URI environmental variable)
-  --cache-uri CACHE  connection information to a cache server (default is None)
-  --host H           listen for this host (default localhost)
-  --port N           listen on this port (default 1776)
-  --uwsgi-ini FILE   settings for uwsgi (default is a simple http server)
-  --daemon           detach server to run in background as a daemon (optional)
-  --pidfile FILE     set a pidfile for the daemon server (default is None)
+  -h, --help        show this help message and exit
+  --db-uri URI      connection uri to the postgres database (default is
+                    BALLOTAPI_DB_URI env variable)
+  --cache-uri URI   connection uri to a cache server (default is None)
+  --host HOST       listen for this host (default localhost)
+  --port PORT       listen on this port (default 1776)
+  --uwsgi-ini FILE  settings for uwsgi (default is a simple http server)
+  --daemon          detach server to run in background as a daemon (optional)
 ```
 
 To stop the server when you're running it directly from the command line,
@@ -102,20 +108,18 @@ killall -s SIGKILL ballotapi
 ## Commands
 
 ```
-usage: ballotapi [-h] COMMAND [args]
+usage: ballotapi [-h] <subcommand> ...
 
-BallotAPI is an API for election and ballot information.
+Documentation: https://ballotapi.org/docs
 
-The server itself uses various subcommands:
-  runserver   Run the web server
-  load        Load in a database from a source location
-  export      Dump the database into a backup file
+optional arguments:
+  -h, --help    show this help message and exit
 
-You can see options for a command by putting --help after each command.
-(e.g. ballotapi runserver --help)
-
-Documentation for the API is online:
-https://ballotapi.org/docs
+available subcommands:
+  <subcommand>
+    runserver   Run the web server
+    load        Load in a database from a source location
+    export      Dump the database as a sql file
 ```
 
 ## Contributing
@@ -124,5 +128,5 @@ Help us out! If you find a bug or want to improving this codebase,
 feel free to submit an
 [issue](https://github.com/open-austin/ballotapi/issues)
 or [pull request](https://github.com/open-austin/ballotapi/pulls).
-Check out our (CONTRIBUTING)[../CONTRIBUTING.md] docs for more details.
+Check out our [CONTRIBUTING](../CONTRIBUTING.md) docs for more details.
 

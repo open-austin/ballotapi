@@ -42,6 +42,7 @@ are released under their respective open source licenses.
 * Psycopg2 - [LGPL](https://github.com/psycopg/psycopg2/blob/master/LICENSE)
 * PostgreSQL - [PostgreSQL Licence](https://www.postgresql.org/about/licence/)
 * PostGIS -  [GPLv2](https://postgis.net/docs/manual-dev/PostGIS_FAQ.html#license_faq)
+* Redis - [BSD](https://redis.io/topics/license)
 
 ## Contributions
 We love all types of contributions!
