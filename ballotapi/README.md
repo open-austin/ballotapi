@@ -76,6 +76,11 @@ there are using `ballotapi runserver --help`.
 usage: ballotapi runserver [-h] [--db-uri URI] [--cache-uri URI] [--host HOST]
                            [--port PORT] [--uwsgi-ini FILE] [--daemon]
 
+This command is what you use to actually run a ballotapi server. By default,
+it spins up a uwsgi server in a child process and listens on port 1776. The
+data served is from the specified database, so if you haven't loaded any data
+yet, you should run the `ballotapi load` command first.
+
 optional arguments:
   -h, --help        show this help message and exit
   --db-uri URI      connection uri to the postgres database (default is
@@ -85,6 +90,15 @@ optional arguments:
   --port PORT       listen on this port (default 1776)
   --uwsgi-ini FILE  settings for uwsgi (default is a simple http server)
   --daemon          detach server to run in background as a daemon (optional)
+
+==Documentation==
+https://ballotapi.org/docs
+
+==Examples==
+BALLOTAPI_DB_URI="postgresql://user:pass@localhost:5432/ballotapi"
+ballotapi runserver
+ballotapi runserver --daemon
+ballotapi runserver --daemon --uwsgi-ini uwsgi.ini
 ```
 
 To stop the server when you're running it directly from the command line,
@@ -108,18 +122,29 @@ killall -s SIGKILL ballotapi
 ## Commands
 
 ```
-usage: ballotapi [-h] <subcommand> ...
+usage: ballotapi [-h] [-V] <subcommand> ...
 
-Documentation: https://ballotapi.org/docs
+This is a simple http server for serving up U.S. election ballot information
+via REST API.
 
 optional arguments:
-  -h, --help    show this help message and exit
+  -h, --help     show this help message and exit
+  -V, --version  show program's version number and exit
 
 available subcommands:
   <subcommand>
-    runserver   Run the web server
-    load        Load in a database from a source location
-    export      Dump the database as a sql file
+    runserver    Run the web server
+    load         Load in a database from a source location
+    export       Dump the database as a sql file
+
+==Documentation==
+https://ballotapi.org/docs
+
+==Examples==
+BALLOTAPI_DB_URI="postgresql://user:pass@localhost:5432/ballotapi"
+ballotapi load testdata-default
+ballotapi runserver
+ballotapi export > backup.sql
 ```
 
 ## Contributing
