@@ -72,7 +72,7 @@ ballotapi runserver
 To customize the settings of your server, check out which options
 there are using `ballotapi runserver --help`.
 
-```bash
+```
 usage: ballotapi runserver [-h] [--db-uri URI] [--cache-uri URI] [--host HOST]
                            [--port PORT] [--uwsgi-ini FILE] [--daemon]
 
