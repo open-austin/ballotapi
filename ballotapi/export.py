@@ -8,11 +8,7 @@ import sys
 def ballotapi_export(**kwargs):
     print("Export!!!!")
 
-def _main(argv):
-    from cli import export_parser
-    arg_dict = vars(export_parser.parse_args(argv))
-    ballotapi_export(**arg_dict)
-
 if __name__ == "__main__": # pragma: no cover
-    _main(sys.argv[1:])
+    from cli import export_parser
+    ballotapi_export(**vars(export_parser.parse_args(sys.argv[1:])))
 

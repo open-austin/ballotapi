@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 BallotAPI - https://ballotapi.org - This code is released to the public domain.
 
@@ -11,7 +12,7 @@ load.py, export.py).
 import sys, argparse, textwrap
 
 from . import __version__
-from .runserver import ballotapi_runserver
+from .runserver import ballotapi_runserver, DEFAULT_HOST, DEFAULT_PORT
 from .load import ballotapi_load
 from .export import ballotapi_export
 
@@ -70,10 +71,10 @@ runserver_parser.add_argument("--db-uri", metavar="URI", default=None,
     help="connection uri to the postgres database (default is BALLOTAPI_DB_URI env variable)")
 runserver_parser.add_argument("--cache-uri", metavar="URI", default=None,
     help="connection uri to a cache server (default is None)")
-runserver_parser.add_argument("--host", metavar="HOST", default="localhost",
-    help="listen for this host (default localhost)")
-runserver_parser.add_argument("--port", metavar="PORT", default="1776",
-    help="listen on this port (default 1776)")
+runserver_parser.add_argument("--host", metavar="HOST", default=None,
+    help="listen for this host (default {})".format(DEFAULT_HOST))
+runserver_parser.add_argument("--port", metavar="PORT", default=None,
+    help="listen on this port (default {})".format(DEFAULT_PORT))
 runserver_parser.add_argument("--uwsgi-ini", metavar="FILE", default=None,
     help="settings for uwsgi (default is a simple http server)")
 runserver_parser.add_argument("--daemon", action="store_true", default=False,
