@@ -53,6 +53,20 @@
                 font-weight: 400;
                 content: "\e144"; /* permalink glyphicon */
             }
+            /* helper classes for table-responsive on mobile */
+            @media (max-width:767px) {
+                .table-responsive.normal-break > .table > tbody > tr > td,
+                .table-responsive.normal-break > .table > tbody > tr > th,
+                .table-responsive.normal-break > .table > tfoot > tr > td,
+                .table-responsive.normal-break > .table > tfoot > tr > th,
+                .table-responsive.normal-break > .table > thead > tr > td,
+                .table-responsive.normal-break > .table > thead > tr > th {
+                    white-space: normal; /* override default behavior of forcing no-wrap */
+                }
+                .th-250 {
+                    min-width: 250px; /* helper for minimum width on description columns */
+                }
+            }
             /* enable emphasizing when jumping to id */
             :target{
                 animation: punch 2s ease-out;

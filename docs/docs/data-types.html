@@ -107,13 +107,13 @@ toc: data_types
     Response attributes
     <a href="#response-attributes" class="permalink"></a>
 </h3>
-<div class="table-responsive">
+<div class="table-responsive normal-break">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Attribute</th>
                 <th>Format</th>
-                <th>Description</th>
+                <th class="th-250">Description</th>
                 <th>Example</th>
             </tr>
         </thead>
@@ -273,13 +273,13 @@ toc: data_types
     Error Response attributes
     <a href="#error-response-attributes" class="permalink"></a>
 </h3>
-<div class="table-responsive">
+<div class="table-responsive normal-break">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Attribute</th>
                 <th>Format</th>
-                <th>Description</th>
+                <th class="th-250">Description</th>
                 <th>Example</th>
             </tr>
         </thead>
@@ -374,13 +374,13 @@ toc: data_types
     Extra object attributes
     <a href="#extra-attributes" class="permalink"></a>
 </h3>
-<div class="table-responsive">
+<div class="table-responsive normal-break">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Attribute</th>
                 <th>Format</th>
-                <th>Description</th>
+                <th class="th-250">Description</th>
                 <th>Example</th>
             </tr>
         </thead>
@@ -421,13 +421,13 @@ toc: data_types
     ObjectType values
     <a href="#object-type-values" class="permalink"></a>
 </h3>
-<div class="table-responsive">
+<div class="table-responsive normal-break">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Value</th>
                 <th>Format</th>
-                <th>Description</th>
+                <th class="th-250">Description</th>
             </tr>
         </thead>
         <tbody>
@@ -732,6 +732,73 @@ Invalid:
 (Treasure Island, CA)
 "37.832225,-122.373404;37.830429,-122.377653;37.826768,-122.379198;37.815751,-122.371687;37.818632,-122.364521;37.820565,-122.363705;37.819785,-122.360444;37.820124,-122.360444;37.820870,-122.363491;37.822565,-122.362890;37.831073,-122.368597"
 </pre>
+
+<h3 id="geocoding" class="permalink-wrapper">
+    Converting addresses to coordinates
+    <a href="#geocoding" class="permalink"></a>
+</h3>
+<p>
+    If you don't have coordinates, but instead have addresses, you will need to
+    use a <a href="https://en.wikipedia.org/wiki/Geocoding" target="_blank" rel="noopener noreferrer">
+        geocoding <small class="glyphicon glyphicon-new-window"></small></a>
+    service to convert the addresses into coordinates. Geocoding
+    is not built into BallotAPI by default because it is quite complex, and we
+    don't want to have to spend all of our time maintaining a geocoding service
+    when our focus is ballot data. Also, there are already many services that do
+    geocoding quite well, so we don't feel the need to re-invent the wheel or try
+    to figure out how to include a geocoding service as part of a public-domain
+    project.
+</p>
+<p>
+    Here are some free geocoding resources:
+</p>
+<ul>
+    <li>
+        <a href="https://wiki.openstreetmap.org/wiki/Nominatim" target="_blank" rel="noopener noreferrer">
+            Nominatim
+            <small class="glyphicon glyphicon-new-window"></small></a>
+    </li>
+    <li>
+        <a href="https://wiki.openstreetmap.org/wiki/Search_engines" target="_blank" rel="noopener noreferrer">
+            OSM geocoding wiki
+            <small class="glyphicon glyphicon-new-window"></small></a>
+    </li>
+    <li>
+        <a href="https://geocoding.geo.census.gov/" target="_blank" rel="noopener noreferrer">
+            U.S. Census geocoder
+            <small class="glyphicon glyphicon-new-window"></small></a>
+    </li>
+</ul>
+<p>
+    Here are some paid geocoding services:
+</p>
+<ul>
+    <li>
+        <a href="https://www.mapbox.com/" target="_blank" rel="noopener noreferrer">
+            Mapbox API
+            <small class="glyphicon glyphicon-new-window"></small></a>
+    </li>
+    <li>
+        <a href="https://developers.google.com/maps/documentation/geocoding/start" target="_blank" rel="noopener noreferrer">
+            Google Maps API
+            <small class="glyphicon glyphicon-new-window"></small></a>
+    </li>
+    <li>
+        <a href="https://developer.mapquest.com/documentation/geocoding-api/" target="_blank" rel="noopener noreferrer">
+            MapQuest API
+            <small class="glyphicon glyphicon-new-window"></small></a>
+    </li>
+    <li>
+        <a href="https://docs.microsoft.com/en-us/bingmaps/rest-services/locations/" target="_blank" rel="noopener noreferrer">
+            Bing Maps API
+            <small class="glyphicon glyphicon-new-window"></small></a>
+    </li>
+    <li>
+        <a href="https://developer.here.com/c/geocoding" target="_blank" rel="noopener noreferrer">
+            Here API
+            <small class="glyphicon glyphicon-new-window"></small></a>
+    </li>
+</ul>
 
 
 <!------------------------>

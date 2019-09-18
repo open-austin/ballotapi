@@ -103,6 +103,15 @@ curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates
     added the <code>include=contests</code> parameter, in each election object, there's a Result
     with the <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a> for that election.
 </p>
+<p>
+    <strong>NOTE:</strong> We only offer location lookup via coordinates, so if you have an address,
+    you will need to convert that address into lat/long coordinates
+    (a process called
+    <a href="https://en.wikipedia.org/wiki/Geocoding" target="_blank" rel="noopener noreferrer">
+        geocoding <small class="glyphicon glyphicon-new-window"></small></a>).
+    See our <a href="{{ '/docs/data-types' | relative_url }}#geocoding">geocoding notes</a>
+    for more information.
+</p>
 
 <!-- Step 2 -->
 <h3 id="step-2" class="permalink-wrapper">
