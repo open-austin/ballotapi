@@ -5,3 +5,11 @@
 build/*
 dist/*
 _site/*
+.sass-cache
+.jekyll-metadata
+node_modules
+assets/js
+assets/uswds
+_sass/uswds
+.bundle
+.DS_Store
