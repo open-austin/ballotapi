@@ -7,204 +7,87 @@ _layouts/page.html layout template, or you can add "sidenav: true" in the front-
   <nav>
     <ul class="usa-sidenav">
       <li class="usa-sidenav__item">
-        <a href="">Parent link</a>
+        <a href="/about/" class="{% if page.url contains 'about' %}usa-current{% endif %}">About</a>
       </li>
       <li class="usa-sidenav__item">
-        <a href="" class="usa-current">Current page</a>
-        <ul class="usa-sidenav__sublist">
-          <li class="usa-sidenav__item">
-            <a href="">Child link</a>
-          </li>
-          <li class="usa-sidenav__item">
-            <a href="" class="usa-current">Child link</a>
-            <ul class="usa-sidenav__sublist">
-              <li class="usa-sidenav__item">
-                <a href="">Grandchild link</a>
-              </li>
-              <li class="usa-sidenav__item">
-                <a href="">Grandchild link</a>
-              </li>
-              <li class="usa-sidenav__item">
-                <a href="" class="usa-current">Grandchild link</a>
-              </li>
-              <li class="usa-sidenav__item">
-                <a href="">Grandchild link</a>
-              </li>
-            </ul>
-          </li>
-          <li class="usa-sidenav__item">
-            <a href="">Child link</a>
-          </li>
-          <li class="usa-sidenav__item">
-            <a href="">Child link</a>
-          </li>
-          <li class="usa-sidenav__item">
-            <a href="">Child link</a>
-          </li>
-        </ul>
-      </li>
-      <li class="usa-sidenav__item">
-        <a href="">Parent link</a>
+              <a href="/docs/overview" class="{% if page.url contains 'docs' %}usa-current{% endif %}">Documentation</a>
+              <ul class="usa-sidenav__sublist">
+                <li class="usa-sidenav__item">
+                  <a href="/docs/overview" class="{% if page.url contains 'docs/overview' %}usa-current{% endif %}">Overview</a>
+                </li>
+                <li class="usa-sidenav__item">
+                  <a href="/docs/quickstart" class="{% if page.url contains 'quickstart' %}usa-current{% endif %}">Quickstart</a>
+                </li>
+                <li class="usa-sidenav__item">
+                  <a href="/docs/examples" class="{% if page.url contains 'examples' %}usa-current{% endif %}">Examples</a>
+                </li>
+                <li class="usa-sidenav__item">
+                  <a href="/docs/data-types" class="{% if page.url contains 'data-types' %}usa-current{% endif %}">Data Types</a>
+                </li>
+                <li class="usa-sidenav__item">
+                  <a href="/docs/testing" class="{% if page.url contains 'testing' %}usa-current{% endif %}">Testing</a>
+                </li>
+                <li class="usa-sidenav__item">
+                  <a href="/docs/rate-limits" class="{% if page.url contains 'rate-limits' %}usa-current{% endif %}">Rate Limits</a>
+                </li>
+                <li class="usa-sidenav__item">
+                  <a href="/docs/api/overview" class="{% if page.url contains 'api/' %}usa-current{% endif %}">API Endpoints</a>
+                  <ul class="usa-sidenav__sublist">
+                    <li class="usa-sidenav__item">
+                      <a href="/docs/api/elections/object" class="{% if page.url contains 'api/elections/' %}usa-current{% endif %}">Elections</a>
+                      {% if page.url contains 'api/elections/' %}
+                        <ul class="usa-sidenav__sublist">
+                          <li class="usa-sidenav__item">
+                            <a href="/docs/api/elections/object/" class="{% if page.url contains 'api/elections/object' %}usa-current{% endif %}">Object Overview</a>
+                          </li>
+                          <li class="usa-sidenav__item">
+                            <a href="/docs/api/elections/list/" class="{% if page.url contains 'api/elections/list' %}usa-current{% endif %}">List</a>
+                          </li>
+                          <li class="usa-sidenav__item">
+                            <a href="/docs/api/elections/get/" class="{% if page.url contains 'api/elections/get' %}usa-current{% endif %}">Get</a>
+                          </li>
+                        </ul>
+                      {% endif %} 
+                    </li>
+                    <li class="usa-sidenav__item">
+                      <a href="/docs/api/precincts/object/" class="{% if page.url contains 'api/precincts/' %}usa-current{% endif %}">Precincts</a>
+                      {% if page.url contains 'api/precincts/' %}
+                        <ul class="usa-sidenav__sublist">
+                          <li class="usa-sidenav__item">
+                            <a href="/docs/api/precincts/object/" class="{% if page.url contains 'api/precincts/object' %}usa-current{% endif %}">Object Overview</a>
+                          </li>
+                          <li class="usa-sidenav__item">
+                            <a href="/docs/api/precincts/list/" class="{% if page.url contains 'api/precincts/list' %}usa-current{% endif %}">List</a>
+                          </li>
+                          <li class="usa-sidenav__item">
+                            <a href="/docs/api/precincts/get/" class="{% if page.url contains 'api/precincts/get' %}usa-current{% endif %}">Get</a>
+                          </li>
+                        </ul>
+                      {% endif %}
+                    </li>
+                    <li class="usa-sidenav__item">
+                      <a href="/docs/api/contests/object/" class="{% if page.url contains 'api/contests/' %}usa-current{% endif %}">Contests</a>
+                      {% if page.url contains 'api/contests/' %}
+                        <ul class="usa-sidenav__sublist">
+                          <li class="usa-sidenav__item">
+                            <a href="/docs/api/contests/object/" class="{% if page.url contains 'api/contests/object' %}usa-current{% endif %}">Object Overview</a>
+                          </li>
+                          <li class="usa-sidenav__item">
+                            <a href="/docs/api/contests/list/" class="{% if page.url contains 'api/contests/list' %}usa-current{% endif %}">List</a>
+                          </li>
+                          <li class="usa-sidenav__item">
+                            <a href="/docs/api/contests/get/" class="{% if page.url contains 'api/contests/get' %}usa-current{% endif %}">Get</a>
+                          </li>
+                        </ul>
+                      {% endif %}
+                    </li>
+                  </ul>
+                </li>
+              </ul>
       </li>
     </ul>
   </nav>
-  <aside style="opacity: .4">
-    TODO
-    <p class="visible-sm-inline-block visible-xs-inline-block">
-        <button type="button"
-                class="btn btn-default"
-                data-toggle="collapse"
-                data-target="#table-of-contents"
-                aria-expanded="false"
-                aria-controls="table-of-contents">
-            Table of Contents
-            <span class="caret"/>
-        </button>
-    </p>
-
-
-    <div id="table-of-contents" class="collapse-visible-md collapse">
-
-        <h3>
-            Documentation
-        </h3>
-        <ul class="list-unstyled margin-bottom">
-            <li>
-                <a href="{{ '/docs' | relative_url }}"
-                   class="font-16px {% if page.toc == 'overview' %}font-strong font-underline{% endif %}"
-                    >Overview</a>
-            </li>
-            <li class="margin-top-sm">
-                <a href="{{ '/docs/quickstart' | relative_url }}"
-                   class="font-16px {% if page.toc == 'quickstart' %}font-strong font-underline{% endif %}"
-                    >Quickstart</a>
-            </li>
-            <li class="margin-top-sm">
-                <a href="{{ '/docs/examples' | relative_url }}"
-                   class="font-16px {% if page.toc == 'examples' %}font-strong font-underline{% endif %}"
-                    >Examples</a>
-            </li>
-            <li class="margin-top-sm">
-                <a href="{{ '/docs/data-types' | relative_url }}"
-                   class="font-16px {% if page.toc == 'data_types' %}font-strong font-underline{% endif %}"
-                    >Data Types</a>
-            </li>
-            <li class="margin-top-sm">
-                <a href="{{ '/docs/testing' | relative_url }}"
-                   class="font-16px {% if page.toc == 'testing' %}font-strong font-underline{% endif %}"
-                    >Testing</a>
-            </li>
-            <li class="margin-top-sm">
-                <a href="{{ '/docs/rate-limits' | relative_url }}"
-                   class="font-16px {% if page.toc == 'rate_limits' %}font-strong font-underline{% endif %}"
-                    >Rate Limits</a>
-            </li>
-            <li class="margin-top-sm">
-                <a href="{{ '/docs/api' | relative_url }}"
-                   class="font-16px {% if page.toc == 'api_endpoints' %}font-strong font-underline{% endif %}"
-                    >API Docs</a>
-            </li>
-        </ul>
-
-        <h3 class="margin-top-lg">
-            API Endpoints
-        </h3>
-        <ul class="list-unstyled">
-
-            <li class="margin-top-sm">
-                <a href="{{ '/docs/api/elections' | relative_url }}"
-                   ><code>/elections</code></a>
-                <a class=""
-                   role="button"
-                   data-toggle="collapse"
-                   href="#toc-elections"
-                   aria-expanded="false"
-                   aria-controls="toc-elections"
-                   ><span class="caret"></span></a>
-                <ul id="toc-elections"
-                    class="collapse {% if page.toc == 'api_elections' %}in{% endif %} list-unstyled indent">
-                    <li class="margin-top-sm">
-                        <a href="{{ '/docs/api/elections' | relative_url }}"
-                           class="{% if page.subtoc == 'api_elections_object' %}font-strong font-underline{% endif %}"
-                            >Object</a>
-                    </li>
-                    <li class="margin-top-sm">
-                        <a href="{{ '/docs/api/elections/list' | relative_url }}"
-                           class="{% if page.subtoc == 'api_elections_list' %}font-strong font-underline{% endif %}"
-                            >List</a>
-                    </li>
-                    <li class="margin-top-sm">
-                        <a href="{{ '/docs/api/elections/get' | relative_url }}"
-                           class="{% if page.subtoc == 'api_elections_get' %}font-strong font-underline{% endif %}"
-                            >Get</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="margin-top-sm">
-                <a href="{{ '/docs/api/precincts' | relative_url }}"
-                   ><code>/precincts</code></a>
-                <a class=""
-                   role="button"
-                   data-toggle="collapse"
-                   href="#toc-precincts"
-                   aria-expanded="false"
-                   aria-controls="toc-precincts"
-                   ><span class="caret"></span></a>
-                <ul id="toc-precincts"
-                    class="collapse {% if page.toc == 'api_precincts' %}in{% endif %} list-unstyled indent">
-                    <li class="margin-top-sm">
-                        <a href="{{ '/docs/api/precincts' | relative_url }}"
-                           class="{% if page.subtoc == 'api_precincts_object' %}font-strong font-underline{% endif %}"
-                            >Object</a>
-                    </li>
-                    <li class="margin-top-sm">
-                        <a href="{{ '/docs/api/precincts/list' | relative_url }}"
-                           class="{% if page.subtoc == 'api_precincts_list' %}font-strong font-underline{% endif %}"
-                            >List</a>
-                    </li>
-                    <li class="margin-top-sm">
-                        <a href="{{ '/docs/api/precincts/get' | relative_url }}"
-                           class="{% if page.subtoc == 'api_precincts_get' %}font-strong font-underline{% endif %}"
-                            >Get</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="margin-top-sm">
-                <a href="{{ '/docs/api/contests' | relative_url }}"
-                   ><code>/contests</code></a>
-                <a class=""
-                   role="button"
-                   data-toggle="collapse"
-                   href="#toc-contests"
-                   aria-expanded="false"
-                   aria-controls="toc-contests"
-                   ><span class="caret"></span></a>
-                <ul id="toc-contests"
-                    class="collapse {% if page.toc == 'api_contests' %}in{% endif %} list-unstyled indent">
-                    <li class="margin-top-sm">
-                        <a href="{{ '/docs/api/contests' | relative_url }}"
-                           class="{% if page.subtoc == 'api_contests_object' %}font-strong font-underline{% endif %}"
-                            >Object</a>
-                    </li>
-                    <li class="margin-top-sm">
-                        <a href="{{ '/docs/api/contests/list' | relative_url }}"
-                           class="{% if page.subtoc == 'api_contests_list' %}font-strong font-underline{% endif %}"
-                            >List</a>
-                    </li>
-                    <li class="margin-top-sm">
-                        <a href="{{ '/docs/api/contests/get' | relative_url }}"
-                           class="{% if page.subtoc == 'api_contests_get' %}font-strong font-underline{% endif %}"
-                            >Get</a>
-                    </li>
-                </ul>
-            </li>
-
-        </ul>
-
-    </div>
-
-  </aside>
+  
 </aside>
+
 

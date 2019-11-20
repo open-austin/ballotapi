@@ -1,7 +1,8 @@
 ---
 layout: page
-title: Docs - API
+title: Docs - API Endpoints
 sidenav: true
+permalink: /docs/api/overview/
 ---
 
 <ol class="breadcrumb">
@@ -25,7 +26,7 @@ sidenav: true
     <a href="#elections" class="permalink"></a>
 </h2>
 <p>
-    <a href="{{ '/docs/api/elections' | relative_url }}">Elections</a> are groups
+    <a href="{{ '/docs/api/elections/object' | relative_url }}">Elections</a> are groups
     of contests to be voted on at the same time (e.g. "2020 General Election").
     These can be anywhere from nation-wide elections to single-district special
     elections and primaries.
@@ -51,7 +52,7 @@ sidenav: true
     <a href="#contests" class="permalink"></a>
 </h2>
 <p>
-    <a href="{{ '/docs/api/contests' | relative_url }}">Contests</a> are
+    <a href="{{ '/docs/api/contests/object' | relative_url }}">Contests</a> are
     individual races and ballot measures that will be on a ballot (e.g.
     "Oakland Mayor", "Prop 12", etc.). We include whatever information will
     be on the ballot, but don't include any analysis or news reports on the
@@ -79,7 +80,7 @@ sidenav: true
     <a href="#precincts" class="permalink"></a>
 </h2>
 <p>
-    <a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a> contain
+    <a href="{{ '/docs/api/precincts/object' | relative_url }}">Precincts</a> contain
     information for a particular geographical area. They are the lowest
     common denominator for ballot contests in a particular election, so any
     location with that precinct will have the same list of ballot contests.
