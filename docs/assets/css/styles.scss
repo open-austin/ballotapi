@@ -56,3 +56,10 @@ code, kbd, pre, samp {
 .usa-footer .logo-links {
     display: none;
 }
+
+.usa-alert--warning {
+    background-position-y: center;
+    margin-bottom: 2rem;
+    margin-top: -2rem;
+    padding-left: 5rem;
+}
