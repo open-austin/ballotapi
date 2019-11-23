@@ -2,6 +2,8 @@
 *~
 *.pyc
 *.egg-info
+*.coverage
+*.coverage.*
 build/*
 dist/*
 _site/*
