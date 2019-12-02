@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 BallotAPI - https://ballotapi.org - This code is released to the public domain.
 
@@ -17,11 +16,11 @@ from .load import ballotapi_load
 from .export import ballotapi_export
 
 class ParagraphFormatter(argparse.HelpFormatter):
-    """ Allows for paragraphs in descriptions using the ¶ character. """
+    """ Allows for paragraphs in descriptions using the \\n character. """
     def _fill_text(self, text, width, indent):
         return "".join([
             "{}\n".format(textwrap.fill(p, width, initial_indent=indent, subsequent_indent=indent)) \
-            for p in self._whitespace_matcher.sub(' ', text).strip().split('¶')
+            for p in self._whitespace_matcher.sub(' ', text).strip().split('\\n')
         ])
 
 cli_parser = argparse.ArgumentParser(
@@ -32,13 +31,13 @@ cli_parser = argparse.ArgumentParser(
         "information via REST API."
     ),
     epilog=(
-        "==Documentation==¶"
-        "https://ballotapi.org/docs¶¶"
-        "==Examples==¶"
-        "BALLOTAPI_DB_URI=\"postgresql://user:pass@localhost:5432/ballotapi\"¶"
-        "ballotapi load testdata-default¶"
-        "ballotapi runserver¶"
-        "ballotapi export > backup.sql"
+        "==Documentation==\\n"
+        "https://ballotapi.org/docs\\n\\n"
+        "==Examples==\\n"
+        "BALLOTAPI_DB_URI=\"postgresql://user:pass@localhost:5432/ballotapi\"\\n"
+        "ballotapi load testdata-default\\n"
+        "ballotapi runserver\\n"
+        "ballotapi export > backup.sql\\n"
     ))
 cli_parser.add_argument("-V", "--version", action="version",
     version=__version__)
@@ -58,13 +57,13 @@ runserver_parser = cli_subparsers.add_parser(
         "command first."
     ),
     epilog=(
-        "==Documentation==¶"
-        "https://ballotapi.org/docs¶¶"
-        "==Examples==¶"
-        "BALLOTAPI_DB_URI=\"postgresql://user:pass@localhost:5432/ballotapi\"¶"
-        "ballotapi runserver¶"
-        "ballotapi runserver --daemon¶"
-        "ballotapi runserver --daemon --uwsgi-ini uwsgi.ini¶"
+        "==Documentation==\\n"
+        "https://ballotapi.org/docs\\n\\n"
+        "==Examples==\\n"
+        "BALLOTAPI_DB_URI=\"postgresql://user:pass@localhost:5432/ballotapi\"\\n"
+        "ballotapi runserver\\n"
+        "ballotapi runserver --daemon\\n"
+        "ballotapi runserver --daemon --uwsgi-ini uwsgi.ini\\n"
     ))
 runserver_parser.set_defaults(func="runserver")
 runserver_parser.add_argument("--db-uri", metavar="URI", default=None,
@@ -95,14 +94,14 @@ load_parser = cli_subparsers.add_parser(
         "or a branch/tag name on the ballotapi-data project (e.g. \"testdata-default\")."
     ),
     epilog=(
-        "==Documentation==¶"
-        "https://ballotapi.org/docs¶¶"
-        "==Examples==¶"
-        "BALLOTAPI_DB_URI=\"postgresql://user:pass@localhost:5432/ballotapi\"¶"
-        "ballotapi load testdata-default¶"
-        "ballotapi load /path/to/backup.sql¶"
-        "ballotapi load https://dumps.ballotapi.org/latest/testdata-default.sql¶"
-        "ballotapi load git://github.com/myuser/myfork/tree/master¶"
+        "==Documentation==\\n"
+        "https://ballotapi.org/docs\\n\\n"
+        "==Examples==\\n"
+        "BALLOTAPI_DB_URI=\"postgresql://user:pass@localhost:5432/ballotapi\"\\n"
+        "ballotapi load testdata-default\\n"
+        "ballotapi load /path/to/backup.sql\\n"
+        "ballotapi load https://dumps.ballotapi.org/latest/testdata-default.sql\\n"
+        "ballotapi load git://github.com/myuser/myfork/tree/master\\n"
     ))
 load_parser.set_defaults(func="load")
 load_parser.add_argument("--db-uri", metavar="URI", default=None,
@@ -120,11 +119,11 @@ export_parser = cli_subparsers.add_parser(
         "want to redirect stdout to a .sql file (e.g. `ballotapi export > backup.sql`)."
     ),
     epilog=(
-        "==Documentation==¶"
-        "https://ballotapi.org/docs¶¶"
-        "==Examples==¶"
-        "BALLOTAPI_DB_URI=\"postgresql://user:pass@localhost:5432/ballotapi\"¶"
-        "ballotapi export > backup.sql"
+        "==Documentation==\\n"
+        "https://ballotapi.org/docs\\n\\n"
+        "==Examples==\\n"
+        "BALLOTAPI_DB_URI=\"postgresql://user:pass@localhost:5432/ballotapi\"\\n"
+        "ballotapi export > backup.sql\\n"
     ))
 export_parser.set_defaults(func="export")
 export_parser.add_argument("--db-uri", metavar="URI", default=None,
@@ -132,12 +131,12 @@ export_parser.add_argument("--db-uri", metavar="URI", default=None,
 
 def main(argv=None):
     arg_dict = vars(cli_parser.parse_args(argv))
-    func = arg_dict.pop("func")
+    func = arg_dict.pop("func", None)
     {
         "runserver": ballotapi_runserver,
         "load": ballotapi_load,
         "export": ballotapi_export,
-    }[func](**arg_dict)
+    }.get(func, cli_parser.print_help)(**arg_dict)
 
 if __name__ == "__main__": # pragma: no cover
     main(sys.argv[1:])

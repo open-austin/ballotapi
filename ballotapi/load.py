@@ -13,6 +13,6 @@ def ballotapi_load(**kwargs):
     print("Load!!!!")
 
 if __name__ == "__main__": # pragma: no cover
-    from cli import load_parser
+    from .cli import load_parser
     ballotapi_load(**vars(load_parser.parse_args(sys.argv[1:])))
 

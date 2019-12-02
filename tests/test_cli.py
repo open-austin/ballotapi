@@ -1,36 +1,17 @@
-import io
-import sys
 import unittest
 
+from .mixins import BallotAPITestMixin
 import ballotapi.cli
 
-class CommandlineTestCase(unittest.TestCase):
+class CommandlineTestCase(BallotAPITestMixin, unittest.TestCase):
 
     def setUp(self):
         """ Patch stdout and stderr to capture output """
-        self.old_stdout = sys.stdout
-        self.old_stderr = sys.stderr
-        sys.stdout = io.StringIO()
-        sys.stderr = io.StringIO()
+        self._capture_output()
 
     def tearDown(self):
         """ Revert stdout and stderr patches """
-        sys.stdout = self.old_stdout
-        sys.stderr = self.old_stderr
-
-    def _flush_stdout(self):
-        """ Flush current buffer of stdout """
-        sys.stdout.seek(0)
-        out = sys.stdout.read()
-        sys.stdout = io.StringIO()
-        return out
-
-    def _flush_stderr(self):
-        """ Flush current buffer of stderr """
-        sys.stderr.seek(0)
-        err = sys.stderr.read()
-        sys.stderr = io.StringIO()
-        return err
+        self._revert_capture_output()
 
     def test_cli_help(self):
         """ Successfully print the command-line interface help text """
@@ -59,4 +40,8 @@ class CommandlineTestCase(unittest.TestCase):
         self.assertEqual(sys_exit.exception.code, 0)
         self.assertIn("usage: ballotapi export [-h]", self._flush_stdout())
 
+    def test_cli_export(self):
+        """ Running export from the command line works """
+        ballotapi.cli.main(["export"])
+        self.assertIn("Export!!!!", self._flush_stdout()) # this will fail once load actually works
 

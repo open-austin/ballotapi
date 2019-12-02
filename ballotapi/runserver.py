@@ -4,7 +4,7 @@ BallotAPI - https://ballotapi.org - This code is released to the public domain.
 This file is what sets up and runs the actual BallotAPI http server. The actual
 server response functions are in the /api folder.
 """
-import os, re, sys, json, subprocess, tempfile
+import os, re, sys, time, json, subprocess, tempfile
 
 from . import __version__
 from .utils.db import DB_URI_REGEX, DatabaseConfigurationError
@@ -43,7 +43,7 @@ def application(request, start_response):
         "error": "404 Not Found",
         "error_description": "This is not a valid url on the API.",
         "error_uri": "https://ballotapi.org/docs/api",
-    }, indent=4)]
+    }, indent=4).encode("utf8")]
 
 # uwsgi server
 def _uwsgi_server(host=None, port=None, db_uri=None, cache_uri=None,
@@ -80,7 +80,7 @@ def _uwsgi_server(host=None, port=None, db_uri=None, cache_uri=None,
 
 # main entry point
 def ballotapi_runserver(db_uri=None, cache_uri=None, uwsgi_ini=None, func=None,
-                        host=None, port=None, daemon=False):
+                        host=None, port=None, daemon=False, stop_fn=None):
     """
     This is the main http server controller. It spins up a uwsgi subprocess
     and listens for signals from the system to control the server.
@@ -111,7 +111,13 @@ def ballotapi_runserver(db_uri=None, cache_uri=None, uwsgi_ini=None, func=None,
         uwsgi_ini=uwsgi_ini,
     )
     try:
-        uwsgi_process.wait()
+        # check the uwsgi to see if still running ever 0.1 sec
+        while uwsgi_process.poll() is None:
+            time.sleep(0.1)
+            # check to see if received a signal to stop
+            # (used during tests)
+            if stop_fn is not None and stop_fn():
+                raise KeyboardInterrupt
     except KeyboardInterrupt:
         print("Stopping...")
         uwsgi_process.terminate()
@@ -120,6 +126,6 @@ def ballotapi_runserver(db_uri=None, cache_uri=None, uwsgi_ini=None, func=None,
         return
 
 if __name__ == "__main__": # pragma: no cover
-    from cli import runserver_parser
+    from .cli import runserver_parser
     ballotapi_runserver(**vars(runserver_parser.parse_args(sys.argv[1:])))
 
