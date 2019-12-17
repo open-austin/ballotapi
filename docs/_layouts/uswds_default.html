@@ -52,6 +52,12 @@
                 10%{ background-color: #ffe038; }
                 100%{ background-color: #ffffff; }
             }
+            /* Header logo */
+            .usa-logo img {
+                height: 100%;
+                max-height: 30px;
+                width: auto;
+            }
         </style>
     </head>
     <body>
@@ -85,7 +91,7 @@
                 <div class="usa-logo">
                     <em class="usa-logo__text">
                         <a href="{{ '/' | relative_url }}" title="Go to the homepage" aria-label="Home">
-                            BallotAPI
+                            <img src="{{ '/assets/ballotAPI-logo.svg' | relative_url }}" alt="BallotAPI logo" />
                         </a>
                     </em>
                 </div>
