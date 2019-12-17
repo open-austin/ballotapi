@@ -37,6 +37,8 @@ are released under their respective open source licenses.
 * Bootstrap - [MIT](https://github.com/twbs/bootstrap#copyright-and-license)
 * Bootstrap.native - [MIT](https://github.com/thednp/bootstrap.native#license)
 * Leaflet - [BSD-2-Clause](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
+* USWDS - [Public Domain](https://github.com/uswds/uswds/blob/develop/LICENSE.md)
+* FontAwesome - [CC BY 4.0](https://fontawesome.com/license/free)
 * Jekyll - [MIT](https://github.com/jekyll/jekyll/blob/master/LICENSE)
 * Python - [PSFL](https://www.python.org/psf/license/)
 * Psycopg2 - [LGPL](https://github.com/psycopg/psycopg2/blob/master/LICENSE)
