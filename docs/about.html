@@ -1,21 +1,35 @@
 ---
-layout: default
+layout: uswds_default
 title: About
 nav: about
+svgicons: fa-link
 ---
 
-<div class="container">
-    <div class="row">
-        <h1 class="col-sm-12">
-            About
-        </h1>
-    </div>
-    <div class="row">
-        <p class="col-sm-12">
+<section class="usa-section">
+    <div class="grid-container">
+        <h2 id="about-us" class="font-heading-xl margin-y-0 permalink-highlight permalink-hover">
+            About BallotAPI
+            <a href="#about-us" class="usa-link permalink" title="Permalink"><svg class="svgicon-md"><use href="#fa-link"/></svg></a>
+        </h2>
+        <p class="usa-intro">
             BallotAPI is a database of ballot information available via a REST API.
             The API is free and all data is public domain. This is an open source
-            project by Open Austin, a Code for America brigade.
+            project by
+            <a href="https://www.open-austin.org/"
+               class="usa-link"
+               target="_blank"
+               rel="noopener noreferrer">
+                Open Austin
+                <svg class="svgicon"><use href="#fa-external-link"/></svg></a>,
+            a Code for America brigade.
         </p>
+        <a class="usa-button usa-button--big" href="{{ '/docs' | relative_url }}">
+            Read our API Docs
+        </a>
+        <a class="usa-button usa-button--big usa-button--outline" href="{{ '/docs' | relative_url }}">
+            Check out our Github
+            <svg class="svgicon"><use href="#fa-external-link"/></svg>
+        </a>
     </div>
-</div>
+</section>
 

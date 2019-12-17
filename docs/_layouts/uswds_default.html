@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="icon" type="image/png" href="{{ '/assets/favicon.png' | relative_url }}">
+        <title>{% if page.full_title %}{{ page.full_title }}{% elsif page.title %}BallotAPI - {{ page.title }}{% endif %}</title>
+        <link href="{{ '/thirdparty/uswds-2.3.1/css/uswds.min.css' | relative_url }}" rel="stylesheet">
+        <style>
+            /* SVG icons (based on https://github.com/diafygi/svg-font-to-svg-sprite-converter)
+               Example (put "svgicons: fa-link" in front matter):
+               <svg class="svgicon"><use href="#fa-link"/></svg>
+            */
+            #svgicon-defs{
+                display: none;
+            }
+            .svgicon {
+                overflow: visible !important;
+                height: 0.7em;
+                width: 0.7em;
+                fill:currentColor;
+            }
+            .svgicon-md {
+                overflow: visible !important;
+                height: 1em;
+                width: 1em;
+                fill:currentColor;
+            }
+            /* Permalink Example:
+                <h2 id="aaa" class="permalink-hover permalink-highlight">
+                    Some Header
+                    <a href="#aaa" class="permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+                </h2>
+            */
+            .permalink-hover:hover .permalink {
+                display: inline-block;
+                text-decoration: none;
+                margin-left: 0.4em;
+                margin-top: 0.4em;
+            }
+            .permalink {
+                display: none;
+                position: absolute;
+                font-size: 60%;
+            }
+            .permalink-highlight:target{
+                animation:punch 2s ease-out;
+            }
+            @keyframes punch{
+                0%{ background-color: #ffffff; }
+                10%{ background-color: #ffe038; }
+                100%{ background-color: #ffffff; }
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Under construction banner -->
+        <div class="usa-alert usa-alert--error" role="alert">
+            <div class="usa-alert__body">
+                <h3 class="usa-alert__heading">
+                    Under Development
+                </h3>
+                <p class="usa-alert__text">
+                    BallotAPI is still being developed, so
+                    the API does not work yet. Check out our
+                    <a href="https://github.com/open-austin/ballotapi">github repository</a>
+                    for current progress.
+                </p>
+            </div>
+        </div>
+
+        <!-- SVG Icons -->
+        <svg id="svgicon-defs" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                {% include fontawesome/fa-external-link.svg %}{% comment %} used in base template, so always include {% endcomment %}
+                {% if page.svgicons contains 'fa-link' %}{% include fontawesome/fa-link.svg %}{% endif %}
+            </defs>
+        </svg>
+
+        <!-- Header -->
+        <header class="usa-header usa-header--extended">
+            <div class="usa-navbar">
+                <div class="usa-logo">
+                    <em class="usa-logo__text">
+                        <a href="{{ '/' | relative_url }}" title="Go to the homepage" aria-label="Home">
+                            BallotAPI
+                        </a>
+                    </em>
+                </div>
+                <button class="usa-menu-btn">
+                    Menu
+                </button>
+            </div>
+            <nav aria-label="Primary navigation" class="usa-nav">
+                <div class="usa-nav__inner">
+                    <button class="usa-nav__close">
+                        <img src="{{ '/thirdparty/uswds-2.3.1/img/close.svg' | relative_url }}" alt="close">
+                    </button>
+                    <ul class="usa-nav__primary usa-accordion">
+                        <li class="usa-nav__primary-item">
+                            <a class="usa-nav__link{% if page.nav == 'home' %} usa-current{% endif %}" href="{{ '/' | relative_url }}">
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="usa-nav__primary-item">
+                            <a class="usa-nav__link{% if page.nav == 'about' %} usa-current{% endif %}" href="{{ '/about' | relative_url }}">
+                                <span>About BallotAPI</span>
+                            </a>
+                        </li>
+                        <li class="usa-nav__primary-item">
+                            <a class="usa-nav__link{% if page.nav == 'docs' %} usa-current{% endif %}" href="{{ '/docs' | relative_url }}">
+                                <span>API Documentation</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="usa-nav__secondary">
+                        <ul class="usa-nav__secondary-links">
+                            <li class="usa-nav__secondary-item">
+                                <a href="https://github.com/open-austin/ballotapi"
+                                   class="usa-link"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    BallotAPI on Github
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg>
+                                </a>
+                            </li>
+                        </ul>
+                        <form id="bapi-search" class="usa-search usa-search--small" action="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">
+                            <div role="search">
+                                <label class="usa-sr-only" for="bapi-search-input">Search small</label>
+                                <input class="usa-input" id="bapi-search-input" type="search" name="q">
+                                <button class="usa-button" type="submit">
+                                    <span class="usa-sr-only">Search</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Content -->
+        <div role="main">
+            {{ content }}
+        </div>
+
+        <!-- Footer -->
+        <footer class="usa-footer usa-footer--big">
+            <div class="usa-footer__primary-section">
+                <div class="grid-container">
+                    <div class="grid-row grid-gap">
+                        <div class="tablet:grid-col-8">
+                            <nav class="usa-footer__nav">
+                                <div class="grid-row grid-gap-4">
+                                    <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                                        <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                                            <h4 class="usa-footer__primary-link">BallotAPI</h4>
+                                            <ul class="usa-list usa-list--unstyled">
+                                                <li class="usa-footer__secondary-link">
+                                                    <a href="{{ '/' | relative_url }}">Home</a>
+                                                </li>
+                                                <li class="usa-footer__secondary-link">
+                                                    <a href="{{ '/about' | relative_url }}">About Us</a>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                    </div>
+                                    <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                                        <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                                            <h4 class="usa-footer__primary-link">Getting Started</h4>
+                                            <ul class="usa-list usa-list--unstyled">
+                                                <li class="usa-footer__secondary-link">
+                                                    <a href="{{ '/docs' | relative_url }}">API Overview</a>
+                                                </li>
+                                                <li class="usa-footer__secondary-link">
+                                                    <a href="{{ '/docs/quickstart' | relative_url }}">Quickstart</a>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                    </div>
+                                    <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
+                                        <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
+                                            <h4 class="usa-footer__primary-link">Technical Reference</h4>
+                                            <ul class="usa-list usa-list--unstyled">
+                                                <li class="usa-footer__secondary-link">
+                                                    <a href="{{ '/docs/api' | relative_url }}">API Endpoints</a>
+                                                </li>
+                                                <li class="usa-footer__secondary-link">
+                                                    <a href="{{ '/docs/examples' | relative_url }}">Examples</a>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="usa-footer__secondary-section">
+                <div class="grid-container font-sans-2xs">
+                    BallotAPI is an open-source and public domain
+                    project maintained by volunteers at
+                    <a href="https://www.open-austin.org/"
+                       target="_blank"
+                       rel="noopener noreferrer">Open Austin</a>
+                    <br>
+                    Project repository:
+                    <a href="https://github.com/open-austin/ballotapi"
+                       target="_blank"
+                       rel="noopener noreferrer">https://github.com/open-austin/ballotapi</a>
+                    <br>
+                    Project issue:
+                    <a href="https://github.com/open-austin/project-ideas/issues/140"
+                       target="_blank"
+                       rel="noopener noreferrer">https://github.com/open-austin/project-ideas/issues/140</a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="{{ '/thirdparty/uswds-2.3.1/js/uswds.min.js' | relative_url }}"></script>
+        <script>
+            // add domain to search
+            document.getElementById("bapi-search").addEventListener("submit", function(e){
+                var curSearch = document.getElementById("bapi-search-input").value;
+                if (curSearch.indexOf(" site:ballotapi.org") === -1) {
+                    document.getElementById("bapi-search-input").value = curSearch + " site:ballotapi.org";
+                    // revert back a moment later
+                    setTimeout(function(){
+                        var modifiedSearch = document.getElementById("bapi-search-input").value;
+                        document.getElementById("bapi-search-input").value = modifiedSearch.replace(" site:ballotapi.org", "");
+                    }, 200);
+                }
+            });
+        </script>
+    </body>
+</html>
+
