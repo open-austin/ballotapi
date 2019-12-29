@@ -21,12 +21,6 @@
                 width: 0.7em;
                 fill:currentColor;
             }
-            .svgicon-md {
-                overflow: visible !important;
-                height: 1em;
-                width: 1em;
-                fill:currentColor;
-            }
             /* Permalink Example:
                 <h2 id="aaa" class="permalink-hover permalink-highlight">
                     Some Header
@@ -36,13 +30,11 @@
             .permalink-hover:hover .permalink {
                 display: inline-block;
                 text-decoration: none;
-                margin-left: 0.4em;
-                margin-top: 0.4em;
+                margin-left: 0.3em;
             }
             .permalink {
                 display: none;
                 position: absolute;
-                font-size: 60%;
             }
             .permalink-highlight:target{
                 animation:punch 2s ease-out;
@@ -58,30 +50,26 @@
                 max-height: 30px;
                 width: auto;
             }
+            /* Helper classes (mostly inspired from bootstrap) */
+            .bapi-breadcrumb { padding: 0.4rem 0.8rem 0.8rem; background-color: #f0f0f0; font-size: .93rem; line-height: 1; }
+            .bapi-breadcrumb > li { display: inline-block; list-style-type: none; }
+            .bapi-breadcrumb > li + li::before { color:  #aaa; content: "›"; padding-left: 5px; padding-right: 7px; font-size: 120%; }
+            /* Default text style */
+            html {
+                font-family: Public Sans Web,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            .usa-nav__primary > .usa-nav__primary-item { font-size: 1.1rem; } /* make nav menu a bit larger */
         </style>
     </head>
     <body>
-
-        <!-- Under construction banner -->
-        <div class="usa-alert usa-alert--error" role="alert">
-            <div class="usa-alert__body">
-                <h3 class="usa-alert__heading">
-                    Under Development
-                </h3>
-                <p class="usa-alert__text">
-                    BallotAPI is still being developed, so
-                    the API does not work yet. Check out our
-                    <a href="https://github.com/open-austin/ballotapi">github repository</a>
-                    for current progress.
-                </p>
-            </div>
-        </div>
 
         <!-- SVG Icons -->
         <svg id="svgicon-defs" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 {% include fontawesome/fa-external-link.svg %}{% comment %} used in base template, so always include {% endcomment %}
-                {% if page.svgicons contains 'fa-link' %}{% include fontawesome/fa-link.svg %}{% endif %}
+                {% include fontawesome/fa-link.svg %}{% comment %} permalinks are used everywhere, so include it by default {% endcomment %}
             </defs>
         </svg>
 
@@ -147,13 +135,34 @@
             </nav>
         </header>
 
+        <!-- Under construction banner -->
+        <div class="grid-container margin-top-2">
+            <div class="grid-row grid-gap">
+                <div class="grid-col-12">
+                    <div class="usa-alert usa-alert--error" role="alert">
+                        <div class="usa-alert__body">
+                            <h3 class="usa-alert__heading">
+                                Under Development
+                            </h3>
+                            <p class="usa-alert__text">
+                                BallotAPI is still being developed, so
+                                the API does not work yet. Check out our
+                                <a href="https://github.com/open-austin/ballotapi">github repository</a>
+                                for current progress.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Content -->
         <div role="main">
             {{ content }}
         </div>
 
         <!-- Footer -->
-        <footer class="usa-footer usa-footer--big">
+        <footer class="usa-footer usa-footer--big margin-top-8">
             <div class="usa-footer__primary-section">
                 <div class="grid-container">
                     <div class="grid-row grid-gap">

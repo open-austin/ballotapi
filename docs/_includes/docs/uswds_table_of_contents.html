@@ -1,0 +1,131 @@
+<div class="usa-accordion">
+    <div class="tablet:display-none padding-top-2">
+        <button type="button"
+                class="usa-accordion__button"
+                aria-expanded="false"
+                aria-controls="table-of-contents">
+            Table of Contents
+        </button>
+    </div>
+    <div id="table-of-contents" class="tablet:display-block margin-bottom-3" hidden>
+        <h3>
+            Documentation
+        </h3>
+        <div class="tablet:grid-col-12">
+            <nav aria-label="Secondary navigation">
+                <ul class="usa-sidenav">
+                    <li class="usa-sidenav__item">
+                        <a href="{{ '/docs' | relative_url }}"
+                           class="{% if page.toc == 'overview' %}usa-current{% endif %}"
+                            >Overview</a>
+                    </li>
+                    <li class="usa-sidenav__item">
+                        <a href="{{ '/docs/quickstart' | relative_url }}"
+                           class="{% if page.toc == 'quickstart' %}usa-current{% endif %}"
+                            >Quickstart</a>
+                    </li>
+                    <li class="usa-sidenav__item">
+                        <a href="{{ '/docs/examples' | relative_url }}"
+                           class="{% if page.toc == 'examples' %}usa-current{% endif %}"
+                            >Examples</a>
+                    </li>
+                    <li class="usa-sidenav__item">
+                        <a href="{{ '/docs/data-types' | relative_url }}"
+                           class="{% if page.toc == 'data_types' %}usa-current{% endif %}"
+                            >Data Types</a>
+                    </li>
+                    <li class="usa-sidenav__item">
+                        <a href="{{ '/docs/testing' | relative_url }}"
+                           class="{% if page.toc == 'testing' %}usa-current{% endif %}"
+                            >Testing</a>
+                    </li>
+                    <li class="usa-sidenav__item">
+                        <a href="{{ '/docs/rate-limits' | relative_url }}"
+                           class="{% if page.toc == 'rate_limits' %}usa-current{% endif %}"
+                            >Rate Limits</a>
+                    </li>
+                    <li class="usa-sidenav__item">
+                        <a href="{{ '/docs/api' | relative_url }}"
+                           class="{% if page.toc == 'api_endpoints' %}usa-current{% endif %}"
+                            >API Docs</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <h3 class="margin-top-4">
+            API Endpoints
+        </h3>
+        <div class="tablet:grid-col-12">
+            <nav aria-label="Secondary navigation">
+                <ul class="usa-sidenav">
+                    <li class="usa-sidenav__item">
+                        <a href="{{ '/docs/api/elections' | relative_url }}"
+                           class="{% if page.toc == 'api_elections' %}usa-current{% endif %}"
+                           ><code class="font-mono-xs">/elections</code></a>
+                        <ul class="usa-sidenav__sublist {% if page.toc != 'api_elections' %}display-none{% endif %}">
+                            <li class="usa-sidenav__item">
+                                <a href="{{ '/docs/api/elections' | relative_url }}"
+                                   class="{% if page.subtoc == 'api_elections_object' %}usa-current{% endif %}"
+                                    >Object</a>
+                            </li>
+                            <li class="usa-sidenav__item">
+                                <a href="{{ '/docs/api/elections/list' | relative_url }}"
+                                   class="{% if page.subtoc == 'api_elections_list' %}usa-current{% endif %}"
+                                    >List</a>
+                            </li>
+                            <li class="usa-sidenav__item">
+                                <a href="{{ '/docs/api/elections/get' | relative_url }}"
+                                   class="{% if page.subtoc == 'api_elections_get' %}usa-current{% endif %}"
+                                    >Get</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="usa-sidenav__item">
+                        <a href="{{ '/docs/api/precincts' | relative_url }}"
+                           class="{% if page.toc == 'api_precincts' %}usa-current{% endif %}"
+                           ><code class="font-mono-xs">/precincts</code></a>
+                        <ul class="usa-sidenav__sublist {% if page.toc != 'api_precincts' %}display-none{% endif %}">
+                            <li class="usa-sidenav__item">
+                                <a href="{{ '/docs/api/precincts' | relative_url }}"
+                                   class="{% if page.subtoc == 'api_precincts_object' %}usa-current{% endif %}"
+                                    >Object</a>
+                            </li>
+                            <li class="usa-sidenav__item">
+                                <a href="{{ '/docs/api/precincts/list' | relative_url }}"
+                                   class="{% if page.subtoc == 'api_precincts_list' %}usa-current{% endif %}"
+                                    >List</a>
+                            </li>
+                            <li class="usa-sidenav__item">
+                                <a href="{{ '/docs/api/precincts/get' | relative_url }}"
+                                   class="{% if page.subtoc == 'api_precincts_get' %}usa-current{% endif %}"
+                                    >Get</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="usa-sidenav__item">
+                        <a href="{{ '/docs/api/contests' | relative_url }}"
+                           class="{% if page.toc == 'api_contests' %}usa-current{% endif %}"
+                           ><code class="font-mono-xs">/contests</code></a>
+                        <ul class="usa-sidenav__sublist {% if page.toc != 'api_contests' %}display-none{% endif %}">
+                            <li class="usa-sidenav__item">
+                                <a href="{{ '/docs/api/contests' | relative_url }}"
+                                   class="{% if page.subtoc == 'api_contests_object' %}usa-current{% endif %}"
+                                    >Object</a>
+                            </li>
+                            <li class="usa-sidenav__item">
+                                <a href="{{ '/docs/api/contests/list' | relative_url }}"
+                                   class="{% if page.subtoc == 'api_contests_list' %}usa-current{% endif %}"
+                                    >List</a>
+                            </li>
+                            <li class="usa-sidenav__item">
+                                <a href="{{ '/docs/api/contests/get' | relative_url }}"
+                                   class="{% if page.subtoc == 'api_contests_get' %}usa-current{% endif %}"
+                                    >Get</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
