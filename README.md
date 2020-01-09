@@ -1,5 +1,7 @@
 # BallotAPI - Ballots for developers
 
+![](https://github.com/open-austin/ballotapi/workflows/Tests/badge.svg)
+
 **NOTE: THIS PROJECT IS UNDER DEVELOPMENT. THE API DOES NOT WORK YET.**
 
 Main website: https://ballotapi.org/
