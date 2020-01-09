@@ -1,12 +1,12 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - Data Types
 nav: docs
 toc: data_types
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
     <li class="active">Data Types</li>
 </ol>
 <h1>
@@ -17,57 +17,57 @@ toc: data_types
     have defined the specific data formats you'll see across our API below.
     In general, you will be linked back here from elsewhere, so feel free to
     skip right to reading the full documentation for the
-    <a href="{{ '/docs/api' | relative_url }}">API Endpoints</a>.
+    <a href="{{ '/docs/api' | relative_url }}" class="usa-link">API Endpoints</a>.
 </p>
 
 <ul>
     <li>
-        <a href="#response">Response</a>
+        <a href="#response" class="usa-link">Response</a>
     </li>
     <li>
-        <a href="#error-response">Error Response</a>
+        <a href="#error-response" class="usa-link">Error Response</a>
     </li>
     <li>
-        <a href="{{ '/docs/api/elections' | relative_url }}">Election</a>
+        <a href="{{ '/docs/api/elections' | relative_url }}" class="usa-link">Election</a>
         <small class="text-muted">(on separate page)</small>
     </li>
     <li>
-        <a href="{{ '/docs/api/precincts' | relative_url }}">Precinct</a>
+        <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precinct</a>
         <small class="text-muted">(on separate page)</small>
     </li>
     <li>
-        <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a>
+        <a href="{{ '/docs/api/contests' | relative_url }}" class="usa-link">Contest</a>
         <small class="text-muted">(on separate page)</small>
     </li>
     <li>
-        <a href="#extra">ExtraObject</a>
+        <a href="#extra" class="usa-link">ExtraObject</a>
     </li>
     <li>
-        <a href="#object-type">ObjectType</a>
+        <a href="#object-type" class="usa-link">ObjectType</a>
     </li>
     <li>
-        <a href="#ocd-id">OCD-ID</a>
+        <a href="#ocd-id" class="usa-link">OCD-ID</a>
     </li>
     <li>
-        <a href="#string">String</a>
+        <a href="#string" class="usa-link">String</a>
     </li>
     <li>
-        <a href="#url">URL</a>
+        <a href="#url" class="usa-link">URL</a>
     </li>
     <li>
-        <a href="#date">Date</a>
+        <a href="#date" class="usa-link">Date</a>
     </li>
     <li>
-        <a href="#datetime">DateTime</a>
+        <a href="#datetime" class="usa-link">DateTime</a>
     </li>
     <li>
-        <a href="#datetime-range">DateTimeRange</a>
+        <a href="#datetime-range" class="usa-link">DateTimeRange</a>
     </li>
     <li>
-        <a href="#coordinates">Coordinates</a>
+        <a href="#coordinates" class="usa-link">Coordinates</a>
     </li>
     <li>
-        <a href="#geojson">GeoJSON</a>
+        <a href="#geojson" class="usa-link">GeoJSON</a>
     </li>
 </ul>
 
@@ -76,9 +76,9 @@ toc: data_types
 <!-- Data Type: Response -->
 <!------------------------->
 <hr>
-<h2 id="response" class="permalink-wrapper">
+<h2 id="response" class="permalink-hover permalink-highlight">
     Response object
-    <a href="#response" class="permalink"></a>
+    <a href="#response" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     Response objects contain a list of data results, as well as any extra
@@ -89,9 +89,9 @@ toc: data_types
     results (e.g. <code>include=contests</code>), those includes will be
     contained within another Response object.
 </p>
-<h3 id="response-example" class="permalink-wrapper">
+<h3 id="response-example" class="permalink-hover permalink-highlight">
     Response example
-    <a href="#response-example" class="permalink"></a>
+    <a href="#response-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
 <pre>
 {
@@ -103,12 +103,12 @@ toc: data_types
     "url": "https://api.ballotapi.org/...",
 }
 </pre>
-<h3 id="response-attributes" class="permalink-wrapper">
+<h3 id="response-attributes" class="permalink-hover permalink-highlight">
     Response attributes
-    <a href="#response-attributes" class="permalink"></a>
+    <a href="#response-attributes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Attribute</th>
@@ -119,12 +119,12 @@ toc: data_types
         </thead>
         <tbody>
             <tr>
-                <td id="response-attributes-type" class="permalink-wrapper">
+                <td id="response-attributes-type" class="permalink-hover permalink-highlight">
                     <code>type</code>
-                    <a href="#response-attributes-type" class="permalink"></a>
+                    <a href="#response-attributes-type" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#object-type">ObjectType</a>
+                    <a href="#object-type" class="usa-link">ObjectType</a>
                 </td>
                 <td>
                     This object's data type. Will always be "response".
@@ -134,14 +134,14 @@ toc: data_types
                 </td>
             </tr>
             <tr>
-                <td id="response-attributes-data" class="permalink-wrapper">
+                <td id="response-attributes-data" class="permalink-hover permalink-highlight">
                     <code>data</code>
-                    <a href="#response-attributes-data" class="permalink"></a>
+                    <a href="#response-attributes-data" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    List(<a href="{{ '/docs/api/elections' | relative_url }}">Election</a>
-                        | <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a>
-                        | <a href="{{ '/docs/api/precincts' | relative_url }}">Precinct</a>)
+                    List(<a href="{{ '/docs/api/elections' | relative_url }}" class="usa-link">Election</a>
+                        | <a href="{{ '/docs/api/contests' | relative_url }}" class="usa-link">Contest</a>
+                        | <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precinct</a>)
                 </td>
                 <td>
                     The actual response content for the API request. Will be
@@ -153,12 +153,12 @@ toc: data_types
                 </td>
             </tr>
             <tr>
-                <td id="response-attributes-next" class="permalink-wrapper">
+                <td id="response-attributes-next" class="permalink-hover permalink-highlight">
                     <code>next</code>
-                    <a href="#response-attributes-next" class="permalink"></a>
+                    <a href="#response-attributes-next" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#url">URL</a> or <code>null</code>
+                    <a href="#url" class="usa-link">URL</a> or <code>null</code>
                 </td>
                 <td>
                     If there are more data objects in the results, this will
@@ -170,12 +170,12 @@ toc: data_types
                 </td>
             </tr>
             <tr>
-                <td id="response-attributes-extra" class="permalink-wrapper">
+                <td id="response-attributes-extra" class="permalink-hover permalink-highlight">
                     <code>extra</code>
-                    <a href="#response-attributes-extra" class="permalink"></a>
+                    <a href="#response-attributes-extra" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#extra">ExtraObject</a>
+                    <a href="#extra" class="usa-link">ExtraObject</a>
                 </td>
                 <td>
                     If an <code>extra</code> parameter was included in the
@@ -188,12 +188,12 @@ toc: data_types
                 </td>
             </tr>
             <tr>
-                <td id="response-attributes-timestamp" class="permalink-wrapper">
+                <td id="response-attributes-timestamp" class="permalink-hover permalink-highlight">
                     <code>timestamp</code>
-                    <a href="#response-attributes-timestamp" class="permalink"></a>
+                    <a href="#response-attributes-timestamp" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#datetime">DateTime</a>
+                    <a href="#datetime" class="usa-link">DateTime</a>
                 </td>
                 <td>
                     The datetime at which the results were generated. Since
@@ -207,12 +207,12 @@ toc: data_types
                 </td>
             </tr>
             <tr>
-                <td id="response-attributes-url" class="permalink-wrapper">
+                <td id="response-attributes-url" class="permalink-hover permalink-highlight">
                     <code>url</code>
-                    <a href="#response-attributes-url" class="permalink"></a>
+                    <a href="#response-attributes-url" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#url">URL</a>
+                    <a href="#url" class="usa-link">URL</a>
                 </td>
                 <td>
                     The API request that was performed to produce the results.
@@ -226,9 +226,9 @@ toc: data_types
                 </td>
             </tr>
             <tr>
-                <td id="response-attributes-more" class="permalink-wrapper">
+                <td id="response-attributes-more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#response-attributes-more" class="permalink"></a>
+                    <a href="#response-attributes-more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                 </td>
@@ -248,9 +248,9 @@ toc: data_types
 <!-- Data Type: Error Response -->
 <!------------------------------->
 <hr>
-<h2 id="error-response" class="permalink-wrapper">
+<h2 id="error-response" class="permalink-hover permalink-highlight">
     Error Response object
-    <a href="#error-response" class="permalink"></a>
+    <a href="#error-response" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     These are responses that are returned when something you requested
@@ -258,9 +258,9 @@ toc: data_types
     query parameters you set in your request are malformed and you get
     back a 400 HTTP response code.
 </p>
-<h3 id="error-response-example" class="permalink-wrapper">
+<h3 id="error-response-example" class="permalink-hover permalink-highlight">
     Error Response example
-    <a href="#error-response-example" class="permalink"></a>
+    <a href="#error-response-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
 <pre>
 {
@@ -269,12 +269,12 @@ toc: data_types
     "docs": "https://ballotapi.org/docs/data-types#datetime-range"
 }
 </pre>
-<h3 id="error-response-attributes" class="permalink-wrapper">
+<h3 id="error-response-attributes" class="permalink-hover permalink-highlight">
     Error Response attributes
-    <a href="#error-response-attributes" class="permalink"></a>
+    <a href="#error-response-attributes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Attribute</th>
@@ -285,12 +285,12 @@ toc: data_types
         </thead>
         <tbody>
             <tr>
-                <td id="error-response-attributes-error" class="permalink-wrapper">
+                <td id="error-response-attributes-error" class="permalink-hover permalink-highlight">
                     <code>error</code>
-                    <a href="#error-response-attributes-error" class="permalink"></a>
+                    <a href="#error-response-attributes-error" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#string">String</a>
+                    <a href="#string" class="usa-link">String</a>
                 </td>
                 <td>
                     The error type raised. Usually something like
@@ -301,12 +301,12 @@ toc: data_types
                 </td>
             </tr>
             <tr>
-                <td id="error-response-attributes-message" class="permalink-wrapper">
+                <td id="error-response-attributes-message" class="permalink-hover permalink-highlight">
                     <code>message</code>
-                    <a href="#error-response-attributes-message" class="permalink"></a>
+                    <a href="#error-response-attributes-message" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#string">String</a>
+                    <a href="#string" class="usa-link">String</a>
                 </td>
                 <td>
                     A human-readable error message describing what caused the error.
@@ -319,12 +319,12 @@ toc: data_types
                 </td>
             </tr>
             <tr>
-                <td id="error-response-attributes-docs" class="permalink-wrapper">
+                <td id="error-response-attributes-docs" class="permalink-hover permalink-highlight">
                     <code>docs</code>
-                    <a href="#error-response-attributes-docs" class="permalink"></a>
+                    <a href="#error-response-attributes-docs" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#url">URL</a> or <code>null</code>
+                    <a href="#url" class="usa-link">URL</a> or <code>null</code>
                 </td>
                 <td>
                     A link to the documentation where you can find more information.
@@ -344,22 +344,22 @@ toc: data_types
 <!-- Data Type: Extra -->
 <!---------------------->
 <hr>
-<h2 id="extra" class="permalink-wrapper">
+<h2 id="extra" class="permalink-hover permalink-highlight">
     Extra object
-    <a href="#extra" class="permalink"></a>
+    <a href="#extra" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
-    The Extra object is an object in <a href="#response">Response</a> objects
+    The Extra object is an object in <a href="#response" class="usa-link">Response</a> objects
     that contain attributes requested via <code>extra</code>
     parameters. The data in this object are usually aggregated from the
     results. For example, if you specify <code>extra=merge_geos</code> in a
     request, the Extra object will contain the <code>merge_geos</code>
     attribute with the merged geography of the results in the Response
-    <a href="#response-attributes-data"><code>data</code></a> attribute.
+    <a href="#response-attributes-data" class="usa-link bapi-link-code"><code>data</code></a> attribute.
 </p>
-<h3 id="extra-example" class="permalink-wrapper">
+<h3 id="extra-example" class="permalink-hover permalink-highlight">
     Extra object example
-    <a href="#extra-example" class="permalink"></a>
+    <a href="#extra-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
 <pre>
 {
@@ -370,12 +370,12 @@ toc: data_types
     ...
 }
 </pre>
-<h3 id="extra-attributes" class="permalink-wrapper">
+<h3 id="extra-attributes" class="permalink-hover permalink-highlight">
     Extra object attributes
-    <a href="#extra-attributes" class="permalink"></a>
+    <a href="#extra-attributes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Attribute</th>
@@ -386,16 +386,16 @@ toc: data_types
         </thead>
         <tbody>
             <tr>
-                <td id="extra-attributes-open" class="permalink-wrapper">
+                <td id="extra-attributes-open" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#extra-attributes-open" class="permalink"></a>
+                    <a href="#extra-attributes-open" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                 </td>
                 <td>
                     Extra object attributes can be any value that is defined
                     in the <code>extra</code> request parameters for the
-                    various <a href="{{ '/docs/api' | relative_url }}">API Endpoints</a>.
+                    various <a href="{{ '/docs/api' | relative_url }}" class="usa-link">API Endpoints</a>.
                 </td>
                 <td>
                 </td>
@@ -409,20 +409,20 @@ toc: data_types
 <!-- Data Type: ObjectType -->
 <!--------------------------->
 <hr>
-<h2 id="object-type" class="permalink-wrapper">
+<h2 id="object-type" class="permalink-hover permalink-highlight">
     ObjectType
-    <a href="#object-type" class="permalink"></a>
+    <a href="#object-type" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     For complex data objects returned by the API, there is a defined
     object type value that lets you know what kind of object it is.
 </p>
-<h3 id="object-type-values" class="permalink-wrapper">
+<h3 id="object-type-values" class="permalink-hover permalink-highlight">
     ObjectType values
-    <a href="#object-type-values" class="permalink"></a>
+    <a href="#object-type-values" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Value</th>
@@ -432,70 +432,79 @@ toc: data_types
         </thead>
         <tbody>
             <tr>
-                <td id="object-types-response" class="permalink-wrapper">
+                <td id="object-types-response" class="permalink-hover permalink-highlight">
                     <code>"response"</code>
-                    <a href="#object-types-response" class="permalink"></a>
+                    <a href="#object-types-response" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#string">String</a>
+                    <a href="#string" class="usa-link">String</a>
                 </td>
                 <td>
-                    Will be the object type for <a href="#response">Response</a> objects.
+                    Will be the object type for <a href="#response" class="usa-link">Response</a> objects.
                 </td>
             </tr>
             <tr>
-                <td id="object-types-election" class="permalink-wrapper">
+                <td id="object-types-election" class="permalink-hover permalink-highlight">
                     <code>"election"</code>
-                    <a href="#object-types-election" class="permalink"></a>
+                    <a href="#object-types-election" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#string">String</a>
+                    <a href="#string" class="usa-link">String</a>
                 </td>
                 <td>
-                    Will be the object type for <a href="{{ '/docs/api/elections' | relative_url }}">Election</a> objects.
+                    Will be the object type for
+                    <a href="{{ '/docs/api/elections' | relative_url }}" class="usa-link">Election</a>
+                    objects.
                 </td>
             </tr>
             <tr>
-                <td id="object-types-precinct" class="permalink-wrapper">
+                <td id="object-types-precinct" class="permalink-hover permalink-highlight">
                     <code>"precinct"</code>
-                    <a href="#object-types-precinct" class="permalink"></a>
+                    <a href="#object-types-precinct" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#string">String</a>
+                    <a href="#string" class="usa-link">String</a>
                 </td>
                 <td>
-                    Will be the object type for <a href="{{ '/docs/api/precincts' | relative_url }}">Precinct</a> objects.
+                    Will be the object type for
+                    <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precinct</a>
+                    objects.
                 </td>
             </tr>
             <tr>
-                <td id="object-types-contest" class="permalink-wrapper">
+                <td id="object-types-contest" class="permalink-hover permalink-highlight">
                     <code>"contest"</code>
-                    <a href="#object-types-contest" class="permalink"></a>
+                    <a href="#object-types-contest" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#string">String</a>
+                    <a href="#string" class="usa-link">String</a>
                 </td>
                 <td>
-                    Will be the object type for <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a> objects.
+                    Will be the object type for
+                    <a href="{{ '/docs/api/contests' | relative_url }}" class="usa-link">Contest</a>
+                    objects.
                 </td>
             </tr>
             <tr>
-                <td id="object-types-choice" class="permalink-wrapper">
+                <td id="object-types-choice" class="permalink-hover permalink-highlight">
                     <code>"choice"</code>
-                    <a href="#object-types-choice" class="permalink"></a>
+                    <a href="#object-types-choice" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#string">String</a>
+                    <a href="#string" class="usa-link">String</a>
                 </td>
                 <td>
-                    Will be the object type for <a href="{{ '/docs/api/contests' | relative_url }}#choice-object">Choice</a> objects
-                    (these are included in <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a> objects).
+                    Will be the object type for
+                    <a href="{{ '/docs/api/contests' | relative_url }}#choice-object" class="usa-link">Choice</a>
+                    objects (these are included in
+                    <a href="{{ '/docs/api/contests' | relative_url }}" class="usa-link">Contest</a>
+                    objects).
                 </td>
             </tr>
             <tr>
-                <td id="object-types-more" class="permalink-wrapper">
+                <td id="object-types-more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#object-types-more" class="permalink"></a>
+                    <a href="#object-types-more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                 </td>
@@ -513,23 +522,23 @@ toc: data_types
 <!-- Data Type: OCD-ID -->
 <!----------------------->
 <hr>
-<h2 id="ocd-id" class="permalink-wrapper">
+<h2 id="ocd-id" class="permalink-hover permalink-highlight">
     OCD-ID
-    <a href="#ocd-id" class="permalink"></a>
+    <a href="#ocd-id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     These are
-    <a href="http://docs.opencivicdata.org/en/latest/ocdids.html" target="_blank" rel="noopener noreferrer">
+    <a href="http://docs.opencivicdata.org/en/latest/ocdids.html" class="usa-link" target="_blank" rel="noopener noreferrer">
         Open Civic Data Identifiers
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     (OCD-ID), which is an open standard for giving unique identifiers
     for civic information, such as localities, elected officials, or jurisdictions.
     When available, we include the OCD-ID in our API so you can map our
     data to other civic database that also use OCD-ID.
 </p>
-<h4 id="ocd-id-example" class="permalink-wrapper">
+<h4 id="ocd-id-example" class="permalink-hover permalink-highlight">
     OCD-ID Example
-    <a href="#ocd-id-example" class="permalink"></a>
+    <a href="#ocd-id-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h4>
 <pre>
 "ocd-jurisdiction/country:us/state:ex/place:example/legislature"
@@ -540,30 +549,30 @@ toc: data_types
 <!-- Data Type: String -->
 <!----------------------->
 <hr>
-<h2 id="string" class="permalink-wrapper">
+<h2 id="string" class="permalink-hover permalink-highlight">
     String
-    <a href="#string" class="permalink"></a>
+    <a href="#string" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     These are arbitrary strings of text. In API responses, they are encoded in
-    <a href="https://en.wikipedia.org/wiki/UTF-8" target="_blank" rel="noopener noreferrer">
+    <a href="https://en.wikipedia.org/wiki/UTF-8" class="usa-link" target="_blank" rel="noopener noreferrer">
         UTF-8
-        <small class="glyphicon glyphicon-new-window"></small></a>.
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>.
     In URL parameters, they are
-    <a href="https://en.wikipedia.org/wiki/Percent-encoding" target="_blank" rel="noopener noreferrer">
+    <a href="https://en.wikipedia.org/wiki/Percent-encoding" class="usa-link" target="_blank" rel="noopener noreferrer">
         percent encoded
-        <small class="glyphicon glyphicon-new-window"></small></a>.
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>.
 </p>
-<h4 id="string-utf8-example" class="permalink-wrapper">
+<h4 id="string-utf8-example" class="permalink-hover permalink-highlight">
     UTF-8 Example
-    <a href="#string-utf8-example" class="permalink"></a>
+    <a href="#string-utf8-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h4>
 <pre>
 "ὁ ἄνθρωπος φύσει πολιτικὸν ζῷον —Aristotle"
 </pre>
-    <h4 id="string-percent-example" class="permalink-wrapper">
+    <h4 id="string-percent-example" class="permalink-hover permalink-highlight">
         Percent Encoded Example
-        <a href="#string-percent-example" class="permalink"></a>
+        <a href="#string-percent-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </h4>
 <pre>
 "Man%20is%20by%20nature%20a%20political%20animal%20%E2%80%94Aristotle"
@@ -574,20 +583,20 @@ toc: data_types
 <!-- Data Type: URL -->
 <!-------------------->
 <hr>
-<h2 id="url" class="permalink-wrapper">
+<h2 id="url" class="permalink-hover permalink-highlight">
     URL
-    <a href="#url" class="permalink"></a>
+    <a href="#url" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     This is a
-    <a href="https://en.wikipedia.org/wiki/URL" target="_blank" rel="noopener noreferrer">
+    <a href="https://en.wikipedia.org/wiki/URL" class="usa-link" target="_blank" rel="noopener noreferrer">
         URL
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     that points to somewhere on the API. We do not link to external resources.
 </p>
-<h4 id="url-example" class="permalink-wrapper">
+<h4 id="url-example" class="permalink-hover permalink-highlight">
     URL Example
-    <a href="#url-example" class="permalink"></a>
+    <a href="#url-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h4>
 <pre>
 "https://api.ballotapi.org/v1/elections?dates=now,future"
@@ -598,21 +607,21 @@ toc: data_types
 <!-- Data Type: Date -->
 <!--------------------->
 <hr>
-<h2 id="date" class="permalink-wrapper">
+<h2 id="date" class="permalink-hover permalink-highlight">
     Date
-    <a href="#date" class="permalink"></a>
+    <a href="#date" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     This is a
-    <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener noreferrer">
+    <a href="https://en.wikipedia.org/wiki/ISO_8601" class="usa-link" target="_blank" rel="noopener noreferrer">
         ISO-8601
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     date (e.g. <code>YYYY-MM-DD</code>). There is no timezone associated
-    with dates, so if timezone is important, use <a href="#datetime">DateTime</a>.
+    with dates, so if timezone is important, use <a href="#datetime" class="usa-link">DateTime</a>.
 </p>
-<h4 id="date-example" class="permalink-wrapper">
+<h4 id="date-example" class="permalink-hover permalink-highlight">
     Date Example
-    <a href="#date-example" class="permalink"></a>
+    <a href="#date-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h4>
 <pre>
 "2018-01-23"
@@ -623,23 +632,23 @@ toc: data_types
 <!-- Data Type: DateTime -->
 <!------------------------->
 <hr>
-<h2 id="datetime" class="permalink-wrapper">
+<h2 id="datetime" class="permalink-hover permalink-highlight">
     DateTime
-    <a href="#datetime" class="permalink"></a>
+    <a href="#datetime" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     This is a
-    <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener noreferrer">
+    <a href="https://en.wikipedia.org/wiki/ISO_8601" class="usa-link" target="_blank" rel="noopener noreferrer">
         ISO-8601
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     combined date and time with timezone (e.g. <code>YYYY-MM-DDTHH:MM:SS+00:00</code>).
     All API response datetimes have a timezone. If you provide a datetime in
     a request parameter, be sure to specify the timezone offset (so we can
     know how to compare it to other datetimes).
 </p>
-<h4 id="datetime-example" class="permalink-wrapper">
+<h4 id="datetime-example" class="permalink-hover permalink-highlight">
     DateTime Example
-    <a href="#datetime-example" class="permalink"></a>
+    <a href="#datetime-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h4>
 <pre>
 "2018-01-23T22:55:12-08:00"
@@ -650,12 +659,12 @@ toc: data_types
 <!-- Data Type: DateTimeRange -->
 <!------------------------------>
 <hr>
-<h2 id="datetime-range" class="permalink-wrapper">
+<h2 id="datetime-range" class="permalink-hover permalink-highlight">
     DateTimeRange
-    <a href="#datetime-range" class="permalink"></a>
+    <a href="#datetime-range" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
-    This is a timespan between two <a href="#datetime">DateTimes</a> or special values, separated
+    This is a timespan between two <a href="#datetime" class="usa-link">DateTimes</a> or special values, separated
     by a comma (<code>,</code>). There are also special formats that allow you to easily build
     dynamic ranges you can re-use without having to build new datetimes.
 </p>
@@ -664,7 +673,7 @@ toc: data_types
 </p>
 <ul>
     <li>
-        <code>YYYY-MM-DDTHH:MM:SS+00:00</code> - ISO 8601 <a href="#datetime">DateTime</a>
+        <code>YYYY-MM-DDTHH:MM:SS+00:00</code> - ISO 8601 <a href="#datetime" class="usa-link">DateTime</a>
     </li>
     <li>
         <code>now</code> - the current time
@@ -682,9 +691,9 @@ toc: data_types
         <code>-{N}d</code> - a number of days (24 hours) before the current time (e.g. <code>-365d</code>)
     </li>
 </ul>
-<h4 id="datetime-range-example" class="permalink-wrapper">
+<h4 id="datetime-range-example" class="permalink-hover permalink-highlight">
     DateTimeRange Examples:
-    <a href="#datetime-range-example" class="permalink"></a>
+    <a href="#datetime-range-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h4>
 <pre>
 Valid:
@@ -705,15 +714,15 @@ Invalid:
 <!-- Data Type: Coordinates -->
 <!---------------------------->
 <hr>
-<h2 id="coordinates" class="permalink-wrapper">
+<h2 id="coordinates" class="permalink-hover permalink-highlight">
     Coordinates
-    <a href="#coordinates" class="permalink"></a>
+    <a href="#coordinates" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     These are a single point or area of
-    <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system#Geographic_latitude_and_longitude" target="_blank" rel="noopener noreferrer">
+    <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system#Geographic_latitude_and_longitude" class="usa-link" target="_blank" rel="noopener noreferrer">
         geographic coordinates
-        <small class="glyphicon glyphicon-new-window"></small></a>.
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>.
     Single coordinates are a comma separated latitude, longitude pair
     (e.g. <code>"{lat},{lon}"</code>). Areas are semicolon separated
     single coordinates (e.g. <code>"{lat},{lon};{lat},{lon};..."</code>),
@@ -721,9 +730,9 @@ Invalid:
     first and last coords are assumed to connect, so you don't have to copy
     the first the coord at the end).
 </p>
-<h4 id="coordinates-example" class="permalink-wrapper">
+<h4 id="coordinates-example" class="permalink-hover permalink-highlight">
     Coordinates Example
-    <a href="#coordinates-example" class="permalink"></a>
+    <a href="#coordinates-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h4>
 <pre>
 (Ferry Building, San Francisco, CA)
@@ -733,14 +742,14 @@ Invalid:
 "37.832225,-122.373404;37.830429,-122.377653;37.826768,-122.379198;37.815751,-122.371687;37.818632,-122.364521;37.820565,-122.363705;37.819785,-122.360444;37.820124,-122.360444;37.820870,-122.363491;37.822565,-122.362890;37.831073,-122.368597"
 </pre>
 
-<h3 id="geocoding" class="permalink-wrapper">
+<h3 id="geocoding" class="permalink-hover permalink-highlight">
     Converting addresses to coordinates
-    <a href="#geocoding" class="permalink"></a>
+    <a href="#geocoding" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
 <p>
     If you don't have coordinates, but instead have addresses, you will need to
-    use a <a href="https://en.wikipedia.org/wiki/Geocoding" target="_blank" rel="noopener noreferrer">
-        geocoding <small class="glyphicon glyphicon-new-window"></small></a>
+    use a <a href="https://en.wikipedia.org/wiki/Geocoding" class="usa-link" target="_blank" rel="noopener noreferrer">
+        geocoding <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     service to convert the addresses into coordinates. Geocoding
     is not built into BallotAPI by default because it is quite complex, and we
     don't want to have to spend all of our time maintaining a geocoding service
@@ -754,19 +763,19 @@ Invalid:
 </p>
 <ul>
     <li>
-        <a href="https://wiki.openstreetmap.org/wiki/Nominatim" target="_blank" rel="noopener noreferrer">
+        <a href="https://wiki.openstreetmap.org/wiki/Nominatim" class="usa-link" target="_blank" rel="noopener noreferrer">
             Nominatim
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </li>
     <li>
-        <a href="https://wiki.openstreetmap.org/wiki/Search_engines" target="_blank" rel="noopener noreferrer">
+        <a href="https://wiki.openstreetmap.org/wiki/Search_engines" class="usa-link" target="_blank" rel="noopener noreferrer">
             OSM geocoding wiki
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </li>
     <li>
-        <a href="https://geocoding.geo.census.gov/" target="_blank" rel="noopener noreferrer">
+        <a href="https://geocoding.geo.census.gov/" class="usa-link" target="_blank" rel="noopener noreferrer">
             U.S. Census geocoder
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </li>
 </ul>
 <p>
@@ -774,29 +783,29 @@ Invalid:
 </p>
 <ul>
     <li>
-        <a href="https://www.mapbox.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.mapbox.com/" class="usa-link" target="_blank" rel="noopener noreferrer">
             Mapbox API
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </li>
     <li>
-        <a href="https://developers.google.com/maps/documentation/geocoding/start" target="_blank" rel="noopener noreferrer">
+        <a href="https://developers.google.com/maps/documentation/geocoding/start" class="usa-link" target="_blank" rel="noopener noreferrer">
             Google Maps API
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </li>
     <li>
-        <a href="https://developer.mapquest.com/documentation/geocoding-api/" target="_blank" rel="noopener noreferrer">
+        <a href="https://developer.mapquest.com/documentation/geocoding-api/" class="usa-link" target="_blank" rel="noopener noreferrer">
             MapQuest API
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </li>
     <li>
-        <a href="https://docs.microsoft.com/en-us/bingmaps/rest-services/locations/" target="_blank" rel="noopener noreferrer">
+        <a href="https://docs.microsoft.com/en-us/bingmaps/rest-services/locations/" class="usa-link" target="_blank" rel="noopener noreferrer">
             Bing Maps API
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </li>
     <li>
-        <a href="https://developer.here.com/c/geocoding" target="_blank" rel="noopener noreferrer">
+        <a href="https://developer.here.com/c/geocoding" class="usa-link" target="_blank" rel="noopener noreferrer">
             Here API
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </li>
 </ul>
 
@@ -805,21 +814,21 @@ Invalid:
 <!-- Data Type: GeoJSON -->
 <!------------------------>
 <hr>
-<h2 id="geojson" class="permalink-wrapper">
+<h2 id="geojson" class="permalink-hover permalink-highlight">
     GeoJSON
-    <a href="#geojson" class="permalink"></a>
+    <a href="#geojson" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     These are
-    <a href="https://en.wikipedia.org/wiki/GeoJSON" target="_blank" rel="noopener noreferrer">
+    <a href="https://en.wikipedia.org/wiki/GeoJSON" class="usa-link" target="_blank" rel="noopener noreferrer">
         GeoJSON
-        <small class="glyphicon glyphicon-new-window"></small></a>:
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>:
     objects. You will see mostly Polygon and Multipolygon objects that
     outline district or precinct boundaries.
 </p>
-<h4 id="coordinates-example" class="permalink-wrapper">
+<h4 id="geojson-example" class="permalink-hover permalink-highlight">
     GeoJSON Example
-    <a href="#coordinates-example" class="permalink"></a>
+    <a href="#geojson-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h4>
 <p>
     Treasure Island, CA:
@@ -852,12 +861,12 @@ Invalid:
 <hr>
 <p>
     Did we miss a data type? Please open an
-    <a href="https://github.com/open-austin/ballotapi/issues" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/open-austin/ballotapi/issues" class="usa-link" target="_blank" rel="noopener noreferrer">
         issue
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     or
-    <a href="https://github.com/open-austin/ballotapi/pulls" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/open-austin/ballotapi/pulls" class="usa-link" target="_blank" rel="noopener noreferrer">
         pull request
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
 </p>
 

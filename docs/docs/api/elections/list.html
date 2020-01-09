@@ -1,93 +1,97 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - API - Elections - List
 nav: docs
 toc: api_elections
 subtoc: api_elections_list
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
-    <li><a href="{{ '/docs/api' | relative_url }}">API</a></li>
-    <li><a href="{{ '/docs/api/elections' | relative_url }}">Elections</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
+    <li><a href="{{ '/docs/api' | relative_url }}" class="usa-link">API</a></li>
+    <li><a href="{{ '/docs/api/elections' | relative_url }}" class="usa-link">Elections</a></li>
     <li class="active">List</li>
 </ol>
 <h1>
     Listing Elections
 </h1>
 <p>
-    Get a list of <a href="{{ '/docs/api/elections' | relative_url }}">Elections</a>,
+    Get a list of <a href="{{ '/docs/api/elections' | relative_url }}" class="usa-link">Elections</a>,
     reverse ordered by election date. By default, we return a paginated list all elections,
     which problaby isn't very useful to you, so you probably want to include some
-    <a href="#query-parameters">query parameters</a> to filter the list for the
+    <a href="#query-parameters" class="usa-link">query parameters</a> to filter the list for the
     elections you actually want.
 </p>
 
-<h2 id="http-request" class="permalink-wrapper">
+<h2 id="http-request" class="permalink-hover permalink-highlight">
     HTTP Request
-    <a href="#http-request" class="permalink"></a>
+    <a href="#http-request" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <pre>
 GET /v1/elections
 </pre>
 
-<h2 id="examples" class="permalink-wrapper">
+<h2 id="examples" class="permalink-hover permalink-highlight">
     Examples
-    <a href="#examples" class="permalink"></a>
+    <a href="#examples" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <dl>
-    <dt id="example-all-elections" class="permalink-wrapper">
+    <dt id="example-all-elections" class="permalink-hover permalink-highlight">
         Get a list of all Elections:
-        <a href="#example-all-elections" class="permalink"></a>
+        <a href="#example-all-elections" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/elections"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/elections
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
-    <dt id="example-upcoming-elections" class="permalink-wrapper">
+    <dt id="example-upcoming-elections" class="permalink-hover permalink-highlight">
         Get a list of all upcoming Elections:
-        <a href="#example-upcoming-elections" class="permalink"></a>
+        <a href="#example-upcoming-elections" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/elections?dates=now,future"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/elections?dates=now,future
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
-    <dt id="example-location-query" class="permalink-wrapper">
+    <dt id="example-location-query" class="permalink-hover permalink-highlight">
         Get a list of upcoming Elections for a specific location:
-        <a href="#example-location-query" class="permalink"></a>
+        <a href="#example-location-query" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates=now,future"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates=now,future
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
-    <dt id="example-include-contests" class="permalink-wrapper">
+    <dt id="example-include-contests" class="permalink-hover permalink-highlight">
         Include Contests for each Election:
-        <a href="#example-include-contests" class="permalink"></a>
+        <a href="#example-include-contests" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/elections?include=contests"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/elections?include=contests
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
 </dl>
 
-<h2 id="query-parameters" class="permalink-wrapper">
+<h2 id="query-parameters" class="permalink-hover permalink-highlight">
     Query Parameters
-    <a href="#query-parameters" class="permalink"></a>
+    <a href="#query-parameters" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Parameter</th>
@@ -98,16 +102,16 @@ GET /v1/elections
         </thead>
         <tbody>
             <tr>
-                <td id="ids" class="permalink-wrapper">
+                <td id="ids" class="permalink-hover permalink-highlight">
                     <code>ids</code>
-                    <a href="#ids" class="permalink"></a>
+                    <a href="#ids" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     A comma separated list of specific Election
-                    <a href="{{ '/docs/api/elections' | relative_url }}#id">ids</a>
+                    <a href="{{ '/docs/api/elections' | relative_url }}#id" class="usa-link">ids</a>
                     to include in the response.
                 </td>
                 <td>
@@ -115,16 +119,16 @@ GET /v1/elections
                 </td>
             </tr>
             <tr>
-                <td id="ocd_ids" class="permalink-wrapper">
+                <td id="ocd_ids" class="permalink-hover permalink-highlight">
                     <code>ocd_ids</code>
-                    <a href="#ocd_ids" class="permalink"></a>
+                    <a href="#ocd_ids" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">OCD-ID</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">OCD-ID</a>
                 </td>
                 <td>
                     Filter by a comma separated list of specific
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">Open Civic Data Identifers</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">Open Civic Data Identifers</a>
                     for elections.
                 </td>
                 <td>
@@ -132,12 +136,12 @@ GET /v1/elections
                 </td>
             </tr>
             <tr>
-                <td id="coords" class="permalink-wrapper">
+                <td id="coords" class="permalink-hover permalink-highlight">
                     <code>coords</code>
-                    <a href="#coords" class="permalink"></a>
+                    <a href="#coords" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#coordinates">Coordinates</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#coordinates" class="usa-link">Coordinates</a>
                 </td>
                 <td>
                     Filter by a specific location point or area.
@@ -149,17 +153,17 @@ GET /v1/elections
                 </td>
             </tr>
             <tr>
-                <td id="dates" class="permalink-wrapper">
+                <td id="dates" class="permalink-hover permalink-highlight">
                     <code>dates</code>
-                    <a href="#dates" class="permalink"></a>
+                    <a href="#dates" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#datetime-range">DateTimeRange</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#datetime-range" class="usa-link">DateTimeRange</a>
                 </td>
                 <td>
                     Filter to elections occurring only within a certain
                     datetime range. You can include
-                    <a href="{{ '/docs/data-types' | relative_url }}#datetime-range">shorthand names</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#datetime-range" class="usa-link">shorthand names</a>
                     in addition to normal datetimes.
                 </td>
                 <td>
@@ -167,19 +171,19 @@ GET /v1/elections
                 </td>
             </tr>
             <tr>
-                <td id="include" class="permalink-wrapper">
+                <td id="include" class="permalink-hover permalink-highlight">
                     <code>include</code>
-                    <a href="#include" class="permalink"></a>
+                    <a href="#include" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     A comma separated list of resources to include
                     for each Election object response. Options are:
-                    <a href="{{ '/docs/api/elections' | relative_url }}#contests"><code>"contests"</code></a>
+                    <a href="{{ '/docs/api/elections' | relative_url }}#contests" class="usa-link bapi-link-code"><code>"contests"</code></a>
                     and
-                    <a href="{{ '/docs/api/elections' | relative_url }}#precincts"><code>"precincts"</code></a>.
+                    <a href="{{ '/docs/api/elections' | relative_url }}#precincts" class="usa-link bapi-link-code"><code>"precincts"</code></a>.
                 </td>
                 <td>
                     <code>include=contests</code><br>
@@ -189,20 +193,20 @@ GET /v1/elections
     </table>
 </div>
 
-<h2 id="response" class="permalink-wrapper">
+<h2 id="response" class="permalink-hover permalink-highlight">
     Response
-    <a href="#response" class="permalink"></a>
+    <a href="#response" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     We will return the results of your request as a
-    <a href="{{ '/docs/data-types' | relative_url }}#response">Response object</a>
-    with the <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-data"><code>data</code></a>
+    <a href="{{ '/docs/data-types' | relative_url }}#response" class="usa-link">Response object</a>
+    with the <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-data" class="usa-link bapi-link-code"><code>data</code></a>
     attribute as the list of Elections.
 </p>
 <p>
     <strong><em>Responses can be paginated!</em></strong>
     Be sure to check the
-    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next"><code>next</code></a>
+    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next" class="usa-link bapi-link-code"><code>next</code></a>
     attribute for the next page of data.
 </p>
 <p>
@@ -230,12 +234,12 @@ GET /v1/elections
 }
 </pre>
 
-<h2 id="http-codes" class="permalink-wrapper">
+<h2 id="http-codes" class="permalink-hover permalink-highlight">
     HTTP Response Codes
-    <a href="#http-codes" class="permalink"></a>
+    <a href="#http-codes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Code</th>
@@ -245,35 +249,35 @@ GET /v1/elections
         </thead>
         <tbody>
             <tr>
-                <td id="http-code-200" class="permalink-wrapper">
+                <td id="http-code-200" class="permalink-hover permalink-highlight">
                     <code>200</code>
-                    <a href="#http-code-200" class="permalink"></a>
+                    <a href="#http-code-200" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#response">Response</a>
+                    <a href="#response" class="usa-link">Response</a>
                 </td>
                 <td>
                     Successful request.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-400" class="permalink-wrapper">
+                <td id="http-code-400" class="permalink-hover permalink-highlight">
                     <code>400</code>
-                    <a href="#http-code-400" class="permalink"></a>
+                    <a href="#http-code-400" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#error-response">Error Response</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#error-response" class="usa-link">Error Response</a>
                 </td>
                 <td>
                     The query parameters you included were invalid.
-                    The <a href="{{ '/docs/data-types' | relative_url }}#error-response">Error Response</a>
+                    The <a href="{{ '/docs/data-types' | relative_url }}#error-response" class="usa-link">Error Response</a>
                     will include a message describing exactly was invalid.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-429" class="permalink-wrapper">
+                <td id="http-code-429" class="permalink-hover permalink-highlight">
                     <code>429</code>
-                    <a href="#http-code-429" class="permalink"></a>
+                    <a href="#http-code-429" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -282,13 +286,13 @@ GET /v1/elections
                     You are making too many requests to the API. Check the
                     <code>Retry-After</code> header for how many seconds to
                     wait until trying the request again. See our docs on
-                    <a href="{{ '/docs/rate-limits' | relative_url }}">Rate Limiting</a>.
+                    <a href="{{ '/docs/rate-limits' | relative_url }}" class="usa-link">Rate Limiting</a>.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-500" class="permalink-wrapper">
+                <td id="http-code-500" class="permalink-hover permalink-highlight">
                     <code>500</code>
-                    <a href="#http-code-500" class="permalink"></a>
+                    <a href="#http-code-500" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -297,13 +301,13 @@ GET /v1/elections
                     An internal server error occurred. We log these errors
                     and try to fix them quickly, so if you keep getting
                     500 errors for a few days, please
-                    <a href="mailto:errors@ballotapi.org">email us</a>.
+                    <a href="mailto:errors@ballotapi.org" class="usa-link">email us</a>.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-503" class="permalink-wrapper">
+                <td id="http-code-503" class="permalink-hover permalink-highlight">
                     <code>503</code>
-                    <a href="#http-code-503" class="permalink"></a>
+                    <a href="#http-code-503" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -314,9 +318,9 @@ GET /v1/elections
                 </td>
             </tr>
             <tr>
-                <td id="http-code-504" class="permalink-wrapper">
+                <td id="http-code-504" class="permalink-hover permalink-highlight">
                     <code>504</code>
-                    <a href="#http-code-504" class="permalink"></a>
+                    <a href="#http-code-504" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A

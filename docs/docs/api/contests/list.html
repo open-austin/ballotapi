@@ -1,93 +1,97 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - API - Contests - List
 nav: docs
 toc: api_contests
 subtoc: api_contests_list
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
-    <li><a href="{{ '/docs/api' | relative_url }}">API</a></li>
-    <li><a href="{{ '/docs/api/contests' | relative_url }}">Contests</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
+    <li><a href="{{ '/docs/api' | relative_url }}" class="usa-link">API</a></li>
+    <li><a href="{{ '/docs/api/contests' | relative_url }}" class="usa-link">Contests</a></li>
     <li class="active">List</li>
 </ol>
 <h1>
     Listing Contests
 </h1>
 <p>
-    Get a list of <a href="{{ '/docs/api/contests' | relative_url }}">Contests</a>,
+    Get a list of <a href="{{ '/docs/api/contests' | relative_url }}" class="usa-link">Contests</a>,
     reverse ordered by election date, then government level (e.g. federal, state, city, etc.).
     By default, we return a paginated list all contests, which problaby isn't very useful to you,
-    so you probably want to include some <a href="#query-parameters">query parameters</a> to
+    so you probably want to include some <a href="#query-parameters" class="usa-link">query parameters</a> to
     filter the list for the elections you actually want.
 </p>
 
-<h2 id="http-request" class="permalink-wrapper">
+<h2 id="http-request" class="permalink-hover permalink-highlight">
     HTTP Request
-    <a href="#http-request" class="permalink"></a>
+    <a href="#http-request" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <pre>
 GET /v1/contests
 </pre>
 
-<h2 id="examples" class="permalink-wrapper">
+<h2 id="examples" class="permalink-hover permalink-highlight">
     Examples
-    <a href="#examples" class="permalink"></a>
+    <a href="#examples" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <dl>
-    <dt id="example-election-contests" class="permalink-wrapper">
+    <dt id="example-election-contests" class="permalink-hover permalink-highlight">
         Get all the contests for a specific election:
-        <a href="#example-election-contests" class="permalink"></a>
+        <a href="#example-election-contests" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/contests?elections=a12345"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/contests?elections=a12345
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
-    <dt id="example-precinct-measures" class="permalink-wrapper">
+    <dt id="example-precinct-measures" class="permalink-hover permalink-highlight">
         Get the ballot measures for a specific precinct:
-        <a href="#example-precinct-measures" class="permalink"></a>
+        <a href="#example-precinct-measures" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/contests?precincts=34564836gd&contest_types=ballot_measure"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/contests?precincts=z34536482&contest_types=ballot_measure
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
-    <dt id="example-precinct-measures" class="permalink-wrapper">
+    <dt id="example-precinct-measures" class="permalink-hover permalink-highlight">
         Search for upcoming contests for a specific term:
-        <a href="#example-precinct-measures" class="permalink"></a>
+        <a href="#example-precinct-measures" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/contests?precincts=34564836gd&contest_types=ballot_measure"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.com/v1/contests?q=soda%20tax&dates=now,future
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
-    <dt id="example-contest-maps" class="permalink-wrapper">
+    <dt id="example-contest-maps" class="permalink-hover permalink-highlight">
         Get the district maps for two contests:
-        <a href="#example-contest-maps" class="permalink"></a>
+        <a href="#example-contest-maps" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/contests?ids=958hd92,9584h3b1&extra=contest_geos"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/contests?ids=958hd92,9584h3b1&extra=contest_geos
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
 </dl>
 
-<h2 id="query-parameters" class="permalink-wrapper">
+<h2 id="query-parameters" class="permalink-hover permalink-highlight">
     Query Parameters
-    <a href="#query-parameters" class="permalink"></a>
+    <a href="#query-parameters" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Parameter</th>
@@ -98,16 +102,16 @@ GET /v1/contests
         </thead>
         <tbody>
             <tr>
-                <td id="ids" class="permalink-wrapper">
+                <td id="ids" class="permalink-hover permalink-highlight">
                     <code>ids</code>
-                    <a href="#ids" class="permalink"></a>
+                    <a href="#ids" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     A comma separated list of specific Contest
-                    <a href="{{ '/docs/api/contests' | relative_url }}#id">ids</a>
+                    <a href="{{ '/docs/api/contests' | relative_url }}#id" class="usa-link">ids</a>
                     to include in the response.
                 </td>
                 <td>
@@ -115,16 +119,16 @@ GET /v1/contests
                 </td>
             </tr>
             <tr>
-                <td id="choice_ids" class="permalink-wrapper">
+                <td id="choice_ids" class="permalink-hover permalink-highlight">
                     <code>choice_ids</code>
-                    <a href="#ids" class="permalink"></a>
+                    <a href="#ids" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     A comma separated list of specific Choice
-                    <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-id">ids</a>
+                    <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-id" class="usa-link">ids</a>
                     to include in the response.
                 </td>
                 <td>
@@ -132,19 +136,19 @@ GET /v1/contests
                 </td>
             </tr>
             <tr>
-                <td id="ocd_ids" class="permalink-wrapper">
+                <td id="ocd_ids" class="permalink-hover permalink-highlight">
                     <code>ocd_ids</code>
-                    <a href="#ocd_ids" class="permalink"></a>
+                    <a href="#ocd_ids" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">OCD-ID</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">OCD-ID</a>
                 </td>
                 <td>
                     Filter by a comma separated list of specific Open Civic Data Identifers.
                     This searches both the
-                    <a href="{{ '/docs/api/contests' | relative_url }}#ocd_id">Contest OCD-ID</a>
+                    <a href="{{ '/docs/api/contests' | relative_url }}#ocd_id" class="usa-link">Contest OCD-ID</a>
                     and
-                    <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-ocd-id">Choice OCD-ID</a>,
+                    <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-ocd-id" class="usa-link">Choice OCD-ID</a>,
                     so you can filter for both contest identifiers and person identifiers.
                 </td>
                 <td>
@@ -152,12 +156,12 @@ GET /v1/contests
                 </td>
             </tr>
             <tr>
-                <td id="coords" class="permalink-wrapper">
+                <td id="coords" class="permalink-hover permalink-highlight">
                     <code>coords</code>
-                    <a href="#coords" class="permalink"></a>
+                    <a href="#coords" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#coordinates">Coordinates</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#coordinates" class="usa-link">Coordinates</a>
                 </td>
                 <td>
                     Filter by a specific location point or area.
@@ -169,44 +173,44 @@ GET /v1/contests
                 </td>
             </tr>
             <tr>
-                <td id="elections" class="permalink-wrapper">
+                <td id="elections" class="permalink-hover permalink-highlight">
                     <code>elections</code>
-                    <a href="#elections" class="permalink"></a>
+                    <a href="#elections" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     Filter by a comma separated list of specific Election
-                    <a href="{{ '/docs/api/elections' | relative_url }}#id">ids</a>.
+                    <a href="{{ '/docs/api/elections' | relative_url }}#id" class="usa-link">ids</a>.
                 </td>
                 <td>
                     <code>elections=a12345,a23456</code>
                 </td>
             </tr>
             <tr>
-                <td id="precincts" class="permalink-wrapper">
+                <td id="precincts" class="permalink-hover permalink-highlight">
                     <code>precincts</code>
-                    <a href="#precincts" class="permalink"></a>
+                    <a href="#precincts" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     Filter by a comma separated list of specific Precinct
-                    <a href="{{ '/docs/api/precincts' | relative_url }}#id">ids</a>.
+                    <a href="{{ '/docs/api/precincts' | relative_url }}#id" class="usa-link">ids</a>.
                 </td>
                 <td>
                     <code>precincts=49uhe3,493u03-5</code>
                 </td>
             </tr>
             <tr>
-                <td id="contest_types" class="permalink-wrapper">
+                <td id="contest_types" class="permalink-hover permalink-highlight">
                     <code>contest_types</code>
-                    <a href="#contest_types" class="permalink"></a>
+                    <a href="#contest_types" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/api/contests' | relative_url }}#contest-types">ContestType</a>
+                    <a href="{{ '/docs/api/contests' | relative_url }}#contest-types" class="usa-link">ContestType</a>
                 </td>
                 <td>
                     Filter by a comma separated list of contest types
@@ -217,12 +221,12 @@ GET /v1/contests
                 </td>
             </tr>
             <tr>
-                <td id="contest_levels" class="permalink-wrapper">
+                <td id="contest_levels" class="permalink-hover permalink-highlight">
                     <code>contest_levels</code>
-                    <a href="#contest_levels" class="permalink"></a>
+                    <a href="#contest_levels" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/api/contests' | relative_url }}#contest-levels">ContestLevel</a>
+                    <a href="{{ '/docs/api/contests' | relative_url }}#contest-levels" class="usa-link">ContestLevel</a>
                 </td>
                 <td>
                     Filter by a comma separated list of contest levels
@@ -233,17 +237,17 @@ GET /v1/contests
                 </td>
             </tr>
             <tr>
-                <td id="dates" class="permalink-wrapper">
+                <td id="dates" class="permalink-hover permalink-highlight">
                     <code>dates</code>
-                    <a href="#dates" class="permalink"></a>
+                    <a href="#dates" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#datetime-range">DateTimeRange</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#datetime-range" class="usa-link">DateTimeRange</a>
                 </td>
                 <td>
                     Filter to contests occurring only within a certain
                     datetime range. You can include
-                    <a href="{{ '/docs/data-types' | relative_url }}#datetime-range">shorthand names</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#datetime-range" class="usa-link">shorthand names</a>
                     in addition to normal datetimes.
                 </td>
                 <td>
@@ -251,16 +255,16 @@ GET /v1/contests
                 </td>
             </tr>
             <tr>
-                <td id="q" class="permalink-wrapper">
+                <td id="q" class="permalink-hover permalink-highlight">
                     <code>q</code>
-                    <a href="#q" class="permalink"></a>
+                    <a href="#q" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#search-strings">Search</a>
+                    <a href="#search-strings" class="usa-link">Search</a>
                 </td>
                 <td>
                     Search contests and choices for a specific string. See
-                    <a href="#search-strings">search strings</a>
+                    <a href="#search-strings" class="usa-link">search strings</a>
                     for how to use this parameter.
                 </td>
                 <td>
@@ -268,47 +272,47 @@ GET /v1/contests
                 </td>
             </tr>
             <tr>
-                <td id="include" class="permalink-wrapper">
+                <td id="include" class="permalink-hover permalink-highlight">
                     <code>include</code>
-                    <a href="#include" class="permalink"></a>
+                    <a href="#include" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     A comma separated list of resources to include
                     for each Contest object response. Options are:
-                    <a href="{{ '/docs/api/contests' | relative_url }}#election"><code>"election"</code></a>
+                    <a href="{{ '/docs/api/contests' | relative_url }}#election" class="usa-link bapi-link-code"><code>"election"</code></a>
                     and
-                    <a href="{{ '/docs/api/contests' | relative_url }}#precincts"><code>"precincts"</code></a>.
+                    <a href="{{ '/docs/api/contests' | relative_url }}#precincts" class="usa-link bapi-link-code"><code>"precincts"</code></a>.
                 </td>
                 <td>
                     <code>include=precincts</code><br>
                 </td>
             </tr>
             <tr>
-                <td id="extra" class="permalink-wrapper">
+                <td id="extra" class="permalink-hover permalink-highlight">
                     <code>extra</code>
-                    <a href="#extra" class="permalink"></a>
+                    <a href="#extra" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     <p>
                         A comma separated list of extra values you want
                         to include in the
-                        <a href="{{ '/docs/data-types' | relative_url }}#extra"><code>extra</code> results parameter</a>.
+                        <a href="{{ '/docs/data-types' | relative_url }}#extra" class="usa-link"><code>extra</code> results parameter</a>.
                     </p>
                     <div>
                         Options are:
                         <ul>
-                            <li id="contest-geos-option" class="permalink-wrapper">
-                                <a href="#contest-geos"><code>contest_geos</code></a>
-                                - <a href="#contest-geos">Merged geometry</a>
+                            <li id="contest-geos-option" class="permalink-hover permalink-highlight">
+                                <a href="#contest-geos" class="usa-link bapi-link-code"><code>contest_geos</code></a>
+                                - <a href="#contest-geos" class="usa-link">Merged geometry</a>
                                 of all precincts for each Contest in the results.
                                 This is useful for generating district maps.
-                                <a href="#contest-geos-option" class="permalink"></a>
+                                <a href="#contest-geos-option" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                             </li>
                         </ul>
                     </div>
@@ -321,74 +325,74 @@ GET /v1/contests
     </table>
 </div>
 
-<h2 id="search-strings" class="permalink-wrapper">
+<h2 id="search-strings" class="permalink-hover permalink-highlight">
     Search Strings
-    <a href="#search-strings" class="permalink"></a>
+    <a href="#search-strings" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     Contests are where you can find the names of specific races and
     candidates, so we let you search those fields using our generalized
-    search query parameter (<a href="#q"><code>q=...</code></a>).
+    search query parameter (<a href="#q" class="usa-link bapi-link-code"><code>q=...</code></a>).
     Here's a general rundown of search features:
 </p>
 <ul>
-    <li id="search-string-fields" class="permalink-wrapper">
+    <li id="search-string-fields" class="permalink-hover permalink-highlight">
         Searches look for mentions of your search terms in these fields:
-        <a href="{{ '/docs/api/contests' | relative_url }}#title">Contest Title</a>,
-        <a href="{{ '/docs/api/contests' | relative_url }}#question">Contest Question</a>,
-        <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-title">Choice Title</a>,
-        <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-party">Choice Party</a>, and
-        <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-info">Choice Info</a>.
-        <a href="#search-string-fields" class="permalink"></a>
+        <a href="{{ '/docs/api/contests' | relative_url }}#title" class="usa-link">Contest Title</a>,
+        <a href="{{ '/docs/api/contests' | relative_url }}#question" class="usa-link">Contest Question</a>,
+        <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-title" class="usa-link">Choice Title</a>,
+        <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-party" class="usa-link">Choice Party</a>, and
+        <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-info" class="usa-link">Choice Info</a>.
+        <a href="#search-string-fields" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
-    <li id="search-string-case-sensitivity" class="permalink-wrapper">
+    <li id="search-string-case-sensitivity" class="permalink-hover permalink-highlight">
         All searches are case insensitive, so you don't need to worry about whether
         something is capitalized.
-        <a href="#search-string-case-sensitivity" class="permalink"></a>
+        <a href="#search-string-case-sensitivity" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
-    <li id="search-string-quotes" class="permalink-wrapper">
+    <li id="search-string-quotes" class="permalink-hover permalink-highlight">
         You can surround a phrase with quotes (e.g. <code>"soda tax"</code>)
         and we will search for that specific phrase.
-        <a href="#search-string-quotes" class="permalink"></a>
+        <a href="#search-string-quotes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
-    <li id="search-string-combos" class="permalink-wrapper">
+    <li id="search-string-combos" class="permalink-hover permalink-highlight">
         You can combine the search string with other query parameters to limit
         the search results (e.g. combine <code>q=...</code> with <code>dates=...</code>
         to limit the search to elections happening only within a specific date range).
-        <a href="#search-string-combos" class="permalink"></a>
+        <a href="#search-string-combos" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
-    <li id="search-string-title" class="permalink-wrapper">
+    <li id="search-string-title" class="permalink-hover permalink-highlight">
         You can search for a ballot measure name or candidate name by prefixing with
         "title:" (e.g. <code>title:"Measure FF"</code> or <code>title:"Barbra Lee"</code>).
         This indicates that we should only look for that term in the
-        <a href="{{ '/docs/api/contests' | relative_url }}#title">Contest Title</a> for
+        <a href="{{ '/docs/api/contests' | relative_url }}#title" class="usa-link">Contest Title</a> for
         ballot measures and the
-        <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-title">Choice Title</a>
+        <a href="{{ '/docs/api/contests' | relative_url }}#choice-object-title" class="usa-link">Choice Title</a>
         for elected positions.
-        <a href="#search-string-title" class="permalink"></a>
+        <a href="#search-string-title" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
 </ul>
 
-<h2 id="contest-geos" class="permalink-wrapper">
+<h2 id="contest-geos" class="permalink-hover permalink-highlight">
     Contest Geometries
-    <a href="#contest-geos" class="permalink"></a>
+    <a href="#contest-geos" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     If you include the
-    <a href="#contest-geos-option"><code>extra=contest_geos</code></a>
+    <a href="#contest-geos-option" class="usa-link bapi-link-code"><code>extra=contest_geos</code></a>
     query parameter in your request, we will merge all of
     the areas of the precincts for each contest in the results
     and return those merged geometries as a key-value object of Contest
-    <a href="{{ '/docs/api/contests' | relative_url }}#id"><code>id</code></a>
-    to <a href="{{ '/docs/data-types' | relative_url }}#geojson">GeoJSON</a>
+    <a href="{{ '/docs/api/contests' | relative_url }}#id" class="usa-link bapi-link-code"><code>id</code></a>
+    to <a href="{{ '/docs/data-types' | relative_url }}#geojson" class="usa-link">GeoJSON</a>
     object in the
-    <a href="{{ '/docs/data-types' | relative_url }}#extra"><code>extra</code></a>
+    <a href="{{ '/docs/data-types' | relative_url }}#extra" class="usa-link bapi-link-code"><code>extra</code></a>
     results parameter. This is useful for generating district maps for
     races and ballot measures.
 </p>
-<p id="contest-geos-example" class="permalink-wrapper">
+<p id="contest-geos-example" class="permalink-hover permalink-highlight">
     <strong>Example contest geometries in response:</strong>
-    <a href="#contest-geos-example" class="permalink"></a>
+    <a href="#contest-geos-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </p>
 <pre>
 {
@@ -410,38 +414,38 @@ GET /v1/contests
     "url": "..."
 }
 </pre>
-<p id="contest-geos-pagination" class="permalink-wrapper">
+<p id="contest-geos-pagination" class="permalink-hover permalink-highlight">
     <strong>NOTE:</strong> We merge all the precincts of only
     the Contests in the current page of results. So, if the
     response is
-    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next">paginated</a>,
+    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next" class="usa-link">paginated</a>,
     you will need to go to each page to get all the contest
     merged precinct geometries.
-    <a href="#contest-geos-pagination" class="permalink"></a>
+    <a href="#contest-geos-pagination" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </p>
-<p id="contest-geos-include" class="permalink-wrapper">
+<p id="contest-geos-include" class="permalink-hover permalink-highlight">
     <strong>NOTE:</strong> If you want to also get the ids
     of the Precincts for each of the contest geometries, use
-    the <a href="#include"><code>include=precincts</code></a>
+    the <a href="#include" class="usa-link bapi-link-code"><code>include=precincts</code></a>
     parameter to include the Precints for each contest in
     the results.
-    <a href="#contest-geos-include" class="permalink"></a>
+    <a href="#contest-geos-include" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </p>
 
-<h2 id="response" class="permalink-wrapper">
+<h2 id="response" class="permalink-hover permalink-highlight">
     Response
-    <a href="#response" class="permalink"></a>
+    <a href="#response" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     We will return the results of your request as a
-    <a href="{{ '/docs/data-types' | relative_url }}#response">Response object</a>
-    with the <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-data"><code>data</code></a>
+    <a href="{{ '/docs/data-types' | relative_url }}#response" class="usa-link">Response object</a>
+    with the <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-data" class="usa-link bapi-link-code"><code>data</code></a>
     attribute as the list of Contests.
 </p>
 <p>
     <strong><em>Responses can be paginated!</em></strong>
     Be sure to check the
-    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next"><code>next</code></a>
+    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next" class="usa-link bapi-link-code"><code>next</code></a>
     attribute for the next page of data.
 </p>
 <p>
@@ -473,12 +477,12 @@ GET /v1/contests
 }
 </pre>
 
-<h2 id="http-codes" class="permalink-wrapper">
+<h2 id="http-codes" class="permalink-hover permalink-highlight">
     HTTP Response Codes
-    <a href="#http-codes" class="permalink"></a>
+    <a href="#http-codes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Code</th>
@@ -488,35 +492,35 @@ GET /v1/contests
         </thead>
         <tbody>
             <tr>
-                <td id="http-code-200" class="permalink-wrapper">
+                <td id="http-code-200" class="permalink-hover permalink-highlight">
                     <code>200</code>
-                    <a href="#http-code-200" class="permalink"></a>
+                    <a href="#http-code-200" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#response">Response</a>
+                    <a href="#response" class="usa-link">Response</a>
                 </td>
                 <td>
                     Successful request.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-400" class="permalink-wrapper">
+                <td id="http-code-400" class="permalink-hover permalink-highlight">
                     <code>400</code>
-                    <a href="#http-code-400" class="permalink"></a>
+                    <a href="#http-code-400" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#error-response">Error Response</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#error-response" class="usa-link">Error Response</a>
                 </td>
                 <td>
                     The query parameters you included were invalid.
-                    The <a href="{{ '/docs/data-types' | relative_url }}#error-response">Error Response</a>
+                    The <a href="{{ '/docs/data-types' | relative_url }}#error-response" class="usa-link">Error Response</a>
                     will include a message describing exactly was invalid.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-429" class="permalink-wrapper">
+                <td id="http-code-429" class="permalink-hover permalink-highlight">
                     <code>429</code>
-                    <a href="#http-code-429" class="permalink"></a>
+                    <a href="#http-code-429" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -525,13 +529,13 @@ GET /v1/contests
                     You are making too many requests to the API. Check the
                     <code>Retry-After</code> header for how many seconds to
                     wait until trying the request again. See our docs on
-                    <a href="{{ '/docs/rate-limits' | relative_url }}">Rate Limiting</a>.
+                    <a href="{{ '/docs/rate-limits' | relative_url }}" class="usa-link">Rate Limiting</a>.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-500" class="permalink-wrapper">
+                <td id="http-code-500" class="permalink-hover permalink-highlight">
                     <code>500</code>
-                    <a href="#http-code-500" class="permalink"></a>
+                    <a href="#http-code-500" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -540,13 +544,13 @@ GET /v1/contests
                     An internal server error occurred. We log these errors
                     and try to fix them quickly, so if you keep getting
                     500 errors for a few days, please
-                    <a href="mailto:errors@ballotapi.org">email us</a>.
+                    <a href="mailto:errors@ballotapi.org" class="usa-link">email us</a>.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-503" class="permalink-wrapper">
+                <td id="http-code-503" class="permalink-hover permalink-highlight">
                     <code>503</code>
-                    <a href="#http-code-503" class="permalink"></a>
+                    <a href="#http-code-503" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -557,9 +561,9 @@ GET /v1/contests
                 </td>
             </tr>
             <tr>
-                <td id="http-code-504" class="permalink-wrapper">
+                <td id="http-code-504" class="permalink-hover permalink-highlight">
                     <code>504</code>
-                    <a href="#http-code-504" class="permalink"></a>
+                    <a href="#http-code-504" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A

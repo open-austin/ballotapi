@@ -1,65 +1,66 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - API - Precincts - Get
 nav: docs
 toc: api_precincts
 subtoc: api_precincts_get
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
-    <li><a href="{{ '/docs/api' | relative_url }}">API</a></li>
-    <li><a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
+    <li><a href="{{ '/docs/api' | relative_url }}" class="usa-link">API</a></li>
+    <li><a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precincts</a></li>
     <li class="active">Get</li>
 </ol>
 <h1>
     Get a Precinct
 </h1>
 <p>
-    Get a specific <a href="{{ '/docs/api/precincts' | relative_url }}">Precinct</a>.
+    Get a specific <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precinct</a>.
 </p>
 
-<h2 id="http-request" class="permalink-wrapper">
+<h2 id="http-request" class="permalink-hover permalink-highlight">
     HTTP Request
-    <a href="#http-request" class="permalink"></a>
+    <a href="#http-request" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <pre>
 GET /v1/precincts/<em>{id}</em>
 </pre>
 
-<h2 id="examples" class="permalink-wrapper">
+<h2 id="examples" class="permalink-hover permalink-highlight">
     Examples
-    <a href="#examples" class="permalink"></a>
+    <a href="#examples" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <dl>
-    <dt id="example-get-specific-precinct" class="permalink-wrapper">
+    <dt id="example-get-specific-precinct" class="permalink-hover permalink-highlight">
         Get a specific Precinct:
-        <a href="#example-get-specific-precinct" class="permalink"></a>
+        <a href="#example-get-specific-precinct" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/precincts/345-6"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/precincts/345-6
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
 </dl>
 
-<h2 id="query-parameters" class="permalink-wrapper">
+<h2 id="query-parameters" class="permalink-hover permalink-highlight">
     Query Parameters
-    <a href="#query-parameters" class="permalink"></a>
+    <a href="#query-parameters" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     There are currently no query parameters for this endpoint.
 </p>
 
-<h2 id="response" class="permalink-wrapper">
+<h2 id="response" class="permalink-hover permalink-highlight">
     Response
-    <a href="#response" class="permalink"></a>
+    <a href="#response" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     We will return an
-    <a href="{{ '/docs/api/precincts' | relative_url }}">Precinct object</a>
+    <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precinct object</a>
     for the specified id.
 </p>
 <p>
@@ -76,12 +77,12 @@ GET /v1/precincts/<em>{id}</em>
 }
 </pre>
 
-<h2 id="http-codes" class="permalink-wrapper">
+<h2 id="http-codes" class="permalink-hover permalink-highlight">
     HTTP Response Codes
-    <a href="#http-codes" class="permalink"></a>
+    <a href="#http-codes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Code</th>
@@ -91,47 +92,47 @@ GET /v1/precincts/<em>{id}</em>
         </thead>
         <tbody>
             <tr>
-                <td id="http-code-200" class="permalink-wrapper">
+                <td id="http-code-200" class="permalink-hover permalink-highlight">
                     <code>200</code>
-                    <a href="#http-code-200" class="permalink"></a>
+                    <a href="#http-code-200" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#response">Response</a>
+                    <a href="#response" class="usa-link">Response</a>
                 </td>
                 <td>
                     Successful request.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-400" class="permalink-wrapper">
+                <td id="http-code-400" class="permalink-hover permalink-highlight">
                     <code>400</code>
-                    <a href="#http-code-400" class="permalink"></a>
+                    <a href="#http-code-400" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#error-response">Error Response</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#error-response" class="usa-link">Error Response</a>
                 </td>
                 <td>
                     The query parameters you included were invalid.
-                    The <a href="{{ '/docs/data-types' | relative_url }}#error-response">Error Response</a>
+                    The <a href="{{ '/docs/data-types' | relative_url }}#error-response" class="usa-link">Error Response</a>
                     will include a message describing exactly was invalid.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-404" class="permalink-wrapper">
+                <td id="http-code-404" class="permalink-hover permalink-highlight">
                     <code>404</code>
-                    <a href="#http-code-404" class="permalink"></a>
+                    <a href="#http-code-404" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#error-response">Error Response</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#error-response" class="usa-link">Error Response</a>
                 </td>
                 <td>
                     We could not find an Precinct with that id.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-429" class="permalink-wrapper">
+                <td id="http-code-429" class="permalink-hover permalink-highlight">
                     <code>429</code>
-                    <a href="#http-code-429" class="permalink"></a>
+                    <a href="#http-code-429" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -140,13 +141,13 @@ GET /v1/precincts/<em>{id}</em>
                     You are making too many requests to the API. Check the
                     <code>Retry-After</code> header for how many seconds to
                     wait until trying the request again. See our docs on
-                    <a href="{{ '/docs/rate-limits' | relative_url }}">Rate Limiting</a>.
+                    <a href="{{ '/docs/rate-limits' | relative_url }}" class="usa-link">Rate Limiting</a>.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-500" class="permalink-wrapper">
+                <td id="http-code-500" class="permalink-hover permalink-highlight">
                     <code>500</code>
-                    <a href="#http-code-500" class="permalink"></a>
+                    <a href="#http-code-500" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -155,13 +156,13 @@ GET /v1/precincts/<em>{id}</em>
                     An internal server error occurred. We log these errors
                     and try to fix them quickly, so if you keep getting
                     500 errors for a few days, please
-                    <a href="mailto:errors@ballotapi.org">email us</a>.
+                    <a href="mailto:errors@ballotapi.org" class="usa-link">email us</a>.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-503" class="permalink-wrapper">
+                <td id="http-code-503" class="permalink-hover permalink-highlight">
                     <code>503</code>
-                    <a href="#http-code-503" class="permalink"></a>
+                    <a href="#http-code-503" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -172,9 +173,9 @@ GET /v1/precincts/<em>{id}</em>
                 </td>
             </tr>
             <tr>
-                <td id="http-code-504" class="permalink-wrapper">
+                <td id="http-code-504" class="permalink-hover permalink-highlight">
                     <code>504</code>
-                    <a href="#http-code-504" class="permalink"></a>
+                    <a href="#http-code-504" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A

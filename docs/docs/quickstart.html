@@ -1,12 +1,12 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - Quickstart
 nav: docs
 toc: quickstart
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
     <li class="active">Quickstart</li>
 </ol>
 <h1>
@@ -18,28 +18,31 @@ toc: quickstart
 </p>
 
 <!-- Step 1 -->
-<h3 id="step-1" class="permalink-wrapper">
+<h2 id="step-1" class="permalink-hover permalink-highlight">
     Step 1: Get the ballots for some upcoming elections.
-    <a href="#step-1" class="permalink"></a>
-</h3>
+    <a href="#step-1" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h2>
 <p>
     We'll start by getting all of the upcoming elections for a San Francisco
     location, and include the ballots for these elections. To do this you can
-    make a request to the <a href="{{ '/docs/api/elections/list' | relative_url }}">/elections</a>
+    make a request to the <a href="{{ '/docs/api/elections/list' | relative_url }}" class="usa-link">/elections</a>
     API endpoint with filters for the coordinates and to also include the
     ballot measures and races (both of these are called "contests" in our API):
 </p>
 <ul>
     <li>
-        <a href="{{ '/docs/api/elections/list' | relative_url }}#coords"><code>coords=37.7942635,-122.395586</code></a> -
+        <a href="{{ '/docs/api/elections/list' | relative_url }}#coords" class="usa-link bapi-link-code">
+            <code>coords=37.7942635,-122.395586</code></a> -
         Filter elections to this latitude, longitude of a point in San Francisco.
     </li>
     <li>
-        <a href="{{ '/docs/api/elections/list' | relative_url }}#dates"><code>dates=now,future</code></a> -
+        <a href="{{ '/docs/api/elections/list' | relative_url }}#dates" class="usa-link bapi-link-code">
+            <code>dates=now,future</code></a> -
         Filter elections happening between now and any future date.
     </li>
     <li>
-        <a href="{{ '/docs/api/elections/list' | relative_url }}#include"><code>include=contests</code></a> -
+        <a href="{{ '/docs/api/elections/list' | relative_url }}#include" class="usa-link bapi-link-code">
+            <code>include=contests</code></a> -
         Include the ballot measures and races for each election.
     </li>
 </ul>
@@ -52,7 +55,7 @@ curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates
 <p>
     Returns:
 </p>
-<pre class="fixed-height-lg">
+<pre class="limit-height">
 {
     "type": "response",
     "data": [
@@ -97,41 +100,43 @@ curl https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates
 }
 </pre>
 <p>
-    The return format of every request is a <a href="{{ '/docs/data-types' | relative_url }}#result">Result</a>,
+    The return format of every request is a <a href="{{ '/docs/data-types' | relative_url }}#result" class="usa-link">Result</a>,
     which contains a list of results inside <code>data</code> (in this case, the results are
-    <a href="{{ '/docs/api/elections' | relative_url }}">Elections</a> objects). Also, since we
+    <a href="{{ '/docs/api/elections' | relative_url }}" class="usa-link">Elections</a> objects). Also, since we
     added the <code>include=contests</code> parameter, in each election object, there's a Result
-    with the <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a> for that election.
+    with the <a href="{{ '/docs/api/contests' | relative_url }}" class="usa-link">Contest</a> for that election.
 </p>
 <p>
     <strong>NOTE:</strong> We only offer location lookup via coordinates, so if you have an address,
     you will need to convert that address into lat/long coordinates
     (a process called
-    <a href="https://en.wikipedia.org/wiki/Geocoding" target="_blank" rel="noopener noreferrer">
-        geocoding <small class="glyphicon glyphicon-new-window"></small></a>).
-    See our <a href="{{ '/docs/data-types' | relative_url }}#geocoding">geocoding notes</a>
+    <a href="https://en.wikipedia.org/wiki/Geocoding" class="usa-link" target="_blank" rel="noopener noreferrer">
+        geocoding <svg class="svgicon"><use href="#fa-external-link"/></svg></a>).
+    See our <a href="{{ '/docs/data-types' | relative_url }}#geocoding" class="usa-link">geocoding notes</a>
     for more information.
 </p>
 
 <!-- Step 2 -->
-<h3 id="step-2" class="permalink-wrapper">
+<h2 id="step-2" class="permalink-hover permalink-highlight">
     Step 2: Get a district map.
-    <a href="#step-2" class="permalink"></a>
-</h3>
+    <a href="#step-2" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h2>
 <p>
     Next, we'll see where a specific ballot contest will
     show up on the ballot. To do that we can make a request to the
-    <a href="{{ '/docs/api/precincts/list' | relative_url }}">/precincts</a>
+    <a href="{{ '/docs/api/precincts/list' | relative_url }}" class="usa-link">/precincts</a>
     API endpoint with filters for the contest and to also include
     a merged area of all the precincts:
 </p>
 <ul>
     <li>
-        <a href="{{ '/docs/api/precincts/list' | relative_url }}#contests"><code>contests=234-5</code></a> -
+        <a href="{{ '/docs/api/precincts/list' | relative_url }}#contests" class="usa-link bapi-link-code">
+            <code>contests=234-5</code></a> -
         Filter precincts to those that a specific contest covers.
     </li>
     <li>
-        <a href="{{ '/docs/api/precincts/list' | relative_url }}#extra"><code>extra=merge_geos</code></a> -
+        <a href="{{ '/docs/api/precincts/list' | relative_url }}#extra" class="usa-link bapi-link-code">
+            <code>extra=merge_geos</code></a> -
         Include a merged geometry of the precincts in the results.
     </li>
 </ul>
@@ -144,7 +149,7 @@ curl https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos
 <p>
     Returns:
 </p>
-<pre class="fixed-height-lg">
+<pre class="limit-height">
 {
     "type": "response",
     "data": [
@@ -170,8 +175,8 @@ curl https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos
 }
 </pre>
 <p>
-    This <a href="{{ '/docs/data-types' | relative_url }}#response">Response</a> contains a list of
-    <a href="{{ '/docs/api/precincts' | relative_url }}">Precinct</a> objects. Also, since
+    This <a href="{{ '/docs/data-types' | relative_url }}#response" class="usa-link">Response</a> contains a list of
+    <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precinct</a> objects. Also, since
     we added the <code>extra=merge_geos</code> parameter, the <code>extra</code>
     object in the Result contains a merged geometry of all the precincts in the
     results (NOTE: this is not just a merge of the precincts on this page, but
@@ -186,22 +191,24 @@ curl https://api.ballotapi.org/v1/precincts?contests=234-5&extra=merge_geos
 </p>
 
 <!-- Step 2 -->
-<h3 id="step-3" class="permalink-wrapper">
+<h2 id="step-3" class="permalink-hover permalink-highlight">
     Step 3: Search for a candidate's races.
-    <a href="#step-3" class="permalink"></a>
-</h3>
+    <a href="#step-3" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h2>
 <p>
     Finally, we'll search for the recent races that a candidate is in.
-    To do that we can make a request to the <a href="{{ '/docs/api/contests/list' | relative_url }}">/contests</a>
+    To do that we can make a request to the <a href="{{ '/docs/api/contests/list' | relative_url }}" class="usa-link">/contests</a>
     API endpoint with with a string search and date range:
 </p>
 <ul>
     <li>
-        <a href="{{ '/docs/api/contests/list' | relative_url }}#q"><code>q=Barbara%20Lee</code></a> -
+        <a href="{{ '/docs/api/contests/list' | relative_url }}#q" class="usa-link bapi-link-code">
+            <code>q=Barbara%20Lee</code></a> -
         Search contests for "Barbara Lee".
     </li>
     <li>
-        <a href="{{ '/docs/api/contests/list' | relative_url }}#dates"><code>dates=-365d,future</code></a> -
+        <a href="{{ '/docs/api/contests/list' | relative_url }}#dates" class="usa-link bapi-link-code">
+            <code>dates=-365d,future</code></a> -
         Limit results to the past year and going forward.
     </li>
 </ul>
@@ -214,7 +221,7 @@ curl https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-365d,future
 <p>
     Returns:
 </p>
-<pre class="fixed-height-lg">
+<pre class="limit-height">
 {
     "type": "response",
     "data": [
@@ -250,18 +257,18 @@ curl https://api.ballotapi.org/v1/contests?q=Barbara%20Lee&dates=-365d,future
 }
 </pre>
 <p>
-    This <a href="{{ '/docs/data-types' | relative_url }}#response">Response</a> contains a list of
-    <a href="{{ '/docs/api/contests' | relative_url }}">Contest</a> objects. Using these
+    This <a href="{{ '/docs/data-types' | relative_url }}#response" class="usa-link">Response</a> contains a list of
+    <a href="{{ '/docs/api/contests' | relative_url }}" class="usa-link">Contest</a> objects. Using these
     results, you can look up election or precinct information on the other API
     endoints.
 </p>
 
-<h3>
-    Step 4: <a href="{{ '/docs/examples' | relative_url }}">Check out more examples</a>
-</h3>
+<h2>
+    Step 4: <a href="{{ '/docs/examples' | relative_url }}" class="usa-link">Check out more examples</a>
+</h2>
 <p>
     Congratulations on finishing the Quickstart! Next, we recommend reading
-    through the <a href="{{ '/docs/examples' | relative_url }}">examples</a>
+    through the <a href="{{ '/docs/examples' | relative_url }}" class="usa-link">examples</a>
     to see a variety of various other awesome features of the API.
 </p>
 

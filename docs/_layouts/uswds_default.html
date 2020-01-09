@@ -44,23 +44,103 @@
                 10%{ background-color: #ffe038; }
                 100%{ background-color: #ffffff; }
             }
+            /* Increased container width */
+            .grid-container,
+            .usa-header--extended .usa-navbar,
+            .usa-header--extended .usa-nav__inner {
+                max-width: 75rem;
+            }
+            .usa-nav__primary > .usa-nav__primary-item {
+                font-size: 1.1rem; /* make nav menu a bit larger */
+            }
             /* Header logo */
             .usa-logo img {
                 height: 100%;
                 max-height: 30px;
                 width: auto;
             }
-            /* Helper classes (mostly inspired from bootstrap) */
-            .bapi-breadcrumb { padding: 0.4rem 0.8rem 0.8rem; background-color: #f0f0f0; font-size: .93rem; line-height: 1; }
+            /* mobile-friendly tables */
+            .usa-table {
+                font-family: inherit; /* keep serif fonts */
+                font-size: 92%;       /* slightly smaller text in tables */
+            }
+            .usa-table > tr > th,
+            .usa-table > thead > tr > th,
+            .usa-table > tr > td,
+            .usa-table > tbody > tr > td {
+                border: 1px solid #dcdee0;
+            }
+            .th-250 {
+                min-width: 250px; /* force a minimum width for a specific table column */
+            }
+            @media (max-width:767px) {
+                .table-responsive { width: 100%; overflow-x: auto; overflow-y: hidden; }
+                .table-responsive.normal-break > .table > tbody > tr > td,
+                .table-responsive.normal-break > .table > tbody > tr > th,
+                .table-responsive.normal-break > .table > tfoot > tr > td,
+                .table-responsive.normal-break > .table > tfoot > tr > th,
+                .table-responsive.normal-break > .table > thead > tr > td,
+                .table-responsive.normal-break > .table > thead > tr > th {
+                    white-space: normal; /* override default behavior of forcing no-wrap */
+                }
+                .th-250 {
+                    min-width: 250px; /* helper for minimum width on description columns */
+                }
+            }
+            hr {
+                border-color: #dcdee0; /* slightly lighter horizontal rules */
+                margin: 1.5rem 0; /* slightly larger default margin */
+            }
+            /* breadcrumb styling */
+            .bapi-breadcrumb { padding: 0.4rem 0.8rem 0.8rem; background-color: #f0f0f0; font-size: .9rem; line-height: 1; }
             .bapi-breadcrumb > li { display: inline-block; list-style-type: none; }
             .bapi-breadcrumb > li + li::before { color:  #aaa; content: "›"; padding-left: 5px; padding-right: 7px; font-size: 120%; }
             /* Default text style */
             html {
                 font-family: Public Sans Web,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
                 font-size: 1rem;
-                line-height: 1.6;
+                line-height: 1.75;
             }
-            .usa-nav__primary > .usa-nav__primary-item { font-size: 1.1rem; } /* make nav menu a bit larger */
+            /* Code styling */
+            pre {
+                overflow: auto;
+                background-color: #f0f0f0;
+                padding: 0.3rem 0.5rem;
+                border: 1px solid #ccc;
+                border-radius: 0.3rem;
+                line-height: 1.3;
+                font-size: 90%;
+            }
+            .limit-height {
+                max-height: 20em;
+            }
+            code {
+                padding: 0.2em 0.3em;
+                font-size: 90%;
+                color: #b51d09;
+                background-color: #f9eced;
+                border-radius: 0.25em;
+            }
+            a.bapi-link-code {
+                text-decoration-color: #b51d09;
+            }
+            a.bapi-link-code:hover {
+                text-decoration-color: #8b1303;
+            }
+            a.bapi-link-code:hover code {
+                color: #8b1303;
+            }
+            /* API tags */
+            .bapi-link-get {
+                text-decoration: none;
+                padding-right: 0.2em;
+            }
+            .bapi-tag-get {
+                background-color: #538200;
+            }
+            /* example descriptions */
+            dt { font-weight: 700; line-height: 1.2; }
+            dd { margin-left: 0; }
         </style>
     </head>
     <body>
@@ -136,6 +216,7 @@
         </header>
 
         <!-- Under construction banner -->
+        {% if page.hide_construction != true %}
         <div class="grid-container margin-top-2">
             <div class="grid-row grid-gap">
                 <div class="grid-col-12">
@@ -147,7 +228,7 @@
                             <p class="usa-alert__text">
                                 BallotAPI is still being developed, so
                                 the API does not work yet. Check out our
-                                <a href="https://github.com/open-austin/ballotapi">github repository</a>
+                                <a href="https://github.com/open-austin/ballotapi" rel="noopener noreferrer">github repository</a>
                                 for current progress.
                             </p>
                         </div>
@@ -155,6 +236,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
 
         <!-- Content -->
         <div role="main">

@@ -34,9 +34,6 @@ While this project is released into the public domain, it does depend on other
 open source projects. All dependencies are not included in the project license
 are released under their respective open source licenses.
 
-* Bootstrap - [MIT](https://github.com/twbs/bootstrap#copyright-and-license)
-* Bootstrap.native - [MIT](https://github.com/thednp/bootstrap.native#license)
-* Leaflet - [BSD-2-Clause](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
 * USWDS - [Public Domain](https://github.com/uswds/uswds/blob/develop/LICENSE.md)
 * FontAwesome - [CC BY 4.0](https://fontawesome.com/license/free)
 * Jekyll - [MIT](https://github.com/jekyll/jekyll/blob/master/LICENSE)
@@ -44,6 +41,8 @@ are released under their respective open source licenses.
 * Psycopg2 - [LGPL](https://github.com/psycopg/psycopg2/blob/master/LICENSE)
 * PostgreSQL - [PostgreSQL Licence](https://www.postgresql.org/about/licence/)
 * PostGIS -  [GPLv2](https://postgis.net/docs/manual-dev/PostGIS_FAQ.html#license_faq)
+* SQLite -  [Public Domain](https://www.sqlite.org/copyright.html)
+* SpatiaLite - [MPL tri-license](https://www.gaia-gis.it/fossil/libspatialite/index)
 * Redis - [BSD](https://redis.io/topics/license)
 
 ## Contributions

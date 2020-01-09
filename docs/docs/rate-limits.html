@@ -1,12 +1,12 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - Rate Limits
 nav: docs
 toc: rate_limits
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
     <li class="active">Rate Limits</li>
 </ol>
 <h1>
@@ -14,20 +14,20 @@ toc: rate_limits
 </h1>
 <p>
     By default, you don't need an access token to use Ballot API. Just start
-    making requests to <a href="{{ '/docs/api' | relative_url }}">endpoints</a>!
+    making requests to <a href="{{ '/docs/api' | relative_url }}" class="usa-link">endpoints</a>!
     However, since these requests are unauthenticated we will rate limit
     how fast you can make requests to prevent abuse.
 </p>
 <ul>
-    <li id="rate-limit" class="permalink-wrapper">
+    <li id="rate-limit" class="permalink-hover permalink-highlight">
         <strong>Current rate limit:</strong>
         2 requests per second per IP address.
-        <a href="#rate-limit" class="permalink"></a>
+        <a href="#rate-limit" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
-    <li id="queue-limit" class="permalink-wrapper">
+    <li id="queue-limit" class="permalink-hover permalink-highlight">
         <strong>Current queue limit:</strong>
         20 requests per IP address.
-        <a href="#queue-limit" class="permalink"></a>
+        <a href="#queue-limit" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
 </ul>
 <p>
@@ -40,17 +40,17 @@ toc: rate_limits
 </p>
 <p>
     If you see a
-    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429" target="_blank" rel="noopener noreferrer">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429" class="usa-link" target="_blank" rel="noopener noreferrer">
         429 response code
-        <small class="glyphicon glyphicon-new-window"></small></a>, check the
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>, check the
     <code>Retry-After</code> header for how many seconds to wait until trying
     the request again.
 </p>
 
-<h3 id="client-apps" class="permalink-wrapper">
+<h2 id="client-apps" class="permalink-hover permalink-highlight">
     Making requests from client applications
-    <a href="#client-apps" class="permalink"></a>
-</h3>
+    <a href="#client-apps" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h2>
 <p>
     If you have an website or native app where you are making requests from
     that client, our rate limits shouldn't affect your application much.
@@ -63,10 +63,10 @@ toc: rate_limits
     before sending another request.
 </p>
 
-<h3 id="central-server" class="permalink-wrapper">
+<h2 id="central-server" class="permalink-hover permalink-highlight">
     Making requests from a central server
-    <a href="#central-server" class="permalink"></a>
-</h3>
+    <a href="#central-server" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h2>
 <p>
     If you have a central server that is going to make a significant volume
     of requests, you will likely run into our default rate limits pretty
@@ -82,7 +82,7 @@ toc: rate_limits
 <p>
     <strong>Option 2: Run a local mirror.</strong><br>
     Our dataset is public domain and our software is open source, so you are
-    welcome to <a href="#TODO">download a copy</a> and run the API on
+    welcome to <a href="#TODO" class="usa-link">download a copy</a> and run the API on
     your internal network.
 </p>
 <p>
@@ -92,10 +92,10 @@ toc: rate_limits
     requests.
 </p>
 
-<h3 id="large-networks" class="permalink-wrapper">
+<h2 id="large-networks" class="permalink-hover permalink-highlight">
     Making requests from large networks/public wifi
-    <a href="#large-networks" class="permalink"></a>
-</h3>
+    <a href="#large-networks" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h2>
 <p>
     If you are on a large shared or public network (e.g. a college campus or
     conference center), everyone on your network will likely have the same
@@ -106,18 +106,18 @@ toc: rate_limits
 <p>
     We don't want shared networks to disrupt user experience, so we do offer
     whitelisting certain IP ranges for bigger rate limits. Simply open a
-    <a href="https://github.com/open-austin/ballotapi/pulls" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/open-austin/ballotapi/pulls" class="usa-link" target="_blank" rel="noopener noreferrer">
         pull request
-        <small class="glyphicon glyphicon-new-window"></small></a>, and
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>, and
     we'll see what we can do.
 </p>
 
-<h3 id="scraping" class="permalink-wrapper">
+<h2 id="scraping" class="permalink-hover permalink-highlight">
     Scraping the API
-    <a href="#scraping" class="permalink"></a>
-</h3>
+    <a href="#scraping" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h2>
 <p>
     With the default rate limits, it would take quite a long time to scan
     or scrape the entire API. But there's really no reason to! The entire
-    dataset is public domain and you can <a href="#TODO">download a copy</a>.
+    dataset is public domain and you can <a href="#TODO" class="usa-link">download a copy</a>.
 </p>

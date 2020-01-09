@@ -1,83 +1,85 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - API - Contests
 nav: docs
 toc: api_contests
 subtoc: api_contests_object
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
-    <li><a href="{{ '/docs/api' | relative_url }}">API</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
+    <li><a href="{{ '/docs/api' | relative_url }}" class="usa-link">API</a></li>
     <li class="active">Contests</li>
 </ol>
 <h1>
     Contests
 </h1>
 <p>
-    <a href="#examples">See examples of Contest objects.</a>
+    <a href="#examples" class="usa-link">See examples of Contest objects.</a>
 </p>
 <p>
     Contest objects contain information about specific ballot
     measures or races. This is where you want to look for the
     actual list of candidates and text of ballot measures. To
     search contests (e.g. search for a particular candidate),
-    use the <a href="{{ '/docs/api/contests/list' | relative_url }}">/contests</a>
+    use the <a href="{{ '/docs/api/contests/list' | relative_url }}" class="usa-link">/contests</a>
     endpoint.
 </p>
-<p id="gotchas" class="permalink-wrapper">
+<p id="gotchas" class="permalink-hover permalink-highlight">
     <strong>Things that you should know:</strong>
-    <a href="#gotchas" class="permalink"></a>
+    <a href="#gotchas" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </p>
 <ul>
-    <li id="changes" class="permalink-wrapper">
+    <li id="changes" class="permalink-hover permalink-highlight">
         Contest and candidate lists change can change unexpectedly
         (e.g. when a candidate is added or dropped last minute),
         so if you are caching objects on your end, be able to handle
         situations where Contest attributes don't match what you had
         previously and where candidates lists have had candidates
         added/removed/modified.
-        <a href="#changes" class="permalink"></a>
+        <a href="#changes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
-    <li id="new-ids" class="permalink-wrapper">
+    <li id="new-ids" class="permalink-hover permalink-highlight margin-top-1">
         For the same elected position (e.g. mayor) we still assign
-        a new Contest <a href="#id"><code>id</code></a> for that
+        a new Contest <a href="#id" class="usa-link bapi-link-code"><code>id</code></a> for that
         race every election, because these positions can change from
         election-to-election (e.g. the city's boundary changes).
         To see the same position's contests over multiple elections,
-        filter by <a href="{{ '/docs/api/contests/list' | relative_url }}#ocd_ids"><code>ocd_id</code></a>, which
+        filter by <a href="{{ '/docs/api/contests/list' | relative_url }}#ocd_ids" class="usa-link bapi-link-code"><code>ocd_id</code></a>, which
         corresponds to the position, not the contest.
-        <a href="#new-ids" class="permalink"></a>
+        <a href="#new-ids" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
 </ul>
 
-<h3 id="api-endpoints" class="permalink-wrapper">
+<h3 id="api-endpoints" class="permalink-hover permalink-highlight">
     API Endpoints
-    <a href="#api-endpoints" class="permalink"></a>
+    <a href="#api-endpoints" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
-<ul class="list-unstyled">
+<ul class="add-list-reset">
     <li>
-        <a href="{{ '/docs/api/contests/list' | relative_url }}">
-            <span class="label label-success">GET</span>
-            <code>/contests</code></a> -
+        <a href="{{ '/docs/api/contests/list' | relative_url }}" class="usa-link bapi-link-get" tabindex="-1"
+            ><span class="usa-tag bapi-tag-get">GET</span></a
+        ><a href="{{ '/docs/api/contests/list' | relative_url }}" class="usa-link bapi-link-code"
+            ><code>/contests</code></a> -
         List contests (can be searched and filtered).
     </li>
     <li>
-        <a href="{{ '/docs/api/contests/get' | relative_url }}">
-            <span class="label label-success">GET</span>
-            <code>/contests/<em>{id}</em></code></a> -
+        <a href="{{ '/docs/api/contests/get' | relative_url }}" class="usa-link bapi-link-get" tabindex="-1"
+            ><span class="usa-tag bapi-tag-get">GET</span></a
+        ><a href="{{ '/docs/api/contests/get' | relative_url }}" class="usa-link bapi-link-code"
+            ><code>/contests/<em>{id}</em></code></a> -
         Get a specific contest.
     </li>
 </ul>
 
 <hr>
 
-<h2 id="attributes" class="permalink-wrapper">
+<h2 id="attributes" class="permalink-hover permalink-highlight">
     Attributes
-    <a href="#attributes" class="permalink"></a>
+    <a href="#attributes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Attribute</th>
@@ -88,12 +90,12 @@ subtoc: api_contests_object
         </thead>
         <tbody>
             <tr>
-                <td id="type" class="permalink-wrapper">
+                <td id="type" class="permalink-hover permalink-highlight">
                     <code>type</code>
-                    <a href="#type" class="permalink"></a>
+                    <a href="#type" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#object-type">ObjectType</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#object-type" class="usa-link">ObjectType</a>
                 </td>
                 <td>
                     This object's data type. Will always be "contest".
@@ -103,34 +105,34 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="id" class="permalink-wrapper">
+                <td id="id" class="permalink-hover permalink-highlight">
                     <code>id</code>
-                    <a href="#id" class="permalink"></a>
+                    <a href="#id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     This is the unique id we assign to the Contest.
                     NOTE: The same elected position (e.g. mayor) is
-                    assigned a new id every election (<a href="#new-ids">read more</a>).
+                    assigned a new id every election (<a href="#new-ids" class="usa-link">read more</a>).
                 </td>
                 <td>
                     <code>"a74635..."</code>
                 </td>
             </tr>
             <tr>
-                <td id="ocd_id" class="permalink-wrapper">
+                <td id="ocd_id" class="permalink-hover permalink-highlight">
                     <code>ocd_id</code>
-                    <a href="#ocd_id" class="permalink"></a>
+                    <a href="#ocd_id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">OCD-ID</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">OCD-ID</a>
                     or <code>null</code>
                 </td>
                 <td>
                     This is the
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">Open Civic Data Identifier</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">Open Civic Data Identifier</a>
                     (OCD-ID) for the elected position in this contest.
                     If there is no OCD-ID (often the case for ballot
                     measures), this value will be <code>null</code>.
@@ -140,16 +142,16 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="election_id" class="permalink-wrapper">
+                <td id="election_id" class="permalink-hover permalink-highlight">
                     <code>election_id</code>
-                    <a href="#election_id" class="permalink"></a>
+                    <a href="#election_id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     This is the
-                    <a href="{{ '/docs/api/elections' | relative_url }}#id">Election.id</a>
+                    <a href="{{ '/docs/api/elections' | relative_url }}#id" class="usa-link">Election.id</a>
                     to which this Contest belongs.
                 </td>
                 <td>
@@ -157,20 +159,20 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="election" class="permalink-wrapper">
+                <td id="election" class="permalink-hover permalink-highlight">
                     <code>election</code>
-                    <a href="#election" class="permalink"></a>
+                    <a href="#election" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/api/elections' | relative_url }}">Election</a>
+                    <a href="{{ '/docs/api/elections' | relative_url }}" class="usa-link">Election</a>
                 </td>
                 <td>
                     <strong>
                         (only if
-                        <a href="{{ '/docs/api/contests/list' | relative_url }}#include">included</a>)
+                        <a href="{{ '/docs/api/contests/list' | relative_url }}#include" class="usa-link">included</a>)
                     </strong>
                     This is the full object for the Contest's
-                    <a href="{{ '/docs/api/elections' | relative_url }}">Election</a>.
+                    <a href="{{ '/docs/api/elections' | relative_url }}" class="usa-link">Election</a>.
                     This is useful if you are querying contests across
                     multiple elections and want to get information each
                     election.
@@ -180,16 +182,16 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="contest_type" class="permalink-wrapper">
+                <td id="contest_type" class="permalink-hover permalink-highlight">
                     <code>contest_type</code>
-                    <a href="#contest_type" class="permalink"></a>
+                    <a href="#contest_type" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#contest-types">ContestType</a>
+                    <a href="#contest-types" class="usa-link">ContestType</a>
                 </td>
                 <td>
                     This is the type of contest (e.g. ballot measure,
-                    elected position, etc.). See <a href="#contest-types">ContestType</a>
+                    elected position, etc.). See <a href="#contest-types" class="usa-link">ContestType</a>
                     for a full list of possible values.
                 </td>
                 <td>
@@ -197,16 +199,16 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="contest_level" class="permalink-wrapper">
+                <td id="contest_level" class="permalink-hover permalink-highlight">
                     <code>contest_level</code>
-                    <a href="#contest_level" class="permalink"></a>
+                    <a href="#contest_level" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#contest-levels">ContestLevel</a>
+                    <a href="#contest-levels" class="usa-link">ContestLevel</a>
                 </td>
                 <td>
                     This is jurisdictional level of contest (e.g. federal,
-                    state, etc.). See <a href="#contest-levels">ContestLevel</a>
+                    state, etc.). See <a href="#contest-levels" class="usa-link">ContestLevel</a>
                     for a full list of possible values.
                 </td>
                 <td>
@@ -214,16 +216,16 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="voting_method" class="permalink-wrapper">
+                <td id="voting_method" class="permalink-hover permalink-highlight">
                     <code>voting_method</code>
-                    <a href="#voting_method" class="permalink"></a>
+                    <a href="#voting_method" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#voting-methods">VotingMethod</a>
+                    <a href="#voting-methods" class="usa-link">VotingMethod</a>
                 </td>
                 <td>
                     This is the specific method of voting (e.g. choose one,
-                    ranked choice, approval, etc.). See <a href="#voting-methods">VotingMethod</a>
+                    ranked choice, approval, etc.). See <a href="#voting-methods" class="usa-link">VotingMethod</a>
                     for a full list of possible values.
                 </td>
                 <td>
@@ -231,12 +233,12 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="voting_instructions" class="permalink-wrapper">
+                <td id="voting_instructions" class="permalink-hover permalink-highlight">
                     <code>voting_instructions</code>
-                    <a href="#voting_instructions" class="permalink"></a>
+                    <a href="#voting_instructions" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     These are the human-readable instructions for
@@ -249,12 +251,12 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="title" class="permalink-wrapper">
+                <td id="title" class="permalink-hover permalink-highlight">
                     <code>title</code>
-                    <a href="#title" class="permalink"></a>
+                    <a href="#title" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     This is the title of the ballot measure or race.
@@ -264,12 +266,12 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="question" class="permalink-wrapper">
+                <td id="question" class="permalink-hover permalink-highlight">
                     <code>question</code>
-                    <a href="#question" class="permalink"></a>
+                    <a href="#question" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                     or <code>null</code>
                 </td>
                 <td>
@@ -282,12 +284,12 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="choices" class="permalink-wrapper">
+                <td id="choices" class="permalink-hover permalink-highlight">
                     <code>choices</code>
-                    <a href="#choices" class="permalink"></a>
+                    <a href="#choices" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    List(<a href="#choice-object">ChoiceObject</a>)
+                    List(<a href="#choice-object" class="usa-link">ChoiceObject</a>)
                 </td>
                 <td>
                     This is a list of choices for the Contest.
@@ -300,33 +302,33 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="precincts" class="permalink-wrapper">
+                <td id="precincts" class="permalink-hover permalink-highlight">
                     <code>precincts</code>
-                    <a href="#precincts" class="permalink"></a>
+                    <a href="#precincts" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#response">Response</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#response" class="usa-link">Response</a>
                 </td>
                 <td>
                     <strong>
                         (only if
-                        <a href="{{ '/docs/api/contests/list' | relative_url }}#include">included</a>)
+                        <a href="{{ '/docs/api/contests/list' | relative_url }}#include" class="usa-link">included</a>)
                     </strong>
                     These are the
-                    <a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a>
+                    <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precincts</a>
                     that are part of this Contest.
                     NOTE: This response list can be paginated, so be sure
                     to know how to handle
-                    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next">paginated responses</a>.
+                    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next" class="usa-link">paginated responses</a>.
                 </td>
                 <td>
                     <code>{"type": "response", "data": [...], ...}</code>
                 </td>
             </tr>
             <tr>
-                <td id="more" class="permalink-wrapper">
+                <td id="more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#more" class="permalink"></a>
+                    <a href="#more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td></td>
                 <td>
@@ -341,14 +343,14 @@ subtoc: api_contests_object
 
 <hr>
 
-<h2 id="examples" class="permalink-wrapper">
+<h2 id="examples" class="permalink-hover permalink-highlight">
     Examples
-    <a href="#examples" class="permalink"></a>
+    <a href="#examples" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
-<h5 id="example-ballot-measure" class="permalink-wrapper">
+<h4 id="example-ballot-measure" class="permalink-hover permalink-highlight">
     A ballot measure example:
-    <a href="#example-ballot-measure" class="permalink"></a>
-</h5>
+    <a href="#example-ballot-measure" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h4>
 <pre>
 {
     "type": "contest",
@@ -381,10 +383,10 @@ subtoc: api_contests_object
     ]
 }
 </pre>
-<h5 id="example-elected-position" class="permalink-wrapper">
+<h4 id="example-elected-position" class="permalink-hover permalink-highlight">
     An elected position example:
-    <a href="#example-elected-position" class="permalink"></a>
-</h5>
+    <a href="#example-elected-position" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h4>
 <pre>
 {
     "type": "contest",
@@ -428,15 +430,15 @@ subtoc: api_contests_object
 
 <hr>
 
-<h2 id="contest-types" class="permalink-wrapper">
+<h2 id="contest-types" class="permalink-hover permalink-highlight">
     Contest Types
-    <a href="#contest-types" class="permalink"></a>
+    <a href="#contest-types" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     These are our general categories of contest types.
 </p>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Contest Type</th>
@@ -445,9 +447,9 @@ subtoc: api_contests_object
         </thead>
         <tbody>
             <tr>
-                <td id="contest-type-ballot-measure" class="permalink-wrapper">
+                <td id="contest-type-ballot-measure" class="permalink-hover permalink-highlight">
                     <code>ballot_measure</code>
-                    <a href="#contest-type-ballot-measure" class="permalink"></a>
+                    <a href="#contest-type-ballot-measure" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     A proposed piece of legislation or question to be
@@ -455,9 +457,9 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="contest-type-elected-position" class="permalink-wrapper">
+                <td id="contest-type-elected-position" class="permalink-hover permalink-highlight">
                     <code>elected_position</code>
-                    <a href="#contest-type-elected-position" class="permalink"></a>
+                    <a href="#contest-type-elected-position" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     A contest to elect one or more candidates to a
@@ -465,9 +467,9 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="contest-type-more" class="permalink-wrapper">
+                <td id="contest-type-more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#contest-type-more" class="permalink"></a>
+                    <a href="#contest-type-more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     We may add more contest types in the future, so be able to
@@ -480,15 +482,15 @@ subtoc: api_contests_object
 
 <hr>
 
-<h2 id="contest-levels" class="permalink-wrapper">
+<h2 id="contest-levels" class="permalink-hover permalink-highlight">
     Contest Levels
-    <a href="#contest-levels" class="permalink"></a>
+    <a href="#contest-levels" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     These are our general government level of the contest.
 </p>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Contest Level</th>
@@ -497,18 +499,18 @@ subtoc: api_contests_object
         </thead>
         <tbody>
             <tr>
-                <td id="contest-level-federal" class="permalink-wrapper">
+                <td id="contest-level-federal" class="permalink-hover permalink-highlight">
                     <code>federal</code>
-                    <a href="#contest-level-federal" class="permalink"></a>
+                    <a href="#contest-level-federal" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     National contests (e.g. U.S. Senate).
                 </td>
             </tr>
             <tr>
-                <td id="contest-level-state" class="permalink-wrapper">
+                <td id="contest-level-state" class="permalink-hover permalink-highlight">
                     <code>state</code>
-                    <a href="#contest-level-state" class="permalink"></a>
+                    <a href="#contest-level-state" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     State-level contests (e.g. California State
@@ -516,9 +518,9 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="contest-level-regional" class="permalink-wrapper">
+                <td id="contest-level-regional" class="permalink-hover permalink-highlight">
                     <code>regional</code>
-                    <a href="#contest-level-regional" class="permalink"></a>
+                    <a href="#contest-level-regional" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     Covers a widespread area across multiple counties or cities
@@ -526,36 +528,36 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="contest-level-county" class="permalink-wrapper">
+                <td id="contest-level-county" class="permalink-hover permalink-highlight">
                     <code>county</code>
-                    <a href="#contest-level-county" class="permalink"></a>
+                    <a href="#contest-level-county" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     County-level contests (e.g. Tax Assessor-Collector).
                 </td>
             </tr>
             <tr>
-                <td id="contest-level-city" class="permalink-wrapper">
+                <td id="contest-level-city" class="permalink-hover permalink-highlight">
                     <code>city</code>
-                    <a href="#contest-level-city" class="permalink"></a>
+                    <a href="#contest-level-city" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     City-level contests (e.g. City Council Seat 4).
                 </td>
             </tr>
             <tr>
-                <td id="contest-level-sublocality" class="permalink-wrapper">
+                <td id="contest-level-sublocality" class="permalink-hover permalink-highlight">
                     <code>sublocality</code>
-                    <a href="#contest-level-sublocality" class="permalink"></a>
+                    <a href="#contest-level-sublocality" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     Covers a local area/neighborhood/ward (e.g. school district).
                 </td>
             </tr>
             <tr>
-                <td id="contest-level-more" class="permalink-wrapper">
+                <td id="contest-level-more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#contest-level-more" class="permalink"></a>
+                    <a href="#contest-level-more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     We may add more contest levels in the future, so be able to
@@ -568,15 +570,15 @@ subtoc: api_contests_object
 
 <hr>
 
-<h2 id="voting-methods" class="permalink-wrapper">
+<h2 id="voting-methods" class="permalink-hover permalink-highlight">
     Voting Methods
-    <a href="#voting-methods" class="permalink"></a>
+    <a href="#voting-methods" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     These are our general categories of voting methods.
 </p>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Voting Method</th>
@@ -585,9 +587,9 @@ subtoc: api_contests_object
         </thead>
         <tbody>
             <tr>
-                <td id="voting-method-choose-one" class="permalink-wrapper">
+                <td id="voting-method-choose-one" class="permalink-hover permalink-highlight">
                     <code>choose_one</code>
-                    <a href="#voting-method-choose-one" class="permalink"></a>
+                    <a href="#voting-method-choose-one" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     Vote for one choice. This is the NOTE: Special win conditions,
@@ -597,14 +599,14 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="voting-method-choose-multiple" class="permalink-wrapper">
+                <td id="voting-method-choose-multiple" class="permalink-hover permalink-highlight">
                     <code>choose_multiple</code>
-                    <a href="#voting-method-choose-multiple" class="permalink"></a>
+                    <a href="#voting-method-choose-multiple" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     Vote for multiple choices. A specific number of choices
                     with the most votes win the election. See the
-                    <a href="#voting_instructions"><code>voting_instructions</code></a>
+                    <a href="#voting_instructions" class="usa-link bapi-link-code"><code>voting_instructions</code></a>
                     attribute for the maximum number of choices the
                     voter is allowed to choose (e.g. "Choose up to five
                     candidates. The top two candidates will win the two
@@ -612,14 +614,14 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="voting-method-ranked-choice" class="permalink-wrapper">
+                <td id="voting-method-ranked-choice" class="permalink-hover permalink-highlight">
                     <code>ranked_choice</code>
-                    <a href="#voting-method-ranked-choice" class="permalink"></a>
+                    <a href="#voting-method-ranked-choice" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     Rank choices from most approved to least approved.
                     See the
-                    <a href="#voting_instructions"><code>voting_instructions</code></a>
+                    <a href="#voting_instructions" class="usa-link bapi-link-code"><code>voting_instructions</code></a>
                     attribute for specifics on how voters should number
                     their votes (e.g. "Assign numbers 1 through 10 to each of the
                     candidates, 10 being the most approved, 1 being the least approved.
@@ -628,39 +630,39 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="voting-method-instant-runoff" class="permalink-wrapper">
+                <td id="voting-method-instant-runoff" class="permalink-hover permalink-highlight">
                     <code>instant_runoff</code>
-                    <a href="#voting-method-instant-runoff" class="permalink"></a>
+                    <a href="#voting-method-instant-runoff" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     Choose a first and second choice.
                     See the
-                    <a href="#voting_instructions"><code>voting_instructions</code></a>
+                    <a href="#voting_instructions" class="usa-link bapi-link-code"><code>voting_instructions</code></a>
                     attribute for specifics on how voters should mark their votes
                     (e.g. "Assign 1 to the candidate that you most prefer. Assign
                     2 to the second candidate preferred after your first choice.").
                 </td>
             </tr>
             <tr>
-                <td id="voting-method-approval" class="permalink-wrapper">
+                <td id="voting-method-approval" class="permalink-hover permalink-highlight">
                     <code>approval</code>
-                    <a href="#voting-method-approval" class="permalink"></a>
+                    <a href="#voting-method-approval" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     Choose any number of candidates of which you approve.
                     This is basically the most extreme version of
-                    <a href="#voting-method-choose-multiple"><code>choose_multiple</code></a>
+                    <a href="#voting-method-choose-multiple" class="usa-link bapi-link-code"><code>choose_multiple</code></a>
                     where you can choose any number of candidates (i.e. you could choose
                     all candidates if you wanted). As with choose_multiple, see the
-                    <a href="#voting_instructions"><code>voting_instructions</code></a>
+                    <a href="#voting_instructions" class="usa-link bapi-link-code"><code>voting_instructions</code></a>
                     attribute for any specific instructions or additional info on
                     candidates.
                 </td>
             </tr>
             <tr>
-                <td id="voting-method-more" class="permalink-wrapper">
+                <td id="voting-method-more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#voting-method-more" class="permalink"></a>
+                    <a href="#voting-method-more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     We may add more voting methods in the future, so be able to
@@ -673,18 +675,18 @@ subtoc: api_contests_object
 
 <hr>
 
-<h2 id="choice-object" class="permalink-wrapper">
+<h2 id="choice-object" class="permalink-hover permalink-highlight">
     Choice Object
-    <a href="#choice-object" class="permalink"></a>
+    <a href="#choice-object" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
-    These are the objects in the <a href="#choices">choices</a>
+    These are the objects in the <a href="#choices" class="usa-link">choices</a>
     list in Contest objects. They contain information about specific
     contest choices (e.g. candidates and ballot measure choices).
-    <a href="#choice-examples">See examples of Contest objects.</a>
+    <a href="#choice-examples" class="usa-link">See examples of Contest objects.</a>
 </p>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Attribute</th>
@@ -695,15 +697,15 @@ subtoc: api_contests_object
         </thead>
         <tbody>
             <tr>
-                <td id="choice-object-type" class="permalink-wrapper">
+                <td id="choice-object-type" class="permalink-hover permalink-highlight">
                     <code>type</code>
-                    <a href="#choice-object-type" class="permalink"></a>
+                    <a href="#choice-object-type" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#choice-types">ChoiceType</a>
+                    <a href="#choice-types" class="usa-link">ChoiceType</a>
                 </td>
                 <td>
-                    This choice's type. See <a href="#choice-types">ChoiceType</a>
+                    This choice's type. See <a href="#choice-types" class="usa-link">ChoiceType</a>
                     for a full list of possible values.
                 </td>
                 <td>
@@ -711,35 +713,35 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="choice-object-id" class="permalink-wrapper">
+                <td id="choice-object-id" class="permalink-hover permalink-highlight">
                     <code>id</code>
-                    <a href="#choice-object-id" class="permalink"></a>
+                    <a href="#choice-object-id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     This is the unique id we assign to the Choice. NOTE: Even though
                     the same person may run for multiple races, we will assign them
                     a unique id for every contest. If you want to track the same person
-                    across multiple contests, use <a href="#choice-object-ocd-id">ocd_id</a>.
+                    across multiple contests, use <a href="#choice-object-ocd-id" class="usa-link">ocd_id</a>.
                 </td>
                 <td>
                     <code>"ch_94yehd..."</code>
                 </td>
             </tr>
             <tr>
-                <td id="choice-object-ocd-id" class="permalink-wrapper">
+                <td id="choice-object-ocd-id" class="permalink-hover permalink-highlight">
                     <code>ocd_id</code>
-                    <a href="#choice-object-ocd-id" class="permalink"></a>
+                    <a href="#choice-object-ocd-id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">OCD-ID</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">OCD-ID</a>
                     or <code>null</code>
                 </td>
                 <td>
                     This is the
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">Open Civic Data Identifier</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">Open Civic Data Identifier</a>
                     (OCD-ID) for the specific person or ballot measure.
                     If there is no OCD-ID (often the case for ballot
                     measures), this value will be <code>null</code>.
@@ -749,12 +751,12 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="choice-object-title" class="permalink-wrapper">
+                <td id="choice-object-title" class="permalink-hover permalink-highlight">
                     <code>title</code>
-                    <a href="#choice-object-title" class="permalink"></a>
+                    <a href="#choice-object-title" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     This name of the choice. For ballot measures, this is
@@ -766,12 +768,12 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="choice-object-party" class="permalink-wrapper">
+                <td id="choice-object-party" class="permalink-hover permalink-highlight">
                     <code>party</code>
-                    <a href="#choice-object-party" class="permalink"></a>
+                    <a href="#choice-object-party" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                     or <code>null</code>
                 </td>
                 <td>
@@ -785,12 +787,12 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="choice-object-info" class="permalink-wrapper">
+                <td id="choice-object-info" class="permalink-hover permalink-highlight">
                     <code>info</code>
-                    <a href="#choice-object-info" class="permalink"></a>
+                    <a href="#choice-object-info" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                     or <code>null</code>
                 </td>
                 <td>
@@ -804,9 +806,9 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="choice-more" class="permalink-wrapper">
+                <td id="choice-more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#choice-more" class="permalink"></a>
+                    <a href="#choice-more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td></td>
                 <td>
@@ -821,15 +823,15 @@ subtoc: api_contests_object
 
 <hr>
 
-<h2 id="choice-types" class="permalink-wrapper">
+<h2 id="choice-types" class="permalink-hover permalink-highlight">
     Choice Types
-    <a href="#choice-types" class="permalink"></a>
+    <a href="#choice-types" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     These are our general types of choices.
 </p>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Choice Type</th>
@@ -838,27 +840,27 @@ subtoc: api_contests_object
         </thead>
         <tbody>
             <tr>
-                <td id="choice-type-choice" class="permalink-wrapper">
+                <td id="choice-type-choice" class="permalink-hover permalink-highlight">
                     <code>choice</code>
-                    <a href="#choice-type-choice" class="permalink"></a>
+                    <a href="#choice-type-choice" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     This is a ballot measure choice (Approve/Disapprove).
                 </td>
             </tr>
             <tr>
-                <td id="choice-type-candidate" class="permalink-wrapper">
+                <td id="choice-type-candidate" class="permalink-hover permalink-highlight">
                     <code>candidate</code>
-                    <a href="#choice-type-candidate" class="permalink"></a>
+                    <a href="#choice-type-candidate" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     This is specific candidate in an elected position contest.
                 </td>
             </tr>
             <tr>
-                <td id="choice-type-write-in" class="permalink-wrapper">
+                <td id="choice-type-write-in" class="permalink-hover permalink-highlight">
                     <code>write_in</code>
-                    <a href="#choice-type-write-in" class="permalink"></a>
+                    <a href="#choice-type-write-in" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     This is a choice to write in a candidate in an
@@ -866,9 +868,9 @@ subtoc: api_contests_object
                 </td>
             </tr>
             <tr>
-                <td id="choice-type-more" class="permalink-wrapper">
+                <td id="choice-type-more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#choice-type-more" class="permalink"></a>
+                    <a href="#choice-type-more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     We may add more Choice types in the future, so be able to
@@ -881,18 +883,18 @@ subtoc: api_contests_object
 
 <hr>
 
-<h2 id="choice-examples" class="permalink-wrapper">
+<h2 id="choice-examples" class="permalink-hover permalink-highlight">
     Choice Object Examples
-    <a href="#choice-examples" class="permalink"></a>
+    <a href="#choice-examples" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
-    These are some examples of <a href="#choice-object">Choice Objects</a>.
+    These are some examples of <a href="#choice-object" class="usa-link">Choice Objects</a>.
 </p>
 
-<h5 id="example-ballot-measure-choice" class="permalink-wrapper">
+<h4 id="example-ballot-measure-choice" class="permalink-hover permalink-highlight">
     A ballot measure choice example:
-    <a href="#example-ballot-measure-choice" class="permalink"></a>
-</h5>
+    <a href="#example-ballot-measure-choice" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h4>
 <pre>
 {
     "type": "choice",
@@ -903,10 +905,10 @@ subtoc: api_contests_object
     "info": null,
 }
 </pre>
-<h5 id="example-candidate-choice" class="permalink-wrapper">
+<h4 id="example-candidate-choice" class="permalink-hover permalink-highlight">
     A candidate example:
-    <a href="#example-candidate-choice" class="permalink"></a>
-</h5>
+    <a href="#example-candidate-choice" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h4>
 <pre>
 {
     "type": "candidate",
@@ -917,10 +919,10 @@ subtoc: api_contests_object
     "info": "Politician/activist",
 }
 </pre>
-<h5 id="example-write-in-choice" class="permalink-wrapper">
+<h4 id="example-write-in-choice" class="permalink-hover permalink-highlight">
     A write-in example:
-    <a href="#example-write-in-choice" class="permalink"></a>
-</h5>
+    <a href="#example-write-in-choice" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h4>
 <pre>
 {
     "type": "write_in",

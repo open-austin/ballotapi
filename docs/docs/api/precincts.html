@@ -1,72 +1,74 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - API - Precincts
 nav: docs
 toc: api_precincts
 subtoc: api_precincts_object
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
-    <li><a href="{{ '/docs/api' | relative_url }}">API</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
+    <li><a href="{{ '/docs/api' | relative_url }}" class="usa-link">API</a></li>
     <li class="active">Precincts</li>
 </ol>
 <h1>
     Precincts
 </h1>
 <p>
-    <a href="#examples">See examples of Precinct objects.</a>
+    <a href="#examples" class="usa-link">See examples of Precinct objects.</a>
 </p>
 <p>
     Precinct objects contain geographic information for individual
     "precincts" (i.e. areas that have the same ballot). These are
     the lowest-level division for elections, so they are usually
     fairly small areas. If you want district maps, you can use the
-    <a href="{{ '/docs/api/precincts/list' | relative_url }}#example-merge-geos"><code>extra=merge_geos</code></a>
+    <a href="{{ '/docs/api/precincts/list' | relative_url }}#example-merge-geos" class="usa-link bapi-link-code"><code>extra=merge_geos</code></a>
     parameter to combine precincts into a district map for a specific
     contest.
 </p>
-<p id="gotchas" class="permalink-wrapper">
+<p id="gotchas" class="permalink-hover permalink-highlight">
     <strong>Things that you should know:</strong>
-    <a href="#gotchas" class="permalink"></a>
+    <a href="#gotchas" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </p>
 <ul>
-    <li id="split-precincts" class="permalink-wrapper">
+    <li id="split-precincts" class="permalink-hover permalink-highlight">
         For the most part, our Precinct objects mirror real-world precinct
         divisions. However, sometimes real-world precincts aren't actually
         the lowest-level division, so we have to split that real-world precinct
         into multiple Precinct objects in our API. Check the
-        <a href="#ocd_id"><code>ocd_id</code></a> for a Precinct's real-world identifier.
-        <a href="#split-precincts" class="permalink"></a>
+        <a href="#ocd_id" class="usa-link bapi-link-code"><code>ocd_id</code></a> for a Precinct's real-world identifier.
+        <a href="#split-precincts" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
-    <li id="new-elections" class="permalink-wrapper">
+    <li id="new-elections" class="permalink-hover permalink-highlight margin-top-1">
         Since real-world precincts can change from election to election,
         we create a completely set of new precincts for each election. So
         even if a precinct hasn't changed from the previous election, we
-        will still create a new Precinct with a new <a href="#id"><code>id</code></a>
-        and put it under the new <a href="#election_id"><code>election_id</code></a>.
+        will still create a new Precinct with a new <a href="#id" class="usa-link bapi-link-code"><code>id</code></a>
+        and put it under the new <a href="#election_id" class="usa-link bapi-link-code"><code>election_id</code></a>.
         If you want to track how a real-world precinct changes election-to-election,
-        the <a href="#ocd_id"><code>ocd_id</code></a> can help you map the same
+        the <a href="#ocd_id" class="usa-link bapi-link-code"><code>ocd_id</code></a> can help you map the same
         precinct across elections.
-        <a href="#new-elections" class="permalink"></a>
+        <a href="#new-elections" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </li>
 </ul>
 
-<h3 id="api-endpoints" class="permalink-wrapper">
+<h3 id="api-endpoints" class="permalink-hover permalink-highlight">
     API Endpoints
-    <a href="#api-endpoints" class="permalink"></a>
+    <a href="#api-endpoints" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
 <ul class="list-unstyled">
     <li>
-        <a href="{{ '/docs/api/precincts/list' | relative_url }}">
-            <span class="label label-success">GET</span>
-            <code>/precincts</code></a> -
+        <a href="{{ '/docs/api/precincts/list' | relative_url }}" class="usa-link bapi-link-get" tabindex="-1"
+            ><span class="usa-tag bapi-tag-get">GET</span></a
+        ><a href="{{ '/docs/api/precincts/list' | relative_url }}" class="usa-link bapi-link-code"
+            ><code>/precincts</code></a> -
         List precincts (can be searched and filtered).
     </li>
     <li>
-        <a href="{{ '/docs/api/precincts/get' | relative_url }}">
-            <span class="label label-success">GET</span>
-            <code>/precincts/<em>{id}</em></code></a> -
+        <a href="{{ '/docs/api/precincts/get' | relative_url }}" class="usa-link bapi-link-get" tabindex="-1"
+            ><span class="usa-tag bapi-tag-get">GET</span></a
+        ><a href="{{ '/docs/api/precincts/get' | relative_url }}" class="usa-link bapi-link-code"
+            ><code>/precincts/<em>{id}</em></code></a> -
         Get a specific precinct.
     </li>
 </ul>
@@ -74,12 +76,12 @@ subtoc: api_precincts_object
 
 <hr>
 
-<h2 id="attributes" class="permalink-wrapper">
+<h2 id="attributes" class="permalink-hover permalink-highlight">
     Attributes
-    <a href="#attributes" class="permalink"></a>
+    <a href="#attributes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Attribute</th>
@@ -90,12 +92,12 @@ subtoc: api_precincts_object
         </thead>
         <tbody>
             <tr>
-                <td id="type" class="permalink-wrapper">
+                <td id="type" class="permalink-hover permalink-highlight">
                     <code>type</code>
-                    <a href="#type" class="permalink"></a>
+                    <a href="#type" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#object-type">ObjectType</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#object-type" class="usa-link">ObjectType</a>
                 </td>
                 <td>
                     This object's data type. Will always be "precinct".
@@ -105,34 +107,34 @@ subtoc: api_precincts_object
                 </td>
             </tr>
             <tr>
-                <td id="id" class="permalink-wrapper">
+                <td id="id" class="permalink-hover permalink-highlight">
                     <code>id</code>
-                    <a href="#id" class="permalink"></a>
+                    <a href="#id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     This is the unique id we assign to the Precinct.
                     NOTE: Our precincts don't always match one-to-one
-                    with real-world precincts (<a href="#split-precincts">read more</a>).
+                    with real-world precincts (<a href="#split-precincts" class="usa-link">read more</a>).
                 </td>
                 <td>
                     <code>"a74635..."</code>
                 </td>
             </tr>
             <tr>
-                <td id="ocd_id" class="permalink-wrapper">
+                <td id="ocd_id" class="permalink-hover permalink-highlight">
                     <code>ocd_id</code>
-                    <a href="#ocd_id" class="permalink"></a>
+                    <a href="#ocd_id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">OCD-ID</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">OCD-ID</a>
                     or <code>null</code>
                 </td>
                 <td>
                     This is the
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">Open Civic Data Identifier</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">Open Civic Data Identifier</a>
                     (OCD-ID) for this Precinct. If there is no OCD-ID, this
                     value will be <code>null</code>.
                 </td>
@@ -141,31 +143,31 @@ subtoc: api_precincts_object
                 </td>
             </tr>
             <tr>
-                <td id="election_id" class="permalink-wrapper">
+                <td id="election_id" class="permalink-hover permalink-highlight">
                     <code>election_id</code>
-                    <a href="#election_id" class="permalink"></a>
+                    <a href="#election_id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     This is the
-                    <a href="{{ '/docs/api/elections' | relative_url }}#id">Election.id</a>
+                    <a href="{{ '/docs/api/elections' | relative_url }}#id" class="usa-link">Election.id</a>
                     to which this Precinct belongs.
                     NOTE: We create new precincts for each election,
-                    (<a href="#new-elections">read more</a>).
+                    (<a href="#new-elections" class="usa-link">read more</a>).
                 </td>
                 <td>
                     <code>"985ukj.."</code>
                 </td>
             </tr>
             <tr>
-                <td id="voting_info" class="permalink-wrapper">
+                <td id="voting_info" class="permalink-hover permalink-highlight">
                     <code>voting_info</code>
-                    <a href="#voting_info" class="permalink"></a>
+                    <a href="#voting_info" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#voting-info-object">VotingInfo</a>
+                    <a href="#voting-info-object" class="usa-link">VotingInfo</a>
                 </td>
                 <td>
                     This object contains voting information, such as
@@ -176,12 +178,12 @@ subtoc: api_precincts_object
                 </td>
             </tr>
             <tr>
-                <td id="geo" class="permalink-wrapper">
+                <td id="geo" class="permalink-hover permalink-highlight">
                     <code>geo</code>
-                    <a href="#geo" class="permalink"></a>
+                    <a href="#geo" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#geojson">GeoJSON</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#geojson" class="usa-link">GeoJSON</a>
                 </td>
                 <td>
                     This is a geographic map of the precinct boundaries.
@@ -191,9 +193,9 @@ subtoc: api_precincts_object
                 </td>
             </tr>
             <tr>
-                <td id="more" class="permalink-wrapper">
+                <td id="more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#more" class="permalink"></a>
+                    <a href="#more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td></td>
                 <td>
@@ -208,14 +210,14 @@ subtoc: api_precincts_object
 
 <hr>
 
-<h2 id="examples" class="permalink-wrapper">
+<h2 id="examples" class="permalink-hover permalink-highlight">
     Examples
-    <a href="#examples" class="permalink"></a>
+    <a href="#examples" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
-<h5 id="example-precinct" class="permalink-wrapper">
+<h4 id="example-precinct" class="permalink-hover permalink-highlight">
     An individual precinct:
-    <a href="#example-precinct" class="permalink"></a>
-</h5>
+    <a href="#example-precinct" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h4>
 <pre>
 {
     "type": "precinct",
@@ -229,9 +231,9 @@ subtoc: api_precincts_object
 
 <hr>
 
-<h2 id="voting-info-object" class="permalink-wrapper">
+<h2 id="voting-info-object" class="permalink-hover permalink-highlight">
     Voting Info Object
-    <a href="#voting-info-object" class="permalink"></a>
+    <a href="#voting-info-object" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     TODO

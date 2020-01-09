@@ -1,58 +1,60 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - API - Elections
 nav: docs
 toc: api_elections
 subtoc: api_elections_object
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
-    <li><a href="{{ '/docs/api' | relative_url }}">API</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
+    <li><a href="{{ '/docs/api' | relative_url }}" class="usa-link">API</a></li>
     <li class="active">Elections</li>
 </ol>
 <h1>
     Elections
 </h1>
 <p>
-    <a href="#examples">See examples of Election objects.</a>
+    <a href="#examples" class="usa-link">See examples of Election objects.</a>
 </p>
 <p>
     Election objects contain general details about a particular election,
     such as election type, date, a short description, and any particular
     overall requirements for the election. Additionally, you can optionally
-    <a href="{{ '/docs/api/elections/list' | relative_url }}#include">include</a> the
-    particular <a href="{{ '/docs/api/contests' | relative_url }}">Contests</a> or
-    <a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a> for an Election.
+    <a href="{{ '/docs/api/elections/list' | relative_url }}#include" class="usa-link">include</a> the
+    particular <a href="{{ '/docs/api/contests' | relative_url }}" class="usa-link">Contests</a> or
+    <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precincts</a> for an Election.
 </p>
 
-<h3 id="api-endpoints" class="permalink-wrapper">
+<h3 id="api-endpoints" class="permalink-hover permalink-highlight">
     API Endpoints
-    <a href="#api-endpoints" class="permalink"></a>
+    <a href="#api-endpoints" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h3>
-<ul class="list-unstyled">
+<ul class="add-list-reset">
     <li>
-        <a href="{{ '/docs/api/elections/list' | relative_url }}">
-            <span class="label label-success">GET</span>
-            <code>/elections</code></a> -
+        <a href="{{ '/docs/api/elections/list' | relative_url }}" class="usa-link bapi-link-get" tabindex="-1"
+            ><span class="usa-tag bapi-tag-get">GET</span></a
+        ><a href="{{ '/docs/api/elections/list' | relative_url }}" class="usa-link bapi-link-code"
+            ><code>/elections</code></a> -
         List elections (can be searched and filtered).
     </li>
     <li>
-        <a href="{{ '/docs/api/elections/get' | relative_url }}">
-            <span class="label label-success">GET</span>
-            <code>/elections/<em>{id}</em></code></a> -
+        <a href="{{ '/docs/api/elections/get' | relative_url }}" class="usa-link bapi-link-get" tabindex="-1"
+            ><span class="usa-tag bapi-tag-get">GET</span></a
+        ><a href="{{ '/docs/api/elections/get' | relative_url }}" class="usa-link bapi-link-code"
+            ><code>/elections/<em>{id}</em></code></a> -
         Get a specific election.
     </li>
 </ul>
 
 <hr>
 
-<h2 id="attributes" class="permalink-wrapper">
+<h2 id="attributes" class="permalink-hover permalink-highlight">
     Attributes
-    <a href="#attributes" class="permalink"></a>
+    <a href="#attributes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Attribute</th>
@@ -63,12 +65,12 @@ subtoc: api_elections_object
         </thead>
         <tbody>
             <tr>
-                <td id="type" class="permalink-wrapper">
+                <td id="type" class="permalink-hover permalink-highlight">
                     <code>type</code>
-                    <a href="#type" class="permalink"></a>
+                    <a href="#type" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#object-type">ObjectType</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#object-type" class="usa-link">ObjectType</a>
                 </td>
                 <td>
                     This object's data type. Will always be "election".
@@ -78,21 +80,21 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="id" class="permalink-wrapper">
+                <td id="id" class="permalink-hover permalink-highlight">
                     <code>id</code>
-                    <a href="#id" class="permalink"></a>
+                    <a href="#id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     This is the unique id we assign to the Election. This is
                     the id used in
-                    <a href="{{ '/docs/api/contests' | relative_url }}#election_id">Contest.election_id</a>
+                    <a href="{{ '/docs/api/contests' | relative_url }}#election_id" class="usa-link">Contest.election_id</a>
                     and
-                    <a href="{{ '/docs/api/precincts' | relative_url }}#election_id">Precinct.election_id</a>.
+                    <a href="{{ '/docs/api/precincts' | relative_url }}#election_id" class="usa-link">Precinct.election_id</a>.
                     NOTE: This is our own unique identifier for the election,
-                    which is different from the <a href="#ocd_id">ocd_id</a>
+                    which is different from the <a href="#ocd_id" class="usa-link">ocd_id</a>
                     for the election.
                 </td>
                 <td>
@@ -100,17 +102,17 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="ocd_id" class="permalink-wrapper">
+                <td id="ocd_id" class="permalink-hover permalink-highlight">
                     <code>ocd_id</code>
-                    <a href="#ocd_id" class="permalink"></a>
+                    <a href="#ocd_id" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">OCD-ID</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">OCD-ID</a>
                     or <code>null</code>
                 </td>
                 <td>
                     This is the
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">Open Civic Data Identifier</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">Open Civic Data Identifier</a>
                     (OCD-ID) for this Election. If there is no OCD-ID, this
                     value will be <code>null</code>.
                 </td>
@@ -119,16 +121,16 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="election_type" class="permalink-wrapper">
+                <td id="election_type" class="permalink-hover permalink-highlight">
                     <code>election_type</code>
-                    <a href="#election_type" class="permalink"></a>
+                    <a href="#election_type" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#election-types">ElectionType</a>
+                    <a href="#election-types" class="usa-link">ElectionType</a>
                 </td>
                 <td>
                     This is the type of election (e.g. general, primary, etc.).
-                    See the full list of <a href="#election-types">Election Types</a>
+                    See the full list of <a href="#election-types" class="usa-link">Election Types</a>
                     for possible values and what they mean.
                 </td>
                 <td>
@@ -136,12 +138,12 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="election_name" class="permalink-wrapper">
+                <td id="election_name" class="permalink-hover permalink-highlight">
                     <code>election_name</code>
-                    <a href="#election_name" class="permalink"></a>
+                    <a href="#election_name" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     This is a short display name for the election. We try to
@@ -152,18 +154,18 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="date" class="permalink-wrapper">
+                <td id="date" class="permalink-hover permalink-highlight">
                     <code>date</code>
-                    <a href="#date" class="permalink"></a>
+                    <a href="#date" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#date">Date</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#date" class="usa-link">Date</a>
                 </td>
                 <td>
                     This is the official election date. NOTE: Since polling
                     hours vary by location, we put those specific dates and
                     times (with local timezones) in the
-                    <a href="{{ '/docs/api/precincts' | relative_url }}#voting_info">Precinct.voting_info</a>
+                    <a href="{{ '/docs/api/precincts' | relative_url }}#voting_info" class="usa-link">Precinct.voting_info</a>
                     attribute.
                 </td>
                 <td>
@@ -171,12 +173,12 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="short_info" class="permalink-wrapper">
+                <td id="short_info" class="permalink-hover permalink-highlight">
                     <code>short_info</code>
-                    <a href="#short_info" class="permalink"></a>
+                    <a href="#short_info" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     This is a short description for the election. We try to
@@ -187,57 +189,57 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="contests" class="permalink-wrapper">
+                <td id="contests" class="permalink-hover permalink-highlight">
                     <code>contests</code>
-                    <a href="#contests" class="permalink"></a>
+                    <a href="#contests" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#response">Response</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#response" class="usa-link">Response</a>
                 </td>
                 <td>
                     <strong>
                         (only if
-                        <a href="{{ '/docs/api/elections/list' | relative_url }}#include">included</a>)
+                        <a href="{{ '/docs/api/elections/list' | relative_url }}#include" class="usa-link">included</a>)
                     </strong>
                     These are the
-                    <a href="{{ '/docs/api/contests' | relative_url }}">Contests</a>
+                    <a href="{{ '/docs/api/contests' | relative_url }}" class="usa-link">Contests</a>
                     that are part of this Election.
                     NOTE: This response list can be paginated, so be sure
                     to know how to handle
-                    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next">paginated responses</a>.
+                    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next" class="usa-link">paginated responses</a>.
                 </td>
                 <td>
                     <code>{"type": "response", "data": [...], ...}</code>
                 </td>
             </tr>
             <tr>
-                <td id="precincts" class="permalink-wrapper">
+                <td id="precincts" class="permalink-hover permalink-highlight">
                     <code>precincts</code>
-                    <a href="#precincts" class="permalink"></a>
+                    <a href="#precincts" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#response">Response</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#response" class="usa-link">Response</a>
                 </td>
                 <td>
                     <strong>
                         (only if
-                        <a href="{{ '/docs/api/elections/list' | relative_url }}#include">included</a>)
+                        <a href="{{ '/docs/api/elections/list' | relative_url }}#include" class="usa-link">included</a>)
                     </strong>
                     These are the
-                    <a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a>
+                    <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precincts</a>
                     that are part of this Election.
                     NOTE: This response list can be paginated, so be sure
                     to know how to handle
-                    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next">paginated responses</a>.
+                    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next" class="usa-link">paginated responses</a>.
                 </td>
                 <td>
                     <code>{"type": "response", "data": [...], ...}</code>
                 </td>
             </tr>
             <tr>
-                <td id="more" class="permalink-wrapper">
+                <td id="more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#more" class="permalink"></a>
+                    <a href="#more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td></td>
                 <td>
@@ -252,14 +254,14 @@ subtoc: api_elections_object
 
 <hr>
 
-<h2 id="examples" class="permalink-wrapper">
+<h2 id="examples" class="permalink-hover permalink-highlight">
     Examples
-    <a href="#examples" class="permalink"></a>
+    <a href="#examples" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
-<h5 id="example-general-election" class="permalink-wrapper">
+<h4 id="example-general-election" class="permalink-hover permalink-highlight">
     A general election:
-    <a href="#example-general-election" class="permalink"></a>
-</h5>
+    <a href="#example-general-election" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h4>
 <pre>
 {
     "type": "election",
@@ -270,10 +272,10 @@ subtoc: api_elections_object
     "short_info": "This is a major national election that happens every two years to elect many federal, state, and local positions."
 }
 </pre>
-<h5 id="example-special-election" class="permalink-wrapper">
+<h4 id="example-special-election" class="permalink-hover permalink-highlight">
     A primary election:
-    <a href="#example-special-election" class="permalink"></a>
-</h5>
+    <a href="#example-special-election" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h4>
 <pre>
 {
     "type": "election",
@@ -284,10 +286,10 @@ subtoc: api_elections_object
     "short_info": "This is a major primary election for political parties in California."
 }
 </pre>
-<h5 id="example-special-election" class="permalink-wrapper">
+<h4 id="example-special-election" class="permalink-hover permalink-highlight">
     A special election:
-    <a href="#example-special-election" class="permalink"></a>
-</h5>
+    <a href="#example-special-election" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h4>
 <pre>
 {
     "type": "election",
@@ -301,15 +303,15 @@ subtoc: api_elections_object
 
 <hr>
 
-<h2 id="election-types" class="permalink-wrapper">
+<h2 id="election-types" class="permalink-hover permalink-highlight">
     Election Types
-    <a href="#election-types" class="permalink"></a>
+    <a href="#election-types" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     These are our general categories of election types.
 </p>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Election Type</th>
@@ -318,9 +320,9 @@ subtoc: api_elections_object
         </thead>
         <tbody>
             <tr>
-                <td id="election-type-general" class="permalink-wrapper">
+                <td id="election-type-general" class="permalink-hover permalink-highlight">
                     <code>general</code>
-                    <a href="#election-type-general" class="permalink"></a>
+                    <a href="#election-type-general" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     A regularly-scheduled general election with many contests
@@ -328,9 +330,9 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="election-type-state" class="permalink-wrapper">
+                <td id="election-type-state" class="permalink-hover permalink-highlight">
                     <code>state</code>
-                    <a href="#election-type-state" class="permalink"></a>
+                    <a href="#election-type-state" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     A regularly-scheduled state election covering all or the
@@ -338,9 +340,9 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="election-type-local" class="permalink-wrapper">
+                <td id="election-type-local" class="permalink-hover permalink-highlight">
                     <code>local</code>
-                    <a href="#election-type-local" class="permalink"></a>
+                    <a href="#election-type-local" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     A regularly-scheduled local election covering all or the
@@ -348,9 +350,9 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="election-type-primary" class="permalink-wrapper">
+                <td id="election-type-primary" class="permalink-hover permalink-highlight">
                     <code>primary</code>
-                    <a href="#election-type-primary" class="permalink"></a>
+                    <a href="#election-type-primary" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     A regularly-scheduled election for political parties
@@ -358,9 +360,9 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="election-type-special" class="permalink-wrapper">
+                <td id="election-type-special" class="permalink-hover permalink-highlight">
                     <code>special</code>
-                    <a href="#election-type-special" class="permalink"></a>
+                    <a href="#election-type-special" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     A non-regularly-scheduled (e.g. one-time) election for
@@ -368,9 +370,9 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="election-type-special-primary" class="permalink-wrapper">
+                <td id="election-type-special-primary" class="permalink-hover permalink-highlight">
                     <code>special_primary</code>
-                    <a href="#election-type-special-primary" class="permalink"></a>
+                    <a href="#election-type-special-primary" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     A non-regularly-scheduled (e.g. one-time) primary election
@@ -378,9 +380,9 @@ subtoc: api_elections_object
                 </td>
             </tr>
             <tr>
-                <td id="election-type-more" class="permalink-wrapper">
+                <td id="election-type-more" class="permalink-hover permalink-highlight">
                     <code>...</code>
-                    <a href="#election-type-more" class="permalink"></a>
+                    <a href="#election-type-more" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     We may add more election types in the future, so be able to

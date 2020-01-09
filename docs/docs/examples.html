@@ -1,12 +1,12 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - Examples
 nav: docs
 toc: examples
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
     <li class="active">Examples</li>
 </ol>
 <h1>
@@ -15,26 +15,26 @@ toc: examples
 <p>
     There's a ton of use cases for BallotAPI, but sometimes it's not obvious
     what API request you want to make to get the data you need. The
-    <a href="{{ '/docs/quickstart' | relative_url }}">Quickstart</a> provides some
+    <a href="{{ '/docs/quickstart' | relative_url }}" class="usa-link">Quickstart</a> provides some
     of the most common use cases, and below we'll list more common examples
     submitted to us. To see the full list of what endpoints are
     available and what query parameters you can use, checkout the
-    <a href="{{ '/docs/api' | relative_url }}">API Endpoints</a> documentation.
+    <a href="{{ '/docs/api' | relative_url }}" class="usa-link">API Endpoints</a> documentation.
 </p>
 <ul>
-    <li><a href="#elections-ballots">Get the ballots for some upcoming elections</a></li>
-    <li><a href="#district-map">Get a district map</a></li>
-    <li><a href="#candidate-search">Search for a candidate's races</a></li>
+    <li><a href="#elections-ballots" class="usa-link">Get the ballots for some upcoming elections</a></li>
+    <li><a href="#district-map" class="usa-link">Get a district map</a></li>
+    <li><a href="#candidate-search" class="usa-link">Search for a candidate's races</a></li>
 </ul>
 <p>
     Can't find an example for your use case? We encourage you to open an
-    <a href="https://github.com/open-austin/ballotapi/issues" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/open-austin/ballotapi/issues" class="usa-link" target="_blank" rel="noopener noreferrer">
         issue
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     or
-    <a href="https://github.com/open-austin/ballotapi/pulls" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/open-austin/ballotapi/pulls" class="usa-link" target="_blank" rel="noopener noreferrer">
         pull request
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
 </p>
 
 
@@ -42,10 +42,10 @@ toc: examples
 <!-- Example -->
 <!------------->
 <hr>
-<h3 id="elections-ballots" class="permalink-wrapper">
+<h2 id="elections-ballots" class="permalink-hover permalink-highlight">
     Example: Get the ballots for some upcoming elections
-    <a href="#elections-ballots" class="permalink"></a>
-</h3>
+    <a href="#elections-ballots" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h2>
 <p>
     Here's an example for getting all of the upcoming elections for a
     specific location, and include the ballots for these elections.
@@ -55,25 +55,29 @@ toc: examples
 </p>
 <p>
     <a href="https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates=now,future&include=contests"
+       class="usa-link"
        target="_blank"
        rel="noopener noreferrer">
         https://api.ballotapi.org/v1/elections?coords=37.7942635,-122.3955861&dates=now,future&include=contests
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
 </p>
 <p>
     Parameters breakdown:
 </p>
 <ul>
     <li>
-        <a href="{{ '/docs/api/elections/list' | relative_url }}#coords"><code>coords=37.7942635,-122.395586</code></a> -
+        <a href="{{ '/docs/api/elections/list' | relative_url }}#coords" class="usa-link bapi-link-code">
+            <code>coords=37.7942635,-122.395586</code></a> -
         Filter elections to this latitude, longitude of a location (e.g. downtown San Francisco).
     </li>
     <li>
-        <a href="{{ '/docs/api/elections/list' | relative_url }}#dates"><code>dates=now,future</code></a> -
+        <a href="{{ '/docs/api/elections/list' | relative_url }}#dates" class="usa-link bapi-link-code">
+            <code>dates=now,future</code></a> -
         Filter elections happening between now and any future date.
     </li>
     <li>
-        <a href="{{ '/docs/api/elections/list' | relative_url }}#include"><code>include=contests</code></a> -
+        <a href="{{ '/docs/api/elections/list' | relative_url }}#include" class="usa-link bapi-link-code">
+            <code>include=contests</code></a> -
         Include the ballot measures and races for each election.
     </li>
 </ul>
@@ -82,10 +86,10 @@ toc: examples
 <!-- Example -->
 <!------------->
 <hr>
-<h3 id="district-map" class="permalink-wrapper">
+<h2 id="district-map" class="permalink-hover permalink-highlight">
     Example: Get a district map
-    <a href="#district-map" class="permalink"></a>
-</h3>
+    <a href="#district-map" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h2>
 <p>
     Here's an example to see where a specific ballot contest will
     show up on the ballot.
@@ -95,21 +99,24 @@ toc: examples
 </p>
 <p>
     <a href="https://api.ballotapi.com/v1/precincts?contests=234-5&extra=merge_geos"
+       class="usa-link"
        target="_blank"
        rel="noopener noreferrer">
         https://api.ballotapi.com/v1/precincts?contests=234-5&extra=merge_geos
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
 </p>
 <p>
     Parameters breakdown:
 </p>
 <ul>
     <li>
-        <a href="{{ '/docs/api/precincts/list' | relative_url }}#contests"><code>contests=234-5</code></a> -
+        <a href="{{ '/docs/api/precincts/list' | relative_url }}#contests" class="usa-link bapi-link-code">
+            <code>contests=234-5</code></a> -
         Filter precincts to those that cover a specific contest (e.g. 2016 San Francisco Mayor, id=234-5).
     </li>
     <li>
-        <a href="{{ '/docs/api/precincts/list' | relative_url }}#extra"><code>extra=merge_geos</code></a> -
+        <a href="{{ '/docs/api/precincts/list' | relative_url }}#extra" class="usa-link bapi-link-code">
+            <code>extra=merge_geos</code></a> -
         Include a merged geometry of the precincts in the results.
     </li>
 </ul>
@@ -118,10 +125,10 @@ toc: examples
 <!-- Example -->
 <!------------->
 <hr>
-<h3 id="candidate-search" class="permalink-wrapper">
+<h2 id="candidate-search" class="permalink-hover permalink-highlight">
     Example: Search for a candidate's races
-    <a href="#candidate-search" class="permalink"></a>
-</h3>
+    <a href="#candidate-search" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
+</h2>
 <p>
     Here's an example to search for the recent races that a candidate is in.
 </p>
@@ -130,21 +137,24 @@ toc: examples
 </p>
 <p>
     <a href="https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-365d,future"
+       class="usa-link"
        target="_blank"
        rel="noopener noreferrer">
         https://api.ballotapi.com/v1/contests?q=Barbara%20Lee&dates=-365d,future
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
 </p>
 <p>
     Parameters breakdown:
 </p>
 <ul>
     <li>
-        <a href="{{ '/docs/api/contests/list' | relative_url }}#q"><code>q=Barbara%20Lee</code></a> -
+        <a href="{{ '/docs/api/contests/list' | relative_url }}#q" class="usa-link bapi-link-code">
+            <code>q=Barbara%20Lee</code></a> -
         Search contests for an string (e.g. "Barbara Lee").
     </li>
     <li>
-        <a href="{{ '/docs/api/contests/list' | relative_url }}#dates"><code>dates=-365d,future</code></a> -
+        <a href="{{ '/docs/api/contests/list' | relative_url }}#dates" class="usa-link bapi-link-code">
+            <code>dates=-365d,future</code></a> -
         Limit results to the past year and going forward.
     </li>
 </ul>
@@ -155,16 +165,16 @@ toc: examples
 <hr>
 <p>
     Can't find an example for your use case? We encourage you to open an
-    <a href="https://github.com/open-austin/ballotapi/issues" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/open-austin/ballotapi/issues" class="usa-link" target="_blank" rel="noopener noreferrer">
         issue
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     or
-    <a href="https://github.com/open-austin/ballotapi/pulls" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/open-austin/ballotapi/pulls" class="usa-link" target="_blank" rel="noopener noreferrer">
         pull request
-        <small class="glyphicon glyphicon-new-window"></small></a>
+        <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
 </p>
 <p>
     Want to see the full list of available endpoints? Checkout the
-    <a href="{{ '/docs/api' | relative_url }}">API Endpoints</a> documentation.
+    <a href="{{ '/docs/api' | relative_url }}" class="usa-link">API Endpoints</a> documentation.
 </p>
 

@@ -1,12 +1,12 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - Testing
 nav: docs
 toc: testing
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
     <li class="active">Testing</li>
 </ol>
 <h1>
@@ -18,22 +18,23 @@ toc: testing
     our real API. However, if you're running a bunch of
     continuous integration tests (Jenkins, Travis CI, etc.),
     you'll likely hit our
-    <a href="{{ '/docs/rate-limits' | relative_url }}">rate limits</a>
+    <a href="{{ '/docs/rate-limits' | relative_url }}" class="usa-link">rate limits</a>
     quickly.
 </p>
 <p>
     <em>NOTE: If you want to setup a development environment and
     run tests for the ballotapi code itself, check out our
     <a href="https://github.com/open-austin/ballotapi/blob/master/CONTRIBUTING.md"
+       class="usa-link"
        target="_blank"
        rel="noopener noreferrer">contributing docs</a>.</em>
 </p>
 
-<h2 id="test-domains" class="permalink-wrapper">
+<h2 id="test-domains" class="permalink-hover permalink-highlight">
     Option 1: Use Our Test Domains
-    <a href="#test-domains" class="permalink"></a>
+    <a href="#test-domains" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
-<p class="margin-bottom-md">
+<p class="margin-bottom-2">
     To make your lives easier, we have setup several testing
     domains with a small subset of data from our ballot
     database that have more test-friendly rate limits. That
@@ -41,10 +42,10 @@ toc: testing
     without constantly hitting our production rate limits.
 </p>
 <ul>
-    <li class="margin-bottom-md">
-        <h4 id="api-test-domain" class="permalink-wrapper">
+    <li class="margin-bottom-2">
+        <h4 id="api-test-domain" class="permalink-hover permalink-highlight">
             <code>api-test.ballotapi.org</code>
-            <a href="#api-test-domain" class="permalink"></a>
+            <a href="#api-test-domain" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
         </h4>
         <ul>
             <li>
@@ -58,33 +59,34 @@ toc: testing
             <li>
                 <strong>Example:</strong>
                 <a href="https://api-test.ballotapi.org/v1/elections"
+                   class="usa-link"
                    target="_blank"
                    rel="noopener noreferrer">
                     https://api-test.ballotapi.org/v1/elections
-                    <small class="glyphicon glyphicon-new-window"></small></a>
+                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
             </li>
             <li>
                 <strong>Rate limit</strong>:
                 1000 requests per minute per IP address.
-                <small><a href="{{ '/docs/rate-limits' | relative_url }}">What's this?</a></small>
+                <small><a href="{{ '/docs/rate-limits' | relative_url }}" class="usa-link">What's this?</a></small>
             </li>
             <li>
                 <strong>Queue limit</strong>:
                 100 requests per IP address.
-                <small><a href="{{ '/docs/rate-limits' | relative_url }}">What's this?</a></small>
+                <small><a href="{{ '/docs/rate-limits' | relative_url }}" class="usa-link">What's this?</a></small>
             </li>
         </ul>
     </li>
-    <li class="margin-bottom-md">
-        <h4 id="rate-limited" class="permalink-wrapper">
+    <li class="margin-bottom-2">
+        <h4 id="rate-limited" class="permalink-hover permalink-highlight">
             <code>api-test-ratelimited.ballotapi.org</code>
-            <a href="#rate-limited" class="permalink"></a>
+            <a href="#rate-limited" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
         </h4>
         <ul>
             <li>
                 <strong>Description:</strong>
                 This API domain has the same subset of data as
-                <a href="#api-test-domain"><code>api-test.ballotapi.org</code></a>,
+                <a href="#api-test-domain" class="usa-link bapi-link-code"><code>api-test.ballotapi.org</code></a>,
                 but rate limits are set very low. You typically
                 want to use this domain to test your rate limit
                 handling logic.
@@ -92,41 +94,42 @@ toc: testing
             <li>
                 <strong>Example:</strong>
                 <a href="https://api-test-ratelimited.ballotapi.org/v1/elections"
+                   class="usa-link"
                    target="_blank"
                    rel="noopener noreferrer">
                     https://api-test-ratelimited.ballotapi.org/v1/elections
-                    <small class="glyphicon glyphicon-new-window"></small></a>
+                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
             </li>
             <li>
                 <strong>Rate limit</strong>:
                 1 requests per second per IP address.
-                <small><a href="{{ '/docs/rate-limits' | relative_url }}">What's this?</a></small>
+                <small><a href="{{ '/docs/rate-limits' | relative_url }}" class="usa-link">What's this?</a></small>
             </li>
             <li>
                 <strong>Queue limit</strong>:
                 0 requests per IP address.
-                <small><a href="{{ '/docs/rate-limits' | relative_url }}">What's this?</a></small>
+                <small><a href="{{ '/docs/rate-limits' | relative_url }}" class="usa-link">What's this?</a></small>
             </li>
         </ul>
     </li>
 </ul>
 
-<h2 id="test-server" class="permalink-wrapper">
+<h2 id="test-server" class="permalink-hover permalink-highlight">
     Option 2: Run Your Own Test Server
-    <a href="#test-server" class="permalink"></a>
+    <a href="#test-server" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
-<p class="margin-bottom-md">
+<p class="margin-bottom-2">
     If you want to run your tests completely internally, you
     are welcome to spin up your own test server. Below are the
     steps to quickly spin up an equivalent of
-    <a href="#api-test-domain"><code>api-test.ballotapi.org</code></a>
+    <a href="#api-test-domain" class="usa-link bapi-link-code"><code>api-test.ballotapi.org</code></a>
     on your own system.
 </p>
 <ul>
-    <li class="margin-bottom-md">
-        <h4 id="test-server-debian" class="permalink-wrapper">
+    <li class="margin-bottom-2">
+        <h4 id="test-server-debian" class="permalink-hover permalink-highlight">
             Debian/Ubuntu Linux setup:
-            <a href="#test-server-debian" class="permalink"></a>
+            <a href="#test-server-debian" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
         </h4>
         <ol>
             <li>
@@ -153,15 +156,16 @@ toc: testing
             <li>
                 Try it out:<br>
                 <a href="http://localhost:8000/v1/elections"
+                   class="usa-link"
                    target="_blank"
                    rel="noopener noreferrer">http://localhost:8000/v1/elections</a>
             </li>
         </ol>
     </li>
-    <li class="margin-bottom-md">
-        <h4 id="test-server-mac" class="permalink-wrapper">
+    <li class="margin-bottom-2">
+        <h4 id="test-server-mac" class="permalink-hover permalink-highlight">
             Mac setup:
-            <a href="#test-server-mac" class="permalink"></a>
+            <a href="#test-server-mac" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
         </h4>
         <ol>
             <li>
@@ -178,6 +182,7 @@ toc: testing
             <li>
                 Download and unzip the repo:<br>
                 <a href="https://code.ballotapi.org/ballotapi/releases/ballotapi-latest.zip"
+                   class="usa-link"
                    target="_blank"
                    rel="noopener noreferrer">https://code.ballotapi.org/ballotapi/releases/ballotapi-latest.zip</a>
             </li>
@@ -188,31 +193,34 @@ toc: testing
             </li>
             <li>
                 Try it out:<br>
-                <a href="http://localhost:8000/v1/elections">http://localhost:8000/v1/elections</a>
+                <a href="http://localhost:8000/v1/elections" class="usa-link">http://localhost:8000/v1/elections</a>
             </li>
         </ol>
     </li>
-    <li class="margin-bottom-md">
-        <h4 id="test-server-windows" class="permalink-wrapper">
+    <li class="margin-bottom-2">
+        <h4 id="test-server-windows" class="permalink-hover permalink-highlight">
             Windows setup:
-            <a href="#test-server-windows" class="permalink"></a>
+            <a href="#test-server-windows" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
         </h4>
         <ol>
             <li>
                 Install python:<br>
                 <a href="https://www.python.org/downloads/windows/"
+                   class="usa-link"
                    target="_blank"
                    rel="noopener noreferrer">https://www.python.org/downloads/windows/</a>
             </li>
             <li>
                 Install PostgreSQL:<br>
                 <a href="https://www.postgresql.org/download/windows/"
+                   class="usa-link"
                    target="_blank"
                    rel="noopener noreferrer">https://www.postgresql.org/download/windows/</a>
             </li>
             <li>
                 Install PostGIS:<br>
                 <a href="https://postgis.net/windows_downloads/"
+                   class="usa-link"
                    target="_blank"
                    rel="noopener noreferrer">https://postgis.net/windows_downloads/</a>
             </li>
@@ -225,6 +233,7 @@ toc: testing
             <li>
                 Download and unzip the repo:<br>
                 <a href="https://code.ballotapi.org/ballotapi/releases/ballotapi-latest.zip"
+                   class="usa-link"
                    target="_blank"
                    rel="noopener noreferrer">https://code.ballotapi.org/ballotapi/releases/ballotapi-latest.zip</a>
             </li>
@@ -235,16 +244,16 @@ toc: testing
             </li>
             <li>
                 Try it out:<br>
-                <a href="http://localhost:8000/v1/elections">http://localhost:8000/v1/elections</a>
+                <a href="http://localhost:8000/v1/elections" class="usa-link">http://localhost:8000/v1/elections</a>
             </li>
         </ol>
     </li>
 </ul>
-<h4 id="test-server-updating" class="permalink-wrapper">
+<h4 id="test-server-updating" class="permalink-hover permalink-highlight">
     Updating your test server
-    <a href="#test-server-updating" class="permalink"></a>
+    <a href="#test-server-updating" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h4>
-<p class="margin-bottom-lg">
+<p class="margin-bottom-3">
     If you want to update your existing installation, simply
     download our repo again (see "Download and unzip the repo..." steps above)
     and run the same command (<code>python server.py --load ...</code>).
@@ -255,11 +264,11 @@ toc: testing
     <em>
         Are these setup instructions incorrect?
         Help us out by opening an
-        <a href="https://github.com/open-austin/ballotapi/issues" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/open-austin/ballotapi/issues" class="usa-link" target="_blank" rel="noopener noreferrer">
             issue
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
         or
-        <a href="https://github.com/open-austin/ballotapi/pulls" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/open-austin/ballotapi/pulls" class="usa-link" target="_blank" rel="noopener noreferrer">
             pull request
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
 </p>

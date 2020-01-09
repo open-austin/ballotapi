@@ -1,93 +1,97 @@
 ---
-layout: docs
+layout: uswds_docs
 title: Docs - API - Precincts - List
 nav: docs
 toc: api_precincts
 subtoc: api_precincts_list
 ---
 
-<ol class="breadcrumb">
-    <li><a href="{{ '/docs' | relative_url }}">Documentation</a></li>
-    <li><a href="{{ '/docs/api' | relative_url }}">API</a></li>
-    <li><a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a></li>
+<ol class="bapi-breadcrumb">
+    <li><a href="{{ '/docs' | relative_url }}" class="usa-link">Documentation</a></li>
+    <li><a href="{{ '/docs/api' | relative_url }}" class="usa-link">API</a></li>
+    <li><a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precincts</a></li>
     <li class="active">List</li>
 </ol>
 <h1>
     Listing Precincts
 </h1>
 <p>
-    Get a list of <a href="{{ '/docs/api/precincts' | relative_url }}">Precinct</a>.
+    Get a list of <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precinct</a>.
     By default, we return a paginated list all precincts across all elections,
     which problaby isn't very useful to you, so you probably want to include some
     <a href="#query-parameters">query parameters</a> to filter the list for the
     precincts you actually want.
 </p>
 
-<h2 id="http-request" class="permalink-wrapper">
+<h2 id="http-request" class="permalink-hover permalink-highlight">
     HTTP Request
-    <a href="#http-request" class="permalink"></a>
+    <a href="#http-request" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <pre>
 GET /v1/precincts
 </pre>
 
-<h2 id="examples" class="permalink-wrapper">
+<h2 id="examples" class="permalink-hover permalink-highlight">
     Examples
-    <a href="#examples" class="permalink"></a>
+    <a href="#examples" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <dl>
-    <dt id="example-all-precincts" class="permalink-wrapper">
+    <dt id="example-all-precincts" class="permalink-hover permalink-highlight">
         Get a list of all Precincts:
-        <a href="#example-all-precincts" class="permalink"></a>
+        <a href="#example-all-precincts" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/precincts"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/precincts
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
-    <dt id="example-specific-election" class="permalink-wrapper">
+    <dt id="example-specific-election" class="permalink-hover permalink-highlight">
         Get a list of Precincts for a specific election:
-        <a href="#example-specific-election" class="permalink"></a>
+        <a href="#example-specific-election" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/precincts?elections=1238es8f"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/precincts?elections=1238es8f
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
-    <dt id="example-specific-contest" class="permalink-wrapper">
+    <dt id="example-specific-contest" class="permalink-hover permalink-highlight">
         Get a list of Precincts for a specific contest:
-        <a href="#example-specific-contest" class="permalink"></a>
+        <a href="#example-specific-contest" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/precincts?contests=3094ur4u2e"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/precincts?contests=3094ur4u2e
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
-    <dt id="example-distric-map" class="permalink-wrapper">
+    <dt id="example-distric-map" class="permalink-hover permalink-highlight">
         Get a district map (i.e. merged geometry of the precinct list) for a specific contest:
-        <a href="#example-distric-map" class="permalink"></a>
+        <a href="#example-distric-map" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
     </dt>
-    <dd class="margin-bottom-sm">
+    <dd class="margin-bottom-2">
         <a href="https://api.ballotapi.org/v1/precincts?contests=3094ur4u2e&extra=merge_geos"
+           class="usa-link"
            target="_blank"
            rel="noopener noreferrer">
             https://api.ballotapi.org/v1/precincts?contests=3094ur4u2e&extra=merge_geos
-            <small class="glyphicon glyphicon-new-window"></small></a>
+            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
     </dd>
 </dl>
 
-<h2 id="query-parameters" class="permalink-wrapper">
+<h2 id="query-parameters" class="permalink-hover permalink-highlight">
     Query Parameters
-    <a href="#query-parameters" class="permalink"></a>
+    <a href="#query-parameters" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Parameter</th>
@@ -98,16 +102,16 @@ GET /v1/precincts
         </thead>
         <tbody>
             <tr>
-                <td id="ids" class="permalink-wrapper">
+                <td id="ids" class="permalink-hover permalink-highlight">
                     <code>ids</code>
-                    <a href="#ids" class="permalink"></a>
+                    <a href="#ids" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     A comma separated list of specific Precinct
-                    <a href="{{ '/docs/api/precincts' | relative_url }}#id">ids</a>
+                    <a href="{{ '/docs/api/precincts' | relative_url }}#id" class="usa-link">ids</a>
                     to include in the response.
                 </td>
                 <td>
@@ -115,16 +119,16 @@ GET /v1/precincts
                 </td>
             </tr>
             <tr>
-                <td id="ocd_ids" class="permalink-wrapper">
+                <td id="ocd_ids" class="permalink-hover permalink-highlight">
                     <code>ocd_ids</code>
-                    <a href="#ocd_ids" class="permalink"></a>
+                    <a href="#ocd_ids" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">OCD-ID</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">OCD-ID</a>
                 </td>
                 <td>
                     Filter by a comma separated list of specific
-                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id">Open Civic Data Identifers</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#ocd-id" class="usa-link">Open Civic Data Identifers</a>
                     for precincts.
                 </td>
                 <td>
@@ -132,60 +136,60 @@ GET /v1/precincts
                 </td>
             </tr>
             <tr>
-                <td id="elections" class="permalink-wrapper">
+                <td id="elections" class="permalink-hover permalink-highlight">
                     <code>elections</code>
-                    <a href="#elections" class="permalink"></a>
+                    <a href="#elections" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     Filter by a comma separated list of Election
-                    <a href="{{ '/docs/api/elections' | relative_url }}#id">ids</a>.
+                    <a href="{{ '/docs/api/elections' | relative_url }}#id" class="usa-link">ids</a>.
                 </td>
                 <td>
                     <code>elections=08h31-0,i5uu03</code>
                 </td>
             </tr>
             <tr>
-                <td id="contests" class="permalink-wrapper">
+                <td id="contests" class="permalink-hover permalink-highlight">
                     <code>contests</code>
-                    <a href="#contests" class="permalink"></a>
+                    <a href="#contests" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     Filter by a comma separated list of Contest
-                    <a href="{{ '/docs/api/contests' | relative_url }}#id">ids</a>.
+                    <a href="{{ '/docs/api/contests' | relative_url }}#id" class="usa-link">ids</a>.
                 </td>
                 <td>
                     <code>contests=aaaa12,bbbb13</code>
                 </td>
             </tr>
             <tr>
-                <td id="extra" class="permalink-wrapper">
+                <td id="extra" class="permalink-hover permalink-highlight">
                     <code>extra</code>
-                    <a href="#extra" class="permalink"></a>
+                    <a href="#extra" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#string">String</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#string" class="usa-link">String</a>
                 </td>
                 <td>
                     <p>
                         A comma separated list of extra values you want
                         to include in the
-                        <a href="{{ '/docs/data-types' | relative_url }}#extra"><code>extra</code> results parameter</a>.
+                        <a href="{{ '/docs/data-types' | relative_url }}#extra" class="usa-link"><code>extra</code> results parameter</a>.
                     </p>
                     <div>
                         Options are:
                         <ul>
-                            <li id="merge-geos-option" class="permalink-wrapper">
-                                <a href="#merge-geos"><code>merge_geos</code></a>
-                                - A <a href="#merge-geos">merged geometry</a>
+                            <li id="merge-geos-option" class="permalink-hover permalink-highlight">
+                                <a href="#merge-geos" class="usa-link bapi-link-code"><code>merge_geos</code></a>
+                                - A <a href="#merge-geos" class="usa-link">merged geometry</a>
                                 of all of the precincts in the results. This
                                 is useful for generating district maps.
-                                <a href="#merge-geos-option" class="permalink"></a>
+                                <a href="#merge-geos-option" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                             </li>
                         </ul>
                     </div>
@@ -198,24 +202,24 @@ GET /v1/precincts
     </table>
 </div>
 
-<h2 id="merge-geos" class="permalink-wrapper">
+<h2 id="merge-geos" class="permalink-hover permalink-highlight">
     Merge Geometries
-    <a href="#merge-geos" class="permalink"></a>
+    <a href="#merge-geos" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     If you include the
-    <a href="#merge-geos-option"><code>extra=merge_geos</code></a>
+    <a href="#merge-geos-option" class="usa-link bapi-link-code"><code>extra=merge_geos</code></a>
     query parameter in your request, we will merge all of
     the areas of the resulting precincts and return that
     merged geometry as a
-    <a href="{{ '/docs/data-types' | relative_url }}#geojson">GeoJSON</a>
+    <a href="{{ '/docs/data-types' | relative_url }}#geojson" class="usa-link">GeoJSON</a>
     object in the
-    <a href="{{ '/docs/data-types' | relative_url }}#extra"><code>extra</code></a>
+    <a href="{{ '/docs/data-types' | relative_url }}#extra" class="usa-link bapi-link-code"><code>extra</code></a>
     results parameter. This is useful for generating district maps.
 </p>
-<p id="merge-geos-example" class="permalink-wrapper">
+<p id="merge-geos-example" class="permalink-hover permalink-highlight">
     <strong>Example merged geometry result:</strong>
-    <a href="#merge-geos-example" class="permalink"></a>
+    <a href="#merge-geos-example" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </p>
 <pre>
 {
@@ -232,41 +236,41 @@ GET /v1/precincts
     "url": "..."
 }
 </pre>
-<p id="merge-geos-all-results" class="permalink-wrapper">
+<p id="merge-geos-all-results" class="permalink-hover permalink-highlight">
     <strong>NOTE:</strong> We merge the results of <em>all</em>
     the Precinct results for your request, not just the precincts
     shown on the first page of results. That way, you don't need
     to page through the results to get a full district map.
     If you don't want to merge all of the results, use the
-    <a href="#ids"><code>ids</code></a> query parameter to
+    <a href="#ids" class="usa-link api-link-code"><code>ids</code></a> query parameter to
     specify exactly what precincts you want us to merge.
-    <a href="#merge-geos-all-results" class="permalink"></a>
+    <a href="#merge-geos-all-results" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </p>
-<p id="merge-geos-paging" class="permalink-wrapper">
+<p id="merge-geos-paging" class="permalink-hover permalink-highlight">
     <strong>NOTE:</strong> In the
-    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next"><code>next</code></a>
+    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next" class="usa-link bapi-link-code"><code>next</code></a>
     results parameter we do not inlcude the
-<a href="#merge-geos"><code>merge_geos</code></a>
+<a href="#merge-geos" class="usa-link bapi-link-code"><code>merge_geos</code></a>
     parameter. So if you start paging through the precint results,
     you'll only see the merged geometry on the first page. We do this
     so we're not generating full district maps on every page request.
-    <a href="#merge-geos-paging" class="permalink"></a>
+    <a href="#merge-geos-paging" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </p>
 
-<h2 id="response" class="permalink-wrapper">
+<h2 id="response" class="permalink-hover permalink-highlight">
     Response
-    <a href="#response" class="permalink"></a>
+    <a href="#response" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <p>
     We will return the results of your request as a
-    <a href="{{ '/docs/data-types' | relative_url }}#response">Response object</a>
-    with the <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-data"><code>data</code></a>
-    attribute as the list of <a href="{{ '/docs/api/precincts' | relative_url }}">Precincts</a>.
+    <a href="{{ '/docs/data-types' | relative_url }}#response" class="usa-link">Response object</a>
+    with the <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-data" class="usa-link bapi-link-code"><code>data</code></a>
+    attribute as the list of <a href="{{ '/docs/api/precincts' | relative_url }}" class="usa-link">Precincts</a>.
 </p>
 <p>
     <strong><em>Responses can be paginated!</em></strong>
     Be sure to check the
-    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next"><code>next</code></a>
+    <a href="{{ '/docs/data-types' | relative_url }}#response-attributes-next" class="usa-link bapi-link-code"><code>next</code></a>
     attribute for the next page of data.
 </p>
 <p>
@@ -293,12 +297,12 @@ GET /v1/precincts
 }
 </pre>
 
-<h2 id="http-codes" class="permalink-wrapper">
+<h2 id="http-codes" class="permalink-hover permalink-highlight">
     HTTP Response Codes
-    <a href="#http-codes" class="permalink"></a>
+    <a href="#http-codes" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
 </h2>
 <div class="table-responsive normal-break">
-    <table class="table table-bordered table-striped">
+    <table class="usa-table">
         <thead>
             <tr>
                 <th>Code</th>
@@ -308,35 +312,35 @@ GET /v1/precincts
         </thead>
         <tbody>
             <tr>
-                <td id="http-code-200" class="permalink-wrapper">
+                <td id="http-code-200" class="permalink-hover permalink-highlight">
                     <code>200</code>
-                    <a href="#http-code-200" class="permalink"></a>
+                    <a href="#http-code-200" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="#response">Response</a>
+                    <a href="#response" class="usa-link">Response</a>
                 </td>
                 <td>
                     Successful request.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-400" class="permalink-wrapper">
+                <td id="http-code-400" class="permalink-hover permalink-highlight">
                     <code>400</code>
-                    <a href="#http-code-400" class="permalink"></a>
+                    <a href="#http-code-400" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
-                    <a href="{{ '/docs/data-types' | relative_url }}#error-response">Error Response</a>
+                    <a href="{{ '/docs/data-types' | relative_url }}#error-response" class="usa-link">Error Response</a>
                 </td>
                 <td>
                     The query parameters you included were invalid.
-                    The <a href="{{ '/docs/data-types' | relative_url }}#error-response">Error Response</a>
+                    The <a href="{{ '/docs/data-types' | relative_url }}#error-response" class="usa-link">Error Response</a>
                     will include a message describing exactly was invalid.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-429" class="permalink-wrapper">
+                <td id="http-code-429" class="permalink-hover permalink-highlight">
                     <code>429</code>
-                    <a href="#http-code-429" class="permalink"></a>
+                    <a href="#http-code-429" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -345,13 +349,13 @@ GET /v1/precincts
                     You are making too many requests to the API. Check the
                     <code>Retry-After</code> header for how many seconds to
                     wait until trying the request again. See our docs on
-                    <a href="{{ '/docs/rate-limits' | relative_url }}">Rate Limiting</a>.
+                    <a href="{{ '/docs/rate-limits' | relative_url }}" class="usa-link">Rate Limiting</a>.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-500" class="permalink-wrapper">
+                <td id="http-code-500" class="permalink-hover permalink-highlight">
                     <code>500</code>
-                    <a href="#http-code-500" class="permalink"></a>
+                    <a href="#http-code-500" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -360,13 +364,13 @@ GET /v1/precincts
                     An internal server error occurred. We log these errors
                     and try to fix them quickly, so if you keep getting
                     500 errors for a few days, please
-                    <a href="mailto:errors@ballotapi.org">email us</a>.
+                    <a href="mailto:errors@ballotapi.org" class="usa-link">email us</a>.
                 </td>
             </tr>
             <tr>
-                <td id="http-code-503" class="permalink-wrapper">
+                <td id="http-code-503" class="permalink-hover permalink-highlight">
                     <code>503</code>
-                    <a href="#http-code-503" class="permalink"></a>
+                    <a href="#http-code-503" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
@@ -377,9 +381,9 @@ GET /v1/precincts
                 </td>
             </tr>
             <tr>
-                <td id="http-code-504" class="permalink-wrapper">
+                <td id="http-code-504" class="permalink-hover permalink-highlight">
                     <code>504</code>
-                    <a href="#http-code-504" class="permalink"></a>
+                    <a href="#http-code-504" class="usa-link permalink" title="Permalink"><svg class="svgicon"><use href="#fa-link"/></svg></a>
                 </td>
                 <td>
                     N/A
