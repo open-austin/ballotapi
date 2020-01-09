@@ -21,6 +21,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
+          sudo apt-get install postgresql postgis
           python -m pip install --upgrade pip
           pip install -r requirements.txt -r tests/requirements.txt
       - name: Lint
