@@ -1,6 +1,6 @@
 # BallotAPI - Ballots for developers
 
-![](https://github.com/open-austin/ballotapi/workflows/Tests/badge.svg)
+[![](https://github.com/open-austin/ballotapi/workflows/Tests/badge.svg)](https://github.com/open-austin/ballotapi/actions?query=workflow%3ATests)
 
 **NOTE: THIS PROJECT IS UNDER DEVELOPMENT. THE API DOES NOT WORK YET.**
 
